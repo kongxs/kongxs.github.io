@@ -6,12 +6,12 @@
   
   <title>Java虚拟机-2 | 师学</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="1 Java 内存区域（运行时数据区）Java 不同版本内存区域有所不同，如下图所示。   线程私有：  程序计数器 虚拟机栈 本地方法栈  线程共享：  堆 方法区 直接内存（非运行时数据的一部分）  1.1 程序计数器当前线程所执行的字节码的行号指示器。 程序计数器是唯一一个不会出现 OutOfMemoryError 的内存区域，它的生命周期随着线程的创建而创建，随着线程的结束而死亡。 1.2">
+  <meta name="description" content="1 Java 内存区域（运行时数据区）Java 不同版本内存区域有所不同，如下图所示。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java虚拟机-2">
 <meta property="og:url" content="http://yoursite.com/uncategorized/Java%E8%99%9A%E6%8B%9F%E6%9C%BA-2/index.html">
 <meta property="og:site_name" content="师学">
-<meta property="og:description" content="1 Java 内存区域（运行时数据区）Java 不同版本内存区域有所不同，如下图所示。   线程私有：  程序计数器 虚拟机栈 本地方法栈  线程共享：  堆 方法区 直接内存（非运行时数据的一部分）  1.1 程序计数器当前线程所执行的字节码的行号指示器。 程序计数器是唯一一个不会出现 OutOfMemoryError 的内存区域，它的生命周期随着线程的创建而创建，随着线程的结束而死亡。 1.2">
+<meta property="og:description" content="1 Java 内存区域（运行时数据区）Java 不同版本内存区域有所不同，如下图所示。">
 <meta property="og:locale">
 <meta property="og:image" content="http://yoursite.com/uncategorized/asset/1.6%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F.png">
 <meta property="og:image" content="http://yoursite.com/uncategorized/asset/1.8%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F.png">
@@ -24,7 +24,7 @@
 <meta property="og:image" content="http://yoursite.com/uncategorized/asset/%E7%B1%BB%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png">
 <meta property="og:image" content="http://yoursite.com/uncategorized/asset/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8.png">
 <meta property="article:published_time" content="2021-04-22T06:32:09.000Z">
-<meta property="article:modified_time" content="2021-06-06T01:21:47.468Z">
+<meta property="article:modified_time" content="2021-06-06T04:38:10.726Z">
 <meta property="article:author" content="师学">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/uncategorized/asset/1.6%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F.png">
@@ -111,6 +111,8 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
         <h2 id="1-Java-内存区域（运行时数据区）"><a href="#1-Java-内存区域（运行时数据区）" class="headerlink" title="1 Java 内存区域（运行时数据区）"></a>1 Java 内存区域（运行时数据区）</h2><p>Java 不同版本内存区域有所不同，如下图所示。</p>
+<span id="more"></span>
+
 <p><img src="../asset/1.6%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F.png"></p>
 <p><img src="../asset/1.8%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F.png"></p>
 <p><strong>线程私有：</strong></p>
@@ -396,8 +398,6 @@
 <li>想打破双亲委派模型则需要重写 <strong>loadClass()</strong> 方法。</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//类加载器源码分析</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> ClassLoader parent; </span><br><span class="line"><span class="keyword">protected</span> Class&lt;?&gt; loadClass(String name, <span class="keyword">boolean</span> resolve)</span><br><span class="line">        <span class="keyword">throws</span> ClassNotFoundException</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (getClassLoadingLock(name)) &#123;</span><br><span class="line">            <span class="comment">// 检查请求的类是否已经被加载过</span></span><br><span class="line">            Class&lt;?&gt; c = findLoadedClass(name);</span><br><span class="line">            <span class="keyword">if</span> (c == <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">long</span> t0 = System.nanoTime();</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    <span class="keyword">if</span> (parent != <span class="keyword">null</span>) &#123;</span><br><span class="line">                        <span class="comment">//父加载器不为空，调用父加载器loadClass()方法处理</span></span><br><span class="line">                        c = parent.loadClass(name, <span class="keyword">false</span>);</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                       <span class="comment">//父加载器为空，使用启动类加载器 BootstrapClassLoader 加载</span></span><br><span class="line">                        c = findBootstrapClassOrNull(name);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">                   <span class="comment">//抛出异常说明父类加载器无法完成加载请求</span></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (c == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    <span class="keyword">long</span> t1 = System.nanoTime();</span><br><span class="line">                    <span class="comment">//尝试加载</span></span><br><span class="line">                    c = findClass(name);</span><br><span class="line">                    <span class="comment">// this is the defining class loader; record the stats</span></span><br><span class="line">                    sun.misc.PerfCounter.getParentDelegationTime().addTime(t1 - t0);</span><br><span class="line">                    sun.misc.PerfCounter.getFindClassTime().addElapsedTimeFrom(t1);</span><br><span class="line">                    sun.misc.PerfCounter.getFindClasses().increment();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (resolve) &#123;</span><br><span class="line">                resolveClass(c);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> c;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-
       
     </div>
     <footer class="article-footer">

@@ -6,16 +6,16 @@
   
   <title>jvm gc | 师学</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="一. 小例子说明  123void method() &amp;#123;	Object obj &#x3D; new Object();&amp;#125; 对于以上代码，会生成2部分内存区域：   obj 这个引用变量，会放到jvm stack 里面。  真正的object的class实例对象，会放到 heap 里面  当方法执行结束以后，stack里面的变量会马上被回收，而heap上的class实例，则会等待下一次g">
+  <meta name="description" content="jvm gc">
 <meta property="og:type" content="article">
 <meta property="og:title" content="jvm gc">
 <meta property="og:url" content="http://yoursite.com/Jvm/jvm-gc/index.html">
 <meta property="og:site_name" content="师学">
-<meta property="og:description" content="一. 小例子说明  123void method() &amp;#123;	Object obj &#x3D; new Object();&amp;#125; 对于以上代码，会生成2部分内存区域：   obj 这个引用变量，会放到jvm stack 里面。  真正的object的class实例对象，会放到 heap 里面  当方法执行结束以后，stack里面的变量会马上被回收，而heap上的class实例，则会等待下一次g">
+<meta property="og:description" content="jvm gc">
 <meta property="og:locale">
 <meta property="og:image" content="https://wanke-fun.oss-cn-beijing.aliyuncs.com/jvm/gc_1.png">
 <meta property="article:published_time" content="2019-12-07T05:19:00.000Z">
-<meta property="article:modified_time" content="2021-06-06T01:21:47.472Z">
+<meta property="article:modified_time" content="2021-06-06T04:43:10.482Z">
 <meta property="article:author" content="师学">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://wanke-fun.oss-cn-beijing.aliyuncs.com/jvm/gc_1.png">
@@ -105,7 +105,10 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>一. 小例子说明 </p>
+        <p>jvm gc</p>
+<span id="more"></span>
+
+<p>一. 小例子说明 </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">void method() &#123;</span><br><span class="line">	Object obj = new Object();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>对于以上代码，会生成2部分内存区域： </p>
 <ol>

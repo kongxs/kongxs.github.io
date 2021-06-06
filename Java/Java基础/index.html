@@ -14,7 +14,7 @@
 <meta property="og:description" content="https:&#x2F;&#x2F;www.yuque.com&#x2F;docs&#x2F;share&#x2F;31deed7b-935a-4cf7-bcf3-8107bee40404?#0ea5e531 1. 面向对象封装，继承，多态    多态是指父类的某个方法被子类重写时，可以产生自己的功能行为，同一个操作作用于不同对象，可以有不同的解释，产生不同的执行结果。     静态方法与静态成员变量可以被继承，但是不能被重写。它对子类隐藏，因此">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-04-02T08:30:00.000Z">
-<meta property="article:modified_time" content="2021-06-06T01:21:47.464Z">
+<meta property="article:modified_time" content="2021-06-06T04:40:23.417Z">
 <meta property="article:author" content="师学">
 <meta name="twitter:card" content="summary">
   
@@ -120,6 +120,7 @@
 <li>为什么Java里的匿名内部类只能访问final修饰的外部变量？</li>
 </ul>
 </blockquote>
+<span id="more"></span>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">因为匿名内部类最终用会编译成一个单独的类，而被该类使用的变量会以构造函数参数的形式传递给该类，例如：Integer paramInteger，</span><br><span class="line">如果变量不定义成final的，paramInteger在匿名内部类被可以被修改，进而造成和外部的paramInteger不一致的问题，为了避免这种不一致的情况，</span><br><span class="line">因为Java规定匿名内部类只能访问final修饰的外部变量。</span><br></pre></td></tr></table></figure>
 <blockquote>
 <ul>

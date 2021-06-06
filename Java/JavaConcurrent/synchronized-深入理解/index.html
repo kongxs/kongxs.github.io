@@ -6,15 +6,15 @@
   
   <title>synchronized 深入理解 | 师学</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="synchronize是jdk提供的进行辅助同步的关键字。它可以修饰一个 方法体，可以同步代码块修饰一个对象。   修饰一个成员函数 会对当前对象实例进行加锁， 每一个对象实例只有一把锁，也就是说在同一时刻只会有一个方法被执行 。  修饰一个静态函数 修饰静态函数时 ，会对当前对象的class对象进行枷锁，不管生成多少个对象实例，它的calss对象是唯一的   当使用synchronize在函数内">
+  <meta name="description" content="synchronize是jdk提供的进行辅助同步的关键字。它可以修饰一个 方法体，可以同步代码块修饰一个对象。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="synchronized 深入理解">
 <meta property="og:url" content="http://yoursite.com/Java/JavaConcurrent/synchronized-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/index.html">
 <meta property="og:site_name" content="师学">
-<meta property="og:description" content="synchronize是jdk提供的进行辅助同步的关键字。它可以修饰一个 方法体，可以同步代码块修饰一个对象。   修饰一个成员函数 会对当前对象实例进行加锁， 每一个对象实例只有一把锁，也就是说在同一时刻只会有一个方法被执行 。  修饰一个静态函数 修饰静态函数时 ，会对当前对象的class对象进行枷锁，不管生成多少个对象实例，它的calss对象是唯一的   当使用synchronize在函数内">
+<meta property="og:description" content="synchronize是jdk提供的进行辅助同步的关键字。它可以修饰一个 方法体，可以同步代码块修饰一个对象。">
 <meta property="og:locale">
 <meta property="article:published_time" content="2019-12-12T03:29:00.000Z">
-<meta property="article:modified_time" content="2021-06-06T01:21:47.475Z">
+<meta property="article:modified_time" content="2021-06-06T04:42:00.594Z">
 <meta property="article:author" content="师学">
 <meta name="twitter:card" content="summary">
   
@@ -103,7 +103,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>synchronize是jdk提供的进行辅助同步的关键字。<br><br>它可以修饰一个 方法体，可以同步代码块修饰一个对象。 </p>
+        <p>synchronize是jdk提供的进行辅助同步的关键字。<br><br>它可以修饰一个 方法体，可以同步代码块修饰一个对象。</p>
+<span id="more"></span>
+
 <ol>
 <li>修饰一个成员函数<br> 会对当前对象实例进行加锁， 每一个对象实例只有一把锁，也就是说在同一时刻只会有一个方法被执行 。 </li>
 <li>修饰一个静态函数<br><br> 修饰静态函数时 ，会对当前对象的class对象进行枷锁，不管生成多少个对象实例，它的calss对象是唯一的 </li>

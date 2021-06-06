@@ -6,15 +6,15 @@
   
   <title>wait notify 深入理解 | 师学</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="wait 和 notify 是object类的方法 ，也就是说在java世界里，所有的class对象都会持有这2个方法。在使用过程中，wait 和 notify一定是成对出现的。 在调用wait时候，线程必须持有被调用对象的锁。当wait被调用，线程就会释放持有的对象锁 。 sleep方法并不会释放锁。  关于wait 和 notify方法的总结：   调用wait时候，首先要保证线程是有了对象的">
+  <meta name="description" content="wait 和 notify 是object类的方法 ，也就是说在java世界里，所有的class对象都会持有这2个方法。在使用过程中，wait 和 notify一定是成对出现的。 在调用wait时候，线程必须持有被调用对象的锁。当wait被调用，线程就会释放持有的对象锁 。 sleep方法并不会释放锁。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="wait notify 深入理解">
 <meta property="og:url" content="http://yoursite.com/Java/JavaConcurrent/wait-notify-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/index.html">
 <meta property="og:site_name" content="师学">
-<meta property="og:description" content="wait 和 notify 是object类的方法 ，也就是说在java世界里，所有的class对象都会持有这2个方法。在使用过程中，wait 和 notify一定是成对出现的。 在调用wait时候，线程必须持有被调用对象的锁。当wait被调用，线程就会释放持有的对象锁 。 sleep方法并不会释放锁。  关于wait 和 notify方法的总结：   调用wait时候，首先要保证线程是有了对象的">
+<meta property="og:description" content="wait 和 notify 是object类的方法 ，也就是说在java世界里，所有的class对象都会持有这2个方法。在使用过程中，wait 和 notify一定是成对出现的。 在调用wait时候，线程必须持有被调用对象的锁。当wait被调用，线程就会释放持有的对象锁 。 sleep方法并不会释放锁。">
 <meta property="og:locale">
 <meta property="article:published_time" content="2019-12-11T01:47:00.000Z">
-<meta property="article:modified_time" content="2021-06-06T01:21:47.476Z">
+<meta property="article:modified_time" content="2021-06-06T04:42:32.168Z">
 <meta property="article:author" content="师学">
 <meta name="twitter:card" content="summary">
   
@@ -105,6 +105,8 @@
       
         <p>wait 和 notify 是object类的方法 ，也就是说在java世界里，所有的class对象都会持有这2个方法。<br>在使用过程中，wait 和 notify一定是成对出现的。</p>
 <p>在调用wait时候，线程必须持有被调用对象的锁。当wait被调用，线程就会释放持有的对象锁 。 sleep方法并不会释放锁。 </p>
+<span id="more"></span>
+
 <p>关于wait 和 notify方法的总结： </p>
 <ol>
 <li>调用wait时候，首先要保证线程是有了对象的锁</li>

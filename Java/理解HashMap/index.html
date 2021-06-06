@@ -6,16 +6,16 @@
   
   <title>理解HashMap | 师学</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="HashMap ConcurrentHashMap LinkedHashMap   HashMap成员变量12345678910111213&#x2F;&#x2F;最大容量 2的30次方    static final int MAXIMUM_CAPACITY &#x3D; 1 &lt;&lt; 30;    &#x2F;&#x2F;默认的加载因子    static final float DEFAULT_LOAD_FACTOR &#x3D; 0.7">
+  <meta name="description" content="HashMap ConcurrentHashMap LinkedHashMap">
 <meta property="og:type" content="article">
 <meta property="og:title" content="理解HashMap">
 <meta property="og:url" content="http://yoursite.com/Java/%E7%90%86%E8%A7%A3HashMap/index.html">
 <meta property="og:site_name" content="师学">
-<meta property="og:description" content="HashMap ConcurrentHashMap LinkedHashMap   HashMap成员变量12345678910111213&#x2F;&#x2F;最大容量 2的30次方    static final int MAXIMUM_CAPACITY &#x3D; 1 &lt;&lt; 30;    &#x2F;&#x2F;默认的加载因子    static final float DEFAULT_LOAD_FACTOR &#x3D; 0.7">
+<meta property="og:description" content="HashMap ConcurrentHashMap LinkedHashMap">
 <meta property="og:locale">
 <meta property="og:image" content="https://wanke-fun.oss-cn-beijing.aliyuncs.com/2021/hashmap_worker.png">
 <meta property="article:published_time" content="2021-04-10T06:23:00.000Z">
-<meta property="article:modified_time" content="2021-06-06T01:21:47.478Z">
+<meta property="article:modified_time" content="2021-06-06T04:39:26.650Z">
 <meta property="article:author" content="师学">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://wanke-fun.oss-cn-beijing.aliyuncs.com/2021/hashmap_worker.png">
@@ -112,6 +112,8 @@
 <li>LinkedHashMap</li>
 </ul>
 </blockquote>
+<span id="more"></span>
+
 <h2 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h2><h4 id="成员变量"><a href="#成员变量" class="headerlink" title="成员变量"></a>成员变量</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//最大容量 2的30次方</span><br><span class="line">    static final int MAXIMUM_CAPACITY = 1 &lt;&lt; 30;</span><br><span class="line">    //默认的加载因子</span><br><span class="line">    static final float DEFAULT_LOAD_FACTOR = 0.75f;</span><br><span class="line"></span><br><span class="line">    //哈希桶，存放链表。 长度是2的N次方，或者初始化时为0.</span><br><span class="line">    transient Node&lt;K,V&gt;[] table;</span><br><span class="line"></span><br><span class="line">    //加载因子，用于计算哈希表元素数量的阈值。  threshold = 哈希桶.length * loadFactor;</span><br><span class="line">    final float loadFactor;</span><br><span class="line">    //哈希表内元素数量的阈值，当哈希表内元素数量超过阈值时，会发生扩容resize()。</span><br><span class="line">    int threshold;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h4 id="桶个数的计算"><a href="#桶个数的计算" class="headerlink" title="桶个数的计算"></a>桶个数的计算</h4><p>在构造函数中传入了初始大小的话，会根据当前值计算hash桶的个数</p>

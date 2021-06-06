@@ -6,15 +6,15 @@
   
   <title>FBO的一点理解 | 师学</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="在使用glsurfaceView渲染图片和摄像头采集的视频数据时候，之前默认的使用直接渲染的方式。但是在实际的开发使用中，我们很多时候并不想要直接渲染，而是先做一些额外的工作，比如滤镜 。 fbo可以帮我们更好的实现这个需求，FBO可以让不渲染到屏幕当中去，而是渲染到离屏的buffer中。 这里我们不再去赘述一些基本的概念 ，基于OpenGL es 30 版本，在Android上的实现，描述一次">
+  <meta name="description" content="在使用glsurfaceView渲染图片和摄像头采集的视频数据时候，之前默认的使用直接渲染的方式。但是在实际的开发使用中，我们很多时候并不想要直接渲染，而是先做一些额外的工作，比如滤镜 。 fbo可以帮我们更好的实现这个需求，FBO可以让不渲染到屏幕当中去，而是渲染到离屏的buffer中。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="FBO的一点理解">
 <meta property="og:url" content="http://yoursite.com/OpenGL/FBO%E7%9A%84%E4%B8%80%E7%82%B9%E7%90%86%E8%A7%A3/index.html">
 <meta property="og:site_name" content="师学">
-<meta property="og:description" content="在使用glsurfaceView渲染图片和摄像头采集的视频数据时候，之前默认的使用直接渲染的方式。但是在实际的开发使用中，我们很多时候并不想要直接渲染，而是先做一些额外的工作，比如滤镜 。 fbo可以帮我们更好的实现这个需求，FBO可以让不渲染到屏幕当中去，而是渲染到离屏的buffer中。 这里我们不再去赘述一些基本的概念 ，基于OpenGL es 30 版本，在Android上的实现，描述一次">
+<meta property="og:description" content="在使用glsurfaceView渲染图片和摄像头采集的视频数据时候，之前默认的使用直接渲染的方式。但是在实际的开发使用中，我们很多时候并不想要直接渲染，而是先做一些额外的工作，比如滤镜 。 fbo可以帮我们更好的实现这个需求，FBO可以让不渲染到屏幕当中去，而是渲染到离屏的buffer中。">
 <meta property="og:locale">
 <meta property="article:published_time" content="2020-06-11T09:08:00.000Z">
-<meta property="article:modified_time" content="2021-06-06T01:21:47.459Z">
+<meta property="article:modified_time" content="2021-06-06T04:40:48.250Z">
 <meta property="article:author" content="师学">
 <meta name="twitter:card" content="summary">
   
@@ -104,6 +104,8 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
         <p>在使用glsurfaceView渲染图片和摄像头采集的视频数据时候，之前默认的使用直接渲染的方式。但是在实际的开发使用中，我们很多时候并不想要直接渲染，而是先做一些额外的工作，比如滤镜 。 fbo可以帮我们更好的实现这个需求，FBO可以让不渲染到屏幕当中去，而是渲染到离屏的buffer中。</p>
+<span id="more"></span>
+
 <p>这里我们不再去赘述一些基本的概念 ，基于OpenGL es 30 版本，在Android上的实现，描述一次 fbo的实现过程。 </p>
 <p>就以渲染一张bitmap为例 。 </p>
 <h4 id="1-创建bitmap纹理"><a href="#1-创建bitmap纹理" class="headerlink" title="1. 创建bitmap纹理"></a>1. 创建bitmap纹理</h4><ol>

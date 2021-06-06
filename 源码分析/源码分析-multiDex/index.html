@@ -14,7 +14,7 @@
 <meta property="og:description" content="概述MultiDex适用于API版本在4-20的Android系统 , 即Android 2.1 - 4.4 . 而在这些版本之间 , MultiDex会通过Application.getClassLoader进行加载. 而如果Dex比较多比较大的话 , 主线程加载Dex时间会很长 , 导致主线程ANR.由于Android 5.0之后使用ART虚拟机进行dex2oat , 将多dex在安装的时候将">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-05-26T09:43:00.000Z">
-<meta property="article:modified_time" content="2021-06-06T03:25:04.960Z">
+<meta property="article:modified_time" content="2021-06-06T04:35:12.661Z">
 <meta property="article:author" content="师学">
 <meta name="twitter:card" content="summary">
   
@@ -104,6 +104,8 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
         <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>MultiDex适用于API版本在4-20的Android系统 , 即Android 2.1 - 4.4 . 而在这些版本之间 , MultiDex会通过Application.getClassLoader进行加载. 而如果Dex比较多比较大的话 , 主线程加载Dex时间会很长 , 导致主线程ANR.<br><br>由于Android 5.0之后使用ART虚拟机进行dex2oat , 将多dex在安装的时候将APK中多个Dex进行优化 , 优化过后生成一个ELF文件 , 名为.oat文件. 在加载后 , 会将oat文件直接映射到ART虚拟机中使用 , 这样就减少Dex加载的耗时.</p>
+<span id="more"></span>
+
 <h3 id="MultiDex加载过程简述"><a href="#MultiDex加载过程简述" class="headerlink" title="MultiDex加载过程简述"></a>MultiDex加载过程简述</h3><blockquote>
 <ul>
 <li>读取APK的CRC32以及modifyTime进行校验</li>

@@ -6,15 +6,15 @@
   
   <title>jvm gc实践 | 师学</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="编写代码如下  12345678public static void main(String[] args) &amp;#123;        int size &#x3D; 1024 * 1024 ;        byte[] alloc &#x3D;   new byte[2 * size] ;        byte[] alloc2 &#x3D; new byte[2 * size] ;        byte[] al">
+  <meta name="description" content="gc实践">
 <meta property="og:type" content="article">
 <meta property="og:title" content="jvm gc实践">
 <meta property="og:url" content="http://yoursite.com/Jvm/jvm-gc%E5%AE%9E%E8%B7%B5/index.html">
 <meta property="og:site_name" content="师学">
-<meta property="og:description" content="编写代码如下  12345678public static void main(String[] args) &amp;#123;        int size &#x3D; 1024 * 1024 ;        byte[] alloc &#x3D;   new byte[2 * size] ;        byte[] alloc2 &#x3D; new byte[2 * size] ;        byte[] al">
+<meta property="og:description" content="gc实践">
 <meta property="og:locale">
 <meta property="article:published_time" content="2019-12-10T08:41:00.000Z">
-<meta property="article:modified_time" content="2021-06-06T01:21:47.472Z">
+<meta property="article:modified_time" content="2021-06-06T04:42:56.548Z">
 <meta property="article:author" content="师学">
 <meta name="twitter:card" content="summary">
   
@@ -103,7 +103,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <ol>
+        <p>gc实践</p>
+<span id="more"></span>
+<ol>
 <li><p>编写代码如下 </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> size = <span class="number">1024</span> * <span class="number">1024</span> ;</span><br><span class="line">        <span class="keyword">byte</span>[] alloc =   <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">2</span> * size] ;</span><br><span class="line">        <span class="keyword">byte</span>[] alloc2 = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">2</span> * size] ;</span><br><span class="line">        <span class="keyword">byte</span>[] alloc3 = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">2</span> * size] ;</span><br><span class="line">        <span class="keyword">byte</span>[] alloc4 = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">2</span> * size] ;</span><br><span class="line">		System.out.println(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>jvm参数配置：</p>
@@ -130,14 +132,6 @@
 <p>经历过多次 minior GC 以后，存活的对象会在 from survivor 和 to survivor 中来回移动， 而且有一个前提是要有足够的控件来存放这些数据 。 在GC算法中会计算每个对象的年龄大小，当达到某个年后以后发现总大小已经超过 一个survivor空间的50% ，那么会调整阈值，而不是等到默认的年龄才完成晋升。</p>
 <h6 id="实战：MaxTenuringThreshold阈值动态调整"><a href="#实战：MaxTenuringThreshold阈值动态调整" class="headerlink" title="实战：MaxTenuringThreshold阈值动态调整"></a>实战：MaxTenuringThreshold阈值动态调整</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-verbose:gc</span><br><span class="line">-Xmx200M</span><br><span class="line">-Xmn50M</span><br><span class="line">-XX:TargetSurvivorRatio=60</span><br><span class="line">-XX:+PrintTenuringDistribution</span><br><span class="line">-XX:+PrintGCDetails</span><br><span class="line">-XX:+PrintGCDateStamps</span><br><span class="line">-XX:+UseConcMarkSweepGC</span><br><span class="line">-XX:+UseParNewGC</span><br><span class="line">-XX:MaxTenuringThreshold=3</span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public class Test04 &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        int size = 1024 * 1024 ;</span><br><span class="line">        byte[] alloc = new byte[512 * 1024];</span><br><span class="line">        byte[] alloc2 = new byte[512 * 1024];</span><br><span class="line">        gc();</span><br><span class="line">        System.out.println(&quot;1111&quot;);</span><br><span class="line">        gc();</span><br><span class="line">        System.out.println(&quot;2222&quot;);</span><br><span class="line">        gc();</span><br><span class="line">        System.out.println(&quot;3333&quot;);</span><br><span class="line">        gc();</span><br><span class="line">        System.out.println(&quot;4444&quot;);</span><br><span class="line">        gc();</span><br><span class="line">        System.out.println(&quot;55555&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    static void gc() &#123;</span><br><span class="line">        for (int i = 0; i &lt; 30; i++) &#123;</span><br><span class="line">            byte[] alloc = new byte[1024 * 1024];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
       
     </div>
     <footer class="article-footer">

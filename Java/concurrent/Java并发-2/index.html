@@ -6,12 +6,12 @@
   
   <title>Java并发-2 | 师学</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="1 进程与线程1.1 进程与线程进程：系统进行资源分配和调度的基本单位。 线程：操作系统能够进行运算调度的最小单位。 1.2 并发与并行 并发： 一个时间段内，多个任务在执行 (单位时间内不一定同时执行)； 并行： 单位时间内，多个任务同时执行。  2 多线程2.1 多线程的实现 继承 Thread 实现 Runnable 接口 实现 Callable 接口  123456789101112131">
+  <meta name="description" content="1 进程与线程1.1 进程与线程进程：系统进行资源分配和调度的基本单位。 线程：操作系统能够进行运算调度的最小单位。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java并发-2">
 <meta property="og:url" content="http://yoursite.com/Java/concurrent/Java%E5%B9%B6%E5%8F%91-2/index.html">
 <meta property="og:site_name" content="师学">
-<meta property="og:description" content="1 进程与线程1.1 进程与线程进程：系统进行资源分配和调度的基本单位。 线程：操作系统能够进行运算调度的最小单位。 1.2 并发与并行 并发： 一个时间段内，多个任务在执行 (单位时间内不一定同时执行)； 并行： 单位时间内，多个任务同时执行。  2 多线程2.1 多线程的实现 继承 Thread 实现 Runnable 接口 实现 Callable 接口  123456789101112131">
+<meta property="og:description" content="1 进程与线程1.1 进程与线程进程：系统进行资源分配和调度的基本单位。 线程：操作系统能够进行运算调度的最小单位。">
 <meta property="og:locale">
 <meta property="og:image" content="http://yoursite.com/Java/concurrent/asset/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2.png">
 <meta property="og:image" content="http://yoursite.com/Java/concurrent/asset/%E7%BA%BF%E7%A8%8B.png">
@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://yoursite.com/Java/concurrent/asset/Atomic%E7%B1%BB.png">
 <meta property="og:image" content="http://yoursite.com/Java/concurrent/asset/ABA.png">
 <meta property="article:published_time" content="2021-04-22T06:26:00.000Z">
-<meta property="article:modified_time" content="2021-06-06T01:21:47.464Z">
+<meta property="article:modified_time" content="2021-06-06T04:39:06.808Z">
 <meta property="article:author" content="师学">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/Java/concurrent/asset/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2.png">
@@ -112,6 +112,8 @@
       
         <h2 id="1-进程与线程"><a href="#1-进程与线程" class="headerlink" title="1 进程与线程"></a>1 进程与线程</h2><h3 id="1-1-进程与线程"><a href="#1-1-进程与线程" class="headerlink" title="1.1 进程与线程"></a>1.1 进程与线程</h3><p>进程：系统进行<strong>资源分配和调度</strong>的基本单位。</p>
 <p>线程：操作系统能够进行<strong>运算调度</strong>的最小单位。</p>
+<span id="more"></span>
+
 <h3 id="1-2-并发与并行"><a href="#1-2-并发与并行" class="headerlink" title="1.2 并发与并行"></a>1.2 并发与并行</h3><ul>
 <li><strong>并发：</strong> 一个时间段内，多个任务在执行 (单位时间内不一定同时执行)；</li>
 <li><strong>并行：</strong> 单位时间内，多个任务同时执行。</li>
