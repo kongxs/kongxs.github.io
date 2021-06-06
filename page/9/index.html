@@ -1,11 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang=zh>
 <head>
   <meta charset="utf-8">
   
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
   
-  <title>师学</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <title>Hexo</title>
   <meta property="og:type" content="website">
 <meta property="og:title" content="师学">
 <meta property="og:url" content="http://yoursite.com/page/9/index.html">
@@ -13,773 +25,474 @@
 <meta property="og:locale">
 <meta property="article:author" content="师学">
 <meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/page/9/index.html">
   
     <link rel="alternate" href="/atom.xml" title="师学" type="application/atom+xml">
   
   
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
-
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
   
   
 <link rel="stylesheet" href="/css/style.css">
 
   
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-
+  
+  
   
 <meta name="generator" content="Hexo 5.4.0"></head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">师学</a>
-      </h1>
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
       
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">学而不思则罔，思而不学则殆。</a>
-        </h2>
       
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">昵称</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shenzhen, China</small>
       </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
     </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">Books</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
   </div>
 </header>
 
-      <div class="outer">
-        <section id="main">
   
-    <article id="post-视频基础" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/pr/%E8%A7%86%E9%A2%91%E5%9F%BA%E7%A1%80/" class="article-date">
-  <time class="dt-published" datetime="2019-07-04T01:29:49.000Z" itemprop="datePublished">2019-07-04</time>
-</a>
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/pr/">pr</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/pr/%E8%A7%86%E9%A2%91%E5%9F%BA%E7%A1%80/">视频基础</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="1-图片素材的导入以及导出媒体"><a href="#1-图片素材的导入以及导出媒体" class="headerlink" title="1. 图片素材的导入以及导出媒体"></a>1. 图片素材的导入以及导出媒体</h2><pre><code>1.打开图片素材&lt;br&gt;
-2.新建序列
-3.可以对图片进行大小的调整 -&gt; 窗口-效果控件-选中图片进行调整
-4.可以选择图片之间的过渡效果
-5.a轨道添加音频可以作为背景音乐
-</code></pre>
-<h2 id="2-入点出点以及剃刀工具"><a href="#2-入点出点以及剃刀工具" class="headerlink" title="2. 入点出点以及剃刀工具"></a>2. 入点出点以及剃刀工具</h2><pre><code>1. 使用入点和出点可以更方便的选中某一片段从而进行更加精确定位
-2. 使用左边栏菜单，剃刀工具进行分割，也可已作为子剪辑
-3. 可以在入点和出点进行循环播放
-4. 对于已有视频，可以在视频素材右下角菜单建立序列和当前视频源保持一致
-</code></pre>
-<h2 id="3-录机和放机，音视频链接"><a href="#3-录机和放机，音视频链接" class="headerlink" title="3.录机和放机，音视频链接"></a>3.录机和放机，音视频链接</h2><pre><code>1. 放机里面我们可以截取片段
-2. 音视频可以通过右键菜单进行链接与反链接
-</code></pre>
-<h2 id="4-倒放，播放速度，持续时间"><a href="#4-倒放，播放速度，持续时间" class="headerlink" title="4. 倒放，播放速度，持续时间"></a>4. 倒放，播放速度，持续时间</h2><pre><code>1. 视频轨道右键通过时间菜单可以进行调整
-</code></pre>
-<h2 id="5-画中画"><a href="#5-画中画" class="headerlink" title="5. 画中画"></a>5. 画中画</h2><pre><code>1. v1，v2添加视频源
-2. 可以调整视频的位置，可以动态设置位置，可以进行特效 比如移动，透明，旋转。。。
-</code></pre>
-<h2 id="6-特效控制"><a href="#6-特效控制" class="headerlink" title="6. 特效控制"></a>6. 特效控制</h2><pre><code>1. 效果控件里面可以选择翻转，等过渡动画，可以添加特效
-</code></pre>
-
-      
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/pr/%E8%A7%86%E9%A2%91%E5%9F%BA%E7%A1%80/" data-id="ckpkkdole007lifus7wp3ellj" data-title="视频基础" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
+</div>
 
-
-
-  
-    <article id="post-https-以及SSL通信认证" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/Java/https-%E4%BB%A5%E5%8F%8ASSL%E9%80%9A%E4%BF%A1%E8%AE%A4%E8%AF%81/" class="article-date">
-  <time class="dt-published" datetime="2019-06-06T03:11:17.000Z" itemprop="datePublished">2019-06-06</time>
-</a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java/">Java</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/Java/https-%E4%BB%A5%E5%8F%8ASSL%E9%80%9A%E4%BF%A1%E8%AE%A4%E8%AF%81/">https 以及SSL通信认证</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="1-Http"><a href="#1-Http" class="headerlink" title="1. Http"></a>1. Http</h2><p>HyperText Transfer Protocol，超文本传输协议，是互联网上使用最广泛的一种协议，所有WWW文件必须遵循的标准。HTTP协议传输的数据都是未加密的，也就是明文的，因此使用HTTP协议传输隐私信息非常不安全。</p>
-<p>使用TCP端口为：80</p>
-<h2 id="2-Https"><a href="#2-Https" class="headerlink" title="2. Https"></a>2. Https</h2><p>Hyper Text Transfer Protocol over Secure Socket Layer，安全的超文本传输协议，网景公式设计了SSL(Secure Sockets Layer)协议用于对Http协议传输的数据进行加密，保证会话过程中的安全性。</p>
-<p>使用TCP端口默认为443</p>
-<h2 id="3-SSL协议加密方式"><a href="#3-SSL协议加密方式" class="headerlink" title="3. SSL协议加密方式"></a>3. SSL协议加密方式</h2><p>SSL协议即用到了对称加密也用到了非对称加密(公钥加密)，在建立传输链路时，SSL首先对对称加密的密钥使用公钥进行非对称加密，链路建立好之后，SSL对传输内容使用对称加密。</p>
-<ol>
-<li><p>对称加密<br>速度高，可加密内容较大，用来加密会话过程中的消息</p>
-</li>
-<li><p>公钥加密<br>加密速度较慢，但能提供更好的身份认证技术，用来加密对称加密的密钥</p>
-</li>
-</ol>
-<h2 id="4-单向认证"><a href="#4-单向认证" class="headerlink" title="4. 单向认证"></a>4. 单向认证</h2><p>Https在建立Socket连接之前，需要进行握手，具体过程如下：<br><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/https_single.jpeg"></img></p>
-<ol>
-<li><p>客户端向服务端发送SSL协议版本号、加密算法种类、随机数等信息。</p>
-</li>
-<li><p>服务端给客户端返回SSL协议版本号、加密算法种类、随机数等信息，同时也返回服务器端的证书，即公钥证书</p>
-</li>
-<li><p>客户端使用服务端返回的信息验证服务器的合法性，包括：</p>
-<p> a. 证书是否过期</p>
-<p> b. 发型服务器证书的CA是否可靠</p>
-<p> c. 返回的公钥是否能正确解开返回证书中的数字签名</p>
-<p> d. 服务器证书上的域名是否和服务器的实际域名相匹配</p>
-<p> e. 验证通过后，将继续进行通信，否则，终止通信</p>
-</li>
-<li><p>客户端向服务端发送自己所能支持的对称加密方案，供服务器端进行选择</p>
-</li>
-<li><p>服务器端在客户端提供的加密方案中选择加密程度最高的加密方式。</p>
-</li>
-<li><p>服务器将选择好的加密方案通过明文方式返回给客户端</p>
-</li>
-<li><p>客户端接收到服务端返回的加密方式后，使用该加密方式生成产生随机码，用作通信过程中对称加密的密钥，使用服务端返回的公钥进行加密，将加密后的随机码发送至服务器</p>
-</li>
-<li><p>服务器收到客户端返回的加密信息后，使用自己的私钥进行解密，获取对称加密密钥。 在接下来的会话中，服务器和客户端将会使用该密码进行对称加密，保证通信过程中信息的安全。</p>
-</li>
-</ol>
-<h2 id="5-双向认证"><a href="#5-双向认证" class="headerlink" title="5. 双向认证"></a>5. 双向认证</h2><p>双向认证和单向认证原理基本差不多，只是除了客户端需要认证服务端以外，增加了服务端对客户端的认证，具体过程如下：</p>
-<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/https_mul.jpeg"></img></p>
-<ol>
-<li><p>客户端向服务端发送SSL协议版本号、加密算法种类、随机数等信息。</p>
-</li>
-<li><p>服务端给客户端返回SSL协议版本号、加密算法种类、随机数等信息，同时也返回服务器端的证书，即公钥证书</p>
-</li>
-<li><p>客户端使用服务端返回的信息验证服务器的合法性，包括：</p>
-<p> a. 证书是否过期</p>
-<p> b. 发型服务器证书的CA是否可靠</p>
-<p> c. 返回的公钥是否能正确解开返回证书中的数字签名</p>
-<p> d. 服务器证书上的域名是否和服务器的实际域名相匹配</p>
-<p> e. 验证通过后，将继续进行通信，否则，终止通信</p>
-</li>
-<li><p>服务端要求客户端发送客户端的证书，客户端会将自己的证书发送至服务端</p>
-</li>
-<li><p>验证客户端的证书，通过验证后，会获得客户端的公钥</p>
-</li>
-<li><p>客户端向服务端发送自己所能支持的对称加密方案，供服务器端进行选择</p>
-</li>
-<li><p>服务器端在客户端提供的加密方案中选择加密程度最高的加密方式</p>
-</li>
-<li><p>将加密方案通过使用之前获取到的公钥进行加密，返回给客户端</p>
-</li>
-<li><p>客户端收到服务端返回的加密方案密文后，使用自己的私钥进行解密，获取具体加密方式，而后，产生该加密方式的随机码，用作加密过程中的密钥，使用之前从服务端证书中获取到的公钥进行加密后，发送给服务端</p>
-</li>
-</ol>
-<p>10、服务端收到客户端发送的消息后，使用自己的私钥进行解密，获取对称加密的密钥，在接下来的会话中，服务器和客户端将会使用该密码进行对称加密，保证通信过程中信息的安全。</p>
-<h2 id="6-总结"><a href="#6-总结" class="headerlink" title="6. 总结"></a>6. 总结</h2><pre><code>https的通信由三步完成
-</code></pre>
-<h4 id="1-交换"><a href="#1-交换" class="headerlink" title="1. 交换"></a>1. 交换</h4><pre><code>客户端和服务端的交换 包括： SSL版本号，加密算法种类，随机数等，服务端同时返回证书信息
-</code></pre>
-<h4 id="2-认证"><a href="#2-认证" class="headerlink" title="2. 认证"></a>2. 认证</h4><pre><code>客户端对服务端证书的认证 包括： 证书有效期，证书是否合法，证书的额域名是否匹配等
-</code></pre>
-<h4 id="3-加密-amp-通信"><a href="#3-加密-amp-通信" class="headerlink" title="3. 加密 &amp; 通信"></a>3. 加密 &amp; 通信</h4><pre><code>客户端会将自己支持的加密算法发送给服务端，然后服务端选择安全性高的加密方式，连同之前的公钥发给客户端。
-</code></pre>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/Java/https-%E4%BB%A5%E5%8F%8ASSL%E9%80%9A%E4%BF%A1%E8%AE%A4%E8%AF%81/" data-id="ckpkkdokj004rifus31z9glj5" data-title="https 以及SSL通信认证" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-深入理解BlockQueue" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/Java/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3BlockQueue/" class="article-date">
-  <time class="dt-published" datetime="2019-05-28T06:38:29.000Z" itemprop="datePublished">2019-05-28</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java/">Java</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/Java/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3BlockQueue/">深入理解BlockQueue</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>谈谈BlockQueue</p>
-<pre><code>在前文生产者消费者模式的实现中，我们使用了BlockQueue的方式
-来进行模拟，它使得我们不必写大量的wait和notify代码
-那么BlockQueue有着什么样的魔力
-</code></pre>
-<h2 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h2>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/Java/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3BlockQueue/" data-id="ckpkkdol4006nifusezimbb7h" data-title="深入理解BlockQueue" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-生产者消费者模式的三种实现" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/Java/%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%B8%89%E7%A7%8D%E5%AE%9E%E7%8E%B0/" class="article-date">
-  <time class="dt-published" datetime="2019-05-28T03:25:00.000Z" itemprop="datePublished">2019-05-28</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java/">Java</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/Java/%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%B8%89%E7%A7%8D%E5%AE%9E%E7%8E%B0/">生产者消费者模式的三种实现</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="1-什么是生产者消费者模式"><a href="#1-什么是生产者消费者模式" class="headerlink" title="1. 什么是生产者消费者模式"></a>1. 什么是生产者消费者模式</h2><p>通过一个容器解决生产者消费者强耦合的问题，生产者和消费者之间不直接通信，通过阻塞的方式来实现数据的存取，阻塞的容器就相当于一个缓冲区，平衡生产者消费者的能力。</p>
-<h2 id="2-为什么要使用生产者消费者模式"><a href="#2-为什么要使用生产者消费者模式" class="headerlink" title="2. 为什么要使用生产者消费者模式"></a>2. 为什么要使用生产者消费者模式</h2><p>在线程世界里，生产者就是生产数据的线程，消费者就是消费数据的线程。在多线程开发当中，如果生产者处理速度很快，而消费者处理速度很慢，那么生产者就必须等待消费者处理完，才能继续生产数据。同样的道理，如果消费者的处理能力大于生产者，那么消费者就必须等待生产者。为了解决这种生产消费能力不均衡的问题，所以便有了生产者和消费者模式。</p>
-<h2 id="代码实战"><a href="#代码实战" class="headerlink" title="代码实战"></a>代码实战</h2><h3 id="1-首先是生产者和消费者线程"><a href="#1-首先是生产者和消费者线程" class="headerlink" title="1.首先是生产者和消费者线程"></a>1.首先是生产者和消费者线程</h3><p>生产者和消费者各是线程，在线程启动时候，开启无限循环，不断的进行添加和删除的操作。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Consumer</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> Resources res;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Consumer</span><span class="params">(Resources res)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.res = res;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>.run();</span><br><span class="line">		<span class="keyword">while</span>(<span class="keyword">true</span>) &#123;</span><br><span class="line">			res.countDown();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Productor</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> Resources res;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Productor</span><span class="params">(Resources res)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.res = res;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>.run();</span><br><span class="line">		<span class="keyword">while</span>(<span class="keyword">true</span>) &#123;</span><br><span class="line">			res.add();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="2-重点是我们的资源库，一共三种实现方式"><a href="#2-重点是我们的资源库，一共三种实现方式" class="headerlink" title="2. 重点是我们的资源库，一共三种实现方式"></a>2. 重点是我们的资源库，一共三种实现方式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Resources</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">countDown</span><span class="params">()</span></span>;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>定义了一个 resource接口，有一个添加和一个消费的接口。</p>
-<h4 id="1-使用synchronize-wait-notifyAll-实现"><a href="#1-使用synchronize-wait-notifyAll-实现" class="headerlink" title="1. 使用synchronize + wait() + notifyAll() 实现"></a>1. 使用synchronize + wait() + notifyAll() 实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ResourcesImpl2</span> <span class="keyword">implements</span> <span class="title">Resources</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 当前资源数量</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line">	<span class="comment">// 资源池中允许存放的资源数目</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> size = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">		System.out.println(<span class="string">&quot; add ...........  &quot;</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span> (num &lt; size) &#123;</span><br><span class="line">			num++;</span><br><span class="line">			System.out.println(<span class="string">&quot;生产者&quot;</span>+Thread.currentThread().getName() + <span class="string">&quot;生产一件资源，当前资源池有&quot;</span> + num + <span class="string">&quot;个&quot;</span>);</span><br><span class="line">			<span class="comment">// 通知等待的消费者</span></span><br><span class="line">			<span class="keyword">this</span>.notifyAll();</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="comment">// 如果当前资源池中有10件资源</span></span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				System.out.println(<span class="string">&quot;生产者&quot;</span>+Thread.currentThread().getName() + <span class="string">&quot;线程进入等待&quot;</span>);</span><br><span class="line">				<span class="keyword">this</span>.wait();<span class="comment">// 生产者进入等待状态，并释放锁</span></span><br><span class="line">			&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">countDown</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (num &gt; <span class="number">0</span>) &#123;</span><br><span class="line">			num--;</span><br><span class="line">			System.out.println(<span class="string">&quot;消费者&quot;</span> + Thread.currentThread().getName() + <span class="string">&quot;消耗一件资源，&quot;</span> + <span class="string">&quot;当前线程池有&quot;</span> + num + <span class="string">&quot;个&quot;</span>);</span><br><span class="line">			<span class="keyword">this</span>.notifyAll();<span class="comment">// 通知生产者生产资源</span></span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				<span class="comment">// 如果没有资源，则消费者进入等待状态</span></span><br><span class="line">				<span class="keyword">this</span>.wait();</span><br><span class="line">				System.out.println(<span class="string">&quot;消费者&quot;</span> + Thread.currentThread().getName() + <span class="string">&quot;线程进入等待状态&quot;</span>);</span><br><span class="line">			&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-使用阻塞队列BlockQueue-实现"><a href="#1-使用阻塞队列BlockQueue-实现" class="headerlink" title="1. 使用阻塞队列BlockQueue 实现"></a>1. 使用阻塞队列BlockQueue 实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ResourcesImpl</span> <span class="keyword">implements</span> <span class="title">Resources</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	BlockingQueue&lt;Integer&gt; queue = <span class="keyword">new</span> LinkedBlockingQueue&lt;Integer&gt;(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (queue.size() &lt; <span class="number">10</span>) &#123;</span><br><span class="line">			queue.add(<span class="number">1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">countDown</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="keyword">if</span> (queue.size() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">				Integer take = queue.take();</span><br><span class="line">				System.out.println(take);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-使用可重入锁的方式-实现"><a href="#1-使用可重入锁的方式-实现" class="headerlink" title="1. 使用可重入锁的方式 实现"></a>1. 使用可重入锁的方式 实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ResourcesImpl3</span> <span class="keyword">implements</span> <span class="title">Resources</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 当前资源数量</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line">	<span class="comment">// 资源池中允许存放的资源数目</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> size = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> Lock lock = <span class="keyword">new</span> ReentrantLock();</span><br><span class="line">	<span class="keyword">private</span> Condition con;</span><br><span class="line">	<span class="keyword">private</span> Condition pro;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">ResourcesImpl3</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		con = lock.newCondition();</span><br><span class="line">		pro = lock.newCondition();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">		System.out.println(<span class="string">&quot; add ...........  &quot;</span>);</span><br><span class="line">		lock.lock();</span><br><span class="line"></span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> (num &lt; size) &#123;</span><br><span class="line">				num++;</span><br><span class="line">				System.out.println(<span class="string">&quot;生产者&quot;</span> + Thread.currentThread().getName() + <span class="string">&quot;生产一件资源，当前资源池有&quot;</span> + num + <span class="string">&quot;个&quot;</span>);</span><br><span class="line">				<span class="comment">// 通知等待的消费者</span></span><br><span class="line">				con.signalAll();</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="comment">// 如果当前资源池中有10件资源</span></span><br><span class="line">				<span class="keyword">try</span> &#123;</span><br><span class="line">					System.out.println(<span class="string">&quot;生产者&quot;</span> + Thread.currentThread().getName() + <span class="string">&quot;线程进入等待&quot;</span>);</span><br><span class="line">					pro.await();<span class="comment">// 生产者进入等待状态，并释放锁</span></span><br><span class="line">				&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">					e.printStackTrace();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">			lock.unlock();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">countDown</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">		lock.lock();</span><br><span class="line"></span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="keyword">if</span> (num &gt; <span class="number">0</span>) &#123;</span><br><span class="line">				num--;</span><br><span class="line">				System.out.println(<span class="string">&quot;消费者&quot;</span> + Thread.currentThread().getName() + <span class="string">&quot;消耗一件资源，&quot;</span> + <span class="string">&quot;当前线程池有&quot;</span> + num + <span class="string">&quot;个&quot;</span>);</span><br><span class="line">				pro.signalAll();<span class="comment">// 通知生产者生产资源</span></span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">try</span> &#123;</span><br><span class="line">					<span class="comment">// 如果没有资源，则消费者进入等待状态</span></span><br><span class="line">					con.await();</span><br><span class="line">					System.out.println(<span class="string">&quot;消费者&quot;</span> + Thread.currentThread().getName() + <span class="string">&quot;线程进入等待状态&quot;</span>);</span><br><span class="line">				&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">					e.printStackTrace();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">			lock.unlock();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/Java/%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%B8%89%E7%A7%8D%E5%AE%9E%E7%8E%B0/" data-id="ckpkkdol80074ifus8z1valor" data-title="生产者消费者模式的三种实现" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-java中的Volatile" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/Java/java%E4%B8%AD%E7%9A%84Volatile/" class="article-date">
-  <time class="dt-published" datetime="2019-05-27T03:09:12.000Z" itemprop="datePublished">2019-05-27</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java/">Java</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/Java/java%E4%B8%AD%E7%9A%84Volatile/">java中的Volatile</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="1-Volatile的作用"><a href="#1-Volatile的作用" class="headerlink" title="1. Volatile的作用"></a>1. Volatile的作用</h2><p>在Java多线程编程中，被Volatile修饰的关键字会对所有线程课件，也就是说他保证了变量的可见性。当一个volatile变量值被一个线程修改额时候，那么另外一个线程也可以读取到被修改后的值。</p>
-<h2 id="2-为什么使用Volatile"><a href="#2-为什么使用Volatile" class="headerlink" title="2. 为什么使用Volatile"></a>2. 为什么使用Volatile</h2><p>如果使用得当，volatile关键字会比synchronized有着更低的使用和执行成本，它不会引起线程上下文的切换和调度。</p>
-<ol>
-<li>实现long/double类型的可见性 （4个字节，赋值时低32位和高32位分别写入）</li>
-<li>防止指令 重排序 </li>
-<li>实现变量的可见性 </li>
-</ol>
-<p>以上2，3 是通过内存屏障（memory barrier）来实现的</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/Java/java%E4%B8%AD%E7%9A%84Volatile/" data-id="ckpkkdokk004uifus7hds105r" data-title="java中的Volatile" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-java技能必修技能和书单推荐" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/uncategorized/java%E6%8A%80%E8%83%BD%E5%BF%85%E4%BF%AE%E6%8A%80%E8%83%BD%E5%92%8C%E4%B9%A6%E5%8D%95%E6%8E%A8%E8%8D%90/" class="article-date">
-  <time class="dt-published" datetime="2019-01-11T09:18:45.000Z" itemprop="datePublished">2019-01-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/uncategorized/java%E6%8A%80%E8%83%BD%E5%BF%85%E4%BF%AE%E6%8A%80%E8%83%BD%E5%92%8C%E4%B9%A6%E5%8D%95%E6%8E%A8%E8%8D%90/">java技能必修技能和书单推荐</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>链接：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/38880482/answer/567106090">https://www.zhihu.com/question/38880482/answer/567106090</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/uncategorized/java%E6%8A%80%E8%83%BD%E5%BF%85%E4%BF%AE%E6%8A%80%E8%83%BD%E5%92%8C%E4%B9%A6%E5%8D%95%E6%8E%A8%E8%8D%90/" data-id="ckpkkdokl004wifus3ro28u7p" data-title="java技能必修技能和书单推荐" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-adb-command-not-found" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/Android/adb-command-not-found/" class="article-date">
-  <time class="dt-published" datetime="2019-01-09T05:13:00.000Z" itemprop="datePublished">2019-01-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/Android/adb-command-not-found/">adb command not found </a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>在Mac系统中，很多时候第一次在Android SDK中使用adb的时候。无法使用。会提示-bash: abd: command not found。</p>
-<p>造成此类现象的原因是：未配置Android的环境变量。因此，您需为Mac中的Android SDK配置环境变量。</p>
-<p>启动Mac自带的终端Terminal。进入当前用户的home目录。</p>
-<p>在命令行输入echo $HOME创建.bash_profile文件。</p>
-<p>命令行输入touch .bash_profile打开.bash_profile文件。</p>
-<p>命令行输入open -e .bash_profile 此命令行输入完毕后，会自动弹出 .bash_profile 文件的编辑窗口，在.bash_profile文件中输入</p>
-<p>export PATH=/Users/您的用户名/文件路径/platform-tools/:$PATH<br>保存文件。</p>
-<p>直接关闭.bash_profile文件，即可自动保存您输入的内容。</p>
-<p>更新刚配置的环境变量在命令行中输入  source .bash_profile </p>
-<p>验证配置是否成功输入adb，</p>
-<p>如果没有出现-bash: adb: command not found；而出现adb的命令参数解释。则表明环境变量配置成功。</p>
-<p>export ANDROID_HOME=/Users/1111/Library/Android/sdk</p>
-<p>export PATH=${PATH}:${ANDROID_HOME}/tools</p>
-<p>export PATH=${PATH}:${ANDROID_HOME}/platform-tools</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/Android/adb-command-not-found/" data-id="ckpkkdoke004fifus66ol3viq" data-title="adb command not found " class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-ReactNative-常见问题汇总" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/ReactNative/ReactNative-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" class="article-date">
-  <time class="dt-published" datetime="2019-01-04T09:08:42.000Z" itemprop="datePublished">2019-01-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/ReactNative/">ReactNative</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/ReactNative/ReactNative-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/">ReactNative 常见问题汇总</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="1-Unable-to-load-script-from-assets-‘index-android-bundle’"><a href="#1-Unable-to-load-script-from-assets-‘index-android-bundle’" class="headerlink" title="1. Unable to load script from assets ‘index.android.bundle’"></a>1. Unable to load script from assets ‘index.android.bundle’</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">java.lang.RuntimeException: Unable to load script from assets &#x27;index.android.bundle&#x27;. Make sure your bundle is packaged correctly or you&#x27;re running a packager server.</span><br><span class="line">       at com.facebook.react.bridge.CatalystInstanceImpl.jniLoadScriptFromAssets(Native Method)</span><br><span class="line">       at com.facebook.react.bridge.CatalystInstanceImpl.loadScriptFromAssets(CatalystInstanceImpl.java:216)</span><br><span class="line">       at com.facebook.react.bridge.JSBundleLoader$1.loadScript(JSBundleLoader.java:32)</span><br><span class="line">       at com.facebook.react.bridge.CatalystInstanceImpl.runJSBundle(CatalystInstanceImpl.java:243)</span><br><span class="line">       at com.facebook.react.ReactInstanceManager.createReactContext(ReactInstanceManager.java:1116)</span><br><span class="line">       at com.facebook.react.ReactInstanceManager.access$900(ReactInstanceManager.java:117)</span><br><span class="line">       at com.facebook.react.ReactInstanceManager$5.run(ReactInstanceManager.java:916)</span><br><span class="line">       at java.lang.Thread.run(Thread.java:818)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>出现此问题的原因是因为没有找到index.android.bundle文件，我是用的是2.0.1,解决方案如下</p>
-<ol>
-<li>创建目录 android\app\src\main\assets</li>
-<li>执行以下命令，将index.android.bundle 文件拷贝到 asset目录<br> react-native bundle –platform android –dev false –entry-file index.js –bundle-output android/app/src/main/assets/index.android.bundle –assets-dest android/app/src/main/res/</li>
-</ol>
-<p>如此以后，再执行react-native run-android 启动app即可解决</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/ReactNative/ReactNative-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" data-id="ckpkkdokd004cifus23zm5k9w" data-title="ReactNative 常见问题汇总" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-reactnative-使用自定义原生控件" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/ReactNative/reactnative-%E4%BD%BF%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8E%9F%E7%94%9F%E6%8E%A7%E4%BB%B6/" class="article-date">
-  <time class="dt-published" datetime="2019-01-02T08:00:41.000Z" itemprop="datePublished">2019-01-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/ReactNative/">ReactNative</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/ReactNative/reactnative-%E4%BD%BF%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8E%9F%E7%94%9F%E6%8E%A7%E4%BB%B6/">reactnative 使用自定义原生控件</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>致敬 facebook 。reactnative 是factbook推出的移动端跨平台框架，给跨平台开发带来了新的实现。<br>它封装了大量常用的基础控件，但是在开发的过程中并不能满足个性的开发。有幸的是 rn团队为开发者接入自定义控件提供了解决方案。本章主要记录Android平台上如何使用自定义控件。</p>
-</blockquote>
-<br>
-
-<h2 id="1-Android端原生实现"><a href="#1-Android端原生实现" class="headerlink" title="1.Android端原生实现"></a>1.Android端原生实现</h2><h3 id="1-1-继承ViewManager进行自定义控件开发"><a href="#1-1-继承ViewManager进行自定义控件开发" class="headerlink" title="1.1 继承ViewManager进行自定义控件开发"></a>1.1 继承ViewManager进行自定义控件开发</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GameViewManager</span> <span class="keyword">extends</span> <span class="title">SimpleViewManager</span>&lt;<span class="title">ImageView</span>&gt; </span>&#123;</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;rnimageview&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> ImageView <span class="title">createViewInstance</span><span class="params">(ThemedReactContext reactContext)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ImageView():</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>getName 方法返回的值 就是我们在 rn的javascript文件里面使用的view标签名字<br><br>通过createViewInstance方法返回要使用控件的实例</p>
-<h3 id="1-2-支持自定义属性和方法"><a href="#1-2-支持自定义属性和方法" class="headerlink" title="1.2 支持自定义属性和方法"></a>1.2 支持自定义属性和方法</h3><p>我们需要添加一些动态的值通过属性的方式让我们的原生控件接收，rn提供了一套通信方式,我们在ViewManager的实现类中添加如下方法： </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ReactMethod</span></span><br><span class="line">  <span class="meta">@ReactProp(name = &quot;gameURL&quot;)</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUrl</span><span class="params">(JdGameSurface view, <span class="meta">@Nullable</span> String sources)</span> </span>&#123;</span><br><span class="line">      Toast.makeText(view.getContext(),<span class="string">&quot;seturl&quot;</span>,Toast.LENGTH_SHORT).show();</span><br><span class="line">      view.loadJsFromAssets(<span class="string">&quot;fish-android.js&quot;</span>);</span><br><span class="line">      view.start();</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<p>添加 ReactMethod 注解的方法可以在javascript文件中访问， 这样我们可以在javascript中动态设值。<br><br>@ReactProp(name = “gameURL”) 此注解标识我们为本view添加了一个gameURL的属性 。 通过这样我们就完成了对应属性的添加</p>
-<h2 id="1-3-注册我们的自定义控件"><a href="#1-3-注册我们的自定义控件" class="headerlink" title="1.3 注册我们的自定义控件"></a>1.3 注册我们的自定义控件</h2><p>首先我们 新建ReactPackage的实现类，然后将我们的自定义ViewManager 在createViewManagers方法中添加到集合返回，如下代码所示 ： </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GameReactPackage</span> <span class="keyword">implements</span> <span class="title">ReactPackage</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;NativeModule&gt; <span class="title">createNativeModules</span><span class="params">(ReactApplicationContext reactContext)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Collections.emptyList();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;ViewManager&gt; <span class="title">createViewManagers</span><span class="params">(ReactApplicationContext reactContext)</span> </span>&#123;</span><br><span class="line">        ArrayList&lt;ViewManager&gt; viewManagers = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        viewManagers.add(<span class="keyword">new</span> GameViewManager());<span class="comment">//重要</span></span><br><span class="line">        <span class="keyword">return</span> viewManagers;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>其次，在application中将我们新建的ReactPackage类，添加到rn中注册</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">public class MainApplication extends Application implements ReactApplication &#123;</span><br><span class="line"></span><br><span class="line">  private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public boolean getUseDeveloperSupport() &#123;</span><br><span class="line">      return BuildConfig.DEBUG;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected List&lt;ReactPackage&gt; getPackages() &#123;</span><br><span class="line">      return Arrays.&lt;ReactPackage&gt;asList(</span><br><span class="line">          new MainReactPackage(),</span><br><span class="line">              new GameReactPackage()//重要</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected String getJSMainModuleName() &#123;</span><br><span class="line">      return &quot;index&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public ReactNativeHost getReactNativeHost() &#123;</span><br><span class="line">    return mReactNativeHost;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public void onCreate() &#123;</span><br><span class="line">    super.onCreate();</span><br><span class="line">    SoLoader.init(this, /* native exopackage */ false);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>主要是在 getPackages 方法中将此 ReactPackage 添加到集合中返回 。<br></p>
-<p>到此为止，我么就将Android中原生开发进行完毕，下面开始讲解怎么在 javascript文件中使用此自定义控件</p>
-<h2 id="2-在RN中使用自定义控件"><a href="#2-在RN中使用自定义控件" class="headerlink" title="2. 在RN中使用自定义控件"></a>2. 在RN中使用自定义控件</h2><p>为方便使用，我们实现一个 rn模块对view进行统一的管理</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> PropTypes <span class="keyword">from</span> <span class="string">&#x27;prop-types&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; requireNativeComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;react-native&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">JDGameView</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="title">render</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">RNJDGame</span> &#123;<span class="attr">...this.props</span>&#125; /&gt;</span></span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">JDGameView.propTypes = &#123;</span><br><span class="line">    <span class="attr">gameURL</span>:PropTypes.string,</span><br><span class="line">    ...View.propTypes</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> RNJDGame = requireNativeComponent(<span class="string">&#x27;RNJDGame&#x27;</span>,JDGameView);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> JDGameView;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>在我们需要使用此view的地方进行引入即可</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">render</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="xml"><span class="tag">&lt;<span class="name">JDGameView</span> <span class="attr">gameURL</span>=<span class="string">&quot;xxxxxxx&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">JDGameView</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<p>至此，我们通过代码和讲解，实现了rn中进行自定义控件的完整流程。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/ReactNative/reactnative-%E4%BD%BF%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8E%9F%E7%94%9F%E6%8E%A7%E4%BB%B6/" data-id="ckpkkdokx005uifus2qru7rra" data-title="reactnative 使用自定义原生控件" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Android-中so的动态加载实现" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/Android/Android-%E4%B8%ADso%E7%9A%84%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E5%AE%9E%E7%8E%B0/" class="article-date">
-  <time class="dt-published" datetime="2018-12-13T07:24:06.000Z" itemprop="datePublished">2018-12-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/Android/Android-%E4%B8%ADso%E7%9A%84%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E5%AE%9E%E7%8E%B0/">Android 中so的动态加载实现</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>正常情况下我们都是通过System.loadLibrary()的方式来加载位于libs下的so。最近做的一个项目由于对于aar体积有严格的大小要求，所以将so做成了动态加载的策略</p>
-</blockquote>
-<pre><code>获取手机cpu架构的命令
-adb shell getprop ro.product.cpu.abi 
-</code></pre>
-<h1 id="1-加载远程so"><a href="#1-加载远程so" class="headerlink" title="1.加载远程so"></a>1.加载远程so</h1><p>我们需要将so下载到本地进行加载，通过System.load()方法将本地so路径作为参数传入！</p>
-<h1 id="2-代码实现"><a href="#2-代码实现" class="headerlink" title="2. 代码实现"></a>2. 代码实现</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> context</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> so 所在的路径</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="meta">@SuppressLint(&quot;UnsafeDynamicallyLoadedCode&quot;)</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">loadSoFile</span><span class="params">(Context context, String originFilePath)</span> </span>&#123;</span><br><span class="line">      </span><br><span class="line">       File dir = context.getDir(<span class="string">&quot;libs&quot;</span>, Context.MODE_PRIVATE);</span><br><span class="line">       File file = <span class="keyword">new</span> File(originFilePath);</span><br><span class="line">       String toFilePath = dir.getAbsolutePath() + File.separator + file.getName();</span><br><span class="line">       </span><br><span class="line">       copySdcardFile(originFilePath, toFilePath);</span><br><span class="line">    </span><br><span class="line">       System.load(toFilePath);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">copySdcardFile</span><span class="params">(String fromFile, String toFile)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">try</span> &#123;</span><br><span class="line">           FileInputStream fosfrom = <span class="keyword">new</span> FileInputStream(fromFile);</span><br><span class="line">           FileOutputStream fosto = <span class="keyword">new</span> FileOutputStream(toFile);</span><br><span class="line">           ByteArrayOutputStream baos = <span class="keyword">new</span> ByteArrayOutputStream();</span><br><span class="line">           <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">           <span class="keyword">int</span> len = -<span class="number">1</span>;</span><br><span class="line">           <span class="keyword">while</span> ((len = fosfrom.read(buffer)) != -<span class="number">1</span>) &#123;</span><br><span class="line">               baos.write(buffer, <span class="number">0</span>, len);</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="comment">// 从内存到写入到具体文件</span></span><br><span class="line">           fosto.write(baos.toByteArray());</span><br><span class="line">           <span class="comment">// 关闭文件流</span></span><br><span class="line">           baos.close();</span><br><span class="line">           fosto.close();</span><br><span class="line">           fosfrom.close();</span><br><span class="line">           <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">       &#125; <span class="keyword">catch</span> (Exception ex) &#123;</span><br><span class="line">           <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p> 一定要将so拷贝到app内部目录，否则无权限执行so</p>
-<h1 id="3-平台适配问题"><a href="#3-平台适配问题" class="headerlink" title="3. 平台适配问题"></a>3. 平台适配问题</h1><p> 由于android平台存在多种类型的cpu架构，所以需要我们根据不同的cpu加载对应的so库，比如 x86，armabi等</p>
-<p> 代码获取当前设备的cpu</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getFirstSupportedAbi</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      String abi1 = <span class="string">&quot;&quot;</span>;</span><br><span class="line">      <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= <span class="number">21</span>) &#123;</span><br><span class="line">          String[] abis = Build.SUPPORTED_ABIS;</span><br><span class="line">          <span class="keyword">if</span> (abis != <span class="keyword">null</span> &amp;&amp; abis.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">              String abistr = <span class="string">&quot;&quot;</span>;</span><br><span class="line">              <span class="comment">//第一个是原生支持的,后面的是兼容模式.虽然是兼容,但手动加载时很多并不兼容.</span></span><br><span class="line">              abi1 = abis[<span class="number">0</span>];</span><br><span class="line">              <span class="keyword">for</span> (String abi : abis) &#123;</span><br><span class="line">                  abistr = abistr + abi + <span class="string">&quot;,&quot;</span>;</span><br><span class="line">              &#125;</span><br><span class="line">              JdGame.print(abistr);</span><br><span class="line">          &#125;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          <span class="keyword">if</span> (!TextUtils.isEmpty(Build.CPU_ABI)) &#123;</span><br><span class="line">              abi1 = Build.CPU_ABI;</span><br><span class="line">          &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!TextUtils.isEmpty(Build.CPU_ABI2)) &#123;</span><br><span class="line">              abi1 = Build.CPU_ABI2;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> abi1;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<p>然后根据获取的 cpu值，去下载对应的 so 再进行加载</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/Android/Android-%E4%B8%ADso%E7%9A%84%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E5%AE%9E%E7%8E%B0/" data-id="ckpkkdojo0028ifushcz4a4kx" data-title="Android 中so的动态加载实现" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <a class="extend prev" rel="prev" href="/page/8/">&laquo; zurück</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/10/">weiter &raquo;</a>
-  </nav>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Kategorien</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/">dlib</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/DIP/">DIP</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/mvp/">mvp</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIP/">DIP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Flutter/">Flutter</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gradle/">Gradle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/JavaConcurrent/">JavaConcurrent</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/concurrent/">concurrent</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Jvm/">Jvm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kotlin/">Kotlin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nio/">Nio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note2/">Note2</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/OpenGL/">OpenGL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ReactNative/">ReactNative</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/">jdhai</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/">javascript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/%E8%B7%A8%E5%B9%B3%E5%8F%B0/">跨平台</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/pr/">pr</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%91%E6%8C%87%E7%B3%BB%E5%88%97/">剑指系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%85%92/">酒</a></li></ul>
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/">dlib</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/DIP/">DIP</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/mvp/">mvp</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIP/">DIP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Flutter/">Flutter</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gradle/">Gradle</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">18</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/JavaConcurrent/">JavaConcurrent</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/concurrent/">concurrent</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Jvm/">Jvm</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kotlin/">Kotlin</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nio/">Nio</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note2/">Note2</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OpenGL/">OpenGL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ReactNative/">ReactNative</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/">jdhai</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/">javascript</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/%E8%B7%A8%E5%B9%B3%E5%8F%B0/">跨平台</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/pr/">pr</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%91%E6%8C%87%E7%B3%BB%E5%88%97/">剑指系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><span class="category-list-count">28</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%85%92/">酒</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
 
-  
     
+      
 
-  
     
-  
+      
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archiv</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">27</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
 
-  
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">letzter Beitrag</h3>
-    <div class="widget">
-      <ul>
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
         
           <li>
-            <a href="/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-multiDex/">源码分析-multiDex</a>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a>
+              </p>
+              <p class="item-title">
+                <a href="/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-multiDex/" class="title">源码分析-multiDex</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-26T09:43:00.000Z" itemprop="datePublished">2021-05-26</time>
+              </p>
+            </div>
           </li>
-        
+          
           <li>
-            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-leakCanary/">源码分析-leakCanary</a>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Android/">Android</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a>
+              </p>
+              <p class="item-title">
+                <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-leakCanary/" class="title">源码分析-leakCanary</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-24T02:34:00.000Z" itemprop="datePublished">2021-05-24</time>
+              </p>
+            </div>
           </li>
-        
+          
           <li>
-            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-glide/">源码分析-glide</a>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Android/">Android</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a>
+              </p>
+              <p class="item-title">
+                <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-glide/" class="title">源码分析-glide</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-21T06:59:00.000Z" itemprop="datePublished">2021-05-21</time>
+              </p>
+            </div>
           </li>
-        
+          
           <li>
-            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-okHttp/">源码分析-okHttp</a>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Android/">Android</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a>
+              </p>
+              <p class="item-title">
+                <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-okHttp/" class="title">源码分析-okHttp</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-19T09:39:00.000Z" itemprop="datePublished">2021-05-19</time>
+              </p>
+            </div>
           </li>
-        
+          
           <li>
-            <a href="/Android/Android-view%E7%BB%98%E5%88%B6/">Android-view绘制</a>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Android/">Android</a>
+              </p>
+              <p class="item-title">
+                <a href="/Android/Android-view%E7%BB%98%E5%88%B6/" class="title">Android-view绘制</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-11T07:49:00.000Z" itemprop="datePublished">2021-05-11</time>
+              </p>
+            </div>
           </li>
-        
+          
       </ul>
     </div>
   </div>
+  
 
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2021 师学<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
+    
   </div>
-</footer>
+</aside>
 
-    </div>
-    <nav id="mobile-nav">
   
-    <a href="/" class="mobile-nav-link">Home</a>
+  <main class="main" role="main">
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+  <div class="content article-list">
+    
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
   
-</nav>
+    <h1 itemprop="name">
+      <a class="article-title" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/001-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%83%E5%A4%A7%E5%8E%9F%E5%88%99/">001.设计模式七大原则</a>
+    </h1>
+  
+
+  </div>
+  
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/001-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%83%E5%A4%A7%E5%8E%9F%E5%88%99/" class="article-date">
+	  <time datetime="2018-04-22T07:01:00.000Z" itemprop="datePublished">Apr 22</time>
+	</a>
+</span>
+    
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+  </span>
+
     
 
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/001-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%83%E5%A4%A7%E5%8E%9F%E5%88%99/#comments" class="article-comment-link">Comments</a></span>
+    
+  </p>
+</article>
 
-<script src="/js/jquery-3.4.1.min.js"></script>
-
-
-
+    
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
   
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
+    <h1 itemprop="name">
+      <a class="article-title" href="/%E9%85%92/%E7%99%BD%E9%85%92/">白酒</a>
+    </h1>
+  
 
   </div>
+  
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/%E9%85%92/%E7%99%BD%E9%85%92/" class="article-date">
+	  <time datetime="2018-02-22T14:49:00.000Z" itemprop="datePublished">Feb 22</time>
+	</a>
+</span>
+    
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E9%85%92/">酒</a>
+  </span>
+
+    
+
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/%E9%85%92/%E7%99%BD%E9%85%92/#comments" class="article-comment-link">Comments</a></span>
+    
+  </p>
+</article>
+
+    
+  </div>
+
+  
+    
+    <nav class="bar bar-footer clearfix" data-stick-bottom>
+        <div class="bar-inner">
+        <ul class="pager pull-left">
+            
+            <li class="prev">
+                <a href="/page/8/">
+                    <i class="icon icon-angle-left"></i>
+                    Prev
+                </a>
+            </li>
+            
+            
+            <li class="next disabled">
+                <a href="javascript:;">
+                    Next
+                    <i class="icon icon-angle-right"></i>                    
+                </a>
+            </li>
+            
+        </ul>
+        <div class="total-article bar-right">Page 9 of 9</div>
+        </div>
+    </nav>
+    
+ 
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
 </body>
 </html>
