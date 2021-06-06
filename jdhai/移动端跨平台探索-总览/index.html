@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>移动端跨平台探索 - 总览 | 师学</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="随着移动技术的发展，跨平台技术日趋火热。颇有一股推到原生开发的气势，本系列介绍之前公司内部跨平台技术开发，以及用到的相关技术点和实现细节    1.jdhai项目介绍在7fresh项目的开发和维护过程中，由于需要经常性的进行各种活动的支持，介于HTML的糟糕体验，我们在内部探索实现了一套轻量级的跨平台的技术实现，并在7fresh项目中进行了大量的实践，同一套代码运行在Android和ios两">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端跨平台探索 - 总览">
+<meta property="og:url" content="http://yoursite.com/jdhai/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%8E%A2%E7%B4%A2-%E6%80%BB%E8%A7%88/index.html">
+<meta property="og:site_name" content="师学">
+<meta property="og:description" content="随着移动技术的发展，跨平台技术日趋火热。颇有一股推到原生开发的气势，本系列介绍之前公司内部跨平台技术开发，以及用到的相关技术点和实现细节    1.jdhai项目介绍在7fresh项目的开发和维护过程中，由于需要经常性的进行各种活动的支持，介于HTML的糟糕体验，我们在内部探索实现了一套轻量级的跨平台的技术实现，并在7fresh项目中进行了大量的实践，同一套代码运行在Android和ios两">
+<meta property="og:locale">
+<meta property="og:image" content="http://gudao-blog.oss.cn-north-1.jcloudcs.com/jdhai_jiagoutu.png">
+<meta property="article:published_time" content="2018-12-12T08:30:13.000Z">
+<meta property="article:modified_time" content="2021-06-06T01:21:47.479Z">
+<meta property="article:author" content="师学">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://gudao-blog.oss.cn-north-1.jcloudcs.com/jdhai_jiagoutu.png">
+  
+    <link rel="alternate" href="/atom.xml" title="师学" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">师学</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学而不思则罔，思而不学则殆。</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-移动端跨平台探索-总览" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/jdhai/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%8E%A2%E7%B4%A2-%E6%80%BB%E8%A7%88/" class="article-date">
+  <time class="dt-published" datetime="2018-12-12T08:30:13.000Z" itemprop="datePublished">2018-12-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/jdhai/">jdhai</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      移动端跨平台探索 - 总览
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <br>
+
+<blockquote>
+<p>随着移动技术的发展，跨平台技术日趋火热。颇有一股推到原生开发的气势，本系列介绍之前公司内部跨平台技术开发，以及用到的相关技术点和实现细节</p>
+</blockquote>
+<br>
+
+<h1 id="1-jdhai项目介绍"><a href="#1-jdhai项目介绍" class="headerlink" title="1.jdhai项目介绍"></a>1.jdhai项目介绍</h1><p>在7fresh项目的开发和维护过程中，由于需要经常性的进行各种活动的支持，介于HTML的糟糕体验，我们在内部探索实现了一套轻量级的跨平台的技术实现，并在7fresh项目中进行了大量的实践，同一套代码运行在Android和ios两端，并实现了动态加载和更新！</p>
+<h2 id="1-1-优势"><a href="#1-1-优势" class="headerlink" title="1.1 优势"></a>1.1 优势</h2><p>jdhai 使用 javascript作为开发语言，基于mvc思想，实现了ui，样式和代码逻辑的分离。底层由Android和ios原生控件实现，布局基于 flexbox思想。<br>一次开发，就可以运行在iOS、Android 平台上，具备iOS和Android原生的性能和用户体验上的优势，并且可以无需客户端更新版本做到动态更新页面功能。<br><br></p>
+<h1 id="2-jdhai-技术架构"><a href="#2-jdhai-技术架构" class="headerlink" title="2.jdhai 技术架构"></a>2.jdhai 技术架构</h1><p>jdhai 使用 xml 作为 布局文件的描述语言，使用json进行样式文件描述，使用javascript作为开发语言。iOS和Android 两端 各自实现 上述文件的解析并通过javascript建立和native代码的通信。javascript使用同一的api接口，调用各端原生代码的native实现，从而达到使用javascript开发的统一。</p>
+<img src="http://gudao-blog.oss.cn-north-1.jcloudcs.com/jdhai_jiagoutu.png" width="500" hegiht="313" align=center />
+<br>
+# 3. jdhai 使用到的技术总览<br>
+## 3.1 利用 javascript 进行前端页面开发
+使用javascript同原生代码进行交互，为此我们借助 javascript 引擎解决通信问题。通过调研 duktape，javascCore 等引擎，我们最终选用了 duktape-Java 这个基于duktape 的引擎实现。
+
+<p>duktape 部分可以参考： <a target="_blank" rel="noopener" href="http://wanke.fun/jdhai/javascript/%E8%B7%A8%E5%B9%B3%E5%8F%B0/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%8E%A2%E7%B4%A2-javascript%E5%BC%95%E6%93%8E%E7%9A%84%E4%BD%BF%E7%94%A8/#more">Android上使用的javascript引擎 - duktapeJava篇</a></p>
+<h2 id="3-2-利用yoga和flexbox布局思想进行样式文件编写"><a href="#3-2-利用yoga和flexbox布局思想进行样式文件编写" class="headerlink" title="3.2 利用yoga和flexbox布局思想进行样式文件编写"></a>3.2 利用yoga和flexbox布局思想进行样式文件编写</h2><blockquote>
+<p>flexBox布局是 W3C 在2009年 提出了一种新的布局方案，可以简便、完整、响应式地实现各种页面布局。目前，它已经得到了所有浏览器的支持！</p>
+</blockquote>
+<h3 id="3-2-1-yoga-Facebook-跨平台布局项目"><a href="#3-2-1-yoga-Facebook-跨平台布局项目" class="headerlink" title="3.2.1  yoga - Facebook 跨平台布局项目"></a>3.2.1  yoga - Facebook 跨平台布局项目</h3><p><a target="_blank" rel="noopener" href="https://github.com/facebook/yoga" title="FaceBook/Yoga">FaceBook/Yoga</a> 是一个基于Flexbox思想的布局项目，他提供了 java，android，ios 等多个平台的实现。这使得我们可以借助yoga 利用同一套样式文件运行到不同平台上。也为我们跨平台项目的布局提供了一种解决方案！</p>
+<h3 id="3-2-2-yoga的Android实现-yogaLayout"><a href="#3-2-2-yoga的Android实现-yogaLayout" class="headerlink" title="3.2.2 yoga的Android实现 yogaLayout"></a>3.2.2 yoga的Android实现 yogaLayout</h3><p>yogalayout 是 yoga 项目中的Android 实现，他封装了一个 使得可以方便的以flexbox的规范来进行放置子控件的ViewGroup,而不用关心如何把flexBox转化成ViewGroup布局。<br><br></p>
+<h3 id="3-2-3-yogaLayout使用"><a href="#3-2-3-yogaLayout使用" class="headerlink" title="3.2.3 yogaLayout使用"></a>3.2.3 yogaLayout使用</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">View child = <span class="keyword">new</span> View(context);</span><br><span class="line">       YogaNode yogaNode = <span class="keyword">new</span> YogaNode();</span><br><span class="line">       yogaNode.setHeight(<span class="number">10</span>);</span><br><span class="line">       yogaNode.setWidth(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">       YogaLayout layout = <span class="keyword">new</span> YogaLayout(context);</span><br><span class="line">       layout.addView(child,yogaNode);</span><br><span class="line">       </span><br></pre></td></tr></table></figure>
+
+
+<p>yogalayout addview接收2个参数，一个是我们要添加的view，另外一个 yoganode 就是约束子view是如何进行布局的。假如我们有如下的 json文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&quot;flexDirection&quot;: &quot;row&quot;,</span><br><span class="line">&quot;justifyContent&quot;: &quot;flexStart&quot;,</span><br><span class="line">&quot;alignItems&quot;: &quot;center&quot;,</span><br><span class="line">&quot;width&quot;: &quot;100%&quot;,</span><br><span class="line">&quot;height&quot;: &quot;57&quot;,</span><br><span class="line">&quot;backgroundColor&quot;: &quot;FFFFFF&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>那么我们可以将上述json描述转化为 yogaNode属性</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yogaNode.setFlexDirection(YogaFlexDirection.ROW);</span><br><span class="line">      yogaNode.setJustifyContent(YogaJustify.FLEX_START);</span><br><span class="line">      yogaNode.setAlignItems(YogaAlign.CENTER);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>如此我们使得我们动态下发样式成为一种可能，这样也就可以动态改变页面布局的展现外观了。</p>
+<br>
+
+<p>FlexBox部分的学习可以参考 <a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html">阮一峰的FlexBox教程</a> </p>
+<h2 id="3-3-基于xml的布局文件描述"><a href="#3-3-基于xml的布局文件描述" class="headerlink" title="3.3 基于xml的布局文件描述"></a>3.3 基于xml的布局文件描述</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;view classX=&quot;floor-10&quot;&gt;</span><br><span class="line">	&lt;view classX=&quot;11-left&quot;&gt;</span><br><span class="line">		&lt;listFlexImage ID=&quot;11-image1&quot; classX=&quot;coupon_image_11&quot;/&gt;</span><br><span class="line">		&lt;image ID=&quot;11-markImage1&quot; classX=&quot;10-markImage&quot;/&gt;</span><br><span class="line">	&lt;/view&gt;</span><br><span class="line">	&lt;view classX=&quot;11-middle&quot;&gt;</span><br><span class="line">	&lt;listFlexImage ID=&quot;11-image2&quot; classX=&quot;coupon_image_11&quot;/&gt;</span><br><span class="line">	&lt;image ID=&quot;11-markImage2&quot; classX=&quot;10-markImage&quot;/&gt;</span><br><span class="line">&lt;/view&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/jdhai/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%8E%A2%E7%B4%A2-%E6%80%BB%E8%A7%88/" data-id="ckpkn2mus007bwcushnn7h7cm" data-title="移动端跨平台探索 - 总览" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/jdhai/javascript/%E8%B7%A8%E5%B9%B3%E5%8F%B0/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%8E%A2%E7%B4%A2-javascript%E5%BC%95%E6%93%8E%E7%9A%84%E4%BD%BF%E7%94%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          Android上使用的javascript引擎 - duktapeJava篇
+        
+      </div>
+    </a>
+  
+  
+    <a href="/%E5%89%91%E6%8C%87%E7%B3%BB%E5%88%97/%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9F%A5%E6%89%BE/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">二维数组中的查找</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/">dlib</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/DIP/">DIP</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/mvp/">mvp</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIP/">DIP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Flutter/">Flutter</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gradle/">Gradle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/JavaConcurrent/">JavaConcurrent</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/concurrent/">concurrent</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Jvm/">Jvm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kotlin/">Kotlin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nio/">Nio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note2/">Note2</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/OpenGL/">OpenGL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ReactNative/">ReactNative</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/">jdhai</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/">javascript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/%E8%B7%A8%E5%B9%B3%E5%8F%B0/">跨平台</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/pr/">pr</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%91%E6%8C%87%E7%B3%BB%E5%88%97/">剑指系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%85%92/">酒</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-multiDex/">源码分析-multiDex</a>
+          </li>
+        
+          <li>
+            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-leakCanary/">源码分析-leakCanary</a>
+          </li>
+        
+          <li>
+            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-glide/">源码分析-glide</a>
+          </li>
+        
+          <li>
+            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-okHttp/">源码分析-okHttp</a>
+          </li>
+        
+          <li>
+            <a href="/Android/Android-view%E7%BB%98%E5%88%B6/">Android-view绘制</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 师学<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

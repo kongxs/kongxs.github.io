@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>gradle 核心概念详解 | 师学</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="1. project工程中每个module 都是一个project 。在此工程中，一共有三个project 分别是 myAppliance，app 和 lib  方法介绍：      1. this.beforeEvaluate      2. this.afterEvaluate      3. this.gradle.buildFinished     4. getSubprojects">
+<meta property="og:type" content="article">
+<meta property="og:title" content="gradle 核心概念详解">
+<meta property="og:url" content="http://yoursite.com/Gradle/gradle-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:site_name" content="师学">
+<meta property="og:description" content="1. project工程中每个module 都是一个project 。在此工程中，一共有三个project 分别是 myAppliance，app 和 lib  方法介绍：      1. this.beforeEvaluate      2. this.afterEvaluate      3. this.gradle.buildFinished     4. getSubprojects">
+<meta property="og:locale">
+<meta property="og:image" content="https://wanke-fun.oss-cn-beijing.aliyuncs.com/gradle/gradle_1.png">
+<meta property="article:published_time" content="2019-08-23T08:24:00.000Z">
+<meta property="article:modified_time" content="2021-06-06T01:21:47.470Z">
+<meta property="article:author" content="师学">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wanke-fun.oss-cn-beijing.aliyuncs.com/gradle/gradle_1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="师学" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">师学</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学而不思则罔，思而不学则殆。</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-gradle-核心概念详解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Gradle/gradle-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E8%AF%A6%E8%A7%A3/" class="article-date">
+  <time class="dt-published" datetime="2019-08-23T08:24:00.000Z" itemprop="datePublished">2019-08-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Gradle/">Gradle</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      gradle 核心概念详解
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/gradle/gradle_1.png" height="200"></img></p>
+<h2 id="1-project"><a href="#1-project" class="headerlink" title="1. project"></a>1. project</h2><pre><code>工程中每个module 都是一个project 。在此工程中，一共有三个project 分别是 myAppliance，app 和 lib
+
+方法介绍： 
+    1. this.beforeEvaluate 
+    2. this.afterEvaluate 
+    3. this.gradle.buildFinished
+    4. getSubprojects 
+    5. getAllProjects
+    6. getRootProject
+    7. project 方法
+        project(&quot;lib&quot;) &#123;
+            //可以对lib 这个module进行配置
+            Project project -&gt;
+            println (&quot;lib project -- $&#123;project.name&#125;&quot;)
+        &#125;
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">project(&quot;lib&quot;) &#123;</span><br><span class="line">			//可以对lib 这个module进行配置</span><br><span class="line">   			Project project -&gt;</span><br><span class="line">       			apply plugin &#x27;xxx&#x27;</span><br><span class="line">       			group &#x27;xxxx&#x27;</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-对所有project进行配置"><a href="#2-对所有project进行配置" class="headerlink" title="2. 对所有project进行配置"></a>2. 对所有project进行配置</h2><pre><code>allprojects 闭包
+</code></pre>
+<h2 id="3-subProject"><a href="#3-subProject" class="headerlink" title="3. subProject"></a>3. subProject</h2><pre><code>subprojects &#123;
+Project p -&gt;
+   if(p.plugins.contains(&quot;library&quot;))
+        apply from &#39;../xxx.gradle&#39; 
+&#125;
+</code></pre>
+<h2 id="4-Project-属性扩展-1"><a href="#4-Project-属性扩展-1" class="headerlink" title="4. Project 属性扩展 1"></a>4. Project 属性扩展 1</h2><pre><code>根project定义 ext 然后进行字段的扩展
+ext &#123;
+    jdk_version = 8l
+&#125;
+gradle文件扩展，可以将gradle文件独立出来，然后在module 的gradlee文件使用
+apply from : this.file(&quot;path&quot;)
+</code></pre>
+<h2 id="5-Project-属性扩展-2"><a href="#5-Project-属性扩展-2" class="headerlink" title="5. Project 属性扩展 2"></a>5. Project 属性扩展 2</h2><pre><code>gradle.properties 中定义
+ig: 
+    isModule = true
+使用： 
+    if(hasProperty(&#39;isModule&#39;)) &#123;
+        include &#39;lib&#39;
+    &#125;
+</code></pre>
+<h2 id="6-文件属性操作"><a href="#6-文件属性操作" class="headerlink" title="6. 文件属性操作"></a>6. 文件属性操作</h2><pre><code>文件路径获取 ： 
+    println getRootDir()
+    println getBuildDir()
+    println getProjectDir()
+</code></pre>
+<h2 id="7-task执行顺序"><a href="#7-task执行顺序" class="headerlink" title="7. task执行顺序"></a>7. task执行顺序</h2><pre><code>1. dependsOn 属性指定
+    task(&quot;taskX&quot;) &#123;
+        doLast &#123;
+            println &quot;taskX&quot;
+        &#125;
+    &#125;
+
+task (&quot;taskY&quot;,dependsOn: taskX) &#123;
+    doLast &#123;
+        println &quot;taskY&quot;
+    &#125;
+&#125;
+
+2. mustRunAfter 维护
+    
+    task (&quot;taskY&quot;) &#123;
+        mustRunAfter taskX
+        doLast &#123;
+            println &quot;taskY&quot;
+        &#125;
+    &#125;
+</code></pre>
+<h2 id="8-将自定义task挂载到构件过程"><a href="#8-将自定义task挂载到构件过程" class="headerlink" title="8. 将自定义task挂载到构件过程"></a>8. 将自定义task挂载到构件过程</h2><pre><code>this.project.afterEvaluate&#123;
+    def build = project.tasks.getByName(&quot;build&quot;);
+    build.doLast &#123;
+        cusTask.execute();
+    &#125;
+&#125;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/Gradle/gradle-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E8%AF%A6%E8%A7%A3/" data-id="ckpkn2mu0004kwcus2orh9n9w" data-title="gradle 核心概念详解" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Gradle/gradle-%E8%87%AA%E5%AE%9A%E4%B9%89plugin%E5%9F%BA%E6%9C%AC%E6%96%B9%E5%BC%8F/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          gradle 自定义plugin基本方式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Jvm/jvm-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E7%AE%97%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">jvm 垃圾收集算法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/">dlib</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/DIP/">DIP</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/mvp/">mvp</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIP/">DIP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Flutter/">Flutter</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gradle/">Gradle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/JavaConcurrent/">JavaConcurrent</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/concurrent/">concurrent</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Jvm/">Jvm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kotlin/">Kotlin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nio/">Nio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note2/">Note2</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/OpenGL/">OpenGL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ReactNative/">ReactNative</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/">jdhai</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/">javascript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/%E8%B7%A8%E5%B9%B3%E5%8F%B0/">跨平台</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/pr/">pr</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%91%E6%8C%87%E7%B3%BB%E5%88%97/">剑指系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%85%92/">酒</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-multiDex/">源码分析-multiDex</a>
+          </li>
+        
+          <li>
+            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-leakCanary/">源码分析-leakCanary</a>
+          </li>
+        
+          <li>
+            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-glide/">源码分析-glide</a>
+          </li>
+        
+          <li>
+            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-okHttp/">源码分析-okHttp</a>
+          </li>
+        
+          <li>
+            <a href="/Android/Android-view%E7%BB%98%E5%88%B6/">Android-view绘制</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 师学<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

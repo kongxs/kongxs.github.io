@@ -1,567 +1,1599 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-Hans">
-<head prefix="og: http://ogp.me/ns#">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="description" content="">
-    <title>学而不思则罔，思而不学则殆。 | 师学</title>
-
-    <!-- Open Graph -->
-    <meta property="og:type" content="website">
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>师学</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
 <meta property="og:title" content="师学">
 <meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="师学">
 <meta property="og:locale">
 <meta property="article:author" content="师学">
 <meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="师学" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
 
-    <script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Person",
-  "email": "mailto:",
-  "image": "",
-  "name": "师学",
-  "url": "http://yoursite.com"
-}
-</script>
-    <script>
-    var algoliaEnabled = false;
-    
-</script>
+  
+  
+<link rel="stylesheet" href="/css/style.css">
 
+  
     
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
 
-    
-    
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    
-    
-    
-        <!-- stylesheets list from config.yml -->
-        
-        <link rel="stylesheet" href="/css/aloha.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
-        
-        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
-        
-    
-
+  
 <meta name="generator" content="Hexo 5.4.0"></head>
-<body id="body" style="margin-bottom: 0;" class="pushable">
 
-    <div class="ui top fixed menu">
-        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">师学</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学而不思则罔，思而不学则殆。</a>
+        </h2>
+      
     </div>
-
-    <div id="menu-sidebar" class="ui left vertical sidebar menu">
-
-    <div id="sidebar-top">
-        <div class="content">
-            <h3>师学</h3>
-        </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
     </div>
-    <div class="ui container sidebar-card">
-    <div class="ui people shape content">
-        <div class="active side">
-            <div class="ui card">
-                <div class="image">
-                    <img class="ui medium bordered image" src="/images/avatar.jpg">
-                </div>
-                <div class="content">
-                    <a class="header">师学</a>
-                    
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                        
-                    </div>
+  </div>
+</header>
 
-                </div>
-                <div class="extra content">
-                    <div class="ui list">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-理解HashMap" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Java/%E7%90%86%E8%A7%A3HashMap/" class="article-date">
+  <time class="dt-published" datetime="2021-04-10T06:23:00.000Z" itemprop="datePublished">2021-04-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/Java/%E7%90%86%E8%A7%A3HashMap/">理解HashMap</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<ul>
+<li>HashMap</li>
+<li>ConcurrentHashMap</li>
+<li>LinkedHashMap</li>
+</ul>
+</blockquote>
+<h2 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h2><h4 id="成员变量"><a href="#成员变量" class="headerlink" title="成员变量"></a>成员变量</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//最大容量 2的30次方</span><br><span class="line">    static final int MAXIMUM_CAPACITY = 1 &lt;&lt; 30;</span><br><span class="line">    //默认的加载因子</span><br><span class="line">    static final float DEFAULT_LOAD_FACTOR = 0.75f;</span><br><span class="line"></span><br><span class="line">    //哈希桶，存放链表。 长度是2的N次方，或者初始化时为0.</span><br><span class="line">    transient Node&lt;K,V&gt;[] table;</span><br><span class="line"></span><br><span class="line">    //加载因子，用于计算哈希表元素数量的阈值。  threshold = 哈希桶.length * loadFactor;</span><br><span class="line">    final float loadFactor;</span><br><span class="line">    //哈希表内元素数量的阈值，当哈希表内元素数量超过阈值时，会发生扩容resize()。</span><br><span class="line">    int threshold;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="桶个数的计算"><a href="#桶个数的计算" class="headerlink" title="桶个数的计算"></a>桶个数的计算</h4><p>在构造函数中传入了初始大小的话，会根据当前值计算hash桶的个数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//根据期望容量cap，返回2的n次方形式的 哈希桶的实际容量 length。 返回值一般会&gt;=cap </span><br><span class="line">    static final int tableSizeFor(int cap) &#123;</span><br><span class="line">    //经过下面的 或 和位移 运算， n最终各位都是1。</span><br><span class="line">        int n = cap - 1;</span><br><span class="line">        n |= n &gt;&gt;&gt; 1;</span><br><span class="line">        n |= n &gt;&gt;&gt; 2;</span><br><span class="line">        n |= n &gt;&gt;&gt; 4;</span><br><span class="line">        n |= n &gt;&gt;&gt; 8;</span><br><span class="line">        n |= n &gt;&gt;&gt; 16;</span><br><span class="line">        //判断n是否越界，返回 2的n次方作为 table（哈希桶）的阈值</span><br><span class="line">        return (n &lt; 0) ? 1 : (n &gt;= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="hash计算"><a href="#hash计算" class="headerlink" title="hash计算"></a>hash计算</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">HashMap: </span><br><span class="line">static final int hash(Object key) &#123;</span><br><span class="line">        int h;</span><br><span class="line">        return (key == null) ? 0 : (h = key.hashCode()) ^ (h &gt;&gt;&gt; 16);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Node的hash值计算"><a href="#Node的hash值计算" class="headerlink" title="Node的hash值计算"></a>Node的hash值计算</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">HashMap#Node: </span><br><span class="line">public final int hashCode() &#123;</span><br><span class="line">            return Objects.hashCode(key) ^ Objects.hashCode(value);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="扩容"><a href="#扩容" class="headerlink" title="扩容"></a>扩容</h3><p>初始化或加倍哈希桶大小。如果是当前哈希桶是null,分配符合当前阈值的初始容量目标。<br>否则，因为我们扩容成以前的两倍。 <br><br>在扩容时，要注意区分以前在哈希桶相同index的节点，现在是在以前的index里，还是index+oldlength 里</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line">final Node&lt;K,V&gt;[] resize() &#123;</span><br><span class="line">        //oldTab 为当前表的哈希桶</span><br><span class="line">        Node&lt;K,V&gt;[] oldTab = table;</span><br><span class="line">        //当前哈希桶的容量 length</span><br><span class="line">        int oldCap = (oldTab == null) ? 0 : oldTab.length;</span><br><span class="line">        //当前的阈值</span><br><span class="line">        int oldThr = threshold;</span><br><span class="line">        //初始化新的容量和阈值为0</span><br><span class="line">        int newCap, newThr = 0;</span><br><span class="line">        //如果当前容量大于0</span><br><span class="line">        if (oldCap &gt; 0) &#123;</span><br><span class="line">            //如果当前容量已经到达上限</span><br><span class="line">            if (oldCap &gt;= MAXIMUM_CAPACITY) &#123;</span><br><span class="line">                //则设置阈值是2的31次方-1</span><br><span class="line">                threshold = Integer.MAX_VALUE;</span><br><span class="line">                //同时返回当前的哈希桶，不再扩容</span><br><span class="line">                return oldTab;</span><br><span class="line">            &#125;//否则新的容量为旧的容量的两倍。 </span><br><span class="line">            else if ((newCap = oldCap &lt;&lt; 1) &lt; MAXIMUM_CAPACITY &amp;&amp;</span><br><span class="line">                     oldCap &gt;= DEFAULT_INITIAL_CAPACITY)//如果旧的容量大于等于默认初始容量16</span><br><span class="line">                //那么新的阈值也等于旧的阈值的两倍</span><br><span class="line">                newThr = oldThr &lt;&lt; 1; // double threshold</span><br><span class="line">        &#125;//如果当前表是空的，但是有阈值。代表是初始化时指定了容量、阈值的情况</span><br><span class="line">        else if (oldThr &gt; 0) // initial capacity was placed in threshold</span><br><span class="line">            newCap = oldThr;//那么新表的容量就等于旧的阈值</span><br><span class="line">        else &#123;&#125;//如果当前表是空的，而且也没有阈值。代表是初始化时没有任何容量/阈值参数的情况               // zero initial threshold signifies using defaults</span><br><span class="line">            newCap = DEFAULT_INITIAL_CAPACITY;//此时新表的容量为默认的容量 16</span><br><span class="line">            newThr = (int)(DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);//新的阈值为默认容量16 * 默认加载因子0.75f = 12</span><br><span class="line">        &#125;</span><br><span class="line">        if (newThr == 0) &#123;//如果新的阈值是0，对应的是  当前表是空的，但是有阈值的情况</span><br><span class="line">            float ft = (float)newCap * loadFactor;//根据新表容量 和 加载因子 求出新的阈值</span><br><span class="line">            //进行越界修复</span><br><span class="line">            newThr = (newCap &lt; MAXIMUM_CAPACITY &amp;&amp; ft &lt; (float)MAXIMUM_CAPACITY ?</span><br><span class="line">                      (int)ft : Integer.MAX_VALUE);</span><br><span class="line">        &#125;</span><br><span class="line">        //更新阈值 </span><br><span class="line">        threshold = newThr;</span><br><span class="line">        @SuppressWarnings(&#123;&quot;rawtypes&quot;,&quot;unchecked&quot;&#125;)</span><br><span class="line">        //根据新的容量 构建新的哈希桶</span><br><span class="line">            Node&lt;K,V&gt;[] newTab = (Node&lt;K,V&gt;[])new Node[newCap];</span><br><span class="line">        //更新哈希桶引用</span><br><span class="line">        table = newTab;</span><br><span class="line">        //如果以前的哈希桶中有元素</span><br><span class="line">        //下面开始将当前哈希桶中的所有节点转移到新的哈希桶中</span><br><span class="line">        if (oldTab != null) &#123;</span><br><span class="line">            //遍历老的哈希桶</span><br><span class="line">            for (int j = 0; j &lt; oldCap; ++j) &#123;</span><br><span class="line">                //取出当前的节点 e</span><br><span class="line">                Node&lt;K,V&gt; e;</span><br><span class="line">                //如果当前桶中有元素,则将链表赋值给e</span><br><span class="line">                if ((e = oldTab[j]) != null) &#123;</span><br><span class="line">                    //将原哈希桶置空以便GC</span><br><span class="line">                    oldTab[j] = null;</span><br><span class="line">                    //如果当前链表中就一个元素，（没有发生哈希碰撞）</span><br><span class="line">                    if (e.next == null)</span><br><span class="line">                        //直接将这个元素放置在新的哈希桶里。</span><br><span class="line">                        //注意这里取下标 是用 哈希值 与 桶的长度-1 。 由于桶的长度是2的n次方，这么做其实是等于 一个模运算。但是效率更高</span><br><span class="line">                        newTab[e.hash &amp; (newCap - 1)] = e;</span><br><span class="line">                        //如果发生过哈希碰撞 ,而且是节点数超过8个，转化成了红黑树（暂且不谈 避免过于复杂， 后续专门研究一下红黑树）</span><br><span class="line">                    else if (e instanceof TreeNode)</span><br><span class="line">                        ((TreeNode&lt;K,V&gt;)e).split(this, newTab, j, oldCap);</span><br><span class="line">                    //如果发生过哈希碰撞，节点数小于8个。则要根据链表上每个节点的哈希值，依次放入新哈希桶对应下标位置。</span><br><span class="line">                    else &#123; // preserve order</span><br><span class="line">                        //因为扩容是容量翻倍，所以原链表上的每个节点，现在可能存放在原来的下标，即low位， 或者扩容后的下标，即high位。 high位=  low位+原哈希桶容量</span><br><span class="line">                        //低位链表的头结点、尾节点</span><br><span class="line">                        Node&lt;K,V&gt; loHead = null, loTail = null;</span><br><span class="line">                        //高位链表的头节点、尾节点</span><br><span class="line">                        Node&lt;K,V&gt; hiHead = null, hiTail = null;</span><br><span class="line">                        Node&lt;K,V&gt; next;//临时节点 存放e的下一个节点</span><br><span class="line">                        do &#123;</span><br><span class="line">                            next = e.next;</span><br><span class="line">                            //这里又是一个利用位运算 代替常规运算的高效点： 利用哈希值 与 旧的容量，可以得到哈希值去模后，是大于等于oldCap还是小于oldCap，等于0代表小于oldCap，应该存放在低位，否则存放在高位</span><br><span class="line">                            if ((e.hash &amp; oldCap) == 0) &#123;</span><br><span class="line">                                //给头尾节点指针赋值</span><br><span class="line">                                if (loTail == null)</span><br><span class="line">                                    loHead = e;</span><br><span class="line">                                else</span><br><span class="line">                                    loTail.next = e;</span><br><span class="line">                                loTail = e;</span><br><span class="line">                            &#125;//高位也是相同的逻辑</span><br><span class="line">                            else &#123;</span><br><span class="line">                                if (hiTail == null)</span><br><span class="line">                                    hiHead = e;</span><br><span class="line">                                else</span><br><span class="line">                                    hiTail.next = e;</span><br><span class="line">                                hiTail = e;</span><br><span class="line">                            &#125;//循环直到链表结束</span><br><span class="line">                        &#125; while ((e = next) != null);</span><br><span class="line">                        //将低位链表存放在原index处，</span><br><span class="line">                        if (loTail != null) &#123;</span><br><span class="line">                            loTail.next = null;</span><br><span class="line">                            newTab[j] = loHead;</span><br><span class="line">                        &#125;</span><br><span class="line">                        //将高位链表存放在新index处</span><br><span class="line">                        if (hiTail != null) &#123;</span><br><span class="line">                            hiTail.next = null;</span><br><span class="line">                            newTab[j + oldCap] = hiHead;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return newTab;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ul>
+<li>当前容量大于0且不超过最大值(1 &lt;&lt; 30),扩容2倍</li>
+<li>如果当前表是空的，但是有阈值,那么新表的容量就等于旧的阈值</li>
+<li>如果当前表是空的，而且也没有阈值.新表的容量为默认的容量 16</li>
+</ul>
+</blockquote>
+<h3 id="扩容后赋值"><a href="#扩容后赋值" class="headerlink" title="扩容后赋值"></a>扩容后赋值</h3><p>先根据原有的桶，进行取值，形成新的链表。<br><br>如果原桶当前位置只有一个元素</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//使用hashCode和新桶的容量进行位运算，且赋值</span><br><span class="line">newTab[e.hash &amp; (newCap - 1)] = e;</span><br></pre></td></tr></table></figure>
+<p>如果当前桶发生了hash碰撞，原链表上的每个节点，现在可能存放在原来的下标，即low位， 或者扩容后的下标，即high位。 high位=  low位+原哈希桶容量。将低位链表存放在原index处，将高位链表存放在新index处 。 </p>
+<h3 id="put操作"><a href="#put操作" class="headerlink" title="put操作"></a>put操作</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">final V putVal(int hash, K key, V value, boolean onlyIfAbsent,</span><br><span class="line">                   boolean evict) &#123;</span><br><span class="line">        //tab存放 当前的哈希桶， p用作临时链表节点  </span><br><span class="line">        Node&lt;K,V&gt;[] tab; Node&lt;K,V&gt; p; int n, i;</span><br><span class="line">        //如果当前哈希表是空的，代表是初始化</span><br><span class="line">        if ((tab = table) == null || (n = tab.length) == 0)</span><br><span class="line">            //那么直接去扩容哈希表，并且将扩容后的哈希桶长度赋值给n</span><br><span class="line">            n = (tab = resize()).length;</span><br><span class="line">        //如果当前index的节点是空的，表示没有发生哈希碰撞。 直接构建一个新节点Node，挂载在index处即可。</span><br><span class="line">        //这里再啰嗦一下，index 是利用 哈希值 &amp; 哈希桶的长度-1，替代模运算</span><br><span class="line">        if ((p = tab[i = (n - 1) &amp; hash]) == null)</span><br><span class="line">            tab[i] = newNode(hash, key, value, null);</span><br><span class="line">        else &#123;//否则 发生了哈希冲突。</span><br><span class="line">            //e</span><br><span class="line">            Node&lt;K,V&gt; e; K k;</span><br><span class="line">            //如果哈希值相等，key也相等，则是覆盖value操作</span><br><span class="line">            if (p.hash == hash &amp;&amp;</span><br><span class="line">                ((k = p.key) == key || (key != null &amp;&amp; key.equals(k))))</span><br><span class="line">                e = p;//将当前节点引用赋值给e</span><br><span class="line">            else if (p instanceof TreeNode)//红黑树暂且不谈</span><br><span class="line">                e = ((TreeNode&lt;K,V&gt;)p).putTreeVal(this, tab, hash, key, value);</span><br><span class="line">            else &#123;//不是覆盖操作，则插入一个普通链表节点</span><br><span class="line">                //遍历链表</span><br><span class="line">                for (int binCount = 0; ; ++binCount) &#123;</span><br><span class="line">                    if ((e = p.next) == null) &#123;//遍历到尾部，追加新节点到尾部</span><br><span class="line">                        p.next = newNode(hash, key, value, null);</span><br><span class="line">                        //如果追加节点后，链表数量》=8，则转化为红黑树</span><br><span class="line">                        if (binCount &gt;= TREEIFY_THRESHOLD - 1) // -1 for 1st</span><br><span class="line">                            treeifyBin(tab, hash);</span><br><span class="line">                        break;</span><br><span class="line">                    &#125;</span><br><span class="line">                    //如果找到了要覆盖的节点</span><br><span class="line">                    if (e.hash == hash &amp;&amp;</span><br><span class="line">                        ((k = e.key) == key || (key != null &amp;&amp; key.equals(k))))</span><br><span class="line">                        break;</span><br><span class="line">                    p = e;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            //如果e不是null，说明有需要覆盖的节点，</span><br><span class="line">            if (e != null) &#123; // existing mapping for key</span><br><span class="line">                //则覆盖节点值，并返回原oldValue</span><br><span class="line">                V oldValue = e.value;</span><br><span class="line">                if (!onlyIfAbsent || oldValue == null)</span><br><span class="line">                    e.value = value;</span><br><span class="line">                //这是一个空实现的函数，用作LinkedHashMap重写使用。</span><br><span class="line">                afterNodeAccess(e);</span><br><span class="line">                return oldValue;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        //如果执行到了这里，说明插入了一个新的节点，所以会修改modCount，以及返回null。</span><br><span class="line"></span><br><span class="line">        //修改modCount</span><br><span class="line">        ++modCount;</span><br><span class="line">        //更新size，并判断是否需要扩容。</span><br><span class="line">        if (++size &gt; threshold)</span><br><span class="line">            resize();</span><br><span class="line">        //这是一个空实现的函数，用作LinkedHashMap重写使用。</span><br><span class="line">        afterNodeInsertion(evict);</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>如果桶是空的，先初始化和扩容，并将元素放到计算的索引上</li>
+<li>如果当前index的节点是空的，表示没有发生哈希碰撞。 直接构建一个新节点Node，挂载在index处即可</li>
+<li>如果发生了hash冲突<ol>
+<li>如果哈希值相等，key也相等，则是覆盖value操作</li>
+<li>遍历到尾部，追加新节点到尾部</li>
+<li>修改modCount</li>
+<li>判断是否要扩容</li>
+</ol>
+</li>
+</ul>
+</blockquote>
+<h3 id="为什么是线程不安全的"><a href="#为什么是线程不安全的" class="headerlink" title="为什么是线程不安全的"></a>为什么是线程不安全的</h3><p>在并发环境下，可能会形成环状链表（扩容时可能造成，具体原因自行百度google或查看源码分析），导致get操作时，cpu空转，所以，在并发环境中使用HashMap是非常危险的</p>
+<h3 id="为什么进行2倍扩容"><a href="#为什么进行2倍扩容" class="headerlink" title="为什么进行2倍扩容"></a>为什么进行2倍扩容</h3><h3 id="树化"><a href="#树化" class="headerlink" title="树化"></a>树化</h3><p>最小链表化阈值为 6 <br><br>最大树化阈值为 8</p>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/2021/hashmap_worker.png" alt="hashMap 流程图"></img></p>
+<h2 id="LinkedHashMap"><a href="#LinkedHashMap" class="headerlink" title="LinkedHashMap"></a>LinkedHashMap</h2><p>集成自HashMap<br></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// Callbacks to allow LinkedHashMap post-actions</span><br><span class="line">    void afterNodeAccess(Node&lt;K,V&gt; p) &#123; &#125;</span><br><span class="line">    void afterNodeInsertion(boolean evict) &#123; &#125;</span><br><span class="line">    //回调函数，新节点插入之后回调 ， 根据evict 和   判断是否需要删除最老插入的节点。如果实现LruCache会用到这个方法。</span><br><span class="line">    void afterNodeRemoval(Node&lt;K,V&gt; p) &#123; &#125;</span><br><span class="line">    Node&lt;K,V&gt; newNode(int hash, K key, V value, Node&lt;K,V&gt; e)&#123; &#125;</span><br><span class="line">    </span><br><span class="line">    //LinkedHashMap 默认返回false 则不删除节点。 返回true 代表要删除最早的节点。通常构建一个LruCache会在达到Cache的上限是返回true</span><br><span class="line">    protected boolean removeEldestEntry(Map.Entry&lt;K,V&gt; eldest) &#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>类里有两个成员变量head tail,分别指向内部双向链表的表头、表尾。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//双向链表的头结点</span><br><span class="line">   transient LinkedHashMap.Entry&lt;K,V&gt; head;</span><br><span class="line"></span><br><span class="line">   //双向链表的尾节点</span><br><span class="line">   transient LinkedHashMap.Entry&lt;K,V&gt; tail;</span><br><span class="line">   </span><br><span class="line">   //默认是false，则迭代时输出的顺序是插入节点的顺序。若为true，则输出的顺序是按照访问节点的顺序。</span><br><span class="line">   //为true时，可以在这基础之上构建一个LruCach</span><br><span class="line">   final boolean accessOrder;</span><br><span class="line">   </span><br></pre></td></tr></table></figure>
+
+<p>LinkedHashMap重写了newNode(),在每次构建新节点时，通过linkNodeLast(p);将新节点链接在内部双向链表的尾部。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//在构建新节点时，构建的是`LinkedHashMap.Entry` 不再是`Node`.</span><br><span class="line">    Node&lt;K,V&gt; newNode(int hash, K key, V value, Node&lt;K,V&gt; e) &#123;</span><br><span class="line">        LinkedHashMap.Entry&lt;K,V&gt; p =</span><br><span class="line">            new LinkedHashMap.Entry&lt;K,V&gt;(hash, key, value, e);</span><br><span class="line">        linkNodeLast(p);</span><br><span class="line">        return p;</span><br><span class="line">    &#125;</span><br><span class="line">    //将新增的节点，连接在链表的尾部</span><br><span class="line">    private void linkNodeLast(LinkedHashMap.Entry&lt;K,V&gt; p) &#123;</span><br><span class="line">        LinkedHashMap.Entry&lt;K,V&gt; last = tail;</span><br><span class="line">        tail = p;</span><br><span class="line">        //集合之前是空的</span><br><span class="line">        if (last == null)</span><br><span class="line">            head = p;</span><br><span class="line">        else &#123;//将新节点连接在链表的尾部</span><br><span class="line">            p.before = last;</span><br><span class="line">            last.after = p;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="LruCache"><a href="#LruCache" class="headerlink" title="LruCache"></a>LruCache</h2><p>LRU为Least Recently Used的缩写，意思也就是近期最少使用算法。LruCache将LinkedHashMap的顺序设置为LRU顺序来实现LRU缓存，每次调用get并获取到值(也就是从内存缓存中命中)，则将该对象移到链表的尾端。调用put插入新的对象也是存储在链表尾端，这样当内存缓存达到设定的最大值时，将链表头部的对象（近期最少用到的）移除。</p>
+<p>基于LinkedHashMap的LRUCache的实现，关键是重写LinkedHashMap的removeEldestEntry方法，在LinkedHashMap中该方法默认返回false（LRUCache本身未考虑线程安全的问题），这样此映射的行为将类似于正常映射，即永远不能移除最旧的元素。</p>
+<h2 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h2>
+      
     </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/Java/%E7%90%86%E8%A7%A3HashMap/" data-id="ckpkn2muq0072wcuscz2l5f68" data-title="理解HashMap" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
 
 
-</div>
 
+  
+    <article id="post-Java虚拟机" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Java/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/" class="article-date">
+  <time class="dt-published" datetime="2021-04-08T02:58:00.000Z" itemprop="datePublished">2021-04-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
     
     
-
-    
-
-    
-    <a href="/index.html" class="item" >
-        <i class="home icon"></i>
-        HOME
-    </a>
-
-    
-    
-
-    
-
-    
-    <a href="/about" class="item" >
-        <i class=" icon"></i>
-        ABOUT
-    </a>
-
-    
-
-    
-</div>
-
-    <div class="pusher body-content">
-        <div id="content" class="ui main container">
-            <!--<div class="ui one column grid">-->
-                <!--<div class="column">-->
-                    <!--<div class="ui main container">-->
-                        
-
-<div class="ui relaxed list">
-
-    
-
-    
-
-    <div class="item">
-
-        <div class="content post-content">
-
-    <a class="header" style="display: inline-block;" href="/Java/%E7%90%86%E8%A7%A3HashMap/">
+      <header class="article-header">
         
-        
-        理解HashMap
-    </a>
-    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2021-04-10T06:23:00.000Z" itemprop="datePublished">2021-04-10</time>
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/Java/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/">Java虚拟机</a>
+    </h1>
+  
 
-    </span>
-    <span class="post-description-item">
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="Java内存区域"><a href="#Java内存区域" class="headerlink" title="Java内存区域"></a>Java内存区域</h3><p><a target="_blank" rel="noopener" href="http://wanke.fun/Jvm/jvm-%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E5%AD%A6%E4%B9%A0/">Java内存区域学习</a><br><br><a target="_blank" rel="noopener" href="http://wanke.fun/Jvm/2019-07-30-java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E7%90%86%E8%A7%A3/">Java内存模型理解</a></p>
+<blockquote>
+<ul>
+<li>程序计数器</li>
+<li>虚拟机栈</li>
+<li>本地方法栈</li>
+<li>堆</li>
+<li>方法区</li>
+</ul>
+</blockquote>
+<ol>
+<li>虚拟机栈        ： stack  frame  栈帧</li>
+<li>程序计数器    ： program counter</li>
+<li>本地方法栈    ： c ++ 等实现</li>
+<li>堆        ： 最大的一块共享内存区域 , new object 的实例 。通过引用(在栈上)    指向实例。  与堆密切相关的是垃圾收集器， 几乎所有的现在垃圾回收器都采用了分代算法， 堆空间也针对此进行了划分 。 新生代和老年代 Eden， from survivor ，to survivor  （默认按照80 ， 10 ，10 的比例进行划分）</li>
+<li>方法区 ： 主要存储一些元信息，其中包括 class信息 等  ，有称为永久代 （jdk1.8    开始废弃，进而被元空间取代 ），很少会被垃圾回收 </li>
+<li>直接内存： 堆外内存，不是jvm直接管理 ，操作系统管理 . nio直接相关，DirectByteBuffer 是堆外内存</li>
+</ol>
+<p>虚拟机栈，程序计数器 和 本地方法栈 都是内存私有的 。</p>
+<p>堆是虚拟机中最大的一块内存区域，我们通过new关键字创建的对象，绝大多数都会在堆上面分配内存 ，然后会在栈上通过引用去指向它。<br>堆上的对象由 数据区和元数据（比如class对象唯一）2 部分组成 ， 并且在不同的虚拟机上面会有不同的实现 </p>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/2021/1.8%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F.png"></img></p>
+<p>二.    new关键字创建对象的流程 </p>
+<ol>
+<li>在堆内存创建对象实例</li>
+<li>为对象实例成员变量赋初值 </li>
+<li>返回对象引用 </li>
+</ol>
+<p>对象在内存中的布局： </p>
+<ol>
+<li>对象头</li>
+<li>实例数据</li>
+<li>对齐填充（可选）</li>
+</ol>
+<h3 id="HotSpot虚拟机"><a href="#HotSpot虚拟机" class="headerlink" title="HotSpot虚拟机"></a>HotSpot虚拟机</h3><blockquote>
+<ul>
+<li>对象的创建及内存分配</li>
+<li>对象的内存布局</li>
+<li>对象的访问定位</li>
+</ul>
+</blockquote>
+<p>markword 等</p>
+<h3 id="Java内存模型"><a href="#Java内存模型" class="headerlink" title="Java内存模型"></a>Java内存模型</h3><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/51613784">java内存模型理解(华为云)</a></p>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/2021/jmm_worker.png"></img></p>
+<blockquote>
+<ul>
+<li>主内存、工作内存</li>
+<li>内存间的交互操作</li>
+<li>对volatile变量的特殊规则</li>
+<li>原子性、可见性、有序性</li>
+<li>Happpen-Before原则</li>
+</ul>
+</blockquote>
+<ol>
+<li>单线程happen-before原则：在同一个线程中，书写在前面的操作happen-before后面</li>
+<li>锁的happen-before原则：同一个锁的unlock操作happen-before此锁的lock操作。</li>
+<li>volatile的happen-before原则：对一个volatile变量的写操作happen-before对此变量的任意操作(当然也包括写操作了)。</li>
+<li>happen-before的传递性原则：如果A操作 happen-before B操作，B操作happen-before C操作，那么A操作happen-before C操作。</li>
+<li>线程启动的happen-before原则：同一个线程的start方法happen-before此线程的其它方法。</li>
+<li>线程中断的happen-before原则：对线程interrupt方法的调用happen-before被中断线程的检测到中断发送的代码。</li>
+<li>线程终结的happen-before原则：线程中的所有操作都happen-before线程的终止检测。</li>
+<li>对象创建的happen-before原则：一个对象的初始化完成先于他的finalize方法调用。</li>
+</ol>
+<h3 id="内存分配策略"><a href="#内存分配策略" class="headerlink" title="内存分配策略"></a>内存分配策略</h3><p><a target="_blank" rel="noopener" href="http://wanke.fun/Jvm/jvm-gc/">http://wanke.fun/Jvm/jvm-gc/</a><br>新生代、老年代</p>
+<blockquote>
+<ul>
+<li>对象优先在 Eden 分配</li>
+<li>大对象直接进入老年代</li>
+<li>长期存活的对象进入老年代</li>
+</ul>
+</blockquote>
+<p>动态对象年龄判定</p>
+<p>虚拟机并不是永远要求对象的年龄必须达到 MaxTenuringThreshold 才能晋升老年代，如果在 Survivor 中相同年龄所有对象大小的总和大于 Survivor 空间的一半，则年龄大于或等于该年龄的对象可以直接进入老年代，无需等到 MaxTenuringThreshold 中要求的年龄。<br>空间分配担保</p>
+<p>在发生 Minor GC 之前，虚拟机先检查老年代最大可用的连续空间是否大于新生代所有对象总空间。</p>
+<p>如果是， Minor GC 可以确认是安全的。</p>
+<p>如果不是，虚拟机会查看 HandlePromotionFailure 的值是否允许担保失败，如果允许那么就会继续检查老年代最大可用的连续空间是否大于历次晋升到老年代对象的平均大小，如果大于，将尝试着进行一次 Minor GC；如果小于，或者 HandlePromotionFailure 的值不允许冒险，那么就要进行一次 Full GC。</p>
+<h3 id="垃圾收集"><a href="#垃圾收集" class="headerlink" title="垃圾收集"></a>垃圾收集</h3><p><a target="_blank" rel="noopener" href="http://wanke.fun/Jvm/jvm-gc/">http://wanke.fun/Jvm/jvm-gc/</a><br><br><a target="_blank" rel="noopener" href="http://wanke.fun/Jvm/jvm-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E7%AE%97%E6%B3%95/">垃圾搜集算法</a></p>
+<blockquote>
+<ul>
+<li>判断对象是否存活 <ol>
+<li>引用计数器<br><br>给对象中添加一个引用计数器，当有一个地方引用它，计数器就加 1；当引用失效，计数器就减 1；计数器为 0 的对象就是不可能再被使用的。这个方法实现简单、效率高，但是无法解决循环引用问题。</li>
+<li>可达性分析<br>通过一系列的称为 “GC Roots” 的对象作为起点，从这些节点开始向下搜索，节点所走过的路径称为引用链，当一个对象到 GC Roots 没有任何引用链相连的话，则证明此对象是不可用的。</li>
+</ol>
+</li>
+</ul>
+</blockquote>
+<p>   可作为 GC Roots 的对象包括下面几种:</p>
+<blockquote>
+<ul>
+<li>虚拟机栈(栈帧中的本地变量表)中引用的对象</li>
+<li>本地方法栈(Native 方法)中引用的对象<br></li>
+</ul>
+</blockquote>
+<p>方法区中</p>
+<ol>
+<li>类静态属性引用的对象</li>
+<li>常量引用的对象</li>
+</ol>
+<blockquote>
+<ul>
+<li>引用<ol>
+<li>强</li>
+<li>弱</li>
+<li>软</li>
+<li>虚 </li>
+</ol>
+</li>
+<li>垃圾收集算法<ol>
+<li>标记清除<br><br>该算法分为“标记”和“清除”阶段：先标记出所有不需要回收的对象，在标记完成后统一回收掉所有没有被标记的对象。它是最基础的收集算法，后续的算法都是对其不足进行改进得到。有两问题：<br>效率问题<br>空间问题（产生大量不连续的碎片）</li>
+<li>复制算法<br>将内存分为大小相同的两块，每次使用其中的一块。当这一块的内存使用完后，就将还存活的对象复制到另一块去，然后再把使用的空间一次清理掉。这样就使每次的内存回收都是对内存区间的一半进行回收。</li>
+<li>标记整理<br>根据老年代的特点提出的一种标记算法，标记过程仍然与“标记-清除”算法一样，但后续步骤不是直接对可回收对象回收，而是让所有存活的对象向一端移动，然后直接清理掉端边界以外的内存。</li>
+</ol>
+</li>
+<li>垃圾收集器<ol start="4">
+<li>分代算法<br>新生代：每次收集都会有大量对象死去，可以选择复制算法，只需要付出少量对象的复制成本就可以完成每次垃圾收集。<br>老年代：对象存活几率是比较高的，而且没有额外的空间对它进行分配担保，所以我们必须选择“标记-清除”或“标记-整理”算法进行垃圾收集。</li>
+<li>G1<br>面向服务端应用的垃圾收集器，在多 CPU 和大内存的场景下有很好的性能。HotSpot 开发团队期望未来可以替换掉 CMS 收集器。G1 可以直接对新生代和老年代一起回收。</li>
+<li>Serial<br>串行、单线程</li>
+</ol>
+</li>
+</ul>
+</blockquote>
+<h3 id="类文件结构"><a href="#类文件结构" class="headerlink" title="类文件结构"></a>类文件结构</h3><p><a target="_blank" rel="noopener" href="http://wanke.fun/Jvm/jvm01-%E7%B1%BB%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/">类文件结构</a><br><br><a target="_blank" rel="noopener" href="http://wanke.fun/Jvm/jvm-%E5%AD%97%E8%8A%82%E7%A0%81-%E6%A6%82%E8%BF%B0/">字节码概述</a><br><br><a target="_blank" rel="noopener" href="http://wanke.fun/Jvm/jvm-%E5%AD%97%E8%8A%82%E7%A0%81%E7%9C%8B%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">透过字节码看动态代理</a></p>
+<h3 id="类加载机制"><a href="#类加载机制" class="headerlink" title="类加载机制"></a>类加载机制</h3><p>JVM将class文件字节码文件加载到内存中， 并将这些静态数据转换成方法区中的运行时数据结构，在堆(并不一定在堆中，HotSpot在方法区中)中生成一个代表这个类的java.lang.Class 对象，作为方法区类数据的访问入口。</p>
+<p>JVM类加载机制分为五个部分：加载，验证，准备，解析，初始化</p>
+<h4 id="加载："><a href="#加载：" class="headerlink" title="加载："></a>加载：</h4><p>加载过程主要完成三件事情：</p>
+<blockquote>
+<ul>
+<li>通过类的全限定名来获取定义此类的二进制字节流</li>
+<li>将这个类字节流代表的静态存储结构转为方法区的运行时数据结构</li>
+<li>在堆中生成一个代表此类的java.lang.Class对象，作为访问方法区这些数据结构的入口。</li>
+</ul>
+</blockquote>
+<h4 id="校验"><a href="#校验" class="headerlink" title="校验"></a>校验</h4><p>此阶段主要确保Class文件的字节流中包含的信息符合当前虚拟机的要求，并且不会危害虚拟机的自身安全。</p>
+<blockquote>
+<ul>
+<li>文件格式验证：基于字节流验证。</li>
+<li>元数据验证：基于方法区的存储结构验证。</li>
+<li>字节码验证：基于方法区的存储结构验证。</li>
+<li>符号引用验证：基于方法区的存储结构验证。</li>
+</ul>
+</blockquote>
+<h4 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h4><p>为类变量分配内存，并将其初始化为默认值。（此时为默认值，在初始化的时候才会给变量赋值）即在方法区中分配这些变量所使用的内存空间</p>
+<h4 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h4><p>把类型中的符号引用转换为直接引用。</p>
+<h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><p>初始化阶段是执行类构造器<client>方法的过程。<br><br>java中，对于初始化阶段，有且只有以下五种情况才会对要求类立刻“初始化”</p>
+<ol>
+<li>使用new关键字实例化对象、访问或者设置一个类的静态字段（被final修饰、编译器优化时已经放入常量池的例外）、调用类方法，都会初始化该静态字段或者静态方法所在的类。</li>
+<li>初始化类的时候，如果其父类没有被初始化过，则要先触发其父类初始化。</li>
+<li>使用java.lang.reflect包的方法进行反射调用的时候，如果类没有被初始化，则要先初始化。</li>
+<li>虚拟机启动时，用户会先初始化要执行的主类（含有main）</li>
+<li>jdk 1.7后，如果java.lang.invoke.MethodHandle的实例最后对应的解析结果是 REF_getStatic、REF_putStatic、REF_invokeStatic方法句柄，并且这个方法所在类没有初始化，则先初始化。</li>
+</ol>
+<h3 id="双亲委派模型，类加载器"><a href="#双亲委派模型，类加载器" class="headerlink" title="双亲委派模型，类加载器"></a>双亲委派模型，类加载器</h3><p><a target="_blank" rel="noopener" href="http://wanke.fun/Jvm/jvm-%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0/">http://wanke.fun/Jvm/jvm-%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0/</a><br></p>
+<blockquote>
+<ul>
+<li>启动类加载器 BootstrapClassLoader</li>
+<li>扩展类加载器 ExtClassLoader</li>
+<li>应用类加载器 AppClassLoader</li>
+</ul>
+</blockquote>
+<ol>
+<li>防止重复加载同一个.class。通过委托去向上面问一问，加载过了，就不用再加载一遍。保证数据安全。</li>
+<li>保证核心.class不能被篡改。通过委托方式，不会去篡改核心.clas，即使篡改也不会去加载，即使加载也不会是同一个.class对象了。不同的加载器加载同一个.class也不是同一个Class对象。这样保证了Class执行安全。</li>
+</ol>
+<p>双亲委派机制的工作流程：</p>
+<ol>
+<li>当前ClassLoader首先从自己已经加载的类中查询是否此类已经加载，如果已经加载则直接返回原来已经加载的类。每个类加载器都有自己的加载缓存，当一个类被加载了以后就会放入缓存，等下次加载的时候就可以直接返回了。</li>
+<li> 当前classLoader的缓存中没有找到被加载的类的时候，委托父类加载器去加载，父类加载器采用同样的策略，首先查看自己的缓存，然后委托父类的父类去加载，一直到bootstrp ClassLoader.</li>
+<li> 当所有的父类加载器都没有加载的时候，再由当前的类加载器加载，并将其放入它自己的缓存中，以便下次有加载请求的时候直接返回。<br><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/2021/%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%89%98%E6%B5%81%E7%A8%8B.png"></img></li>
+</ol>
+<p>总结：</p>
+<p>“双亲委派”机制只是Java推荐的机制，并不是强制的机制。<br><br>我们可以继承java.lang.ClassLoader类，实现自己的类加载器。如果想保持双亲委派模型，就应该重写findClass(name)方法；如果想破坏双亲委派模型，可以重写loadClass(name)方法</p>
+<h3 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h3><pre><code>1. Hotspot 
+2. dalvik
+3. art
+</code></pre>
+<p>从Android5.0开始废弃了Dalvik，全面推行ART。</p>
+<ol>
+<li>在Dalvik下，应用每次运行都需要通过即时编译器（JIT）将字节码转换为机器码，即每次都要编译加运行，这虽然会使安装过程比较快，但是会拖慢应用以后每次启动的效率。而在ART 环境中，应用在第一次安装的时候，字节码就会预编译（AOT）成机器码，这样的话，虽然设备和应用的首次启动（安装慢了）会变慢，但是以后每次启动执行的时候，都可以直接运行，因此运行效率会提高。</li>
+<li>ART占用空间比Dalvik大（字节码变为机器码之后，可能会增加10%-20%），这也是著名的“空间换时间大法”。</li>
+<li>预编译也可以明显改善电池续航，因为应用程序每次运行时不用重复编译了，从而减少了 CPU 的使用频率，降低了能耗。</li>
+</ol>
+<blockquote>
+<ul>
+<li>ART优点：</li>
+</ul>
+</blockquote>
+<ol>
+<li>系统性能的显著提升</li>
+<li>应用启动更快、运行更快、体验更流畅、触感反馈更及时</li>
+<li>更长的电池续航能力</li>
+<li>支持更低的硬件</li>
+</ol>
+<blockquote>
+<ul>
+<li>ART缺点：</li>
+</ul>
+</blockquote>
+<ol>
+<li>更大的存储空间占用，可能会增加10%-20%</li>
+<li>更长的应用安装时间</li>
+</ol>
+<h3 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h3><p>JVM的反射机制是在Java类编译成字节码的时候，通过jdk提供的工具类的反射方式访问类字节码的字段、方法。并且可以进行一些在Java代码中不能够实现的功能。</p>
+<blockquote>
+<ul>
+<li>经典场景：<br><br>   Spring的ioc的依赖注入，以及一些IDE的代码开发联想功能；</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>缺点：<br>反射机制的效率是很低的</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>反射性能的开销:<br></li>
+</ul>
+</blockquote>
+<p>反射的主要操作:Class.forName()和Class.getMethod()调用本地实现，其中，getMethod()则会遍历类中的共有方法，类中没有则遍历父类，所以是非常耗时的，尤其在一些热点代码中可以采用本地缓存的方式来缓存结果。</p>
+<blockquote>
+<ul>
+<li>性能开销主要体现在这几个方面 : <br><br>(1)数组参数的传入<br><br>(2)自动装箱和手动装箱的区别<br><br>(3)逃逸对象的优化<br><br>(4)动态实现的内联调用<br></li>
+</ul>
+</blockquote>
+<h3 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h3><p>JAVA 中有以下几个『元注解』：</p>
+<p>@Target：注解的作用目标<br><br>@Retention：注解的生命周期<br><br>@Documented：注解是否应当被包含在 JavaDoc 文档中<br><br>@Inherited：是否允许子类继承该注解<br></p>
+<blockquote>
+<ul>
+<li>@Target 用于指明被修饰的注解最终可以作用的目标是谁，也就是指明，你的注解到底是用来修饰方法的？修饰类的？还是用来修饰字段属性的。</li>
+</ul>
+</blockquote>
+<p>有以下一些值：</p>
+<ol>
+<li>ElementType.TYPE：允许被修饰的注解作用在类、接口和枚举上</li>
+<li>ElementType.FIELD：允许作用在属性字段上</li>
+<li>ElementType.METHOD：允许作用在方法上</li>
+<li>ElementType.PARAMETER：允许作用在方法参数上</li>
+<li>ElementType.CONSTRUCTOR：允许作用在构造器上</li>
+<li>ElementType.LOCAL_VARIABLE：允许作用在本地局部变量上</li>
+<li>ElementType.ANNOTATION_TYPE：允许作用在注解上</li>
+<li>ElementType.PACKAGE：允许作用在包上</li>
+</ol>
+<blockquote>
+<ul>
+<li>@Retention 用于指明当前注解的生命周期，它的基本定义如下：</li>
+</ul>
+</blockquote>
+<p>有以下几个枚举值可取：</p>
+<ol>
+<li>RetentionPolicy.SOURCE：当前注解编译期可见，不会写入 class 文件</li>
+<li>RetentionPolicy.CLASS：类加载阶段丢弃，会写入 class 文件</li>
+<li>RetentionPolicy.RUNTIME：永久保存，可以反射获取</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/Java/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/" data-id="ckpkn2mtv0041wcusa79vfoqf" data-title="Java虚拟机" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Java并发" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/uncategorized/Java%E5%B9%B6%E5%8F%91/" class="article-date">
+  <time class="dt-published" datetime="2021-04-04T07:58:00.000Z" itemprop="datePublished">2021-04-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
         
-    </span>
-</div>
-</div>
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/uncategorized/Java%E5%B9%B6%E5%8F%91/">Java并发</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.yuque.com/docs/share/31deed7b-935a-4cf7-bcf3-8107bee40404#0ea5e531">https://www.yuque.com/docs/share/31deed7b-935a-4cf7-bcf3-8107bee40404?#0ea5e531</a></p>
+<h2 id="1-线程基础"><a href="#1-线程基础" class="headerlink" title="1. 线程基础"></a>1. 线程基础</h2><h3 id="1-1-实现线程的方法"><a href="#1-1-实现线程的方法" class="headerlink" title="1.1 实现线程的方法"></a>1.1 实现线程的方法</h3><p>thread，runnable ， callable</p>
+<h3 id="1-2-启动和停止线程"><a href="#1-2-启动和停止线程" class="headerlink" title="1.2 启动和停止线程"></a>1.2 启动和停止线程</h3><p>start </p>
+<ol>
+<li>stop()方法，它会释放已经锁定的所有监视资源，如果当前任何一个受监视资源保护的对象处于一个不一致的状态（执行了一部分），其他线程线程将会获取到修改了的部分值，这个时候就可能导致程序执行结果的不确定性，并且这种问题很难被定位。</li>
+<li>suspend()方法，容易发生死锁。因为调用suspend()方法不会释放锁，这就会导致此线程挂起。鉴于以上两种方法的不安全性，Java语言已经不建议使用以上两种方法来终止线程了。</li>
+<li>一般建议采用的方法是让线程自行结束进入Dead状态。一个线程进入Dead状态，既执行完run()方法，也就是说提供一种能够自动让run()方法结束的方式，在实际中，我们可以通过flag标志来控制循环是否执行，从而使线程离开run方法终止线程。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class MyThread implements Runnable&#123;</span><br><span class="line"> private volatile Boolean flag;</span><br><span class="line"> public void stop()&#123;</span><br><span class="line">     flag=false;</span><br><span class="line"> &#125;</span><br><span class="line"> public void run()&#123;</span><br><span class="line">  while(flag);//do something</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+上述通过stop()方法虽然可以终止线程，但同样也存在问题；当线程处于阻塞状态时（sleep()被调用或wait()方法被调用或当被I/O阻塞时）,上面介绍的方法就不可用了。此时使用interrupt()方法来打破阻塞的情况，当interrupt()方法被调用时，会跑出interruptedException异常，可以通过在run()方法中捕获这个异常来让线程安全退出</li>
+</ol>
+<h3 id="1-3-线程-的六种状态"><a href="#1-3-线程-的六种状态" class="headerlink" title="1.3 线程 的六种状态"></a>1.3 线程 的六种状态</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">NEW  - 创建状态，线程创建之后，但是还未启动。</span><br><span class="line">RUNNABLE - 运行状态，处于运行状态的线程，但有可能处于等待状态，例如等待CPU、IO等。</span><br><span class="line">WAITING - 等待状态，一般是调用了wait()、join()、LockSupport.spark()等方法。</span><br><span class="line">BLOCK - 阻塞状态，等待锁的释放，例如调用了synchronized增加了锁。</span><br><span class="line">TERMINATED - 终止状态，一般是线程完成任务后退出或者异常终止。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-4-wait-notify-sleep-join等重要方法"><a href="#1-4-wait-notify-sleep-join等重要方法" class="headerlink" title="1.4 wait,notify,sleep,join等重要方法"></a>1.4 wait,notify,sleep,join等重要方法</h3><p>wait 阻塞<br>  notify 释放 <br> sleep 睡眠 <br> join 线程没执行完之前,会一直阻塞在join方法处</p>
+<h3 id="1-5-守护线程"><a href="#1-5-守护线程" class="headerlink" title="1.5 守护线程"></a>1.5 守护线程</h3><h2 id="2-线程安全"><a href="#2-线程安全" class="headerlink" title="2. 线程安全"></a>2. 线程安全</h2><h3 id="2-1-各种各样的锁"><a href="#2-1-各种各样的锁" class="headerlink" title="2.1 各种各样的锁"></a>2.1 各种各样的锁</h3><p>悲观锁和乐观锁 <br> 共享锁和独占锁 <br> 公平锁和非公平锁 <br> 可重入锁和非可重入锁 <br> JVM对synchronized锁的优化 <br><br><a target="_blank" rel="noopener" href="http://wanke.fun/Java/JavaConcurrent/synchronized-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/">synchronized深入理解</a><br><a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1660967695983667396">JVM  synchronize锁</a><br><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44050144/article/details/112882400">ReentrantLock原理解读</a></p>
+<h3 id="2-2-并发容器"><a href="#2-2-并发容器" class="headerlink" title="2.2 并发容器"></a>2.2 并发容器</h3><p>ConcurrentHashMap <br> CopyOnWriteArrayList <br> 阻塞队列 - BlockingQueue接口 <br> 非阻塞队列 - ConcurrentLinkedQueue</p>
+<h3 id="2-3-ThreadLocal"><a href="#2-3-ThreadLocal" class="headerlink" title="2.3 ThreadLocal"></a>2.3 ThreadLocal</h3><p>ThreadLocal是一个关于创建线程局部变量的类。使用场景如下所示：</p>
+<ol>
+<li>实现单个线程单例以及单个线程上下文信息存储，比如交易id等。</li>
+<li>实现线程安全，非线程安全的对象使用ThreadLocal之后就会变得线程安全，因为每个线程都会有一个对应的实例。</li>
+<li>承载一些线程相关的数据，避免在方法中来回传递参数。<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44050144/article/details/113061884">https://blog.csdn.net/weixin_44050144/article/details/113061884</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/377bb840802f">https://www.jianshu.com/p/377bb840802f</a><br>  <blockquote>
+<ul>
+<li>ThreadLocal 对数据的存储通过 Thread 的 ThreadLocalMap完成</li>
+<li>ThreadLocal本身作为key ，Entry包装了key和value</li>
+<li>Entry 继承自WeakReference ，没有Next，也没有链表</li>
+<li>开发地址法处理hash冲突</li>
+<li>ThreadLocal在没有外部强引用时，发生GC时会被回收，如果创建ThreadLocal的线程一直持续运行，那么这个Entry对象中的value就有可能一直得不到回收，发生内存泄露。</li>
+<li>显示的调用remove来避免内存泄漏</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<p>ThreadLocal内存泄漏的根源是：由于ThreadLocalMap的生命周期跟Thread一样长，如果没有手动删除对应key就会导致内存泄漏。</p>
+<h3 id="2-4-atomic包-6种原子类"><a href="#2-4-atomic包-6种原子类" class="headerlink" title="2.4 atomic包,6种原子类"></a>2.4 atomic包,6种原子类</h3><h3 id="2-5-线程池"><a href="#2-5-线程池" class="headerlink" title="2.5 线程池"></a>2.5 线程池</h3><p>避免存在大量Thread,重用线程池内部的线程.从而避免了线程的创建和销毁带来的性能开销,同时能有效控制线程池的最大并发数,避免大量线程因互相抢占系统资源而导致阻塞现象发生<br><br>Executors , ThreadPoolExecutor ,  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public ThreadPoolExecutor(int corePoolSize, // 1</span><br><span class="line">                              int maximumPoolSize,  // 2</span><br><span class="line">                              long keepAliveTime,  // 3</span><br><span class="line">                              TimeUnit unit,  // 4</span><br><span class="line">                              BlockingQueue&lt;Runnable&gt; workQueue, // 5</span><br><span class="line">                              ThreadFactory threadFactory,  // 6</span><br><span class="line">                              RejectedExecutionHandler handler ) &#123; //7</span><br><span class="line">        if (corePoolSize &lt; 0 ||</span><br><span class="line">            maximumPoolSize &lt;= 0 ||</span><br><span class="line">            maximumPoolSize &lt; corePoolSize ||</span><br><span class="line">            keepAliveTime &lt; 0)</span><br><span class="line">            throw new IllegalArgumentException();</span><br><span class="line">        if (workQueue == null || threadFactory == null || handler == null)</span><br><span class="line">            throw new NullPointerException();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>corePoolSize: 核心线程池大小 , 线程池里一直不会被销毁的线程数量</li>
+<li>maximumPoolSize: 最大线程池容量</li>
+<li>workQueue: 线程等待队列</li>
+<li>keepAliveTime: 非核心线程空闲时的存活时间，该参数只有在 线程数量 &gt; corePoolSize情况下才有用</li>
+<li>handler: 饱和策略，假如线程池已满，并且没有空闲的线程，这个时候不再允许提交任务</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">AbortPolicy：拒绝提交，直接抛出异常，也是默认的饱和策略；</span><br><span class="line">CallerRunsPolicy：线程池还未关闭时，用调用者的线程执行任务；</span><br><span class="line">DiscardPolicy：丢掉提交任务；</span><br><span class="line">DiscardOldestPolicy：线程池还未关闭时，丢掉阻塞队列最久为处理的任务，并且执行当前任务。</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-5-1-FixedThreadPool"><a href="#2-5-1-FixedThreadPool" class="headerlink" title="2.5.1 FixedThreadPool"></a>2.5.1 FixedThreadPool</h4><p>适用场景：可用于Web服务瞬时削峰，但需注意长时间持续高峰情况造成的队列阻塞。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public static ExecutorService newFixedThreadPool(int nThreads) &#123;</span><br><span class="line">        return new ThreadPoolExecutor(nThreads, nThreads,</span><br><span class="line">                                      0L, TimeUnit.MILLISECONDS,</span><br><span class="line">                                      new LinkedBlockingQueue&lt;Runnable&gt;());</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>corePoolSize与maximumPoolSize相等，即其线程全为核心线程，是一个固定大小的线程池</li>
+<li>workQueue 为LinkedBlockingQueue（无界阻塞队列），队列最大值为Integer.MAX_VALUE。如果任务提交速度持续大余任务处理速度，会造成队列大量阻塞。因为队列很大，很有可能在拒绝策略前，内存溢出</li>
+</ol>
+<h4 id="2-5-2-CachedThreadPool"><a href="#2-5-2-CachedThreadPool" class="headerlink" title="2.5.2 CachedThreadPool"></a>2.5.2 CachedThreadPool</h4><p>适用场景：快速处理大量耗时较短的任务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public static ExecutorService newCachedThreadPool() &#123;</span><br><span class="line">        return new ThreadPoolExecutor(0, Integer.MAX_VALUE,</span><br><span class="line">                                      60L, TimeUnit.SECONDS,</span><br><span class="line">                                      new SynchronousQueue&lt;Runnable&gt;());</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>corePoolSize = 0，maximumPoolSize = Integer.MAX_VALUE，即线程数量几乎无限制</li>
+<li>keepAliveTime = 60s，线程空闲60s后自动结束</li>
+<li>workQueue 为 SynchronousQueue 同步队列，这个队列类似于一个接力棒，入队出队必须同时传递，因为CachedThreadPool线程创建无限制，不会有队列等待，所以使用SynchronousQueue, 对其的操作必须是放和取交替完成的，典型的生产者-消费者模型，它不存储元素，每一次的插入必须要等另一个线程的移除操作完成。</li>
+</ol>
+<h4 id="2-5-3-SingleThreadExecutor"><a href="#2-5-3-SingleThreadExecutor" class="headerlink" title="2.5.3 SingleThreadExecutor"></a>2.5.3 SingleThreadExecutor</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public static ExecutorService newSingleThreadExecutor() &#123;</span><br><span class="line">        return new FinalizableDelegatedExecutorService</span><br><span class="line">            (new ThreadPoolExecutor(1, 1,</span><br><span class="line">                                    0L, TimeUnit.MILLISECONDS,</span><br><span class="line">                                    new LinkedBlockingQueue&lt;Runnable&gt;()));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="2-6-线程配合"><a href="#2-6-线程配合" class="headerlink" title="2.6 线程配合"></a>2.6 线程配合</h3><p>CountDownLatch ，CyclicBarrier</p>
+<h3 id="2-7-Java内存模型"><a href="#2-7-Java内存模型" class="headerlink" title="2.7 Java内存模型"></a>2.7 Java内存模型</h3><blockquote>
+<ul>
+<li>原子性 - 保证指令不会受到线程上下文切换的影响</li>
+<li>可见性 - 保证指令不会受 cpu 缓存的影响</li>
+<li>有序性 - 保证指令不会受 cpu 指令并行优化的影响<br></li>
+</ul>
+</blockquote>
+<p>volatile 原理<br><br>volatile 的底层实现原理是内存屏障，Memory Barrier（Memory Fence）</p>
+<blockquote>
+<ul>
+<li>对 volatile 变量的写指令后会加入写屏障</li>
+<li>对 volatile 变量的读指令前会加入读屏障</li>
+</ul>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44050144/article/details/112784977">java内存模型</a></p>
+<p>happens-before：<br><br>happens-before 规定了对共享变量的写操作对其它线程的读操作可见，它是可见性与有序性的一套规则总结，抛开以下 happens-before 规则，JMM 并不能保证一个线程对共享变量的写，对于其它线程对该共享变量的读可见</p>
+<h3 id="2-8-cas-无锁编程"><a href="#2-8-cas-无锁编程" class="headerlink" title="2.8 cas 无锁编程"></a>2.8 cas 无锁编程</h3><p>CAS即比较并替换,它是通过硬件来保证操作的原子性.去修改某个值,修改失败则重试.</p>
+<p>CAS 必须借助 volatile 才能读取到共享变量的最新值来实现【比较并交换】的效果</p>
+<blockquote>
+<p>volatile 仅仅保证了共享变量的可见性，让其它线程能够看到最新值，但不能解决指令交错问题（不能保证原子性）</p>
+</blockquote>
+<p>无锁效率高： </p>
+<blockquote>
+<ul>
+<li>无锁情况下，即使重试失败，线程始终在高速运行，没有停歇，而 synchronized 会让线程在没有获得锁的时候，发生上下文切换，进入阻塞。</li>
+<li>线程要保持运行，需要额外 CPU 的支持，CPU 在这里就好比高速跑道，没有额外的跑道，线程想高 速运行也无从谈起，虽然不会进入阻塞，但由于没有分到时间片，仍然会进入可运行状态，还是会导致上下文切换。</li>
+</ul>
+</blockquote>
+<p>CAS 是基于乐观锁的思想：最乐观的估计，不怕别的线程来修改共享变量，就算改了也没关系，我吃亏点再重试呗。</p>
+<p>synchronized 是基于悲观锁的思想：最悲观的估计，得防着其它线程来修改共享变量，我上了锁你们都别想改，我改完了解开锁，你们才有机会。</p>
+<p>CAS 体现的是无锁并发、无阻塞并发，请仔细体会这两句话的意思</p>
+<ol>
+<li>因为没有使用 synchronized，所以线程不会陷入阻塞，这是效率提升的因素之一</li>
+<li>但如果竞争激烈(写操作多)，可以想到重试必然频繁发生，反而效率会受影响</li>
+</ol>
+<h3 id="2-9-AQS"><a href="#2-9-AQS" class="headerlink" title="2.9 AQS"></a>2.9 AQS</h3><p>AQS：AbstractQuenedSynchronizer抽象的队列式同步器。是除了java自带的synchronized关键字之外的锁机制。</p>
+<p>AQS的核心思想是，如果被请求的共享资源空闲，则将当前请求资源的线程设置为有效的工作线程，并将共享资源设置为锁定状态，如果被请求的共享资源被占用，那么就需要一套线程阻塞等待以及被唤醒时锁分配的机制，这个机制AQS是用CLH队列锁实现的，即将暂时获取不到锁的线程加入到队列中。</p>
+<p>基于CLH队列，用volatile修饰共享变量state，线程通过CAS去改变状态符，成功则获取锁成功，失败则进入等待队列，等待被唤醒。</p>
+<p><strong>注意：AQS是自旋锁：</strong>在等待唤醒的时候，经常会使用自旋（while(!cas())）的方式，不停地尝试获取锁，直到被其他线程获取成功</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44050144/article/details/112882400">并发编程（七）J.U.C之AQS原理、ReentrantLock原理</a><br><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/waterystone/p/4920797.html">Java并发之AQS详解</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/TZ845195485/article/details/109210263">02_可重入锁(递归锁)+LockSupport+AQS源码分析</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/47926640">Java 并发一步一脚印(专栏)</a></p>
+<h2 id="3-生产者消费者"><a href="#3-生产者消费者" class="headerlink" title="3. 生产者消费者"></a>3. 生产者消费者</h2><p><a target="_blank" rel="noopener" href="http://wanke.fun/Java/%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%B8%89%E7%A7%8D%E5%AE%9E%E7%8E%B0/">三种实现</a></p>
+<h2 id="4-线程通信"><a href="#4-线程通信" class="headerlink" title="4. 线程通信"></a>4. 线程通信</h2><ol>
+<li>synchronized加wait/notify方式</li>
+<li>ReentrantLock加Condition方式</li>
+<li>闭锁方式、栅栏模式(CountDownLatch，CyclicBarrier)</li>
+<li>Semaphore 信号量</li>
+<li>join</li>
+<li>Volatile 共享变量</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/uncategorized/Java%E5%B9%B6%E5%8F%91/" data-id="ckpkn2mtt003uwcus4tffak83" data-title="Java并发" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Java基础" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Java/Java%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time class="dt-published" datetime="2021-04-02T08:30:00.000Z" itemprop="datePublished">2021-04-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/Java/Java%E5%9F%BA%E7%A1%80/">Java基础</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://www.yuque.com/docs/share/31deed7b-935a-4cf7-bcf3-8107bee40404#0ea5e531">https://www.yuque.com/docs/share/31deed7b-935a-4cf7-bcf3-8107bee40404?#0ea5e531</a></p>
+<h2 id="1-面向对象"><a href="#1-面向对象" class="headerlink" title="1. 面向对象"></a>1. 面向对象</h2><p>封装，继承，多态 </p>
+<blockquote>
+<ul>
+<li>多态是指父类的某个方法被子类重写时，可以产生自己的功能行为，同一个操作作用于不同对象，可以有不同的解释，产生不同的执行结果。</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>静态方法与静态成员变量可以被继承，但是不能被重写。它对子类隐藏，因此静态方法也不能实现多态</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>为什么Java里的匿名内部类只能访问final修饰的外部变量？</li>
+</ul>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">因为匿名内部类最终用会编译成一个单独的类，而被该类使用的变量会以构造函数参数的形式传递给该类，例如：Integer paramInteger，</span><br><span class="line">如果变量不定义成final的，paramInteger在匿名内部类被可以被修改，进而造成和外部的paramInteger不一致的问题，为了避免这种不一致的情况，</span><br><span class="line">因为Java规定匿名内部类只能访问final修饰的外部变量。</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>描述一下Java的异常体系？</li>
+</ul>
+</blockquote>
+<ol>
+<li>Error是程序无法处理的错误，比如OutOfMemoryError、ThreadDeath等。这些异常发生时， Java虚拟机（JVM）一般会选择线程终止。</li>
+<li>Exception是程序本身可以处理的异常，这种异常分两大类运行时异常和非运行时异常，程序中应当尽可能去处理这些异常。运行时异常都是RuntimeException类及其子类异常，如NullPointerException、IndexOutOfBoundsException等，<br>这些异常是不检查异常，程序中可以选择捕获处理，也可以不处理。这些异常一般是由程序逻辑错误引起的， 程序应该从逻辑角度尽可能避免这类异常的发生。</li>
+</ol>
+<h2 id="2-设计模式"><a href="#2-设计模式" class="headerlink" title="2. 设计模式"></a>2. 设计模式</h2><h2 id="3-集合框架"><a href="#3-集合框架" class="headerlink" title="3. 集合框架"></a>3. 集合框架</h2><p>ArrayList , LinkedList , HashMap , LinkedHashMap , SparseArray , ArrayMap , <br><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/fan2012huan/article/details/51087722">HashMap中的名词解释</a><br><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/zxt0601/article/details/77413921">HashMap源码解析</a></p>
+<h2 id="4-反射"><a href="#4-反射" class="headerlink" title="4. 反射"></a>4. 反射</h2><p>反射慢主要因为反射是动态类型，导致没办法运用JVM的一些优化措施。</p>
+<blockquote>
+<ul>
+<li>如何防止反射、序列化攻击单例？</li>
+</ul>
+</blockquote>
+<h2 id="5-注解"><a href="#5-注解" class="headerlink" title="5. 注解"></a>5. 注解</h2><blockquote>
+<p>注解相当于一种标记，在程序中加了注解就等于为程序打上了某种标记。程序可以利用ava的反射机制来了解你的类及各种元素上有无何种标记，针对不同的标记，就去做相<br>应的事件。标记可以加在包，类，字段，方法，方法的参数以及局部变量上。</p>
+</blockquote>
+<h2 id="6-泛型"><a href="#6-泛型" class="headerlink" title="6. 泛型"></a>6. 泛型</h2><p>泛型是为了参数化类型。</p>
+<p>为什么使用泛型？</p>
+<ol>
+<li>相对于使用Object这种简单粗暴的方式，泛型提供了一种参数化的能力，使得数据的类型可以像参数一样被传递进来，这提供了一种扩展能力。</li>
+<li>当数据类型确定以后，提供了一种类型检测机制，只有相匹配的数据才可以正常赋值，否则编译错误，增强了安全性。</li>
+<li>泛型提高了代码的可读性，不必等到运行时采取执行类型转换，在编写代码阶段，程序员就可以通过参数书写正确的数据类型。</li>
+</ol>
+<p>除了用  表示泛型外，还有 &lt;?&gt; 这种形式。？ 被称为通配符。<br>• 被称作无限定的通配符。<br>• 被称作有上限的通配符。<br>• 被称作有下限的通配符。</p>
+<p>Java里的反射为何会消耗性能？</p>
+<p>反射慢主要因为反射是动态类型，导致没办法运用JVM的一些优化措施。</p>
+<p>Java的类型擦除，知道它的原理吗？</p>
+<p>泛型信息只存在代码编译阶段，在进入JVM之前，与泛型相关的信息都会被擦除掉。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/Java/Java%E5%9F%BA%E7%A1%80/" data-id="ckpkn2mts003qwcusb8hq6hry" data-title="Java基础" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Android知识体系图" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Android/Java/Android%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E5%9B%BE/" class="article-date">
+  <time class="dt-published" datetime="2021-04-01T08:30:00.000Z" itemprop="datePublished">2021-04-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/Android/Java/Android%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E5%9B%BE/">Android知识体系图</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://share.mubu.com/doc/4OuEzOMewju">Android知识体系</a></p>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/2021/Android%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB.png"></img></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/Android/Java/Android%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E5%9B%BE/" data-id="ckpkn2mtf002gwcuseqnk1o4t" data-title="Android知识体系图" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-谈Handler" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Android/%E8%B0%88Handler/" class="article-date">
+  <time class="dt-published" datetime="2020-07-15T06:55:00.000Z" itemprop="datePublished">2020-07-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/Android/%E8%B0%88Handler/">谈Handler</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1155418">腾讯：handler源码分析</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/android-notes/Cockroach">handler：使APP不再crash</a></p>
+<h2 id="Android消息机制"><a href="#Android消息机制" class="headerlink" title="Android消息机制"></a>Android消息机制</h2><p>主要 涉及到 Handler, Message, MessageQueue，Looper </p>
+<ol>
+<li><p>以Handler的sendMessage方法为例，当发送一个消息后，会将此消息加入消息队列MessageQueue中。</p>
+</li>
+<li><p>Looper负责去遍历消息队列并且将队列中的消息分发给对应的Handler进行处理。</p>
+</li>
+<li><p>在Handler的handleMessage方法中处理该消息，这就完成了一个消息的发送和处理过程。</p>
+</li>
+</ol>
+<h2 id="消息阻塞和延时"><a href="#消息阻塞和延时" class="headerlink" title="消息阻塞和延时"></a>消息阻塞和延时</h2><p>Looper 的阻塞主要是靠 MessageQueue 来实现的，在MessageQuese#next 进行阻塞，在 MessageQueue#enqueueMessage 进行唤醒。主要依赖 native 层的 Looper 依靠 epoll 机制进行的。</p>
+<p>阻塞和延时，主要是next中nativePollOnce(ptr, nextPollTimeoutMillis)调用naive方法操作管道，由nextPollTimeoutMillis决定是否需要阻塞nextPollTimeoutMillis为0的时候表示不阻塞，为-1的时候表示一直阻塞直到被唤醒，其他时间表示延时。</p>
+<p>主线程的MessageQueue没有消息时，便阻塞在loop的queue.next()中的nativePollOnce()方法里，此时主线程会释放CPU资源进入休眠状态，直到下个消息到达或者有事务发生，通过往pipe管道写端写入数据来唤醒主线程工作。<br>这里采用的epoll机制，是一种IO多路复用机制，可以同时监控多个描述符，当某个描述符就绪(读或写就绪)，则立刻通知相应程序进行读或写操作，本质同步I/O，即读写是阻塞的。 所以说，主线程大多数时候都是处于休眠状态，并不会消耗大量CPU资源</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>一个线程只绑定一个Looper，所以在Looper构造方法里面初始化就可以保证mQueue也是唯一的Thread对应一个Looper 对应一个 mQueue。</p>
+<p>Handler.post的逻辑在哪个线程执行的，由Looper所在线程决定的。逻辑是在Looper.loop()方法中，从MsgQueue中拿出msg，并且执行其逻辑，这是在Looper中执行的，因此有Looper所在线程决定。</p>
+<h2 id="手写handler"><a href="#手写handler" class="headerlink" title="手写handler"></a>手写handler</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> com.handlerr;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Handler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Looper looper;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> MssageQueue queue;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handMessage</span><span class="params">(Message message)</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Handler</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        looper = Looper.myLooper();</span><br><span class="line">        <span class="keyword">if</span> (looper == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">&quot;should call looper.prepare first&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        queue = looper.mQueue();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sendMessage</span><span class="params">(Message message)</span> </span>&#123;</span><br><span class="line">        message.target = <span class="keyword">this</span>;</span><br><span class="line">        queue.equeueMessage(message);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">(Runnable runnable)</span> </span>&#123;</span><br><span class="line">        Message message = <span class="keyword">new</span> Message();</span><br><span class="line">        message.callback = runnable;</span><br><span class="line"></span><br><span class="line">        queue.equeueMessage(message);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dispatch</span><span class="params">(Message next)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (next.callback != <span class="keyword">null</span>) &#123;</span><br><span class="line">            next.callback.run();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            handMessage(next);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">package com.handlerr;</span><br><span class="line"></span><br><span class="line">public class Message &#123;</span><br><span class="line"></span><br><span class="line">    public int what;</span><br><span class="line">    public Object obj;</span><br><span class="line"></span><br><span class="line">    public Handler target;</span><br><span class="line"></span><br><span class="line">    public Runnable callback;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package com.handlerr;</span><br><span class="line"></span><br><span class="line">import java.util.concurrent.BlockingQueue;</span><br><span class="line">import java.util.concurrent.LinkedBlockingQueue;</span><br><span class="line"></span><br><span class="line">public class MssageQueue &#123;</span><br><span class="line"></span><br><span class="line">    private BlockingQueue&lt;Message&gt; mQueue = new LinkedBlockingQueue&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    public MssageQueue() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Message next() &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            Message take = mQueue.take();</span><br><span class="line">            return take;</span><br><span class="line">        &#125; catch (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void equeueMessage(Message message) &#123;</span><br><span class="line">        mQueue.add(message);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">package com.handlerr;</span><br><span class="line"></span><br><span class="line">public class Looper &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    private static ThreadLocal&lt;Looper&gt; sThreadLocal = new ThreadLocal();</span><br><span class="line"></span><br><span class="line">    MssageQueue queue;</span><br><span class="line"></span><br><span class="line">    private Looper() &#123;</span><br><span class="line">        queue = new MssageQueue();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void prepare()  &#123;</span><br><span class="line">        sThreadLocal.set(new Looper());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static final Looper myLooper() &#123;</span><br><span class="line">        return sThreadLocal.get();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public MssageQueue mQueue() &#123;</span><br><span class="line">        return queue;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static void loop() &#123;</span><br><span class="line"></span><br><span class="line">        while (true) &#123;</span><br><span class="line"></span><br><span class="line">            Message next = Looper.myLooper().mQueue().next();</span><br><span class="line"></span><br><span class="line">            if (next != null) &#123;</span><br><span class="line">                next.target.dispatch(next);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/Android/%E8%B0%88Handler/" data-id="ckpkn2muw007pwcus93qa4cgy" data-title="谈Handler" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-FBO的一点理解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/OpenGL/FBO%E7%9A%84%E4%B8%80%E7%82%B9%E7%90%86%E8%A7%A3/" class="article-date">
+  <time class="dt-published" datetime="2020-06-11T09:08:00.000Z" itemprop="datePublished">2020-06-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/OpenGL/">OpenGL</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/OpenGL/FBO%E7%9A%84%E4%B8%80%E7%82%B9%E7%90%86%E8%A7%A3/">FBO的一点理解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>在使用glsurfaceView渲染图片和摄像头采集的视频数据时候，之前默认的使用直接渲染的方式。但是在实际的开发使用中，我们很多时候并不想要直接渲染，而是先做一些额外的工作，比如滤镜 。 fbo可以帮我们更好的实现这个需求，FBO可以让不渲染到屏幕当中去，而是渲染到离屏的buffer中。</p>
+<p>这里我们不再去赘述一些基本的概念 ，基于OpenGL es 30 版本，在Android上的实现，描述一次 fbo的实现过程。 </p>
+<p>就以渲染一张bitmap为例 。 </p>
+<h4 id="1-创建bitmap纹理"><a href="#1-创建bitmap纹理" class="headerlink" title="1. 创建bitmap纹理"></a>1. 创建bitmap纹理</h4><ol>
+<li>生成并绑定纹理<BR></li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">final int[] textureIds = new int[1];</span><br><span class="line">GLES30.glGenTextures(1, textureIds, 0);</span><br><span class="line">// 绑定纹理到OpenGL</span><br><span class="line">GLES30.glBindTexture(GLES30.GL_TEXTURE_2D,textureIds[0]);</span><br><span class="line">//设置默认的纹理过滤参数</span><br><span class="line">GLES30.glTexParameteri(GLES30.GL_TEXTURE_2D, GLES30.GL_TEXTURE_MIN_FILTER,GLES30.GL_LINEAR_MIPMAP_LINEAR);</span><br><span class="line">GLES30.glTexParameteri(GLES30.GL_TEXTURE_2D, GLES30.GL_TEXTURE_MAG_FILTER,GLES30.GL_LINEAR);</span><br><span class="line"></span><br><span class="line">        </span><br></pre></td></tr></table></figure>
+<p>2: 渲染bitmap到纹理 <br></p>
+<p>在上一步绑定纹理以后，后续的操作都会在此纹理完成</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 加载bitmap到纹理中</span><br><span class="line">        GLUtils.texImage2D(GLES30.GL_TEXTURE_2D, 0, bitmap, 0);</span><br><span class="line"></span><br><span class="line">        GLES30.glGenerateMipmap(GLES30.GL_TEXTURE_2D);</span><br></pre></td></tr></table></figure>
+
+<p>3 :  一定要记得解绑<br></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 数据如果已经被加载进OpenGL,则可以回收该bitmap</span><br><span class="line">        bitmap.recycle();</span><br><span class="line">        // 取消绑定纹理</span><br><span class="line">        GLES30.glBindTexture(GLES30.GL_TEXTURE_2D, 0);</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="2-fbo的创建"><a href="#2-fbo的创建" class="headerlink" title="2. fbo的创建"></a>2. fbo的创建</h4><ol>
+<li>创建frameBuffer <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//创建FrameBuffer</span><br><span class="line">        mFrameBuffers = new int[1];</span><br><span class="line">        GLES30.glGenFramebuffers(mFrameBuffers.length, mFrameBuffers, 0);</span><br></pre></td></tr></table></figure></li>
+<li>创建并绑定纹理</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mFBOTextures = new int[1];</span><br><span class="line">GLES30.glGenTextures(mFBOTextures.length, mFBOTextures, 0);</span><br><span class="line">GLES30.glBindTexture(GLES30.GL_TEXTURE_2D, mFBOTextures[0]);</span><br><span class="line">//设置参数</span><br><span class="line">GLES30.glTexParameteri(GLES30.GL_TEXTURE_2D, GLES30.GL_TEXTURE_MAG_FILTER, GLES30.GL_NEAREST);</span><br><span class="line">GLES30.glTexParameteri(GLES30.GL_TEXTURE_2D, GLES30.GL_TEXTURE_MIN_FILTER, GLES30.GL_NEAREST);</span><br><span class="line">GLES30.glTexParameteri(GLES30.GL_TEXTURE_2D, GLES30.GL_TEXTURE_WRAP_S, GLES30.GL_REPEAT);</span><br><span class="line">GLES30.glTexParameteri(GLES30.GL_TEXTURE_2D, GLES30.GL_TEXTURE_WRAP_T, GLES30.GL_REPEAT);</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>设置纹理格式</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//指定FBO纹理的输出图像的格式 RGBA</span><br><span class="line">GLES30.glTexImage2D(GLES30.GL_TEXTURE_2D, 0, GLES30.GL_RGBA, mWidth, mHeight,</span><br><span class="line">                0, GLES30.GL_RGBA, GLES30.GL_UNSIGNED_BYTE, null);</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>绑定framebuffer</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">GLES30.glBindFramebuffer(GLES30.GL_FRAMEBUFFER, mFrameBuffers[0]);</span><br><span class="line"></span><br><span class="line">//将fbo绑定到2d的纹理上</span><br><span class="line">GLES30.glFramebufferTexture2D(GLES30.GL_FRAMEBUFFER, GLES30.GL_COLOR_ATTACHMENT0,</span><br><span class="line">                GLES30.GL_TEXTURE_2D, mFBOTextures[0], 0);</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>取消绑定 </li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GLES30.glBindTexture(GLES30.GL_TEXTURE_2D, 0);</span><br><span class="line">GLES30.glBindFramebuffer(GLES30.GL_FRAMEBUFFER, 0);</span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>绘制 </li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public int draw(int textureId) &#123;</span><br><span class="line"></span><br><span class="line">        //锁定绘制的区域  绘制是从左下角开始的</span><br><span class="line">        GLES30.glViewport(0, 0, mWidth, mHeight);</span><br><span class="line">        //绑定FBO，在FBO上操作</span><br><span class="line">        GLES30.glBindFramebuffer(GLES30.GL_FRAMEBUFFER, mFrameBuffers[0])</span><br><span class="line">        //使用着色器</span><br><span class="line">        GLES30.glUseProgram(mProgram);</span><br><span class="line">        .......</span><br><span class="line">        //激活纹理</span><br><span class="line">        GLES30.glActiveTexture(GLES30.GL_TEXTURE0);</span><br><span class="line">        //绑定纹理</span><br><span class="line">        GLES30.glBindTexture(GLES30.GL_TEXTURE_2D, textureId);</span><br><span class="line"></span><br><span class="line">        GLES30.glDrawArrays(GLES30.GL_TRIANGLE_STRIP, 0, 4);</span><br><span class="line"></span><br><span class="line">        GLES30.glBindFramebuffer(GLES30.GL_FRAMEBUFFER, 0);</span><br><span class="line">        GLES30.glBindTexture(GLES30.GL_TEXTURE_2D, 0);</span><br><span class="line">        return mFBOTextures[0];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+<p><a target="_blank" rel="noopener" href="https://github.com/kongxs/PluginProject/tree/master/opengl/src/main/java/fu/wanke/opengl/filter"> DEMO 地址 </a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/OpenGL/FBO%E7%9A%84%E4%B8%80%E7%82%B9%E7%90%86%E8%A7%A3/" data-id="ckpkn2mtg002kwcusdp6t58x1" data-title="FBO的一点理解" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-seetaFace集成使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Android/seetaFace%E9%9B%86%E6%88%90%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time class="dt-published" datetime="2020-06-09T09:04:00.000Z" itemprop="datePublished">2020-06-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/Android/seetaFace%E9%9B%86%E6%88%90%E4%BD%BF%E7%94%A8/">seetaFace集成使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>seeta::FaceAlignment 是中科视拓开放的商用级人脸识别库 。包括，识别，检测，对齐等多个核心模块 。 <a target="_blank" rel="noopener" href="https://github.com/seetafaceengine/SeetaFace6">https://github.com/seetafaceengine/SeetaFace6</a> </p>
+<p>集成环境 <br><br>ndk-r14b , </p>
+<p>makelist文件： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">add_subdirectory(src/main/cpp/alignment)</span><br><span class="line"></span><br><span class="line">target_link_libraries 添加 seeta_fa_lib </span><br></pre></td></tr></table></figure>
+
+<p>build.gradle文件 ： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//                arguments &quot;-DANDROID_STL=c++_shared&quot;</span><br><span class="line">                arguments &quot;-DANDROID_STL=gnustl_static&quot;</span><br></pre></td></tr></table></figure>
+
+
+<p>使用 ： </p>
+<p>初始化 ： </p>
+<p>Ptr<a href="seeta::FaceAlignment">seeta::FaceAlignment</a> faceAlignment; </p>
+<p>faceAlignment = makePtr<a href="seeta::FaceAlignment">seeta::FaceAlignment</a>(“seeta_fa_v1.1.bin”);</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">		seeta::FacialLandmark points[5];</span><br><span class="line">        seeta::ImageData imageData(gray.cols, gray.rows);</span><br><span class="line">//</span><br><span class="line">        imageData.data = gray.data;</span><br><span class="line">        seeta::FaceInfo faceInfo;</span><br><span class="line">        seeta::Rect bbox;</span><br><span class="line"></span><br><span class="line">        bbox.x = x;</span><br><span class="line">        bbox.y = y;</span><br><span class="line">        bbox.width = width;</span><br><span class="line">        bbox.height = height;</span><br><span class="line"></span><br><span class="line">        faceInfo.bbox = bbox;</span><br><span class="line">        //检测 人眼 等五个点</span><br><span class="line">        faceAlignment-&gt;PointDetectLandmarks(imageData, faceInfo, points);</span><br></pre></td></tr></table></figure>
+
+
+<p>error：  htapp.cc:3026:9: error: call to ‘abs’ is ambiguous  ：<br>abs 改成 fabs 即可</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/kongxs/tomato/tree/camera2">https://github.com/kongxs/tomato/tree/camera2</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/Android/seetaFace%E9%9B%86%E6%88%90%E4%BD%BF%E7%94%A8/" data-id="ckpkn2mue005wwcusfcvad0qq" data-title="seetaFace集成使用" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-dlib在android端的集成" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Android/dlib/DIP/dlib%E5%9C%A8android%E7%AB%AF%E7%9A%84%E9%9B%86%E6%88%90/" class="article-date">
+  <time class="dt-published" datetime="2020-05-27T08:06:00.000Z" itemprop="datePublished">2020-05-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/dlib/">dlib</a>►<a class="article-category-link" href="/categories/Android/dlib/DIP/">DIP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/Android/dlib/DIP/dlib%E5%9C%A8android%E7%AB%AF%E7%9A%84%E9%9B%86%E6%88%90/">dlib在android端的集成</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="http://dlib.net/">http://dlib.net</a> dlib 源码下载。  </p>
+<p>环境参考： android-ndk-r14b  ，opencv 3.4 , dlib 19.19 </p>
+<ol>
+<li>opencv官方编译好了可用于android平台的so以及jni header 提供了jni和java版本的SDK两中调用方式，集成比较简单，不走赘述。 </li>
+</ol>
+<h3 id="1-dlib-集成"><a href="#1-dlib-集成" class="headerlink" title="1. dlib 集成"></a>1. dlib 集成</h3><ol>
+<li>下载dlib源码，我使用19.19  <br><br>解压后的目录如下 </li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dlib</span><br><span class="line">   docs</span><br><span class="line">   examples</span><br><span class="line">   tools </span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><p>将 dlib 目录整体拷贝到 studio 的 src/main/cpp 目录下 </p>
+</li>
+<li><p>配置 build.gradle文件</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">externalNativeBuild &#123;</span><br><span class="line">            cmake &#123;</span><br><span class="line">                arguments  &quot;-DCMAKE_BUILD_TYPE=Release ..&quot;</span><br><span class="line">                cppFlags &quot;-std=c++11 -frtti -fexceptions -Os -O2&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>cmake 文件处理 </li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">cmake_minimum_required(VERSION 3.4.1)</span><br><span class="line"></span><br><span class="line"># Creates and names a library, sets it as either STATIC</span><br><span class="line"># or SHARED, and provides the relative paths to its source code.</span><br><span class="line"># You can define multiple libraries, and CMake builds them for you.</span><br><span class="line"># Gradle automatically packages shared libraries with your APK.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 设置native目录</span><br><span class="line">set(NATIVE_DIR $&#123;CMAKE_SOURCE_DIR&#125;/src/main/cpp)</span><br><span class="line"># 设置dlib</span><br><span class="line">include($&#123;NATIVE_DIR&#125;/dlib/cmake)</span><br><span class="line"></span><br><span class="line">include_directories($&#123;JNI_LIBS_DIR&#125;/includes)</span><br><span class="line"></span><br><span class="line">set(JNI_LIBS_DIR $&#123;CMAKE_SOURCE_DIR&#125;/src/main/cpp)</span><br><span class="line"></span><br><span class="line">add_library( # Sets the name of the library.</span><br><span class="line">             native-lib</span><br><span class="line"></span><br><span class="line">             # Sets the library as a shared library.</span><br><span class="line">             SHARED</span><br><span class="line"></span><br><span class="line">             # Provides a relative path to your source file(s).</span><br><span class="line">        src/main/cpp/native-lib.cpp</span><br><span class="line">        src/main/cpp/matutil.cpp</span><br><span class="line">        src/main/cpp/effective.cpp</span><br><span class="line">        src/main/cpp/face_detector.cpp</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">include_directories($&#123;CMAKE_SOURCE_DIR&#125;/src/main/cpp)</span><br><span class="line"></span><br><span class="line"># Searches for a specified prebuilt library and stores the path as a</span><br><span class="line"># variable. Because CMake includes system libraries in the search path by</span><br><span class="line"># default, you only need to specify the name of the public NDK library</span><br><span class="line"># you want to add. CMake verifies that the library exists before</span><br><span class="line"># completing its build.</span><br><span class="line"></span><br><span class="line">add_library(libopencv_java  # 库名字</span><br><span class="line">        SHARED</span><br><span class="line">        IMPORTED)</span><br><span class="line">set_target_properties( libopencv_java</span><br><span class="line">        PROPERTIES IMPORTED_LOCATION</span><br><span class="line">        $&#123;CMAKE_SOURCE_DIR&#125;/libs/armeabi-v7a/libopencv_java.so)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">find_library( # Sets the name of the path variable.</span><br><span class="line">              log-lib</span><br><span class="line"></span><br><span class="line">              # Specifies the name of the NDK library that</span><br><span class="line">              # you want CMake to locate.</span><br><span class="line">              log )</span><br><span class="line"></span><br><span class="line"># Specifies libraries CMake should link to your target library. You</span><br><span class="line"># can link multiple libraries, such as libraries you define in this</span><br><span class="line"># build script, prebuilt third-party libraries, or system libraries.</span><br><span class="line"></span><br><span class="line">target_link_libraries( # Specifies the target library.</span><br><span class="line">                       native-lib</span><br><span class="line">                        libopencv_java</span><br><span class="line">                        android</span><br><span class="line">                        jnigraphics</span><br><span class="line">                        dlib</span><br><span class="line">                       # Links the target library to the log library</span><br><span class="line">                       # included in the NDK.</span><br><span class="line">                       $&#123;log-lib&#125; )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 指定release编译选项</span><br><span class="line">set(CMAKE_C_FLAGS_RELEASE &quot;$&#123;CMAKE_C_FLAGS_RELEASE&#125; -s -O3 -Wall&quot;)</span><br><span class="line">set(CMAKE_CXX_FLAGS_RELEASE &quot;$&#123;CMAKE_CXX_FLAGS_RELEASE&#125; -s -O3 -Wall&quot;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>添加cpp源文件处理 <br><br>在 dlib 文件夹下添加文件 opencv_dlib_bridge.h 内容如下</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;sstream&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">namespace std&#123;</span><br><span class="line">    template &lt;typename T&gt; std::string to_string(const T&amp; n)</span><br><span class="line">    &#123;</span><br><span class="line">        std::ostringstream stm;</span><br><span class="line">        stm &lt;&lt; n;</span><br><span class="line">        return stm.str();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    template &lt;typename T&gt; T round(T v)</span><br><span class="line">    &#123;</span><br><span class="line">        return (v&gt;0)?(v+0.5):(v-0.5);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>demo 参考: <a target="_blank" rel="noopener" href="https://github.com/kongxs/face">https://github.com/kongxs/face</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/Android/dlib/DIP/dlib%E5%9C%A8android%E7%AB%AF%E7%9A%84%E9%9B%86%E6%88%90/" data-id="ckpkn2mu0004hwcus4pjt9oeu" data-title="dlib在android端的集成" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-数字图形处理一" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/DIP/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%BD%A2%E5%A4%84%E7%90%86%E4%B8%80/" class="article-date">
+  <time class="dt-published" datetime="2020-05-15T09:13:00.000Z" itemprop="datePublished">2020-05-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/DIP/">DIP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/DIP/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%BD%A2%E5%A4%84%E7%90%86%E4%B8%80/">数字图形处理一</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>Digital Image Processing </p>
+</blockquote>
+<ol>
+<li><p>图形和图像的区别 <br><br>图形是由指令集构成，指令就是命令，由 位置 形状，颜色等进行描述 。记录和显示的是坐标，颜色是隐含的 。 moveTo lineTo  等。。 <br><br>图像 更加直观，坐标是隐含的，显示的是颜色值 。  <br>《计算机图形学》《计算机图像处理学》</p>
+</li>
+<li><p>图像空间分辨率<br><br>指图像数字化的空间精细成都，</p>
+</li>
+<li><p>灰度级分辨率<br><br>即颜色深度，每一像素颜色值锁占的二进制位数，颜色深度越大，标识颜色的数目越多</p>
+</li>
+<li><p>数字图像处理的目的<br><br>图像降噪，改变亮度颜色，增强或者抑制某些成分，几何变换，进而改善图像质量。</p>
+</li>
+<li><p>一般的图像处理流程 <br></p>
+<ol>
+<li>预处理(统一大小等) </li>
+<li>图像分割 (边缘检测，区域分割等)</li>
+<li>特征提取</li>
+<li>图像识别</li>
+<li>图像分析</li>
+</ol>
+</li>
+</ol>
+<h3 id="1-图像的灰度化处理"><a href="#1-图像的灰度化处理" class="headerlink" title="1. 图像的灰度化处理"></a>1. 图像的灰度化处理</h3><p>在图像处理中，灰度化是一种很常用的图片处理手段 。 <br><br>方法1：求出每个像素点的RGB三个分量的平均值，然后将这个平均值赋予给这个像素的三个分量<br><br>方法2：求RGB和YUV颜色空间的变化关系，建立亮度Y与RGB三个颜色分量的对应关系：Y=0.3R+0.59G+0.11B，以这个亮度值表达图像的灰度值。OpenCV的cvtColor函数，可以直接完成灰度化操作。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">for (int i = 1 ; i &lt; src.rows; i++) &#123;</span><br><span class="line">        </span><br><span class="line">        for (int j = 1 ; j &lt; src.cols; j++) &#123;</span><br><span class="line">            </span><br><span class="line">            int b = src.at&lt;Vec3b&gt;(i , j)[0];</span><br><span class="line">            int g = src.at&lt;Vec3b&gt;(i , j)[1];</span><br><span class="line">            int r = src.at&lt;Vec3b&gt;(i , j)[2];</span><br><span class="line">            </span><br><span class="line">            uchar gray = 0.11f*r + 0.59f*g + 0.30f*b;</span><br><span class="line">            </span><br><span class="line">            src.at&lt;Vec3b&gt;(i , j)[0] = gray;</span><br><span class="line">            src.at&lt;Vec3b&gt;(i , j)[1] = gray;</span><br><span class="line">            src.at&lt;Vec3b&gt;(i , j)[2] = gray;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-图像的二值化"><a href="#2-图像的二值化" class="headerlink" title="2. 图像的二值化"></a>2. 图像的二值化</h3><p>图像的二值化就是将图像上的像素点的灰度值设置为0或255，这样将使整个图像呈现出明显的黑白效果。在数字图像处理中，二值图像占有非常重要的地位，图像的二值化使图像中数据量大为减少，从而能凸显出目标的轮廓。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">for (int i = 1; i &lt; src.rows; i++) &#123;</span><br><span class="line">        for (int j = 1; j &lt; src.cols; j++) &#123;</span><br><span class="line">            </span><br><span class="line">            int b = src.at&lt;Vec3b&gt;(i ,j)[0];</span><br><span class="line">            int g = src.at&lt;Vec3b&gt;(i ,j)[1];</span><br><span class="line">            int r = src.at&lt;Vec3b&gt;(i ,j)[2];</span><br><span class="line">            </span><br><span class="line">            if (b &gt; 100) &#123;</span><br><span class="line">                src.at&lt;Vec3b&gt;(i ,j)[0] =255;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                src.at&lt;Vec3b&gt;(i ,j)[0] = 0;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            if (g &gt; 100) &#123;</span><br><span class="line">                src.at&lt;Vec3b&gt;(i ,j)[1] =255;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                src.at&lt;Vec3b&gt;(i ,j)[1] = 0;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            if (r &gt; 100) &#123;</span><br><span class="line">                src.at&lt;Vec3b&gt;(i ,j)[2] =255;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                src.at&lt;Vec3b&gt;(i ,j)[2] = 0;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-图形变换基础"><a href="#3-图形变换基础" class="headerlink" title="3. 图形变换基础"></a>3. 图形变换基础</h3><p>平移，比例缩放，旋转，镜像</p>
+<p>齐次坐标表示法： 用N+1维向量标识N维向量的方法 ，（x，y）投影在 xyz三维立体空间的<br>z=1的平面上 。</p>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/opencv/qici.png"></img></p>
+<h3 id="4-图像增强和灰度变换"><a href="#4-图像增强和灰度变换" class="headerlink" title="4. 图像增强和灰度变换"></a>4. 图像增强和灰度变换</h3><p>利用 点运算 <br><br>输入图像 f(x,y) 输出图像 g(x,y) ， gx = T(f(x,y)) 。 <br><br>不改变空间和位置，逐点运算进行转换。 <br><br>点运算 又称为 对比度增强，对比度拉伸，灰度变换 。 <br></p>
+<ol>
+<li>线性变换 <br><br>输入和输出呈线性比例关系，g(x,y) = T(f(x,y)) = a f(x,y) + b  <br><br>a &gt; 0 输出图像对比度增大 ，a &lt; 0 输出图像对比度减小  <br><br>a=1 ,b ≠ 0 ，灰度值上下移，对应变亮或者变暗  <br><br>a &lt; 0 相反的，亮变暗，暗变亮 </li>
+</ol>
+<h3 id="5-平滑处理的概念"><a href="#5-平滑处理的概念" class="headerlink" title="5. 平滑处理的概念"></a>5. 平滑处理的概念</h3><ol>
+<li>线性平滑<br><br>每一个像素的灰度值用它的邻域值代替，邻域为 n✖️n (n取奇数)</li>
+<li>非线性平滑<br>取一个阈值，当像素与邻域平均值之间的差大于阈值已均值代替，否则不变</li>
+<li>自适应平滑</li>
+</ol>
+<h3 id="6-图像去噪和添加椒盐噪声"><a href="#6-图像去噪和添加椒盐噪声" class="headerlink" title="6. 图像去噪和添加椒盐噪声"></a>6. 图像去噪和添加椒盐噪声</h3><p>二值图像的去噪<br><br>用3✖️3的模板进行均值滤波，当f(x,y)周围的8个像素平均值为 a 时候<br><br>若 |f(x,y) -a | &gt; 127.5 则对f(x,y)进行黑白翻转，否则不变 </p>
+<ol>
+<li>邻域平均法： <br><br>算法简单，计算速度快，但是会造成一定程度的模糊<br><br>改进： 选择邻域的大小，形状，方向，</li>
+<li>邻域加权平均法<br><br>将模板系数与对应像素的灰度值相乘，将所有乘积累加，用所得结果代替原中心像素。<br>&lt;例如：高斯离散模板&gt;</li>
+<li>超限邻域平均法<br>给定一个灰度值作为阈值，如果像素点大于邻域8个像素平均值并且超过了阈值，用平均灰度替换。<br></li>
+</ol>
+<p>N✖️N均值滤波器: f(x,y)为中心的 N✖️N的窗口，当平均灰度为a时，f(x,y) = a。  <br> N 越大，那么噪声消除越明显 。 均值滤波器以图像的模糊为代价 。</p>
+<ol start="4">
+<li><p>均值滤波法<br><br>对n✖️n的窗口进行取平均数 </p>
+</li>
+<li><p>中值滤波法<br><br>对n✖️n的窗口进行排序，取中间值 .  对椒盐噪声有很好的效果<br><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/opencv/zhong_lvbo.png"></img></p>
+</li>
+</ol>
+<h3 id="6-图像边缘锐化"><a href="#6-图像边缘锐化" class="headerlink" title="6. 图像边缘锐化"></a>6. 图像边缘锐化</h3><p>锐化的基本方法 ：</p>
+<ol>
+<li>微分运算</li>
+<li>边缘检测</li>
+<li>梯度锐化</li>
+</ol>
+<p>锐化的目的： </p>
+<ol>
+<li>增强边界信息</li>
+<li>提取物体边界</li>
+</ol>
+<p>单向微分运算：</p>
+<p>纵向： G(i,j) = f(i,j) - f(i-1,j)<br><br>横向： G(i,j) = f(i,j) - f(i,j-1)<br> </p>
+<p>双向微分，同时增强两个方向的边缘：<br> </p>
+<p>G(i ,j) = sqrt { [f(i,j) - f(i-1,j) * f(i,j) - f(i-1,j)] + [f(i,j) - f(i,j-1) * f(i,j) - f(i,j-1) ] }</p>
+<p>通常情况下，边缘上的灰度变化平缓，而边缘两侧灰度变化较快。一般是亮度变化最显著的部分。<br><br><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/opencv/weifen.png"></img></p>
+<p>高斯拉普拉斯算子，是更好的边缘检测，把高斯平滑器和拉普拉斯锐化结合起来，先平滑掉噪声，再进行边缘检测。</p>
+<h3 id="7-图像边缘检测"><a href="#7-图像边缘检测" class="headerlink" title="7. 图像边缘检测"></a>7. 图像边缘检测</h3><h3 id="7-图像阈值分割"><a href="#7-图像阈值分割" class="headerlink" title="7. 图像阈值分割"></a>7. 图像阈值分割</h3><ol>
+<li>直方图门限选择</li>
+<li>迭代阈值分割</li>
+</ol>
+<p>阈值选择： <br> 可通过输出直方图来确定。 假设只有背景和物体组成，那么直方图灰度具有明显的双峰值。 - 找到谷底即可 </p>
+<h3 id="8-形态学基本概念"><a href="#8-形态学基本概念" class="headerlink" title="8. 形态学基本概念"></a>8. 形态学基本概念</h3><p>腐蚀，膨胀，<br><br>开运算 - 先腐蚀后膨胀 <br><br>闭运算 - 先膨胀后腐蚀 <br><br>细化，粗化，中轴变换 </p>
+<p><br><br><br><br><br><br><br><br><br><br><br><br><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/opencv/ex_pic_content.png"></img></p>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/opencv/pic_smooth_process.png"></img></p>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/opencv/juanji_process.png"></img></p>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/opencv/juanji_process_gongshii.png"></img></p>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/opencv/juanji_yunsuan.png"></img></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/DIP/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%BD%A2%E5%A4%84%E7%90%86%E4%B8%80/" data-id="ckpkn2mul006iwcusbnq07y01" data-title="数字图形处理一" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-忘记ide、命令行" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Android/%E5%BF%98%E8%AE%B0ide%E3%80%81%E5%91%BD%E4%BB%A4%E8%A1%8C/" class="article-date">
+  <time class="dt-published" datetime="2020-05-08T05:59:00.000Z" itemprop="datePublished">2020-05-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/Android/%E5%BF%98%E8%AE%B0ide%E3%80%81%E5%91%BD%E4%BB%A4%E8%A1%8C/">忘记ide、命令行</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>IDE提高生产效率，一些基础的命令还是要牢记的。  </p>
+<ol>
+<li>class2jar</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1. jar -cvf result.jar classPath 生成jar包</span><br><span class="line"></span><br><span class="line">2. jar umf MANIFEST.MF hello.jar 更新清单，可以指定入口类，生成可执行jar包</span><br><span class="line">	Manifest-Version: 1.0</span><br><span class="line">	Main-Class: xxxx.class</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>jar2dex </li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dx --dex --output result.dex source.jar </span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>zipalign apk对齐</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">zipalign -v -p 4 source.apk aligned.apk</span><br><span class="line"></span><br><span class="line">4字节  也就是32位对齐</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>apksigner 签名 </li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">apksigner sign --ks xxx.jks --ks-key-alias 123 --ks-pass pass:123456 --key-pass pass:123456 --out signed.apk unsigned.apk</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">--ks 你的jks路径                                 //jks签名证书路径</span><br><span class="line">--ks-key-alias 你的alias           //生成jks时指定的alias</span><br><span class="line">--ks-pass pass:你的密码          //KeyStore密码</span><br><span class="line">--key-pass pass:你的密码   //签署者的密码，即生成jks时指定alias对应的密码</span><br><span class="line">--out output.apk                         //输出路径</span><br><span class="line">input.apk                                     //被签名的apk</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/Android/%E5%BF%98%E8%AE%B0ide%E3%80%81%E5%91%BD%E4%BB%A4%E8%A1%8C/" data-id="ckpkn2muk006dwcus04do67zx" data-title="忘记ide、命令行" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-mvp" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Android/mvp/mvp/" class="article-date">
+  <time class="dt-published" datetime="2020-04-20T10:26:00.000Z" itemprop="datePublished">2020-04-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/mvp/">mvp</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/Android/mvp/mvp/">mvp</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>在更早做Android项目中，一直在使用mvc这种模式进行开发 。 从2017年开始接触mvp在项目中应用以来，关于mvc和mvp两种开发模式一直在 混合使用， 个人理解开发模式只有相对的合适，而没有绝对的好坏，每一种模式都有存在的好与坏 。结合项目规模协作等具体实际进行选择就好。 </p>
+<p>在传统的mvc模式中，activity承担了更多的职责， 更主要的是作为 controller这种角色，控制逻辑和view的操作都在此完成，是的 activity变得臃肿 。 在一个复杂的页面中动辄上千行代码 ，既不美观，更无优雅可言。 对于后期的维护和扩展更是加大了难度 。 </p>
+<p>mvp的思想，将 controller的职能从 activity解放到presenter， activity作为view层的输入和输出同 presenter进行交互，presenter作为view和model的桥梁，承上启下。<br>model —  presenter — view </p>
+<p>mvp对于多人协同的项目更加适用 ，方便进行view视图管理 ， model数据处理 ，presenter逻辑进行多人协作。</p>
+<p>于此同时，mvp也会带来类接口的爆炸，内存泄漏风险 。 </p>
+<p><a target="_blank" rel="noopener" href="https://github.com/kongxs/PluginProject">https://github.com/kongxs/PluginProject</a>  ： mvp</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/Android/mvp/mvp/" data-id="ckpkn2mub005iwcusbez2ae91" data-title="mvp" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Android-换肤技术点" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Android/Android-%E6%8D%A2%E8%82%A4%E6%8A%80%E6%9C%AF%E7%82%B9/" class="article-date">
+  <time class="dt-published" datetime="2020-04-09T01:25:00.000Z" itemprop="datePublished">2020-04-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/Android/Android-%E6%8D%A2%E8%82%A4%E6%8A%80%E6%9C%AF%E7%82%B9/">Android 换肤技术点</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h4 id="1-切换自定义Theme"><a href="#1-切换自定义Theme" class="headerlink" title="1. 切换自定义Theme"></a>1. 切换自定义Theme</h4><p>优点： 实现简单 ，无侵入，易于理解 ,兼容性能好</p>
+<p>缺点： 不能实时生效，静态更新，要在setContentView之前切换theme ,</p>
+<p>自定义属性 ：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;resources&gt;</span><br><span class="line">    &lt;attr name=&quot;textColor&quot; format=&quot;reference|color&quot;/&gt;</span><br><span class="line">    &lt;attr name=&quot;background&quot; format=&quot;reference|color&quot;/&gt;</span><br><span class="line">&lt;/resources&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>自定义样式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;style name=&quot;AppTheme_Light&quot; &gt;</span><br><span class="line">    &lt;item name=&quot;textColor&quot;&gt;@android:color/black&lt;/ item&gt;</span><br><span class="line">    &lt;item name=&quot;android:background&quot;&gt;@android:color/white&lt;/ item&gt;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"> </span><br><span class="line">&lt;style name=&quot;AppTheme_Night&quot;&gt;</span><br><span class="line">    &lt;item name=&quot;textColor&quot;&gt;@android:color/white&lt;/ item&gt;</span><br><span class="line">    &lt;item name=&quot;android:background&quot;&gt;@android:color/black&lt;/ item&gt;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>应用： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;TextView</span><br><span class="line">    android :layout_width=&quot;wrap_content&quot;</span><br><span class="line">    android :layout_height=&quot;wrap_content&quot;</span><br><span class="line">    android :text=&quot;Hello World!&quot;</span><br><span class="line">    android :background=&quot;?attr/background&quot;</span><br><span class="line">    android :textColor=&quot;?attr/textColor&quot;/&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">protected void skinChange() &#123;</span><br><span class="line">    TypedValue background = new TypedValue();</span><br><span class="line">    TypedValue textColor = new TypedValue();</span><br><span class="line">    Resources.Theme theme = getTheme();</span><br><span class="line">    theme.resolveAttribute(R.attr.background, background, true);</span><br><span class="line">    theme.resolveAttribute(R.attr.textColor, textColor, true);</span><br><span class="line">    mTextView .setTextColor(textColor.data);</span><br><span class="line">    mTextView.setBackgroundResource(background.resourceId);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-侵入式换肤框架"><a href="#2-侵入式换肤框架" class="headerlink" title="2. 侵入式换肤框架"></a>2. 侵入式换肤框架</h4><p>主要介绍一种侵入式方案的实现 </p>
+<p>优点： 使用简单，可以动态替换网络上下载的皮肤包</p>
+<p>缺点： 侵入式 可能存在兼容性问题 </p>
+<h6 id="2-1-LayoutInflater加载"><a href="#2-1-LayoutInflater加载" class="headerlink" title="2.1 LayoutInflater加载"></a>2.1 LayoutInflater加载</h6><p>首先是view的加载流程 </p>
+<ol>
+<li>activity.java<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public void setContentView(int layoutResID) &#123;</span><br><span class="line">        getWindow().setContentView(layoutResID);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+<li>PhoneWindow.java</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@Override</span><br><span class="line">   public void setContentView(int layoutResID) &#123;</span><br><span class="line">       ...</span><br><span class="line">       mLayoutInflater.inflate(layoutResID, mContentParent);</span><br><span class="line">       ...</span><br><span class="line">   &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>LayoutInflater.java </li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">public View inflate(int resource, ViewGroup root, boolean attachToRoot) &#123;</span><br><span class="line">        ...</span><br><span class="line">        XmlResourceParser parser = getContext().getResources().getLayout(resource);</span><br><span class="line">        try &#123;</span><br><span class="line">            return inflate(parser, root, attachToRoot);</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            parser.close();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">public View inflate(XmlPullParser parser, ViewGroup root, boolean attachToRoot) &#123;</span><br><span class="line">	...</span><br><span class="line">    View temp = createViewFromTag(name, attrs);</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">View createViewFromTag(String name, AttributeSet attrs) &#123;</span><br><span class="line">	...</span><br><span class="line"> 	View view = (mFactory == null) ? null : mFactory.onCreateView(name,</span><br><span class="line">                    mContext, attrs);</span><br><span class="line"></span><br><span class="line">            if (view == null) &#123;</span><br><span class="line">                if (-1 == name.indexOf(&#x27;.&#x27;)) &#123;</span><br><span class="line">                    view = onCreateView(name, attrs);</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    view = createView(name, null, attrs);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            if (DEBUG) System.out.println(&quot;Created view is: &quot; + view);</span><br><span class="line">            return view;</span><br><span class="line">    ...</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+
+<p>我们重点看 createViewFromTag ， 经过上面一系列步骤，我们看到了view的创建，首先会通过 mFactory ，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public void setFactory(Factory factory) </span><br></pre></td></tr></table></figure>
+<p>通过 设置 factory，我们可以接管view的创建流程 </p>
+<h5 id="2-2-加载外部资源皮肤包"><a href="#2-2-加载外部资源皮肤包" class="headerlink" title="2.2 加载外部资源皮肤包"></a>2.2 加载外部资源皮肤包</h5><p>皮肤包就是一个空的apk文件，只有 drawable，color 等 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Resources skinResource = null;</span><br><span class="line">                try &#123;</span><br><span class="line">                    File file = new File(skinPath);</span><br><span class="line">                    if(file == null || !file.exists())&#123;</span><br><span class="line">                        return null;</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    PackageManager mPm = mContext.getPackageManager();</span><br><span class="line">                    PackageInfo mInfo =mPm.getPackageArchiveInfo(skinPath, PackageManager.GET_ACTIVITIES);</span><br><span class="line">                    mSkinPackageName = mInfo.packageName;</span><br><span class="line"></span><br><span class="line">                    AssetManager assetManager = AssetManager.class.newInstance();</span><br><span class="line">                    Method addAssetPath = assetManager.getClass().getMethod(&quot;addAssetPath&quot;, String.class);</span><br><span class="line">                    addAssetPath.invoke(assetManager, skinPath);</span><br><span class="line"></span><br><span class="line">                    Resources superRes = mContext.getResources();</span><br><span class="line">                    skinResource = new Resources(assetManager,superRes.getDisplayMetrics(),superRes.getConfiguration());</span><br><span class="line">                &#125; catch (Exception e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>代码托管： <a target="_blank" rel="noopener" href="https://github.com/kongxs/PluginProject">https://github.com/kongxs/PluginProject</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/Android/Android-%E6%8D%A2%E8%82%A4%E6%8A%80%E6%9C%AF%E7%82%B9/" data-id="ckpkn2mtd002awcusfqf923gq" data-title="Android 换肤技术点" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Lock-锁的理解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Java/Lock-%E9%94%81%E7%9A%84%E7%90%86%E8%A7%A3/" class="article-date">
+  <time class="dt-published" datetime="2020-01-02T07:11:00.000Z" itemprop="datePublished">2020-01-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/Java/Lock-%E9%94%81%E7%9A%84%E7%90%86%E8%A7%A3/">Lock 锁的理解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>不同于 synchronize关键字 ，从 1.5开始 lock是jdk提供给我们的api </p>
+<h6 id="Lock-锁"><a href="#Lock-锁" class="headerlink" title="Lock 锁:"></a>Lock 锁:</h6><p>lock 和 synchronize的区别： </p>
+<ol>
+<li>前者通过开发者调用代码手工获取，后者通过jvm自动获取</li>
+<li>前者务必通过unlock在finally中手工释放，后者jvm自动释放</li>
+<li>前者通过java代码实现，后者jvm底层实现</li>
+<li>前者提供了多种 ，入公平锁，非公平锁。前后两者都提供了可重入锁</li>
+</ol>
+<h5 id="Condition"><a href="#Condition" class="headerlink" title="Condition:"></a>Condition:</h5><p>传统上我们实现对于线程的调度和控制，是基于 wait和notify实现。 <br><br>lock 给我们提供了 await 和 singalAll来实现线程调度，这种方式更加灵活，可控<br><br>对于传统的synchronize来说，所有的等待都是在同一个集合中的，而Condition则可以拥有多个 。<br> </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/Java/Lock-%E9%94%81%E7%9A%84%E7%90%86%E8%A7%A3/" data-id="ckpkn2mty004awcus70ec1qk7" data-title="Lock 锁的理解" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-谈谈单例" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Java/%E8%B0%88%E8%B0%88%E5%8D%95%E4%BE%8B/" class="article-date">
+  <time class="dt-published" datetime="2019-12-23T02:39:00.000Z" itemprop="datePublished">2019-12-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/Java/%E8%B0%88%E8%B0%88%E5%8D%95%E4%BE%8B/">谈谈单例 </a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="DCL"><a href="#DCL" class="headerlink" title="DCL"></a>DCL</h2><p>dcl 实现的单例模式的一种可靠方式是添加 volatile关键字 。</p>
+<p>volatile 有如下的特点： </p>
+<ol>
+<li>有序性，防止重排序</li>
+<li>可见性 ，屏蔽local cache，变量的操作对于主存立即可见</li>
+</ol>
+<p>在java中，对象的创建有如下的几个步骤 </p>
+<ol>
+<li>分配对象内存空间</li>
+<li>初始化对象</li>
+<li>设置instance指向刚刚分配的内存地址, 此时instance != null (重点)</li>
+</ol>
+<p>只有这三个步骤完成了，才算是一个对象的初始化完成。</p>
+<p>计算机指令 CPU 和编译器为了提高执行效率，会对代码进行优化 即重排序 ，只要最终的输出结果是正确的即可。 </p>
+<p>那么在对象创建的过程中，有可能编程了如下的顺序</p>
+<ol>
+<li>分配对象内存空间</li>
+<li>设置instance指向刚刚分配的内存地址, 此时instance != null (重点)</li>
+<li>初始化对象</li>
+</ol>
+<p>当第一个线程拿到锁并且进入到第二个if方法后, 先分配对象内存空间, 然后再instance指向刚刚分配的内存地址, instance 已经不等于null, 但此时instance还没有初始化完成。如果这个时候又有一个线程来调用getInstance方法, 在第一个if的判断结果就为false, 于是直接返回还没有初始化完成的instance, 那么就很有可能产生异常。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line">    private volatile static Singleton instance;</span><br><span class="line"></span><br><span class="line">    private Singleton()&#123;&#125;</span><br><span class="line"></span><br><span class="line">    public static Singleton getInstance() &#123;</span><br><span class="line">        if (instance == null) &#123;</span><br><span class="line">            synchronized (Singleton.class) &#123;</span><br><span class="line">                if (instance == null) &#123;</span><br><span class="line">                    instance = new Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>在new关键字背后，有如下步骤与</p>
+<ol>
+<li><p>在堆内存中创建对象实例</p>
+</li>
+<li><p>为实例对象赋初值</p>
+</li>
+<li><p>返回对象引用</p>
+</li>
+</ol>
+<h2 id="静态内部类模式"><a href="#静态内部类模式" class="headerlink" title="静态内部类模式"></a>静态内部类模式</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class CustomManager&#123;</span><br><span class="line">    private CustomManager()&#123;&#125;</span><br><span class="line"> </span><br><span class="line">    private static class CustomManagerHolder &#123;</span><br><span class="line">        private static final CustomManager INSTANCE = new CustomManager();</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    public static CustomManager getInstance() &#123;</span><br><span class="line">        return CustomManagerHolder.INSTANCE;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>静态内部类的原理是：</p>
+<p>当 SingleTon 第一次被加载时，并不需要去加载 SingleTonHoler，只有当 getInstance() 方法第一次被调用时，才会去初始化 INSTANCE，这种方法不仅能确保线程安全，也能保证单例的唯一性，同时也延迟了单例的实例化。getInstance 方法并没有多次去 new 对象，取的都是同一个 INSTANCE 对象。</p>
+<p>虚拟机会保证一个类的 <clinit>() 方法在多线程环境中被正确地加锁、同步，如果多个线程同时去初始化一个类，那么只会有一个线程去执行这个类的 <clinit>() 方法，其他线程都需要阻塞等待，直到活动线程执行 <clinit>() 方法完毕</p>
+<p>缺点在于无法传递参数，如Context等</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/Java/%E8%B0%88%E8%B0%88%E5%8D%95%E4%BE%8B/" data-id="ckpkn2muw007swcus5zegaf25" data-title="谈谈单例 " class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">&laquo; zurück</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/">weiter &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/">dlib</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/DIP/">DIP</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/mvp/">mvp</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIP/">DIP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Flutter/">Flutter</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gradle/">Gradle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/JavaConcurrent/">JavaConcurrent</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/concurrent/">concurrent</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Jvm/">Jvm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kotlin/">Kotlin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nio/">Nio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note2/">Note2</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/OpenGL/">OpenGL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ReactNative/">ReactNative</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/">jdhai</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/">javascript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/%E8%B7%A8%E5%B9%B3%E5%8F%B0/">跨平台</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/pr/">pr</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%91%E6%8C%87%E7%B3%BB%E5%88%97/">剑指系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%85%92/">酒</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-multiDex/">源码分析-multiDex</a>
+          </li>
+        
+          <li>
+            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-leakCanary/">源码分析-leakCanary</a>
+          </li>
+        
+          <li>
+            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-glide/">源码分析-glide</a>
+          </li>
+        
+          <li>
+            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-okHttp/">源码分析-okHttp</a>
+          </li>
+        
+          <li>
+            <a href="/Android/Android-view%E7%BB%98%E5%88%B6/">Android-view绘制</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 师学<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
 
     </div>
-
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
     
 
-    
 
-    <div class="item">
+<script src="/js/jquery-3.4.1.min.js"></script>
 
-        <div class="content post-content">
 
-    <a class="header" style="display: inline-block;" href="/Java/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/">
-        
-        
-        Java虚拟机
-    </a>
-    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2021-04-08T02:58:00.000Z" itemprop="datePublished">2021-04-08</time>
 
-    </span>
-    <span class="post-description-item">
-        
-    </span>
-</div>
-</div>
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
 
-    </div>
 
-    
 
-    
 
-    <div class="item">
+<script src="/js/script.js"></script>
 
-        <div class="content post-content">
 
-    <a class="header" style="display: inline-block;" href="/uncategorized/Java%E5%B9%B6%E5%8F%91/">
-        
-        
-        Java并发
-    </a>
-    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2021-04-04T07:58:00.000Z" itemprop="datePublished">2021-04-04</time>
 
-    </span>
-    <span class="post-description-item">
-        
-    </span>
-</div>
-</div>
 
-    </div>
 
-    
-
-    
-
-    <div class="item">
-
-        <div class="content post-content">
-
-    <a class="header" style="display: inline-block;" href="/Java/Java%E5%9F%BA%E7%A1%80/">
-        
-        
-        Java基础
-    </a>
-    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2021-04-02T08:30:00.000Z" itemprop="datePublished">2021-04-02</time>
-
-    </span>
-    <span class="post-description-item">
-        
-    </span>
-</div>
-</div>
-
-    </div>
-
-    
-
-    
-
-    <div class="item">
-
-        <div class="content post-content">
-
-    <a class="header" style="display: inline-block;" href="/Android/Java/Android%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E5%9B%BE/">
-        
-        
-        Android知识体系图
-    </a>
-    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2021-04-01T08:30:00.000Z" itemprop="datePublished">2021-04-01</time>
-
-    </span>
-    <span class="post-description-item">
-        
-    </span>
-</div>
-</div>
-
-    </div>
-
-    
-
-    
-
-    <div class="item">
-
-        <div class="content post-content">
-
-    <a class="header" style="display: inline-block;" href="/Android/%E8%B0%88Handler/">
-        
-        
-        谈Handler
-    </a>
-    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2020-07-15T06:55:00.000Z" itemprop="datePublished">2020-07-15</time>
-
-    </span>
-    <span class="post-description-item">
-        
-    </span>
-</div>
-</div>
-
-    </div>
-
-    
-
-    
-
-    <div class="item">
-
-        <div class="content post-content">
-
-    <a class="header" style="display: inline-block;" href="/OpenGL/FBO%E7%9A%84%E4%B8%80%E7%82%B9%E7%90%86%E8%A7%A3/">
-        
-        
-        FBO的一点理解
-    </a>
-    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2020-06-11T09:08:00.000Z" itemprop="datePublished">2020-06-11</time>
-
-    </span>
-    <span class="post-description-item">
-        
-    </span>
-</div>
-</div>
-
-    </div>
-
-    
-
-    
-
-    <div class="item">
-
-        <div class="content post-content">
-
-    <a class="header" style="display: inline-block;" href="/Android/seetaFace%E9%9B%86%E6%88%90%E4%BD%BF%E7%94%A8/">
-        
-        
-        seetaFace集成使用
-    </a>
-    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2020-06-09T09:04:00.000Z" itemprop="datePublished">2020-06-09</time>
-
-    </span>
-    <span class="post-description-item">
-        
-    </span>
-</div>
-</div>
-
-    </div>
-
-    
-
-    
-
-    <div class="item">
-
-        <div class="content post-content">
-
-    <a class="header" style="display: inline-block;" href="/Android/dlib/DIP/dlib%E5%9C%A8android%E7%AB%AF%E7%9A%84%E9%9B%86%E6%88%90/">
-        
-        
-        dlib在android端的集成
-    </a>
-    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2020-05-27T08:06:00.000Z" itemprop="datePublished">2020-05-27</time>
-
-    </span>
-    <span class="post-description-item">
-        
-    </span>
-</div>
-</div>
-
-    </div>
-
-    
-
-    
-
-    <div class="item">
-
-        <div class="content post-content">
-
-    <a class="header" style="display: inline-block;" href="/DIP/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%BD%A2%E5%A4%84%E7%90%86%E4%B8%80/">
-        
-        
-        数字图形处理一
-    </a>
-    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2020-05-15T09:13:00.000Z" itemprop="datePublished">2020-05-15</time>
-
-    </span>
-    <span class="post-description-item">
-        
-    </span>
-</div>
-</div>
-
-    </div>
-
-    
-
-    
-
-    <div class="item">
-
-        <div class="content post-content">
-
-    <a class="header" style="display: inline-block;" href="/Android/%E5%BF%98%E8%AE%B0ide%E3%80%81%E5%91%BD%E4%BB%A4%E8%A1%8C/">
-        
-        
-        忘记ide、命令行
-    </a>
-    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2020-05-08T05:59:00.000Z" itemprop="datePublished">2020-05-08</time>
-
-    </span>
-    <span class="post-description-item">
-        
-    </span>
-</div>
-</div>
-
-    </div>
-
-    
-
-    
-
-    <div class="item">
-
-        <div class="content post-content">
-
-    <a class="header" style="display: inline-block;" href="/Android/mvp/mvp/">
-        
-        
-        mvp
-    </a>
-    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2020-04-20T10:26:00.000Z" itemprop="datePublished">2020-04-20</time>
-
-    </span>
-    <span class="post-description-item">
-        
-    </span>
-</div>
-</div>
-
-    </div>
-
-    
-
-    
-
-    <div class="item">
-
-        <div class="content post-content">
-
-    <a class="header" style="display: inline-block;" href="/Android/Android-%E6%8D%A2%E8%82%A4%E6%8A%80%E6%9C%AF%E7%82%B9/">
-        
-        
-        Android 换肤技术点
-    </a>
-    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2020-04-09T01:25:00.000Z" itemprop="datePublished">2020-04-09</time>
-
-    </span>
-    <span class="post-description-item">
-        
-    </span>
-</div>
-</div>
-
-    </div>
-
-    
-
-    
-
-    <div class="item">
-
-        <div class="content post-content">
-
-    <a class="header" style="display: inline-block;" href="/Java/Lock-%E9%94%81%E7%9A%84%E7%90%86%E8%A7%A3/">
-        
-        
-        Lock 锁的理解
-    </a>
-    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2020-01-02T07:11:00.000Z" itemprop="datePublished">2020-01-02</time>
-
-    </span>
-    <span class="post-description-item">
-        
-    </span>
-</div>
-</div>
-
-    </div>
-
-    
-
-    
-
-    <div class="item">
-
-        <div class="content post-content">
-
-    <a class="header" style="display: inline-block;" href="/Java/%E8%B0%88%E8%B0%88%E5%8D%95%E4%BE%8B/">
-        
-        
-        谈谈单例 
-    </a>
-    <div class="description post-description">
-    <span class="post-description-item">
-        <time datetime="2019-12-23T02:39:00.000Z" itemprop="datePublished">2019-12-23</time>
-
-    </span>
-    <span class="post-description-item">
-        
-    </span>
-</div>
-</div>
-
-    </div>
-
-    
-</div>
-
-
-
-    
-        
-        <div class="ui pagination menu"><a class="item" href="/">1</a><span class="item active">2</span><a class="item" href="/page/3/">3</a><a class="item" href="/page/4/">4</a><span class="item">&hellip;</span><a class="item" href="/page/9/">9</a></div>
-    
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        </div>
-        <div class="ui vertical footer segment">
-    <div class="ui center aligned container">
-        <div class="ui inverted section divider"></div>
-        &copy; 2021 <a href="/">师学</a>,
-        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
-                href="http://hexo.io/" target="_blank">Hexo</a>.
-    </div>
-</div>
-
-    </div>
-
-
-
-
-<!-- scripts list from theme config.yml -->
-
-<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
-
-<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
-
-<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
-
-<script src="/js/semantic-ui-algolia.js"></script>
-
-<script src="/js/aloha-events.js"></script>
-
-
-
+  </div>
 </body>
 </html>
