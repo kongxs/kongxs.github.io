@@ -1,11 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang=zh>
 <head>
   <meta charset="utf-8">
   
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
   
-  <title>师学</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <title>Hexo</title>
   <meta property="og:type" content="website">
 <meta property="og:title" content="师学">
 <meta property="og:url" content="http://yoursite.com/index.html">
@@ -13,191 +25,398 @@
 <meta property="og:locale">
 <meta property="article:author" content="师学">
 <meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/index.html">
   
     <link rel="alternate" href="/atom.xml" title="师学" type="application/atom+xml">
   
   
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
-
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
   
   
 <link rel="stylesheet" href="/css/style.css">
 
   
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-
+  
+  
   
 <meta name="generator" content="Hexo 5.4.0"></head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">师学</a>
-      </h1>
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
       
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">学而不思则罔，思而不学则殆。</a>
-        </h2>
       
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">昵称</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shenzhen, China</small>
       </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
     </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">Books</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
   </div>
 </header>
 
-      <div class="outer">
-        <section id="main">
   
-    <article id="post-源码分析-multiDex" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-multiDex/" class="article-date">
-  <time class="dt-published" datetime="2021-05-26T09:43:00.000Z" itemprop="datePublished">2021-05-26</time>
-</a>
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a>
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/">dlib</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/DIP/">DIP</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/mvp/">mvp</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIP/">DIP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Flutter/">Flutter</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gradle/">Gradle</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">18</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/JavaConcurrent/">JavaConcurrent</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/concurrent/">concurrent</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Jvm/">Jvm</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kotlin/">Kotlin</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nio/">Nio</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note2/">Note2</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OpenGL/">OpenGL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ReactNative/">ReactNative</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/">jdhai</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/">javascript</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/%E8%B7%A8%E5%B9%B3%E5%8F%B0/">跨平台</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/pr/">pr</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%91%E6%8C%87%E7%B3%BB%E5%88%97/">剑指系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><span class="category-list-count">28</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%85%92/">酒</a><span class="category-list-count">1</span></li></ul>
+    </div>
   </div>
 
+
+    
+      
+
+    
+      
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">27</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">1</span></li></ul>
+    </div>
   </div>
-  <div class="article-inner">
+
+
     
-    
-      <header class="article-header">
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
         
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a>
+              </p>
+              <p class="item-title">
+                <a href="/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-multiDex/" class="title">源码分析-multiDex</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-26T09:43:00.000Z" itemprop="datePublished">2021-05-26</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Android/">Android</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a>
+              </p>
+              <p class="item-title">
+                <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-leakCanary/" class="title">源码分析-leakCanary</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-24T02:34:00.000Z" itemprop="datePublished">2021-05-24</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Android/">Android</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a>
+              </p>
+              <p class="item-title">
+                <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-glide/" class="title">源码分析-glide</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-21T06:59:00.000Z" itemprop="datePublished">2021-05-21</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Android/">Android</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a>
+              </p>
+              <p class="item-title">
+                <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-okHttp/" class="title">源码分析-okHttp</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-19T09:39:00.000Z" itemprop="datePublished">2021-05-19</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Android/">Android</a>
+              </p>
+              <p class="item-title">
+                <a href="/Android/Android-view%E7%BB%98%E5%88%B6/" class="title">Android-view绘制</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-11T07:49:00.000Z" itemprop="datePublished">2021-05-11</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  <main class="main" role="main">
+  
+  <div class="content article-list">
+    
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-multiDex/">源码分析-multiDex</a>
+      <a class="article-title" href="/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-multiDex/">源码分析-multiDex</a>
     </h1>
   
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>MultiDex适用于API版本在4-20的Android系统 , 即Android 2.1 - 4.4 . 而在这些版本之间 , MultiDex会通过Application.getClassLoader进行加载. 而如果Dex比较多比较大的话 , 主线程加载Dex时间会很长 , 导致主线程ANR.<br><br>由于Android 5.0之后使用ART虚拟机进行dex2oat , 将多dex在安装的时候将APK中多个Dex进行优化 , 优化过后生成一个ELF文件 , 名为.oat文件. 在加载后 , 会将oat文件直接映射到ART虚拟机中使用 , 这样就减少Dex加载的耗时.</p>
-        
-          <p class="article-more-link">
-            <a href="/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-multiDex/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-multiDex/" data-id="ckpkn2muo006uwcus410y4sv2" data-title="源码分析-multiDex" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
   </div>
   
+  <div class="article-entry text-muted" itemprop="description">
+    <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>MultiDex适用于API版本在4-20的Android系统 , 即Android 2.1 - 4.4 . 而在这些版本之间 , MultiDex会通过Application.getClassLoader进行加载. 而如果Dex比较多比较大的话 , 主线程加载Dex时间会很长 , 导致主线程ANR.<br><br>由于Android 5.0之后使用ART虚拟机进行dex2oat , 将多dex在安装的时候将APK中多个Dex进行优化 , 优化过后生成一个ELF文件 , 名为.oat文件. 在加载后 , 会将oat文件直接映射到ART虚拟机中使用 , 这样就减少Dex加载的耗时.</p>
+  </div>
+  
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-multiDex/" class="article-date">
+	  <time datetime="2021-05-26T09:43:00.000Z" itemprop="datePublished">May 26</time>
+	</a>
+</span>
+    
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a>
+  </span>
+
+    
+
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-multiDex/#comments" class="article-comment-link">Comments</a></span>
+    
+  </p>
 </article>
 
-
-
-  
-    <article id="post-源码分析-leakCanary" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-leakCanary/" class="article-date">
-  <time class="dt-published" datetime="2021-05-24T02:34:00.000Z" itemprop="datePublished">2021-05-24</time>
-</a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
     
-    
-      <header class="article-header">
-        
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-leakCanary/">源码分析-leakCanary</a>
+      <a class="article-title" href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-leakCanary/">源码分析-leakCanary</a>
     </h1>
   
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ol>
+  </div>
+  
+  <div class="article-entry text-muted" itemprop="description">
+    <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ol>
 <li><p>Reference 把内存分为 4 种状态，Active 、 Pending 、 Enqueued 、 Inactive</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;+ Active 一般说来内存一开始被分配的状态都是 Active</span><br><span class="line">&gt;+ Pending 快要放入队列（ReferenceQueue）的对象，也就是马上要回收的对象</span><br><span class="line">&gt;+ Enqueued 对象已经进入队列，已经被回收的对象。方便我们查询某个对象是否被回收</span><br><span class="line">&gt;+ Inactive 最终的状态，无法变成其他的状态</span><br></pre></td></tr></table></figure>
-        
-          <p class="article-more-link">
-            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-leakCanary/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-leakCanary/" data-id="ckpkn2mun006swcusa96q7fr0" data-title="源码分析-leakCanary" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
   </div>
   
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-leakCanary/" class="article-date">
+	  <time datetime="2021-05-24T02:34:00.000Z" itemprop="datePublished">May 24</time>
+	</a>
+</span>
+    
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a>
+  </span>
+
+    
+
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-leakCanary/#comments" class="article-comment-link">Comments</a></span>
+    
+  </p>
 </article>
 
-
-
-  
-    <article id="post-源码分析-glide" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-glide/" class="article-date">
-  <time class="dt-published" datetime="2021-05-21T06:59:00.000Z" itemprop="datePublished">2021-05-21</time>
-</a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
     
-    
-      <header class="article-header">
-        
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-glide/">源码分析-glide</a>
+      <a class="article-title" href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-glide/">源码分析-glide</a>
     </h1>
   
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <blockquote>
+  </div>
+  
+  <div class="article-entry text-muted" itemprop="description">
+    <blockquote>
 <ul>
 <li>支持GIF，webP ，video</li>
 <li>生命周期集成</li>
@@ -205,708 +424,569 @@
 <li>默认 RGB_565内存开销比较小</li>
 </ul>
 </blockquote>
-        
-          <p class="article-more-link">
-            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-glide/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-glide/" data-id="ckpkn2mun006qwcus122j9n01" data-title="源码分析-glide" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
   </div>
   
-</article>
-
-
-
-  
-    <article id="post-源码分析-okHttp" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-okHttp/" class="article-date">
-  <time class="dt-published" datetime="2021-05-19T09:39:00.000Z" itemprop="datePublished">2021-05-19</time>
-</a>
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-glide/" class="article-date">
+	  <time datetime="2021-05-21T06:59:00.000Z" itemprop="datePublished">May 21</time>
+	</a>
+</span>
     
-  <div class="article-category">
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
     <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a>
-  </div>
+  </span>
 
-  </div>
-  <div class="article-inner">
     
+
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-glide/#comments" class="article-comment-link">Comments</a></span>
     
-      <header class="article-header">
-        
+  </p>
+</article>
+
+    
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-okHttp/">源码分析-okHttp</a>
+      <a class="article-title" href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-okHttp/">源码分析-okHttp</a>
     </h1>
   
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>addInterceptor与addNetworkInterceptor有什么区别 ？<br><br>网络缓存如何实现的？<br><br>网络连接怎么实现复用？<br><br>OkHttp如何做网络监控？<br></p>
-        
-          <p class="article-more-link">
-            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-okHttp/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-okHttp/" data-id="ckpkn2mup006xwcus4d8hcx9n" data-title="源码分析-okHttp" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
   </div>
   
+  <div class="article-entry text-muted" itemprop="description">
+    <p>addInterceptor与addNetworkInterceptor有什么区别 ？<br><br>网络缓存如何实现的？<br><br>网络连接怎么实现复用？<br><br>OkHttp如何做网络监控？<br></p>
+  </div>
+  
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-okHttp/" class="article-date">
+	  <time datetime="2021-05-19T09:39:00.000Z" itemprop="datePublished">May 19</time>
+	</a>
+</span>
+    
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a>
+  </span>
+
+    
+
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-okHttp/#comments" class="article-comment-link">Comments</a></span>
+    
+  </p>
 </article>
 
-
-
-  
-    <article id="post-Android-view绘制" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/Android/Android-view%E7%BB%98%E5%88%B6/" class="article-date">
-  <time class="dt-published" datetime="2021-05-11T07:49:00.000Z" itemprop="datePublished">2021-05-11</time>
-</a>
     
-  <div class="article-category">
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Android/Android-view%E7%BB%98%E5%88%B6/">Android-view绘制</a>
+    </h1>
+  
+
+  </div>
+  
+  <div class="article-entry text-muted" itemprop="description">
+    <p>view 绘制流程</p>
+  </div>
+  
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/Android/Android-view%E7%BB%98%E5%88%B6/" class="article-date">
+	  <time datetime="2021-05-11T07:49:00.000Z" itemprop="datePublished">May 11</time>
+	</a>
+</span>
+    
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
     <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
+  </span>
 
-  </div>
-  <div class="article-inner">
     
+
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/Android/Android-view%E7%BB%98%E5%88%B6/#comments" class="article-comment-link">Comments</a></span>
     
-      <header class="article-header">
-        
+  </p>
+</article>
+
+    
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/Android/Android-view%E7%BB%98%E5%88%B6/">Android-view绘制</a>
+      <a class="article-title" href="/Android/Android%E8%A7%A6%E6%91%B8%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/">Android触摸事件传递机制</a>
     </h1>
   
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>view 绘制流程</p>
-        
-          <p class="article-more-link">
-            <a href="/Android/Android-view%E7%BB%98%E5%88%B6/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/Android/Android-view%E7%BB%98%E5%88%B6/" data-id="ckpkn2mtb0026wcus99f72llh" data-title="Android-view绘制" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
   </div>
   
-</article>
-
-
-
+  <div class="article-entry text-muted" itemprop="description">
+    <h3 id="事件的产生-InputManagerService"><a href="#事件的产生-InputManagerService" class="headerlink" title="事件的产生-InputManagerService"></a>事件的产生-InputManagerService</h3>
+  </div>
   
-    <article id="post-Android触摸事件传递机制" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/Android/Android%E8%A7%A6%E6%91%B8%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/" class="article-date">
-  <time class="dt-published" datetime="2021-04-28T10:13:00.000Z" itemprop="datePublished">2021-04-28</time>
-</a>
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/Android/Android%E8%A7%A6%E6%91%B8%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/" class="article-date">
+	  <time datetime="2021-04-28T10:13:00.000Z" itemprop="datePublished">Apr 28</time>
+	</a>
+</span>
     
-  <div class="article-category">
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
     <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
+  </span>
 
-  </div>
-  <div class="article-inner">
     
+
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/Android/Android%E8%A7%A6%E6%91%B8%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/#comments" class="article-comment-link">Comments</a></span>
     
-      <header class="article-header">
-        
+  </p>
+</article>
+
+    
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/Android/Android%E8%A7%A6%E6%91%B8%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/">Android触摸事件传递机制</a>
+      <a class="article-title" href="/Android/%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/">进程间通信</a>
     </h1>
   
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="事件的产生-InputManagerService"><a href="#事件的产生-InputManagerService" class="headerlink" title="事件的产生-InputManagerService"></a>事件的产生-InputManagerService</h3>
-        
-          <p class="article-more-link">
-            <a href="/Android/Android%E8%A7%A6%E6%91%B8%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/Android/Android%E8%A7%A6%E6%91%B8%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/" data-id="ckpkn2mtg002iwcuseec75mq3" data-title="Android触摸事件传递机制" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
   </div>
   
-</article>
-
-
-
+  <div class="article-entry text-muted" itemprop="description">
+    <h3 id="几种ipc方式"><a href="#几种ipc方式" class="headerlink" title="几种ipc方式"></a>几种ipc方式</h3>
+  </div>
   
-    <article id="post-进程间通信" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/Android/%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/" class="article-date">
-  <time class="dt-published" datetime="2021-04-26T08:00:00.000Z" itemprop="datePublished">2021-04-26</time>
-</a>
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/Android/%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/" class="article-date">
+	  <time datetime="2021-04-26T08:00:00.000Z" itemprop="datePublished">Apr 26</time>
+	</a>
+</span>
     
-  <div class="article-category">
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
     <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
+  </span>
 
-  </div>
-  <div class="article-inner">
     
+
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/Android/%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/#comments" class="article-comment-link">Comments</a></span>
     
-      <header class="article-header">
-        
+  </p>
+</article>
+
+    
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/Android/%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/">进程间通信</a>
+      <a class="article-title" href="/Android/Android%E7%89%88%E6%9C%AC%E9%80%82%E9%85%8D%E6%8C%87%E5%8C%97/">Android版本适配指北</a>
     </h1>
   
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="几种ipc方式"><a href="#几种ipc方式" class="headerlink" title="几种ipc方式"></a>几种ipc方式</h3>
-        
-          <p class="article-more-link">
-            <a href="/Android/%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/Android/%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/" data-id="ckpkn2mux007uwcusgcvw9ecg" data-title="进程间通信" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
   </div>
   
-</article>
-
-
-
+  <div class="article-entry text-muted" itemprop="description">
+    <h3 id="Android5-0"><a href="#Android5-0" class="headerlink" title="Android5.0"></a>Android5.0</h3>
+  </div>
   
-    <article id="post-Android版本适配指北" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/Android/Android%E7%89%88%E6%9C%AC%E9%80%82%E9%85%8D%E6%8C%87%E5%8C%97/" class="article-date">
-  <time class="dt-published" datetime="2021-04-24T02:13:00.000Z" itemprop="datePublished">2021-04-24</time>
-</a>
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/Android/Android%E7%89%88%E6%9C%AC%E9%80%82%E9%85%8D%E6%8C%87%E5%8C%97/" class="article-date">
+	  <time datetime="2021-04-24T02:13:00.000Z" itemprop="datePublished">Apr 24</time>
+	</a>
+</span>
     
-  <div class="article-category">
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
     <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
+  </span>
 
-  </div>
-  <div class="article-inner">
     
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/Android/Android%E7%89%88%E6%9C%AC%E9%80%82%E9%85%8D%E6%8C%87%E5%8C%97/">Android版本适配指北</a>
-    </h1>
-  
 
-      </header>
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/Android/Android%E7%89%88%E6%9C%AC%E9%80%82%E9%85%8D%E6%8C%87%E5%8C%97/#comments" class="article-comment-link">Comments</a></span>
     
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="Android5-0"><a href="#Android5-0" class="headerlink" title="Android5.0"></a>Android5.0</h3>
-        
-          <p class="article-more-link">
-            <a href="/Android/Android%E7%89%88%E6%9C%AC%E9%80%82%E9%85%8D%E6%8C%87%E5%8C%97/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/Android/Android%E7%89%88%E6%9C%AC%E9%80%82%E9%85%8D%E6%8C%87%E5%8C%97/" data-id="ckpkn2mte002ewcus30fobbs3" data-title="Android版本适配指北" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
+  </p>
 </article>
 
-
-
-  
-    <article id="post-自定义线程池实现" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/Java/concurrent/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%AE%9E%E7%8E%B0/" class="article-date">
-  <time class="dt-published" datetime="2021-04-23T02:53:00.000Z" itemprop="datePublished">2021-04-23</time>
-</a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java/">Java</a>►<a class="article-category-link" href="/categories/Java/concurrent/">concurrent</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
     
-    
-      <header class="article-header">
-        
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/Java/concurrent/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%AE%9E%E7%8E%B0/">自定义线程池实现</a>
+      <a class="article-title" href="/Java/concurrent/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%AE%9E%E7%8E%B0/">自定义线程池实现</a>
     </h1>
   
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <ol>
+  </div>
+  
+  <div class="article-entry text-muted" itemprop="description">
+    <ol>
 <li>任务队列</li>
 <li>拒绝策略(抛异常，丢弃，阻塞 ， 临时队列 等 )</li>
 <li>init</li>
 <li>active</li>
 <li>max</li>
 </ol>
-        
-          <p class="article-more-link">
-            <a href="/Java/concurrent/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%AE%9E%E7%8E%B0/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/Java/concurrent/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%AE%9E%E7%8E%B0/" data-id="ckpkn2mut007gwcusfesf4i4k" data-title="自定义线程池实现" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
   </div>
   
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/Java/concurrent/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%AE%9E%E7%8E%B0/" class="article-date">
+	  <time datetime="2021-04-23T02:53:00.000Z" itemprop="datePublished">Apr 23</time>
+	</a>
+</span>
+    
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/Java/">Java</a>►<a class="article-category-link" href="/categories/Java/concurrent/">concurrent</a>
+  </span>
+
+    
+
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/Java/concurrent/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%AE%9E%E7%8E%B0/#comments" class="article-comment-link">Comments</a></span>
+    
+  </p>
 </article>
 
-
-
-  
-    <article id="post-设计模式总览" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E8%A7%88/" class="article-date">
-  <time class="dt-published" datetime="2021-04-22T07:22:00.000Z" itemprop="datePublished">2021-04-22</time>
-</a>
     
-  <div class="article-category">
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E8%A7%88/">设计模式总览</a>
+    </h1>
+  
+
+  </div>
+  
+  <div class="article-entry text-muted" itemprop="description">
+    <p><a target="_blank" rel="noopener" href="http://wanke.fun/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/001-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%83%E5%A4%A7%E5%8E%9F%E5%88%99/">设计模式七大原则</a><br><br><a target="_blank" rel="noopener" href="http://wanke.fun/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/002-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AE%80%E4%BB%8B/">设计模式简介</a><br><br><a target="_blank" rel="noopener" href="http://wanke.fun/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/03-UML/">UML</a><br><br><a target="_blank" rel="noopener" href="http://wanke.fun/kongxs/027-%E6%A8%A1%E5%BC%8F%E5%AF%B9%E6%AF%94/">模式对比</a><br></p>
+  </div>
+  
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E8%A7%88/" class="article-date">
+	  <time datetime="2021-04-22T07:22:00.000Z" itemprop="datePublished">Apr 22</time>
+	</a>
+</span>
+    
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
     <a class="article-category-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
-  </div>
+  </span>
 
-  </div>
-  <div class="article-inner">
     
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E8%A7%88/">设计模式总览</a>
-    </h1>
-  
 
-      </header>
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E8%A7%88/#comments" class="article-comment-link">Comments</a></span>
     
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><a target="_blank" rel="noopener" href="http://wanke.fun/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/001-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%83%E5%A4%A7%E5%8E%9F%E5%88%99/">设计模式七大原则</a><br><br><a target="_blank" rel="noopener" href="http://wanke.fun/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/002-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AE%80%E4%BB%8B/">设计模式简介</a><br><br><a target="_blank" rel="noopener" href="http://wanke.fun/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/03-UML/">UML</a><br><br><a target="_blank" rel="noopener" href="http://wanke.fun/kongxs/027-%E6%A8%A1%E5%BC%8F%E5%AF%B9%E6%AF%94/">模式对比</a><br></p>
-        
-          <p class="article-more-link">
-            <a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E8%A7%88/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E8%A7%88/" data-id="ckpkn2muv007nwcusghog9bgd" data-title="设计模式总览" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
+  </p>
 </article>
 
-
-
-  
-    <article id="post-LinkedHashMap分析" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/Java/LinkedHashMap%E5%88%86%E6%9E%90/" class="article-date">
-  <time class="dt-published" datetime="2021-04-22T06:34:00.000Z" itemprop="datePublished">2021-04-22</time>
-</a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java/">Java</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
     
-    
-      <header class="article-header">
-        
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/Java/LinkedHashMap%E5%88%86%E6%9E%90/">LinkedHashMap分析</a>
+      <a class="article-title" href="/Java/LinkedHashMap%E5%88%86%E6%9E%90/">LinkedHashMap分析</a>
     </h1>
   
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1 简介"></a>1 简介</h2><p>LinkedHashMap 继承 HashMap，内部有一个双向链表维护键值对的顺序，在 LinkedHashMap 中可以保持两种顺序，分别是<strong>插入顺序和访问顺序</strong>。</p>
-        
-          <p class="article-more-link">
-            <a href="/Java/LinkedHashMap%E5%88%86%E6%9E%90/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/Java/LinkedHashMap%E5%88%86%E6%9E%90/" data-id="ckpkn2mtx0048wcus4b274my8" data-title="LinkedHashMap分析" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
   </div>
   
+  <div class="article-entry text-muted" itemprop="description">
+    <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1 简介"></a>1 简介</h2><p>LinkedHashMap 继承 HashMap，内部有一个双向链表维护键值对的顺序，在 LinkedHashMap 中可以保持两种顺序，分别是<strong>插入顺序和访问顺序</strong>。</p>
+  </div>
+  
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/Java/LinkedHashMap%E5%88%86%E6%9E%90/" class="article-date">
+	  <time datetime="2021-04-22T06:34:00.000Z" itemprop="datePublished">Apr 22</time>
+	</a>
+</span>
+    
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </span>
+
+    
+
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/Java/LinkedHashMap%E5%88%86%E6%9E%90/#comments" class="article-comment-link">Comments</a></span>
+    
+  </p>
 </article>
 
-
-
-  
-    <article id="post-HashMap-2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/Java/HashMap-2/" class="article-date">
-  <time class="dt-published" datetime="2021-04-22T06:33:00.000Z" itemprop="datePublished">2021-04-22</time>
-</a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java/">Java</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
     
-    
-      <header class="article-header">
-        
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/Java/HashMap-2/">HashMap-2</a>
+      <a class="article-title" href="/Java/HashMap-2/">HashMap-2</a>
     </h1>
   
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1 简介"></a>1 简介</h2><p>HashMap 主要用来存放键值对，它的实现是基于哈希表的 Map 接口。</p>
+  </div>
+  
+  <div class="article-entry text-muted" itemprop="description">
+    <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1 简介"></a>1 简介</h2><p>HashMap 主要用来存放键值对，它的实现是基于哈希表的 Map 接口。</p>
 <p>JDK1.7 的 HashMap 由 <strong>数组+链表</strong> 组成的，数组是 HashMap 的主体，链表采用拉链法解决哈希冲突。</p>
 <p>JDK1.8 的 HashMap 由 <strong>数组+链表 + 红黑树</strong>，当链表长度大于阈值（默认为 8）（判断数组长度是否超过 64，超过了，就会进行扩容）会将链表转化为红黑树。</p>
-        
-          <p class="article-more-link">
-            <a href="/Java/HashMap-2/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/Java/HashMap-2/" data-id="ckpkn2mtr003mwcus1g0h9y0r" data-title="HashMap-2" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
   </div>
   
-</article>
-
-
-
-  
-    <article id="post-Java虚拟机-2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/uncategorized/Java%E8%99%9A%E6%8B%9F%E6%9C%BA-2/" class="article-date">
-  <time class="dt-published" datetime="2021-04-22T06:32:09.000Z" itemprop="datePublished">2021-04-22</time>
-</a>
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/Java/HashMap-2/" class="article-date">
+	  <time datetime="2021-04-22T06:33:00.000Z" itemprop="datePublished">Apr 22</time>
+	</a>
+</span>
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/uncategorized/Java%E8%99%9A%E6%8B%9F%E6%9C%BA-2/">Java虚拟机-2</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="1-Java-内存区域（运行时数据区）"><a href="#1-Java-内存区域（运行时数据区）" class="headerlink" title="1 Java 内存区域（运行时数据区）"></a>1 Java 内存区域（运行时数据区）</h2><p>Java 不同版本内存区域有所不同，如下图所示。</p>
-        
-          <p class="article-more-link">
-            <a href="/uncategorized/Java%E8%99%9A%E6%8B%9F%E6%9C%BA-2/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/uncategorized/Java%E8%99%9A%E6%8B%9F%E6%9C%BA-2/" data-id="ckpkn2mtv003zwcusajan30se" data-title="Java虚拟机-2" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Java线程池" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/Java/Java%E7%BA%BF%E7%A8%8B%E6%B1%A0/" class="article-date">
-  <time class="dt-published" datetime="2021-04-22T06:30:00.000Z" itemprop="datePublished">2021-04-22</time>
-</a>
-    
-  <div class="article-category">
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
     <a class="article-category-link" href="/categories/Java/">Java</a>
-  </div>
+  </span>
 
-  </div>
-  <div class="article-inner">
     
+
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/Java/HashMap-2/#comments" class="article-comment-link">Comments</a></span>
     
-      <header class="article-header">
-        
+  </p>
+</article>
+
+    
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/Java/Java%E7%BA%BF%E7%A8%8B%E6%B1%A0/">Java线程池</a>
+      <a class="article-title" href="/uncategorized/Java%E8%99%9A%E6%8B%9F%E6%9C%BA-2/">Java虚拟机-2</a>
     </h1>
   
 
-      </header>
+  </div>
+  
+  <div class="article-entry text-muted" itemprop="description">
+    <h2 id="1-Java-内存区域（运行时数据区）"><a href="#1-Java-内存区域（运行时数据区）" class="headerlink" title="1 Java 内存区域（运行时数据区）"></a>1 Java 内存区域（运行时数据区）</h2><p>Java 不同版本内存区域有所不同，如下图所示。</p>
+  </div>
+  
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/uncategorized/Java%E8%99%9A%E6%8B%9F%E6%9C%BA-2/" class="article-date">
+	  <time datetime="2021-04-22T06:32:09.000Z" itemprop="datePublished">Apr 22</time>
+	</a>
+</span>
     
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1 简介"></a>1 简介</h2><p>在需要异步或者并发编程中，常常使用线程池，所谓线程池，就是事先创建好一堆线程，装到一个池子里面，需要用到时候取出来，这样带来了以下的好处：</p>
+    
+
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/uncategorized/Java%E8%99%9A%E6%8B%9F%E6%9C%BA-2/#comments" class="article-comment-link">Comments</a></span>
+    
+  </p>
+</article>
+
+    
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/Java/Java%E7%BA%BF%E7%A8%8B%E6%B1%A0/">Java线程池</a>
+    </h1>
+  
+
+  </div>
+  
+  <div class="article-entry text-muted" itemprop="description">
+    <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1 简介"></a>1 简介</h2><p>在需要异步或者并发编程中，常常使用线程池，所谓线程池，就是事先创建好一堆线程，装到一个池子里面，需要用到时候取出来，这样带来了以下的好处：</p>
 <ul>
 <li><strong>降低资源消耗</strong>。通过重复利用已创建的线程降低线程创建和销毁造成的消耗。 </li>
 <li><strong>提高响应速度</strong>。当任务到达时，任务可以不需要等到线程创建就能立即执行。 </li>
 <li><strong>提高线程的可管理性</strong>。线程是稀缺资源，如无限制地创建，不仅会消耗系统资源， 还会降低系统的稳定性，使用线程池可以进行统一分配、调优和监控。</li>
 </ul>
-        
-          <p class="article-more-link">
-            <a href="/Java/Java%E7%BA%BF%E7%A8%8B%E6%B1%A0/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/Java/Java%E7%BA%BF%E7%A8%8B%E6%B1%A0/" data-id="ckpkn2mtu003wwcuscvo1f3e9" data-title="Java线程池" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
   </div>
   
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/Java/Java%E7%BA%BF%E7%A8%8B%E6%B1%A0/" class="article-date">
+	  <time datetime="2021-04-22T06:30:00.000Z" itemprop="datePublished">Apr 22</time>
+	</a>
+</span>
+    
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </span>
+
+    
+
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/Java/Java%E7%BA%BF%E7%A8%8B%E6%B1%A0/#comments" class="article-comment-link">Comments</a></span>
+    
+  </p>
 </article>
 
-
-
-  
-    <article id="post-Java并发-2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/Java/concurrent/Java%E5%B9%B6%E5%8F%91-2/" class="article-date">
-  <time class="dt-published" datetime="2021-04-22T06:26:00.000Z" itemprop="datePublished">2021-04-22</time>
-</a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java/">Java</a>►<a class="article-category-link" href="/categories/Java/concurrent/">concurrent</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
+      <article class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="article-header">
     
-    
-      <header class="article-header">
-        
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/Java/concurrent/Java%E5%B9%B6%E5%8F%91-2/">Java并发-2</a>
+      <a class="article-title" href="/Java/concurrent/Java%E5%B9%B6%E5%8F%91-2/">Java并发-2</a>
     </h1>
   
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="1-进程与线程"><a href="#1-进程与线程" class="headerlink" title="1 进程与线程"></a>1 进程与线程</h2><h3 id="1-1-进程与线程"><a href="#1-1-进程与线程" class="headerlink" title="1.1 进程与线程"></a>1.1 进程与线程</h3><p>进程：系统进行<strong>资源分配和调度</strong>的基本单位。</p>
-<p>线程：操作系统能够进行<strong>运算调度</strong>的最小单位。</p>
-        
-          <p class="article-more-link">
-            <a href="/Java/concurrent/Java%E5%B9%B6%E5%8F%91-2/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/Java/concurrent/Java%E5%B9%B6%E5%8F%91-2/" data-id="ckpkn2mtt003swcushnra7waf" data-title="Java并发-2" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
   </div>
   
+  <div class="article-entry text-muted" itemprop="description">
+    <h2 id="1-进程与线程"><a href="#1-进程与线程" class="headerlink" title="1 进程与线程"></a>1 进程与线程</h2><h3 id="1-1-进程与线程"><a href="#1-1-进程与线程" class="headerlink" title="1.1 进程与线程"></a>1.1 进程与线程</h3><p>进程：系统进行<strong>资源分配和调度</strong>的基本单位。</p>
+<p>线程：操作系统能够进行<strong>运算调度</strong>的最小单位。</p>
+  </div>
+  
+  <p class="article-meta">
+    <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/Java/concurrent/Java%E5%B9%B6%E5%8F%91-2/" class="article-date">
+	  <time datetime="2021-04-22T06:26:00.000Z" itemprop="datePublished">Apr 22</time>
+	</a>
+</span>
+    
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/Java/">Java</a>►<a class="article-category-link" href="/categories/Java/concurrent/">concurrent</a>
+  </span>
+
+    
+
+    <span class="post-comment"><i class="icon icon-comment"></i> <a href="/Java/concurrent/Java%E5%B9%B6%E5%8F%91-2/#comments" class="article-comment-link">Comments</a></span>
+    
+  </p>
 </article>
 
-
-
-  
-
-
-  <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/">weiter &raquo;</a>
-  </nav>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Kategorien</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/">dlib</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/DIP/">DIP</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/mvp/">mvp</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIP/">DIP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Flutter/">Flutter</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gradle/">Gradle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/JavaConcurrent/">JavaConcurrent</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/concurrent/">concurrent</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Jvm/">Jvm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kotlin/">Kotlin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nio/">Nio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note2/">Note2</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/OpenGL/">OpenGL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ReactNative/">ReactNative</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/">jdhai</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/">javascript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/%E8%B7%A8%E5%B9%B3%E5%8F%B0/">跨平台</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/pr/">pr</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%91%E6%8C%87%E7%B3%BB%E5%88%97/">剑指系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%85%92/">酒</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archiv</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">letzter Beitrag</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-multiDex/">源码分析-multiDex</a>
-          </li>
-        
-          <li>
-            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-leakCanary/">源码分析-leakCanary</a>
-          </li>
-        
-          <li>
-            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-glide/">源码分析-glide</a>
-          </li>
-        
-          <li>
-            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-okHttp/">源码分析-okHttp</a>
-          </li>
-        
-          <li>
-            <a href="/Android/Android-view%E7%BB%98%E5%88%B6/">Android-view绘制</a>
-          </li>
-        
-      </ul>
-    </div>
   </div>
 
   
-</aside>
+    
+    <nav class="bar bar-footer clearfix" data-stick-bottom>
+        <div class="bar-inner">
+        <ul class="pager pull-left">
+            
+            <li class="prev disabled">
+                <a href="javascript:;">
+                    <i class="icon icon-angle-left"></i>
+                    Prev
+                </a>
+            </li>
+            
+            
+            <li class="next">
+                <a href="/page/2/">
+                    Next
+                    <i class="icon icon-angle-right"></i>
+                </a>
+            </li>
+            
+        </ul>
+        <div class="total-article bar-right">Page 1 of 9</div>
+        </div>
+    </nav>
+    
+ 
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
         
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2021 师学<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
     </div>
-  </div>
 </footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
 
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
+<script src="/js/plugin.min.js"></script>
 
 
-<script src="/js/jquery-3.4.1.min.js"></script>
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
 
 
 
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+   
 
 
 
 
-<script src="/js/script.js"></script>
 
 
 
 
 
-  </div>
 </body>
 </html>
