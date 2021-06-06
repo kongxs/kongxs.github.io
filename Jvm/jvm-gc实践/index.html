@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>jvm gc实践 | 师学</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="编写代码如下  12345678public static void main(String[] args) &amp;#123;        int size &#x3D; 1024 * 1024 ;        byte[] alloc &#x3D;   new byte[2 * size] ;        byte[] alloc2 &#x3D; new byte[2 * size] ;        byte[] al">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jvm gc实践">
+<meta property="og:url" content="http://yoursite.com/Jvm/jvm-gc%E5%AE%9E%E8%B7%B5/index.html">
+<meta property="og:site_name" content="师学">
+<meta property="og:description" content="编写代码如下  12345678public static void main(String[] args) &amp;#123;        int size &#x3D; 1024 * 1024 ;        byte[] alloc &#x3D;   new byte[2 * size] ;        byte[] alloc2 &#x3D; new byte[2 * size] ;        byte[] al">
+<meta property="og:locale">
+<meta property="article:published_time" content="2019-12-10T08:41:00.000Z">
+<meta property="article:modified_time" content="2021-06-06T01:21:47.472Z">
+<meta property="article:author" content="师学">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="师学" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">师学</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学而不思则罔，思而不学则殆。</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-jvm-gc实践" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Jvm/jvm-gc%E5%AE%9E%E8%B7%B5/" class="article-date">
+  <time class="dt-published" datetime="2019-12-10T08:41:00.000Z" itemprop="datePublished">2019-12-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Jvm/">Jvm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      jvm gc实践
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>编写代码如下 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> size = <span class="number">1024</span> * <span class="number">1024</span> ;</span><br><span class="line">        <span class="keyword">byte</span>[] alloc =   <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">2</span> * size] ;</span><br><span class="line">        <span class="keyword">byte</span>[] alloc2 = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">2</span> * size] ;</span><br><span class="line">        <span class="keyword">byte</span>[] alloc3 = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">2</span> * size] ;</span><br><span class="line">        <span class="keyword">byte</span>[] alloc4 = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">2</span> * size] ;</span><br><span class="line">		System.out.println(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>jvm参数配置：</p>
+<p> vm option :<br> -verbose:gc // 详细gc日志<br> -Xms20m // 堆初始大小<br> -Xmx20m // 堆最大值<br> -Xmn10m //新生代10m<br> -XX:+PrintGCDetails // 详细垃圾回收信息<br> -XX:SurvivorRatio=8 // eden 和 survivor 占比 为 8 : 1 : 1</p>
+</li>
+</ol>
+<p>输出结果： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[GC (Allocation Failure) [PSYoungGen: 6651K-&gt;480K(9216K)] 6651K-&gt;6632K(19456K), 0.0092862 secs] [Times: user=0.04 sys=0.00, real=0.01 secs] </span><br><span class="line">[Full GC (Ergonomics) [PSYoungGen: 480K-&gt;0K(9216K)] [ParOldGen: 6152K-&gt;6434K(10240K)] 6632K-&gt;6434K(19456K), [Metaspace: 2642K-&gt;2642K(1056768K)], 0.0048153 secs] [Times: user=0.02 sys=0.01, real=0.01 secs] </span><br><span class="line">hello world</span><br><span class="line">Heap</span><br><span class="line"> PSYoungGen      total 9216K, used 2374K [0x00000007bf600000, 0x00000007c0000000, 0x00000007c0000000)</span><br><span class="line">  eden space 8192K, 28% used [0x00000007bf600000,0x00000007bf851838,0x00000007bfe00000)</span><br><span class="line">  from space 1024K, 0% used [0x00000007bfe00000,0x00000007bfe00000,0x00000007bff00000)</span><br><span class="line">  to   space 1024K, 0% used [0x00000007bff00000,0x00000007bff00000,0x00000007c0000000)</span><br><span class="line"> ParOldGen       total 10240K, used 6434K [0x00000007bec00000, 0x00000007bf600000, 0x00000007bf600000)</span><br><span class="line">  object space 10240K, 62% used [0x00000007bec00000,0x00000007bf248a90,0x00000007bf600000)</span><br><span class="line"> Metaspace       used 2650K, capacity 4486K, committed 4864K, reserved 1056768K</span><br><span class="line">  class space    used 286K, capacity 386K, committed 512K, reserved 1048576K</span><br></pre></td></tr></table></figure>
+<p>观测执行结果，我们发现，发生了一次minor gc，原因是 Allocation Failure <br><br>PSYoungGen  ：  parallel scavenge  发生在新生代的gc 。 <br><br>[PSYoungGen: 6651K-&gt;480K(9216K)] 6651K-&gt;6632K(19456K), 0.0092862 secs]<br> ，minor  gc 只会对新生代进行回收。 <br><br>在年轻代gc前 存活对象占据的大小为6651 gc后为480 ，总容量 9216 <br><br>gc前堆空间存活对象占据的大小为6651 执行后为6632 ， 总容量为 19456 </p>
+<p>发生了一次 full gc ： fullgc 会针对新生代，老年代，和元空间都进行gc 。 <br><br>fullgc 应该尽量避免 。 老年代空间存对象反而增加了 。</p>
+<ol start="2">
+<li>直接在老年代去分配对象 。 <br><br> 在第一个例子的基础上 ，增加jvm启动参数：<br><br> -XX:PretenureSizeThreshold=3145728// 1024 * 1024 * 3<br> -XX:+UseSerialGC<br> 设定当新创建的对象超过我们设置的阈值，那么就会直接在老年代去分配内存。<br> 这个参数要搭配 串行gc收集器才会起作用</li>
+</ol>
+<p>代码： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">        int size = 1024 * 1024 ;</span><br><span class="line">        byte[] alloc = new byte[size * 4];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Heap</span><br><span class="line">def new generation   total 9216K, used 656K [0x00000007bec00000, 0x00000007bf600000, 0x00000007bf600000)</span><br><span class="line"> eden space 8192K,   8% used [0x00000007bec00000, 0x00000007beca4028, 0x00000007bf400000)</span><br><span class="line"> from space 1024K,   0% used [0x00000007bf400000, 0x00000007bf400000, 0x00000007bf500000)</span><br><span class="line"> to   space 1024K,   0% used [0x00000007bf500000, 0x00000007bf500000, 0x00000007bf600000)</span><br><span class="line">tenured generation   total 10240K, used 5136K [0x00000007bf600000, 0x00000007c0000000, 0x00000007c0000000)</span><br><span class="line">  the space 10240K,  50% used [0x00000007bf600000, 0x00000007bfb04020, 0x00000007bfb04200, 0x00000007c0000000)</span><br><span class="line">Metaspace       used 2648K, capacity 4486K, committed 4864K, reserved 1056768K</span><br><span class="line"> class space    used 286K, capacity 386K, committed 512K, reserved 1048576K</span><br></pre></td></tr></table></figure>
+
+
+
+<h6 id="设置可以晋升到老年代的对象最大存活年龄"><a href="#设置可以晋升到老年代的对象最大存活年龄" class="headerlink" title="设置可以晋升到老年代的对象最大存活年龄"></a>设置可以晋升到老年代的对象最大存活年龄</h6><p>-XX:MaxTenuringThreshold=5<br><br>-XX:+PrintTenuringDistribution</p>
+<p>我们设置 最大的新生代年龄超过5 的时候就晋升到老年代，注意：(有可能2岁就晋升，取决于jvm的实现，但是最大不超过我们设置的5 )<br></p>
+<p>在jvm中默认值为15 ，cms垃圾收集器中为6，G1中为15 (在jvm中使用4 bit 来标识年龄，1111 ，所以最大年龄为15)<br></p>
+<p>经历过多次 minior GC 以后，存活的对象会在 from survivor 和 to survivor 中来回移动， 而且有一个前提是要有足够的控件来存放这些数据 。 在GC算法中会计算每个对象的年龄大小，当达到某个年后以后发现总大小已经超过 一个survivor空间的50% ，那么会调整阈值，而不是等到默认的年龄才完成晋升。</p>
+<h6 id="实战：MaxTenuringThreshold阈值动态调整"><a href="#实战：MaxTenuringThreshold阈值动态调整" class="headerlink" title="实战：MaxTenuringThreshold阈值动态调整"></a>实战：MaxTenuringThreshold阈值动态调整</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-verbose:gc</span><br><span class="line">-Xmx200M</span><br><span class="line">-Xmn50M</span><br><span class="line">-XX:TargetSurvivorRatio=60</span><br><span class="line">-XX:+PrintTenuringDistribution</span><br><span class="line">-XX:+PrintGCDetails</span><br><span class="line">-XX:+PrintGCDateStamps</span><br><span class="line">-XX:+UseConcMarkSweepGC</span><br><span class="line">-XX:+UseParNewGC</span><br><span class="line">-XX:MaxTenuringThreshold=3</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public class Test04 &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        int size = 1024 * 1024 ;</span><br><span class="line">        byte[] alloc = new byte[512 * 1024];</span><br><span class="line">        byte[] alloc2 = new byte[512 * 1024];</span><br><span class="line">        gc();</span><br><span class="line">        System.out.println(&quot;1111&quot;);</span><br><span class="line">        gc();</span><br><span class="line">        System.out.println(&quot;2222&quot;);</span><br><span class="line">        gc();</span><br><span class="line">        System.out.println(&quot;3333&quot;);</span><br><span class="line">        gc();</span><br><span class="line">        System.out.println(&quot;4444&quot;);</span><br><span class="line">        gc();</span><br><span class="line">        System.out.println(&quot;55555&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    static void gc() &#123;</span><br><span class="line">        for (int i = 0; i &lt; 30; i++) &#123;</span><br><span class="line">            byte[] alloc = new byte[1024 * 1024];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/Jvm/jvm-gc%E5%AE%9E%E8%B7%B5/" data-id="ckpkkdokm0050ifus5ae7gkma" data-title="jvm gc实践" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Java/JavaConcurrent/wait-notify-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          wait notify 深入理解
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Jvm/jvm-gc/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">jvm gc</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/">dlib</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/DIP/">DIP</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/mvp/">mvp</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIP/">DIP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Flutter/">Flutter</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gradle/">Gradle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/JavaConcurrent/">JavaConcurrent</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/concurrent/">concurrent</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Jvm/">Jvm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kotlin/">Kotlin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nio/">Nio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note2/">Note2</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/OpenGL/">OpenGL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ReactNative/">ReactNative</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/">jdhai</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/">javascript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/%E8%B7%A8%E5%B9%B3%E5%8F%B0/">跨平台</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/pr/">pr</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%91%E6%8C%87%E7%B3%BB%E5%88%97/">剑指系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%85%92/">酒</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-multiDex/">源码分析-multiDex</a>
+          </li>
+        
+          <li>
+            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-leakCanary/">源码分析-leakCanary</a>
+          </li>
+        
+          <li>
+            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-glide/">源码分析-glide</a>
+          </li>
+        
+          <li>
+            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-okHttp/">源码分析-okHttp</a>
+          </li>
+        
+          <li>
+            <a href="/Android/Android-view%E7%BB%98%E5%88%B6/">Android-view绘制</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 师学<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

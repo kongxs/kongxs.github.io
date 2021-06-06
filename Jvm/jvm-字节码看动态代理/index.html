@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>jvm_字节码看动态代理 | 师学</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="1. jdk 动态代理基本使用123public interface Subscribe &amp;#123;   	void subscrib();&amp;#125;  123456	public class SubImpl implements Subscribe &amp;#123;	    @Override	    public void subscrib() &amp;#123;	        System.ou">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jvm_字节码看动态代理">
+<meta property="og:url" content="http://yoursite.com/Jvm/jvm-%E5%AD%97%E8%8A%82%E7%A0%81%E7%9C%8B%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/index.html">
+<meta property="og:site_name" content="师学">
+<meta property="og:description" content="1. jdk 动态代理基本使用123public interface Subscribe &amp;#123;   	void subscrib();&amp;#125;  123456	public class SubImpl implements Subscribe &amp;#123;	    @Override	    public void subscrib() &amp;#123;	        System.ou">
+<meta property="og:locale">
+<meta property="article:published_time" content="2019-07-26T01:26:32.000Z">
+<meta property="article:modified_time" content="2021-06-06T01:21:47.473Z">
+<meta property="article:author" content="师学">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="师学" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">师学</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学而不思则罔，思而不学则殆。</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-jvm-字节码看动态代理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Jvm/jvm-%E5%AD%97%E8%8A%82%E7%A0%81%E7%9C%8B%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" class="article-date">
+  <time class="dt-published" datetime="2019-07-26T01:26:32.000Z" itemprop="datePublished">2019-07-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Jvm/">Jvm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      jvm_字节码看动态代理
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="1-jdk-动态代理基本使用"><a href="#1-jdk-动态代理基本使用" class="headerlink" title="1. jdk 动态代理基本使用"></a>1. jdk 动态代理基本使用</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Subscribe &#123;</span><br><span class="line">   	void subscrib();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">	public class SubImpl implements Subscribe &#123;</span><br><span class="line">	    @Override</span><br><span class="line">	    public void subscrib() &#123;</span><br><span class="line">	        System.out.println(&quot;subscribe invoked &quot;);</span><br><span class="line">	    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">	public class SubHandler implements InvocationHandler &#123;</span><br><span class="line"></span><br><span class="line">    private Object realObj;</span><br><span class="line"></span><br><span class="line">    public SubHandler(Object realObj) &#123;</span><br><span class="line">        this.realObj = realObj;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Object invoke(Object o, Method method, Object[] objects) throws Throwable &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        if (method.getDeclaringClass() == Object.class) &#123;</span><br><span class="line">            return method.invoke(o,objects);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        System.out.println(&quot;before invoked &quot;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Object invoke = method.invoke(realObj, objects);</span><br><span class="line"></span><br><span class="line">        System.out.println(&quot;after invoked &quot;);</span><br><span class="line"></span><br><span class="line">        return invoke;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>测试代码
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">	public class MyClass &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line">        System.setProperty(&quot;sun.misc.ProxyGenerator.saveGeneratedFiles&quot;,&quot;true&quot;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Subscribe subscribe = new SubImpl();</span><br><span class="line"></span><br><span class="line">        Subscribe proxy = (Subscribe) Proxy.newProxyInstance(subscribe.getClass().getClassLoader(),</span><br><span class="line">                subscribe.getClass().getInterfaces(), new SubHandler(subscribe));</span><br><span class="line"></span><br><span class="line">        proxy.subscrib();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>以上代码是对于jdk动态代理的基本使用。值得注意的是，jdk的动态代理类， 必须是有接口的。
+执行结果如下： 
+    before invoked 
+    subscribe invoked 
+    after invoked 
+</code></pre>
+<h2 id="2-源码分析"><a href="#2-源码分析" class="headerlink" title="2. 源码分析"></a>2. 源码分析</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Subscribe proxy = (Subscribe) Proxy.newProxyInstance(subscribe.getClass().getClassLoader(),</span><br><span class="line">                subscribe.getClass().getInterfaces(), new SubHandler(subscribe));</span><br></pre></td></tr></table></figure>
+<pre><code>通过对于proxy类进行打印发现，他的父类其实是 java.lang.reflect.Proxy
+下面我们具体分析，我们的 proxy对象是怎么生成的
+
+1. 首先进入Proxy.newProxyInstance静态方法.鉴于代码篇幅较长，做了一部分删减。
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public static Object newProxyInstance(ClassLoader loader,</span><br><span class="line">                                         Class&lt;?&gt;[] interfaces,</span><br><span class="line">                                         InvocationHandler h)</span><br><span class="line">       throws IllegalArgumentException</span><br><span class="line">   &#123;</span><br><span class="line">      ......</span><br><span class="line">      </span><br><span class="line">       /*</span><br><span class="line">        * Look up or generate the designated proxy class.</span><br><span class="line">        */</span><br><span class="line">       Class&lt;?&gt; cl = getProxyClass0(loader, intfs);</span><br><span class="line"></span><br><span class="line">		final Constructor&lt;?&gt; cons = cl.getConstructor(constructorParams);</span><br><span class="line">       .......</span><br><span class="line"></span><br><span class="line">       return cons.newInstance(new Object[]&#123;h&#125;);</span><br><span class="line">       </span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>通过以上代码，我们发现关键点 在这里主要做了三件事
+1. 通过 getProxyClass0 方法获取 Class对象
+2. 调用默认构造方法 conns
+3. 通过构造方法生成我们需要的返回对象 
+
+这里我们再次进入getProxyClass0 看如何生成 class对象的。
+跟进代码进入到 ProxyClassFactory.apply 方法
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">byte[] proxyClassFile = ProxyGenerator.generateProxyClass(</span><br><span class="line">               proxyName, interfaces, accessFlags);</span><br><span class="line">               </span><br><span class="line">           try &#123;</span><br><span class="line">               return defineClass0(loader, proxyName,</span><br><span class="line">                                   proxyClassFile, 0,proxyClassFile.length);</span><br><span class="line">           &#125; catch (ClassFormatError e) &#123;</span><br><span class="line">               </span><br><span class="line">           &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>首先通过 ProxyGenerator.generateProxyClass生成字节码的数组，然后通过
+defineClass0 生成class对象。 defineClass0是native方法。
+到目前为止，我们就完成了整个流程的分析。
+</code></pre>
+<h2 id="3-我们通过Proxy-newProxyInstance类内容"><a href="#3-我们通过Proxy-newProxyInstance类内容" class="headerlink" title="3. 我们通过Proxy.newProxyInstance类内容"></a>3. 我们通过Proxy.newProxyInstance类内容</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">	public final class $Proxy0 extends Proxy implements Subscribe &#123;</span><br><span class="line">    private static Method m1;</span><br><span class="line">    private static Method m2;</span><br><span class="line">    private static Method m3;</span><br><span class="line">    private static Method m0;</span><br><span class="line"></span><br><span class="line">    public $Proxy0(InvocationHandler var1) throws  &#123;</span><br><span class="line">        super(var1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public final boolean equals(Object var1) throws  &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            return (Boolean)super.h.invoke(this, m1, new Object[]&#123;var1&#125;);</span><br><span class="line">        &#125; catch (RuntimeException | Error var3) &#123;</span><br><span class="line">            throw var3;</span><br><span class="line">        &#125; catch (Throwable var4) &#123;</span><br><span class="line">            throw new UndeclaredThrowableException(var4);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public final String toString() throws  &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            return (String)super.h.invoke(this, m2, (Object[])null);</span><br><span class="line">        &#125; catch (RuntimeException | Error var2) &#123;</span><br><span class="line">            throw var2;</span><br><span class="line">        &#125; catch (Throwable var3) &#123;</span><br><span class="line">            throw new UndeclaredThrowableException(var3);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public final void subscrib() throws  &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            super.h.invoke(this, m3, (Object[])null);</span><br><span class="line">        &#125; catch (RuntimeException | Error var2) &#123;</span><br><span class="line">            throw var2;</span><br><span class="line">        &#125; catch (Throwable var3) &#123;</span><br><span class="line">            throw new UndeclaredThrowableException(var3);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public final int hashCode() throws  &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            return (Integer)super.h.invoke(this, m0, (Object[])null);</span><br><span class="line">        &#125; catch (RuntimeException | Error var2) &#123;</span><br><span class="line">            throw var2;</span><br><span class="line">        &#125; catch (Throwable var3) &#123;</span><br><span class="line">            throw new UndeclaredThrowableException(var3);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    static &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            m1 = Class.forName(&quot;java.lang.Object&quot;).getMethod(&quot;equals&quot;, Class.forName(&quot;java.lang.Object&quot;));</span><br><span class="line">            m2 = Class.forName(&quot;java.lang.Object&quot;).getMethod(&quot;toString&quot;);</span><br><span class="line">            m3 = Class.forName(&quot;com.example.lib.Subscribe&quot;).getMethod(&quot;subscrib&quot;);</span><br><span class="line">            m0 = Class.forName(&quot;java.lang.Object&quot;).getMethod(&quot;hashCode&quot;);</span><br><span class="line">        &#125; catch (NoSuchMethodException var2) &#123;</span><br><span class="line">            throw new NoSuchMethodError(var2.getMessage());</span><br><span class="line">        &#125; catch (ClassNotFoundException var3) &#123;</span><br><span class="line">            throw new NoClassDefFoundError(var3.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>以上是我们通过动态代理生成的类，继承了 Proxy，实现我们的Subscribe接口
+默认实现了object中的 equals，toString，hashCode方法
+以及Subscribe接口中的方法
+以上方法提的人内容大同小异，通过静态代码块实例化的method，最后调用我们的
+handler的invoke方法
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/Jvm/jvm-%E5%AD%97%E8%8A%82%E7%A0%81%E7%9C%8B%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" data-id="ckpkkdokp005cifus6w3ng6cw" data-title="jvm_字节码看动态代理" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Jvm/2019-07-30-java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E7%90%86%E8%A7%A3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          java内存模型理解
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Jvm/jvm-%E5%AD%97%E8%8A%82%E7%A0%81%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">jvm_字节码的基本信息</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/">dlib</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/DIP/">DIP</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/mvp/">mvp</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIP/">DIP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Flutter/">Flutter</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gradle/">Gradle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/JavaConcurrent/">JavaConcurrent</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/concurrent/">concurrent</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Jvm/">Jvm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kotlin/">Kotlin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nio/">Nio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note2/">Note2</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/OpenGL/">OpenGL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ReactNative/">ReactNative</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/">jdhai</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/">javascript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/%E8%B7%A8%E5%B9%B3%E5%8F%B0/">跨平台</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/pr/">pr</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%91%E6%8C%87%E7%B3%BB%E5%88%97/">剑指系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%85%92/">酒</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-multiDex/">源码分析-multiDex</a>
+          </li>
+        
+          <li>
+            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-leakCanary/">源码分析-leakCanary</a>
+          </li>
+        
+          <li>
+            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-glide/">源码分析-glide</a>
+          </li>
+        
+          <li>
+            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-okHttp/">源码分析-okHttp</a>
+          </li>
+        
+          <li>
+            <a href="/Android/Android-view%E7%BB%98%E5%88%B6/">Android-view绘制</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 师学<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

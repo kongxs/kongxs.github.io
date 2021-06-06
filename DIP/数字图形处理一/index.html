@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>数字图形处理一 | 师学</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Digital Image Processing    图形和图像的区别 图形是由指令集构成，指令就是命令，由 位置 形状，颜色等进行描述 。记录和显示的是坐标，颜色是隐含的 。 moveTo lineTo  等。。 图像 更加直观，坐标是隐含的，显示的是颜色值 。  《计算机图形学》《计算机图像处理学》  图像空间分辨率指图像数字化的空间精细成都，  灰度级分辨率即颜色深度，每一像素颜色值锁占">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数字图形处理一">
+<meta property="og:url" content="http://yoursite.com/DIP/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%BD%A2%E5%A4%84%E7%90%86%E4%B8%80/index.html">
+<meta property="og:site_name" content="师学">
+<meta property="og:description" content="Digital Image Processing    图形和图像的区别 图形是由指令集构成，指令就是命令，由 位置 形状，颜色等进行描述 。记录和显示的是坐标，颜色是隐含的 。 moveTo lineTo  等。。 图像 更加直观，坐标是隐含的，显示的是颜色值 。  《计算机图形学》《计算机图像处理学》  图像空间分辨率指图像数字化的空间精细成都，  灰度级分辨率即颜色深度，每一像素颜色值锁占">
+<meta property="og:locale">
+<meta property="og:image" content="https://wanke-fun.oss-cn-beijing.aliyuncs.com/opencv/qici.png">
+<meta property="og:image" content="https://wanke-fun.oss-cn-beijing.aliyuncs.com/opencv/zhong_lvbo.png">
+<meta property="og:image" content="https://wanke-fun.oss-cn-beijing.aliyuncs.com/opencv/weifen.png">
+<meta property="og:image" content="https://wanke-fun.oss-cn-beijing.aliyuncs.com/opencv/ex_pic_content.png">
+<meta property="og:image" content="https://wanke-fun.oss-cn-beijing.aliyuncs.com/opencv/pic_smooth_process.png">
+<meta property="og:image" content="https://wanke-fun.oss-cn-beijing.aliyuncs.com/opencv/juanji_process.png">
+<meta property="og:image" content="https://wanke-fun.oss-cn-beijing.aliyuncs.com/opencv/juanji_process_gongshii.png">
+<meta property="og:image" content="https://wanke-fun.oss-cn-beijing.aliyuncs.com/opencv/juanji_yunsuan.png">
+<meta property="article:published_time" content="2020-05-15T09:13:00.000Z">
+<meta property="article:modified_time" content="2021-06-06T01:21:47.477Z">
+<meta property="article:author" content="师学">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wanke-fun.oss-cn-beijing.aliyuncs.com/opencv/qici.png">
+  
+    <link rel="alternate" href="/atom.xml" title="师学" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">师学</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学而不思则罔，思而不学则殆。</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-数字图形处理一" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/DIP/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%BD%A2%E5%A4%84%E7%90%86%E4%B8%80/" class="article-date">
+  <time class="dt-published" datetime="2020-05-15T09:13:00.000Z" itemprop="datePublished">2020-05-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/DIP/">DIP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      数字图形处理一
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>Digital Image Processing </p>
+</blockquote>
+<ol>
+<li><p>图形和图像的区别 <br><br>图形是由指令集构成，指令就是命令，由 位置 形状，颜色等进行描述 。记录和显示的是坐标，颜色是隐含的 。 moveTo lineTo  等。。 <br><br>图像 更加直观，坐标是隐含的，显示的是颜色值 。  <br>《计算机图形学》《计算机图像处理学》</p>
+</li>
+<li><p>图像空间分辨率<br><br>指图像数字化的空间精细成都，</p>
+</li>
+<li><p>灰度级分辨率<br><br>即颜色深度，每一像素颜色值锁占的二进制位数，颜色深度越大，标识颜色的数目越多</p>
+</li>
+<li><p>数字图像处理的目的<br><br>图像降噪，改变亮度颜色，增强或者抑制某些成分，几何变换，进而改善图像质量。</p>
+</li>
+<li><p>一般的图像处理流程 <br></p>
+<ol>
+<li>预处理(统一大小等) </li>
+<li>图像分割 (边缘检测，区域分割等)</li>
+<li>特征提取</li>
+<li>图像识别</li>
+<li>图像分析</li>
+</ol>
+</li>
+</ol>
+<h3 id="1-图像的灰度化处理"><a href="#1-图像的灰度化处理" class="headerlink" title="1. 图像的灰度化处理"></a>1. 图像的灰度化处理</h3><p>在图像处理中，灰度化是一种很常用的图片处理手段 。 <br><br>方法1：求出每个像素点的RGB三个分量的平均值，然后将这个平均值赋予给这个像素的三个分量<br><br>方法2：求RGB和YUV颜色空间的变化关系，建立亮度Y与RGB三个颜色分量的对应关系：Y=0.3R+0.59G+0.11B，以这个亮度值表达图像的灰度值。OpenCV的cvtColor函数，可以直接完成灰度化操作。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">for (int i = 1 ; i &lt; src.rows; i++) &#123;</span><br><span class="line">        </span><br><span class="line">        for (int j = 1 ; j &lt; src.cols; j++) &#123;</span><br><span class="line">            </span><br><span class="line">            int b = src.at&lt;Vec3b&gt;(i , j)[0];</span><br><span class="line">            int g = src.at&lt;Vec3b&gt;(i , j)[1];</span><br><span class="line">            int r = src.at&lt;Vec3b&gt;(i , j)[2];</span><br><span class="line">            </span><br><span class="line">            uchar gray = 0.11f*r + 0.59f*g + 0.30f*b;</span><br><span class="line">            </span><br><span class="line">            src.at&lt;Vec3b&gt;(i , j)[0] = gray;</span><br><span class="line">            src.at&lt;Vec3b&gt;(i , j)[1] = gray;</span><br><span class="line">            src.at&lt;Vec3b&gt;(i , j)[2] = gray;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-图像的二值化"><a href="#2-图像的二值化" class="headerlink" title="2. 图像的二值化"></a>2. 图像的二值化</h3><p>图像的二值化就是将图像上的像素点的灰度值设置为0或255，这样将使整个图像呈现出明显的黑白效果。在数字图像处理中，二值图像占有非常重要的地位，图像的二值化使图像中数据量大为减少，从而能凸显出目标的轮廓。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">for (int i = 1; i &lt; src.rows; i++) &#123;</span><br><span class="line">        for (int j = 1; j &lt; src.cols; j++) &#123;</span><br><span class="line">            </span><br><span class="line">            int b = src.at&lt;Vec3b&gt;(i ,j)[0];</span><br><span class="line">            int g = src.at&lt;Vec3b&gt;(i ,j)[1];</span><br><span class="line">            int r = src.at&lt;Vec3b&gt;(i ,j)[2];</span><br><span class="line">            </span><br><span class="line">            if (b &gt; 100) &#123;</span><br><span class="line">                src.at&lt;Vec3b&gt;(i ,j)[0] =255;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                src.at&lt;Vec3b&gt;(i ,j)[0] = 0;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            if (g &gt; 100) &#123;</span><br><span class="line">                src.at&lt;Vec3b&gt;(i ,j)[1] =255;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                src.at&lt;Vec3b&gt;(i ,j)[1] = 0;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            if (r &gt; 100) &#123;</span><br><span class="line">                src.at&lt;Vec3b&gt;(i ,j)[2] =255;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                src.at&lt;Vec3b&gt;(i ,j)[2] = 0;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-图形变换基础"><a href="#3-图形变换基础" class="headerlink" title="3. 图形变换基础"></a>3. 图形变换基础</h3><p>平移，比例缩放，旋转，镜像</p>
+<p>齐次坐标表示法： 用N+1维向量标识N维向量的方法 ，（x，y）投影在 xyz三维立体空间的<br>z=1的平面上 。</p>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/opencv/qici.png"></img></p>
+<h3 id="4-图像增强和灰度变换"><a href="#4-图像增强和灰度变换" class="headerlink" title="4. 图像增强和灰度变换"></a>4. 图像增强和灰度变换</h3><p>利用 点运算 <br><br>输入图像 f(x,y) 输出图像 g(x,y) ， gx = T(f(x,y)) 。 <br><br>不改变空间和位置，逐点运算进行转换。 <br><br>点运算 又称为 对比度增强，对比度拉伸，灰度变换 。 <br></p>
+<ol>
+<li>线性变换 <br><br>输入和输出呈线性比例关系，g(x,y) = T(f(x,y)) = a f(x,y) + b  <br><br>a &gt; 0 输出图像对比度增大 ，a &lt; 0 输出图像对比度减小  <br><br>a=1 ,b ≠ 0 ，灰度值上下移，对应变亮或者变暗  <br><br>a &lt; 0 相反的，亮变暗，暗变亮 </li>
+</ol>
+<h3 id="5-平滑处理的概念"><a href="#5-平滑处理的概念" class="headerlink" title="5. 平滑处理的概念"></a>5. 平滑处理的概念</h3><ol>
+<li>线性平滑<br><br>每一个像素的灰度值用它的邻域值代替，邻域为 n✖️n (n取奇数)</li>
+<li>非线性平滑<br>取一个阈值，当像素与邻域平均值之间的差大于阈值已均值代替，否则不变</li>
+<li>自适应平滑</li>
+</ol>
+<h3 id="6-图像去噪和添加椒盐噪声"><a href="#6-图像去噪和添加椒盐噪声" class="headerlink" title="6. 图像去噪和添加椒盐噪声"></a>6. 图像去噪和添加椒盐噪声</h3><p>二值图像的去噪<br><br>用3✖️3的模板进行均值滤波，当f(x,y)周围的8个像素平均值为 a 时候<br><br>若 |f(x,y) -a | &gt; 127.5 则对f(x,y)进行黑白翻转，否则不变 </p>
+<ol>
+<li>邻域平均法： <br><br>算法简单，计算速度快，但是会造成一定程度的模糊<br><br>改进： 选择邻域的大小，形状，方向，</li>
+<li>邻域加权平均法<br><br>将模板系数与对应像素的灰度值相乘，将所有乘积累加，用所得结果代替原中心像素。<br>&lt;例如：高斯离散模板&gt;</li>
+<li>超限邻域平均法<br>给定一个灰度值作为阈值，如果像素点大于邻域8个像素平均值并且超过了阈值，用平均灰度替换。<br></li>
+</ol>
+<p>N✖️N均值滤波器: f(x,y)为中心的 N✖️N的窗口，当平均灰度为a时，f(x,y) = a。  <br> N 越大，那么噪声消除越明显 。 均值滤波器以图像的模糊为代价 。</p>
+<ol start="4">
+<li><p>均值滤波法<br><br>对n✖️n的窗口进行取平均数 </p>
+</li>
+<li><p>中值滤波法<br><br>对n✖️n的窗口进行排序，取中间值 .  对椒盐噪声有很好的效果<br><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/opencv/zhong_lvbo.png"></img></p>
+</li>
+</ol>
+<h3 id="6-图像边缘锐化"><a href="#6-图像边缘锐化" class="headerlink" title="6. 图像边缘锐化"></a>6. 图像边缘锐化</h3><p>锐化的基本方法 ：</p>
+<ol>
+<li>微分运算</li>
+<li>边缘检测</li>
+<li>梯度锐化</li>
+</ol>
+<p>锐化的目的： </p>
+<ol>
+<li>增强边界信息</li>
+<li>提取物体边界</li>
+</ol>
+<p>单向微分运算：</p>
+<p>纵向： G(i,j) = f(i,j) - f(i-1,j)<br><br>横向： G(i,j) = f(i,j) - f(i,j-1)<br> </p>
+<p>双向微分，同时增强两个方向的边缘：<br> </p>
+<p>G(i ,j) = sqrt { [f(i,j) - f(i-1,j) * f(i,j) - f(i-1,j)] + [f(i,j) - f(i,j-1) * f(i,j) - f(i,j-1) ] }</p>
+<p>通常情况下，边缘上的灰度变化平缓，而边缘两侧灰度变化较快。一般是亮度变化最显著的部分。<br><br><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/opencv/weifen.png"></img></p>
+<p>高斯拉普拉斯算子，是更好的边缘检测，把高斯平滑器和拉普拉斯锐化结合起来，先平滑掉噪声，再进行边缘检测。</p>
+<h3 id="7-图像边缘检测"><a href="#7-图像边缘检测" class="headerlink" title="7. 图像边缘检测"></a>7. 图像边缘检测</h3><h3 id="7-图像阈值分割"><a href="#7-图像阈值分割" class="headerlink" title="7. 图像阈值分割"></a>7. 图像阈值分割</h3><ol>
+<li>直方图门限选择</li>
+<li>迭代阈值分割</li>
+</ol>
+<p>阈值选择： <br> 可通过输出直方图来确定。 假设只有背景和物体组成，那么直方图灰度具有明显的双峰值。 - 找到谷底即可 </p>
+<h3 id="8-形态学基本概念"><a href="#8-形态学基本概念" class="headerlink" title="8. 形态学基本概念"></a>8. 形态学基本概念</h3><p>腐蚀，膨胀，<br><br>开运算 - 先腐蚀后膨胀 <br><br>闭运算 - 先膨胀后腐蚀 <br><br>细化，粗化，中轴变换 </p>
+<p><br><br><br><br><br><br><br><br><br><br><br><br><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/opencv/ex_pic_content.png"></img></p>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/opencv/pic_smooth_process.png"></img></p>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/opencv/juanji_process.png"></img></p>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/opencv/juanji_process_gongshii.png"></img></p>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/opencv/juanji_yunsuan.png"></img></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/DIP/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%BD%A2%E5%A4%84%E7%90%86%E4%B8%80/" data-id="ckpkkdol3006iifus2nbchs1s" data-title="数字图形处理一" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Android/dlib/DIP/dlib%E5%9C%A8android%E7%AB%AF%E7%9A%84%E9%9B%86%E6%88%90/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          dlib在android端的集成
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Android/%E5%BF%98%E8%AE%B0ide%E3%80%81%E5%91%BD%E4%BB%A4%E8%A1%8C/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">忘记ide、命令行</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/">dlib</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/DIP/">DIP</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/mvp/">mvp</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIP/">DIP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Flutter/">Flutter</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gradle/">Gradle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/JavaConcurrent/">JavaConcurrent</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/concurrent/">concurrent</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Jvm/">Jvm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kotlin/">Kotlin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nio/">Nio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note2/">Note2</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/OpenGL/">OpenGL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ReactNative/">ReactNative</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/">jdhai</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/">javascript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/%E8%B7%A8%E5%B9%B3%E5%8F%B0/">跨平台</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/pr/">pr</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%91%E6%8C%87%E7%B3%BB%E5%88%97/">剑指系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%85%92/">酒</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-multiDex/">源码分析-multiDex</a>
+          </li>
+        
+          <li>
+            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-leakCanary/">源码分析-leakCanary</a>
+          </li>
+        
+          <li>
+            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-glide/">源码分析-glide</a>
+          </li>
+        
+          <li>
+            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-okHttp/">源码分析-okHttp</a>
+          </li>
+        
+          <li>
+            <a href="/Android/Android-view%E7%BB%98%E5%88%B6/">Android-view绘制</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 师学<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

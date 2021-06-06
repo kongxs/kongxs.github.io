@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Flutter 状态管理provider | 师学</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="前端开发者或者reactNative开发者 对于状态管理应该不会陌生，例如前端大名鼎鼎的redux框架 。  在flutter中，对于状态的同步管理是一项很繁琐的申请，比如我们需要将一个值传入后续的N个widget中，需要一层层的传递，并且对于值同步也很麻烦。  在这样的背景下，各种状态管理框架应运而生了，它可以让我们更方便的管理state，同步数据，等操作  在2019年google io大会，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flutter 状态管理provider">
+<meta property="og:url" content="http://yoursite.com/Flutter/Flutter-%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86provider/index.html">
+<meta property="og:site_name" content="师学">
+<meta property="og:description" content="前端开发者或者reactNative开发者 对于状态管理应该不会陌生，例如前端大名鼎鼎的redux框架 。  在flutter中，对于状态的同步管理是一项很繁琐的申请，比如我们需要将一个值传入后续的N个widget中，需要一层层的传递，并且对于值同步也很麻烦。  在这样的背景下，各种状态管理框架应运而生了，它可以让我们更方便的管理state，同步数据，等操作  在2019年google io大会，">
+<meta property="og:locale">
+<meta property="og:image" content="https://wanke-fun.oss-cn-beijing.aliyuncs.com/flutter/provider_1.png">
+<meta property="og:image" content="https://wanke-fun.oss-cn-beijing.aliyuncs.com/flutter/flutter_state_provider.png">
+<meta property="article:published_time" content="2019-09-26T07:09:00.000Z">
+<meta property="article:modified_time" content="2021-06-06T01:21:47.463Z">
+<meta property="article:author" content="师学">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wanke-fun.oss-cn-beijing.aliyuncs.com/flutter/provider_1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="师学" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">师学</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学而不思则罔，思而不学则殆。</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Flutter-状态管理provider" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Flutter/Flutter-%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86provider/" class="article-date">
+  <time class="dt-published" datetime="2019-09-26T07:09:00.000Z" itemprop="datePublished">2019-09-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Flutter/">Flutter</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Flutter 状态管理provider
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>前端开发者或者reactNative开发者 对于状态管理应该不会陌生，例如前端大名鼎鼎的redux框架 。 </p>
+<pre><code>在flutter中，对于状态的同步管理是一项很繁琐的申请，比如我们需要将一个值传入后续的N个widget中，需要一层层的传递，并且对于值同步也很麻烦。
+
+在这样的背景下，各种状态管理框架应运而生了，它可以让我们更方便的管理state，同步数据，等操作
+
+在2019年google io大会，用 provider 取代了之前 的provide 框架 ，provider框架很健壮也有灵活，配置简单，本文主要介绍 provider框架的用法 
+</code></pre>
+<h2 id="1-添加依赖"><a href="#1-添加依赖" class="headerlink" title="1. 添加依赖"></a>1. 添加依赖</h2><pre><code>在pubspec.yaml文件中添加以下依赖 ,然后执行 flutter pub get 进行下载安装
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">provider: ^3.1.0</span><br></pre></td></tr></table></figure>
+<h2 id="2-1-简单使用"><a href="#2-1-简单使用" class="headerlink" title="2.1 简单使用"></a>2.1 简单使用</h2><pre><code>相比较于之前的写法，这里我们用Provider.value()的方式进行构件一个APP
+flutter APP 入口处添加一下代码
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">void main() =&gt; runApp(new ZhiHu());</span><br><span class="line">class ZhiHu extends StatelessWidget &#123;</span><br><span class="line">  @override</span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    return Provider&lt;String&gt;.value(</span><br><span class="line">      value: &quot;hello from provider&quot;,</span><br><span class="line">      child:  MaterialApp(</span><br><span class="line">        title: &quot;知乎-高仿版&quot;,</span><br><span class="line">        home:  Index(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这里，我们将一个 值为 ‘hello from provider’ 的字符串设置为共享，并返回一个materialApp</p>
+<h2 id="2-2-获取值"><a href="#2-2-获取值" class="headerlink" title="2.2 获取值"></a>2.2 获取值</h2><pre><code>1. 使用consumer的方式获取并返回一个widget
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Consumer(</span><br><span class="line">               builder: (BuildContext c,String value,Widget child)&#123;</span><br><span class="line">                return Text(&quot;text : $value&quot;);</span><br><span class="line">               &#125;</span><br><span class="line">             ),</span><br></pre></td></tr></table></figure>
+<pre><code>2. 直接获取 
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Provider.of&lt;String&gt;(context)</span><br></pre></td></tr></table></figure>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/flutter/provider_1.png"></img></p>
+<h2 id="3-结合ChangeNotifier-接收监听变化"><a href="#3-结合ChangeNotifier-接收监听变化" class="headerlink" title="3. 结合ChangeNotifier 接收监听变化"></a>3. 结合ChangeNotifier 接收监听变化</h2><pre><code>使用场景如下： 我们在首页有一个按钮显示初始值1，点击跳转到第二个页面，然后改变这个值，返回到首页，看到值同步。 
+
+1. 首先定义我们的 Count类金西行数据监听
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Count with ChangeNotifier &#123;//1</span><br><span class="line">  int _count;</span><br><span class="line">  Count(this._count);</span><br><span class="line"></span><br><span class="line">  void add() &#123;</span><br><span class="line">    _count++;</span><br><span class="line">    notifyListeners();//2</span><br><span class="line">  &#125;</span><br><span class="line">  get count =&gt; _count;//3</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>2. 注册provider. 将我们的count注册进去
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">return MultiProvider(</span><br><span class="line">     providers: [</span><br><span class="line">       ChangeNotifierProvider(builder: (_) =&gt; Count(1)),</span><br><span class="line">     ],</span><br><span class="line">     child: MaterialApp()</span><br></pre></td></tr></table></figure>
+<pre><code>3. 设置 FloatActionButton
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">	floatingActionButton: Consumer&lt;Count&gt;(</span><br><span class="line">         builder: (BuildContext context, Count snapshot, Widget child) &#123;</span><br><span class="line">            return FloatingActionButton(</span><br><span class="line">              onPressed: ()  &#123;</span><br><span class="line">//                snapshot.add()</span><br><span class="line">                Navigator.pushNamed(context, &quot;/home&quot;);</span><br><span class="line">              &#125;,</span><br><span class="line"></span><br><span class="line">              child: Text(</span><br><span class="line">//                  &#x27;$&#123;Store.value&lt;Count&gt;(context).count&#125;&#x27;</span><br><span class="line">                  &#x27;$&#123;snapshot.count&#125;&#x27;</span><br><span class="line">              ),</span><br><span class="line">            );</span><br></pre></td></tr></table></figure>
+<pre><code>到此为止，完成了首页的开发工作。下面进行第二页的开发，我们显示 count中的数字，使用按钮进行 1 的递加 ，当我们点击按钮，回到首页会发现，按钮上的文字已经改变为我们修改后的值
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Builder(</span><br><span class="line">             builder: (context) &#123;</span><br><span class="line">               return Text(</span><br><span class="line">                   &#x27;second page: $&#123;Store.value&lt;Count&gt;(context).count&#125;&#x27;</span><br><span class="line">               );</span><br><span class="line">             &#125;,</span><br><span class="line">           ),</span><br><span class="line"></span><br><span class="line">           RaisedButton(</span><br><span class="line">             child: Text(&quot;button&quot;),</span><br><span class="line">             onPressed: () =&gt; &#123;</span><br><span class="line">               Store.value&lt;Count&gt;(context).add()</span><br><span class="line">             &#125;,</span><br><span class="line">           ),</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/flutter/flutter_state_provider.png"></img></p>
+<h2 id="4-provider的简单封装"><a href="#4-provider的简单封装" class="headerlink" title="4. provider的简单封装"></a>4. provider的简单封装</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class Store &#123;</span><br><span class="line">  static BuildContext context;</span><br><span class="line">  static BuildContext widgetCtx;</span><br><span class="line"></span><br><span class="line">  static init(&#123;context, child&#125;) &#123;</span><br><span class="line">    return MultiProvider(</span><br><span class="line">      providers: [</span><br><span class="line">//        Provider&lt;Count&gt;.value(value: Count(1)),</span><br><span class="line">        ChangeNotifierProvider(builder: (_) =&gt; Count(1)),</span><br><span class="line">      ],</span><br><span class="line">      child: child,</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  static T value&lt;T&gt;(context) &#123;</span><br><span class="line">    return Provider.of(context);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  static Consumer connect&lt;T&gt;(&#123;builder, child&#125;) &#123;</span><br><span class="line">    return Consumer&lt;T&gt;(builder: builder, child: child);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>参考：<br><a href="pub.dev/packages/provider">pub.dev/packages/provider</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/Flutter/Flutter-%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86provider/" data-id="ckpkkdok4003iifusc5gv12z6" data-title="Flutter 状态管理provider" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Flutter/Flutter-Android%E6%B7%B7%E5%90%88%E5%BC%80%E5%8F%91/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          Flutter Android混合开发
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Flutter/Flutter-%E9%A1%B5%E9%9D%A2%E8%B7%AF%E7%94%B1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">Flutter 页面路由</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/">dlib</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/DIP/">DIP</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/mvp/">mvp</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIP/">DIP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Flutter/">Flutter</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gradle/">Gradle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/JavaConcurrent/">JavaConcurrent</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/concurrent/">concurrent</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Jvm/">Jvm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kotlin/">Kotlin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nio/">Nio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note2/">Note2</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/OpenGL/">OpenGL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ReactNative/">ReactNative</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/">jdhai</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/">javascript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/%E8%B7%A8%E5%B9%B3%E5%8F%B0/">跨平台</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/pr/">pr</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%91%E6%8C%87%E7%B3%BB%E5%88%97/">剑指系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%85%92/">酒</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-multiDex/">源码分析-multiDex</a>
+          </li>
+        
+          <li>
+            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-leakCanary/">源码分析-leakCanary</a>
+          </li>
+        
+          <li>
+            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-glide/">源码分析-glide</a>
+          </li>
+        
+          <li>
+            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-okHttp/">源码分析-okHttp</a>
+          </li>
+        
+          <li>
+            <a href="/Android/Android-view%E7%BB%98%E5%88%B6/">Android-view绘制</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 师学<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

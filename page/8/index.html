@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>师学</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="师学">
+<meta property="og:url" content="http://yoursite.com/page/8/index.html">
+<meta property="og:site_name" content="师学">
+<meta property="og:locale">
+<meta property="article:author" content="师学">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="师学" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">师学</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学而不思则罔，思而不学则殆。</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-jvm01-类文件结构" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Jvm/jvm01-%E7%B1%BB%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" class="article-date">
+  <time class="dt-published" datetime="2019-07-23T06:25:21.000Z" itemprop="datePublished">2019-07-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Jvm/">Jvm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/Jvm/jvm01-%E7%B1%BB%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/">jvm_类文件结构</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <pre><code>计算机是只能识别0和1的，Java的设计者创新性的提出了跨平台的概念，
+把Java编译成字节码文件，运行在 jvm虚拟机中，从而可以达到跨平台的概念。
+Java只不过是jvm支持的众多语言中的最广泛的一种 ，Java和jvm虚拟机并不是绑定在一起的。
+实际上，不论哪种语言，只要他的最终产物编译成字节码，都是可以运行在jvm之上的，例如 groovy，scala，jython 等
+</code></pre>
+<br>
+
+<pre><code>字节码查看工具： jclasslib 
+</code></pre>
+<p><a target="_blank" rel="noopener" href="https://github.com/ingokegel/jclasslib">https://github.com/ingokegel/jclasslib</a></p>
+<h2 id="1-反编译"><a href="#1-反编译" class="headerlink" title="1. 反编译"></a>1. 反编译</h2><pre><code>命令行工具： 
+    1. javap -verbose
+        分析 魔数，版本号，常量池，类信息，构造方法，成员方法，变量
+    2. javap -c xxx
+    3. 十六进制查看 
+        mac ：hex_fiend 。 win ：winhex
+</code></pre>
+<h4 id="1-魔数"><a href="#1-魔数" class="headerlink" title="1. 魔数"></a>1. 魔数</h4><pre><code>字节数： U4
+Java采用魔数来识别字节码文件而不是后缀，从而规避安全性风险。
+1. class文件的头四个字节是魔数  CA FE BA BE
+</code></pre>
+<h4 id="2-版本号"><a href="#2-版本号" class="headerlink" title="2. 版本号"></a>2. 版本号</h4><pre><code>字节数： U4
+挨着四个字节代表版本号
+其中前2字节代表次版本号 minor version，
+后2字节代表主版本号 major version
+</code></pre>
+<h4 id="3-常量池-constant-pool"><a href="#3-常量池-constant-pool" class="headerlink" title="3. 常量池 constant pool"></a>3. 常量池 constant pool</h4><pre><code>常量池个数的字节数： U2 + N
+1. 主版本号之后的是常量池入口，一个Java类中定义的很多信息都是由常量池来维护的，
+我们可以将常量池看做class文件的资源库，比如 方法变量信息，
+2. 常量池主要存储2中数据， 字面量和符号引用 
+    字面量： 文本字符串，比如final常量值
+    符号引用：类和接口的全局限定名，字段以及方法的名称和描述符
+3. 常量池的总体结构：Java类所对应的常量池主要由常量池数量和常量池数组构成
+</code></pre>
+<h4 id="3-常量池数量和常量池数组"><a href="#3-常量池数量和常量池数组" class="headerlink" title="3. 常量池数量和常量池数组"></a>3. 常量池数量和常量池数组</h4><pre><code>1. 常量池数量紧跟主版本后，占用2个字节。 
+2. 常量池数组紧跟常量池数量，与一般数组不同的是，它的元素类型，结构都是不相同        的。
+    每一种元素的第一个数据都是一个u1类型，该字节是一个标志位，占1个字节，
+    jvm在解析常量池时，会根据这个u1类型获取元素具体类型，
+    常量池数组中元素的个数等于 常量池数-1(其中0暂时不使用),目的是满足某些
+    常量池索引值的数据在特定情况下表达 不引用任何常量池的含义。
+    根本原因是所以0也是一个常量(保留常量)，不过它不位于长量表中，对应null值，
+    常量池索引从1开始
+</code></pre>
+<p>常量池对照表</p>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/constant_pool.png" height="200"></img></p>
+<p>字节码整体结构</p>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/vm_code.png" height="200"></img></p>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/vm_code2.png" height="200"></img></p>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/vm_code3.png" height="200"></img></p>
+<pre><code>在jvm规范中，每个变量/字段都有描述信息，描述信息的主要作用就是描述
+字段的数据类型，方法的参数列表(数量，类型，顺序)与返回值
+基本数据类型和代表返回值void的类型都用一个大写字符标识，对象类型使用L加上
+对象的全限定名称来标识，为了压缩字节码体积
+基本数据类型都是用一个大写字符标识： 
+B - byte。C - chart。D - double。 I - int 。J - long。F - float。 
+z - boolean。V - void。S - short。 
+L - 对象类型,如 Ljava/lang/String
+对于数组： 使用 前置的方括号[ 。如 int ，记录为 [I
+二维数组： 使用前置的[[ 记录，比如 [[I
+</code></pre>
+<br>
+
+<pre><code>方法的描述符
+先参数列表后返回值类型，参数列表按照严格顺序放在一组()内
+比如： 方法 String getName(int id,string name)
+(I,Ljava/lang/String;)Ljava/lang/String;
+</code></pre>
+<h4 id="4-accessFlag-访问标志"><a href="#4-accessFlag-访问标志" class="headerlink" title="4. accessFlag 访问标志"></a>4. accessFlag 访问标志</h4><pre><code>字节数： U2
+示例 ： 0x0021 是 acce_public 和 acc_super的并集
+</code></pre>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/access_flag.png" height="200"></img></p>
+<h4 id="5-this-class-Name"><a href="#5-this-class-Name" class="headerlink" title="5. this class Name"></a>5. this class Name</h4><pre><code>字节数： u2
+</code></pre>
+<h4 id="6-super-class-name"><a href="#6-super-class-name" class="headerlink" title="6. super class name"></a>6. super class name</h4><pre><code>字节数： u2
+</code></pre>
+<h4 id="7-interfaces"><a href="#7-interfaces" class="headerlink" title="7. interfaces"></a>7. interfaces</h4><pre><code>字节数： u2 + N
+</code></pre>
+<h4 id="8-fields"><a href="#8-fields" class="headerlink" title="8. fields"></a>8. fields</h4><pre><code>字节数： u2 + N
+字段表 ： 用于描述类和接口中声明的变量。包括类变量和实例变量，但是不包括方法内局部变量
+变量由以下几部分信息组成fieldInfo 
+    1. 访问修饰符 U2
+    2. 名字索引 U2
+    3. 描述符索引 U2 (类型)
+    4. attribute count
+    5. attribute info
+</code></pre>
+<h4 id="9-methods"><a href="#9-methods" class="headerlink" title="9. methods"></a>9. methods</h4><pre><code>字节数： U2 + N
+方法数量： U2 默认会有一个无参数的构造方法，所以方法+1
+方法表 ：
+    1. 访问修饰符 U2
+    2. 名字索引 U2
+    3. 描述符索引 U2 (类型)
+    4. attribute count
+    5. attribute info
+方法属性结构表： 
+    1. 名字索引 U2
+    2. 属性长度 U4
+    3. 具体信息 U1
+code 结构表：
+    stack 方法执行的最大栈的深度
+    local 方法运行期间创建的局部变量的数目，包括入参的局部变量
+    args_size 至少为1，因为this是隐式传递的
+    助记符
+</code></pre>
+<h4 id="10-attributes"><a href="#10-attributes" class="headerlink" title="10. attributes"></a>10. attributes</h4><pre><code>字节数： U2 + N
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/Jvm/jvm01-%E7%B1%BB%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" data-id="ckpkkdokr005gifus4l8o2fl7" data-title="jvm_类文件结构" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-jvm-系列笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Jvm/jvm-%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time class="dt-published" datetime="2019-07-19T06:33:44.000Z" itemprop="datePublished">2019-07-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Jvm/">Jvm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/Jvm/jvm-%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0/">jvm 系列笔记 - 类加载器</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="1-Java进程监控工具"><a href="#1-Java进程监控工具" class="headerlink" title="1. Java进程监控工具"></a>1. Java进程监控工具</h2><pre><code>jconsole ，jvisualvm 
+利用以上2个工具可以进行堆栈，线程等信息的查看
+</code></pre>
+<h2 id="2-Java类加载器生命周期"><a href="#2-Java类加载器生命周期" class="headerlink" title="2. Java类加载器生命周期"></a>2. Java类加载器生命周期</h2><pre><code>正常结束，异常结束，执行 system.exit方式终止
+</code></pre>
+<h2 id="3-类的加载器深入解析"><a href="#3-类的加载器深入解析" class="headerlink" title="3. 类的加载器深入解析"></a>3. 类的加载器深入解析</h2><pre><code>加载： 查找并加载类的二进制数据
+连接：
+    - 验证： 确保被加载类的正确
+    - 准备： 为类的【静态变量】分配内存，并初始化为默认值
+    - 解析： 符号引用转换化为直接引用
+初始化：为类的静态变量初始化为正确的值
+使用： 主动使用、被动使用
+卸载： ******
+
+
+所有的Java虚拟机实现，必须在每个类或者接口被Java程序【首次主动使用】的时候才会初始化他们
+</code></pre>
+<h2 id="4-主动使用的情况"><a href="#4-主动使用的情况" class="headerlink" title="4. 主动使用的情况"></a>4. 主动使用的情况</h2><pre><code>1. 创建类实例 ig：new object（）
+2. 访问某类或者接口的静态变量 取值赋值操作
+3. 调用类的静态方法
+4. 反射
+5. 初始化子类
+</code></pre>
+<h2 id="5-子类和父类的加载优先级关系一"><a href="#5-子类和父类的加载优先级关系一" class="headerlink" title="5. 子类和父类的加载优先级关系一"></a>5. 子类和父类的加载优先级关系一</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">static</span> &#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;i am parent static block &quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Parent</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;i am parent constructor &quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;i am parent normal block &quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;i am parent&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>i am parent static block 
+i am parent normal block 
+i am parent constructor 
+</code></pre>
+<p>结论： 先初始化代码块，然后调用构造函数，其中静态代码块优先级要高于普通代码块</p>
+<h2 id="5-子类和父类的加载优先级关系二"><a href="#5-子类和父类的加载优先级关系二" class="headerlink" title="5. 子类和父类的加载优先级关系二"></a>5. 子类和父类的加载优先级关系二</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Son</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">static</span> &#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;i am Son static block &quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Son</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;i am Son constructor &quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;i am Son normal block &quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>i am parent static block 
+i am Son static block 
+i am parent normal block 
+i am parent constructor 
+i am Son normal block 
+i am Son constructor
+</code></pre>
+<p>结论：<br>    1. 静态代码块高于一切优先级最高 <br><br>          2. 其次为父类的普通代码块和构造函数<br><br>          3. 父类的构造函数优先于子类的普通代码块<br></p>
+<h2 id="6-类加载概述"><a href="#6-类加载概述" class="headerlink" title="6. 类加载概述"></a>6. 类加载概述</h2><pre><code>类的加载是指将类的二进制数据读入内存，放在运行时方法区，然后创建一个Class对象，用来封装类在方法去的数据结构
+</code></pre>
+<p>加载class文件的方式<br>    1. 本地加载<br><br>    2. 网络下载<br><br>    3. 加载jar，zip等归档文件中的class文件<br><br>    4. 数据库提取<br><br>    5. Java源文件动态编译为class文件</p>
+<h2 id="7-主动使用和被动使用"><a href="#7-主动使用和被动使用" class="headerlink" title="7. 主动使用和被动使用"></a>7. 主动使用和被动使用</h2><pre><code>1. 对于调用静态字段，只有直接定义了该字段的类才会被初始化
+</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;i am parent normal block &quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">static</span> &#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;i am parent static block &quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Parent</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;i am parent constructor &quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> String str = <span class="string">&quot;hello word &quot;</span>;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Son</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">static</span> &#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;i am Son static block &quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Son</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;i am Son constructor &quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;i am Son normal block &quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;i am son&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line"><span class="comment">//		Parent p = new Parent();		</span></span><br><span class="line"><span class="comment">//		</span></span><br><span class="line"><span class="comment">//		</span></span><br><span class="line"><span class="comment">//		p.test();</span></span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		String str = Son.str;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>输出结果： i am parent static block 
+</code></pre>
+<p>由此可见，只有父类的静态代码块被调用了，这这个例子当中，是对父类的主动引用，虽然调用了son类。 初始化子类，父类也会被初始化</p>
+<h2 id="8-追踪被加载的类信息"><a href="#8-追踪被加载的类信息" class="headerlink" title="8. 追踪被加载的类信息"></a>8. 追踪被加载的类信息</h2><pre><code>使用 -XX:+TraceClassLoading 追踪类加载信息并打印
++ 表示开启 追踪，可以用 - 减号关闭
+-xx:&lt;options&gt;=&lt;value&gt;表示赋值为value
+</code></pre>
+<h2 id="9-实例1"><a href="#9-实例1" class="headerlink" title="9. 实例1"></a>9. 实例1</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test2</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		String str = Parent2.str;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Parent2</span> </span>&#123;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">static</span> &#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;static block invoked &quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String str = <span class="string">&quot;hello &quot;</span>;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>str 常量使用final修饰： 静态代码块会调用否则不会 
+在编译阶段：final修饰的常量，会被放置到调用者类的常量池当中
+本质上，调用类并没有直接饮用到定义常量的类，因此不会触发定义常量的类的初始化
+</code></pre>
+<h2 id="10-双亲委托机制"><a href="#10-双亲委托机制" class="headerlink" title="10. 双亲委托机制"></a>10. 双亲委托机制</h2><pre><code>1. 根类加载器       BootClassLoader
+2. 扩展类加载器         ExtClassLoader
+3. 系统类加载器         AppClassLoader
+在双亲委托机制中，各个了类加载器按照父子关系形成树形结构，
+除了根类加载器以后，其他类加载器都有且只有一个父亲
+</code></pre>
+<h2 id="11-继承类的主动使用"><a href="#11-继承类的主动使用" class="headerlink" title="11. 继承类的主动使用"></a>11. 继承类的主动使用</h2><p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8_jietu.png"></img></p>
+<pre><code>结论 通过子类对于父类静态变量和静态函数的调用，并不属于对子类的主动使用，
+所以，子类的静态代码块没有执行
+看的是定义方，而不是调用方
+</code></pre>
+<h2 id="12-类的卸载"><a href="#12-类的卸载" class="headerlink" title="12. 类的卸载"></a>12. 类的卸载</h2><pre><code>1. 由Java虚拟机自带的类加载器(根类加载器，扩展类加载器，系统来加载器)加载的类，
+在jvm生命周期内，始终不会被卸载。
+2. 由用户自定义的类加载器加载的类，是可以被卸载的。
+</code></pre>
+<h2 id="13-追踪被卸载的类信息"><a href="#13-追踪被卸载的类信息" class="headerlink" title="13. 追踪被卸载的类信息"></a>13. 追踪被卸载的类信息</h2><pre><code>使用 -XX:+TraceClassUnloading 追踪类加载信息并打印
+</code></pre>
+<h2 id="14-复杂类的加载"><a href="#14-复杂类的加载" class="headerlink" title="14. 复杂类的加载"></a>14. 复杂类的加载</h2><pre><code>对于父加载器加载的类，对于子加载器是可见的，但是
+对于子加载器加载的类，对于父加载器是不可见的
+</code></pre>
+<h2 id="15-命名空间的概念"><a href="#15-命名空间的概念" class="headerlink" title="15. 命名空间的概念"></a>15. 命名空间的概念</h2><pre><code>1. 每个类加载器都有一个命名空间，
+2. 子加载器包含所有父类的命名空间可以访问父加载器加载的类，
+3. 父加载器锁加载的类，无法被子加载器访问
+4. 在同一个命名空间内，不会出现同一个类名和包名相同的类
+5. 同一个命名空间内，类之间是相互可见的，反之不可见
+</code></pre>
+<h2 id="16-启动类加载器"><a href="#16-启动类加载器" class="headerlink" title="16. 启动类加载器"></a>16. 启动类加载器</h2><pre><code>内建于jvm的启动类加载器会加载ClassLoader以及其他的Java平台类
+当jvm启动时，一块特殊的代码块会运行，他会加载扩展类加载器以及系统类加载器，
+启动类加载器是c++实现，特定平台的机器指令，负责开启整个加载过程。
+启动类加载器负责加载JRE基本组件，java.util java.lang包中的类
+</code></pre>
+<h2 id="17-线程上下文类加载器"><a href="#17-线程上下文类加载器" class="headerlink" title="17. 线程上下文类加载器"></a>17. 线程上下文类加载器</h2><pre><code>破坏双亲委托机制，使得我们可以让某一个加载器去加载类
+
+1.     当前类加载器 (currentClassLoader)： 
+    用于加载当前类的加载器
+    每个类都会使用自己的类加载器去加载其他类，如果classX引用
+    了classY,那么classX的类加载器就会去加载classY(如果
+    classY尚未被加载)
+2. 线程上下文类加载器
+    jdk 1.2 引入的，thread类 getContextClassLoader方法
+    如果没有通过setContextClassLoader设置，线程将继承
+    父类的上下文加载器，
+    Java应用运行时的初始线程的上下文加载器是系统类加载器，
+    在线程中运行的代码可以通过该类加载器来加载类与资源
+</code></pre>
+<br>
+
+<pre><code>父classLoader可以使用当前线程
+Thread.currentClassLoader().getClassLoader 所指定的
+classloader加载的类，这就改变了父classloader不能使用子
+classloader或者没有父子关系的classloader加载的类的情况。
+</code></pre>
+<br>
+
+<pre><code>例如 jdbc规范的实现
+高层提供统一的接口让低层去实现，同时又要在高层使用低层的类
+</code></pre>
+<h2 id="18-jar-hell问题解决"><a href="#18-jar-hell问题解决" class="headerlink" title="18. jar hell问题解决"></a>18. jar hell问题解决</h2><pre><code>当某各类存在多个jar包中，我们可以通过以下方式寻找解决
+</code></pre>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/jar_hell.png"></img></p>
+<h2 id="19-类的加载过程解析"><a href="#19-类的加载过程解析" class="headerlink" title="19. 类的加载过程解析"></a>19. 类的加载过程解析</h2><pre><code>1. 加载
+2. 连接  - 验证-准备-解析
+3. 初始化
+4. 使用
+5. 卸载
+</code></pre>
+<h4 id="1-加载"><a href="#1-加载" class="headerlink" title="1. 加载"></a>1. 加载</h4><pre><code>在类加载过程中，虚拟机主要完成以下事件
+1. 获取二进制流
+2. 将二进制流转化为方法区的运行时数据结构
+3. 内存中生成代表这个类的Class对象，作为访问各种数据的入口
+</code></pre>
+<h4 id="2-验证"><a href="#2-验证" class="headerlink" title="2. 验证"></a>2. 验证</h4><pre><code>验证主要是为了确保Class文件中的字节流符合虚拟机的要求，不会危及虚拟机安全。
+1. 文件格式验证
+    检查魔数，主此版本号看是否虚拟机可以支持，常量池检查
+2. 元数据验证
+    对语义进行分析，看是否符合Java规范。例如：
+    继承了final类，抽象类方法未实现
+3. 字节码验证
+    
+4. 符号引用验证
+    
+</code></pre>
+<h4 id="3-准备"><a href="#3-准备" class="headerlink" title="3. 准备"></a>3. 准备</h4><pre><code>准备阶段会为类的静态变量分配内存并初始化默认的零值
+</code></pre>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/lingzhi.png"></img></p>
+<h4 id="4-解析"><a href="#4-解析" class="headerlink" title="4. 解析"></a>4. 解析</h4><pre><code>符号引用转化为直接引用
+</code></pre>
+<h4 id="5-初始化"><a href="#5-初始化" class="headerlink" title="5. 初始化"></a>5. 初始化</h4><pre><code>为静态变量初始化正确的赋值
+</code></pre>
+<h2 id="3-类加载器"><a href="#3-类加载器" class="headerlink" title="3. 类加载器"></a>3. 类加载器</h2><p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/jiazaiqi.png" height=100></img></p>
+<h2 id="4-双亲委托"><a href="#4-双亲委托" class="headerlink" title="4. 双亲委托"></a>4. 双亲委托</h2><pre><code>1. 工作过程
+    如果一个类加载器收到了类加载的请求，它首先会去请求父类加载器去完成，
+    因此所有的加载请求最终都会传送到顶层的类加载器中。
+    只有父类加载器反馈自己无法完成类加载请求，子类加载器才会去
+    尝试加载。
+2. 双亲委托的好处
+    保持层级关系
+    保证在当前类加载上下文中，类的唯一性
+</code></pre>
+<h2 id="5-双亲委托模型的破坏"><a href="#5-双亲委托模型的破坏" class="headerlink" title="5. 双亲委托模型的破坏"></a>5. 双亲委托模型的破坏</h2><pre><code>1. 双亲委托模型是jdk1.2开始的，so
+2. 线程上下文加载器
+3. 程序动态性
+</code></pre>
+<h4 id="1-线程上下文改变了双亲委托模型"><a href="#1-线程上下文改变了双亲委托模型" class="headerlink" title="1. 线程上下文改变了双亲委托模型"></a>1. 线程上下文改变了双亲委托模型</h4><pre><code>父classLoader可以使用当前线程
+Thread.currentClassLoader().getClassLoader 所指定的
+classloader加载的类，这就改变了父classloader不能使用子
+classloader或者没有父子关系的classloader加载的类的情况。
+</code></pre>
+<br>
+
+<pre><code>jdbc 的实现
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/Jvm/jvm-%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0/" data-id="ckpkkdokq005eifus1i8dadji" data-title="jvm 系列笔记 - 类加载器" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Flutter-mac环境配置Android-studio篇" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Flutter/Flutter-mac%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AEAndroid-studio%E7%AF%87/" class="article-date">
+  <time class="dt-published" datetime="2019-07-19T01:35:00.000Z" itemprop="datePublished">2019-07-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Flutter/">Flutter</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/Flutter/Flutter-mac%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AEAndroid-studio%E7%AF%87/">Flutter_mac环境配置Android studio篇</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <pre><code>flutter 环境配置相对比较简单，不做陈述 。
+注意开通vpn网络环境即可
+</code></pre>
+<br>
+
+    
+<pre><code>后续开始 Flutter 相关学习
+</code></pre>
+<p>参考文档：<br>    <a target="_blank" rel="noopener" href="https://flutterchina.club/setup-macos/">https://flutterchina.club/setup-macos/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/Flutter/Flutter-mac%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AEAndroid-studio%E7%AF%87/" data-id="ckpkkdok2003cifus5dtvh0gg" data-title="Flutter_mac环境配置Android studio篇" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Android中的事件分发流程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/uncategorized/Android%E4%B8%AD%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%B5%81%E7%A8%8B/" class="article-date">
+  <time class="dt-published" datetime="2019-07-17T06:38:23.000Z" itemprop="datePublished">2019-07-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/uncategorized/Android%E4%B8%AD%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%B5%81%E7%A8%8B/">Android中的事件分发流程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="1-View中的事件分发流程"><a href="#1-View中的事件分发流程" class="headerlink" title="1. View中的事件分发流程"></a>1. View中的事件分发流程</h2><p>dispatchTouchEvent 核心代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">dispatchTouchEvent</span><span class="params">(MotionEvent event)</span> </span>&#123;</span><br><span class="line">	......</span><br><span class="line">	ListenerInfo li = mListenerInfo;</span><br><span class="line">            <span class="keyword">if</span> (li != <span class="keyword">null</span> &amp;&amp; li.mOnTouchListener != <span class="keyword">null</span></span><br><span class="line">                    &amp;&amp; (mViewFlags &amp; ENABLED_MASK) == ENABLED</span><br><span class="line">                    &amp;&amp; li.mOnTouchListener.onTouch(<span class="keyword">this</span>, event)) &#123;</span><br><span class="line">                result = <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (!result &amp;&amp; onTouchEvent(event)) &#123;</span><br><span class="line">                result = <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">	.....</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>在dispatch中对 mOnTouchListener 事件进行了处理，由此可见mOnTouchListener对分发的影响，要高于onCLick以及onLongClick 。 如果没有在mOnTouchListener中进行消费，那么View中的分发，在此处进入到了 onTouchEvent 进行处理
+</code></pre>
+<p>在View的onTouchEvent中，主要是对于MotionEvent.ACTION_DOWN、MotionEvent.ACTION_UP 、MotionEvent.ACTION_MOVE 事件进行处理</p>
+<h3 id="1-MotionEvent-ACTION-UP"><a href="#1-MotionEvent-ACTION-UP" class="headerlink" title="1. MotionEvent.ACTION_UP:"></a>1. MotionEvent.ACTION_UP:</h3><p><img src="https://img-blog.csdnimg.cn/20190717144900906.png"></img><br>在up 事件中，首先会进行longClick事件的判断，如果返回false，那么就不在执行 onClick事件</p>
+<h3 id="2-MotionEvent-ACTION-DOWN"><a href="#2-MotionEvent-ACTION-DOWN" class="headerlink" title="2. MotionEvent.ACTION_DOWN:"></a>2. MotionEvent.ACTION_DOWN:</h3><p><img src="https://img-blog.csdnimg.cn/20190717145151252.png" alt="在这里插入图片描述"><br>在down事件中，首先设置了一个longClick的runnable，进行检查</p>
+<h3 id="3-MotionEvent-ACTION-MOVE"><a href="#3-MotionEvent-ACTION-MOVE" class="headerlink" title="3. MotionEvent.ACTION_MOVE:"></a>3. MotionEvent.ACTION_MOVE:</h3><p><img src="https://img-blog.csdnimg.cn/20190717145615331.png" alt="在这里插入图片描述"></p>
+<h2 id="2-ViewGroup-中的分发流程"><a href="#2-ViewGroup-中的分发流程" class="headerlink" title="2. ViewGroup 中的分发流程"></a>2. ViewGroup 中的分发流程</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">dispatchTouchEvent</span><span class="params">(MotionEvent ev)</span> </span>&#123;</span><br><span class="line">	......</span><br><span class="line">	<span class="comment">// 利用disallowIntercept 和 onInterceptTouchEvent 进行是否拦截的判断</span></span><br><span class="line">	<span class="keyword">if</span> (actionMasked == MotionEvent.ACTION_DOWN</span><br><span class="line">                   || mFirstTouchTarget != <span class="keyword">null</span>) &#123;</span><br><span class="line">               <span class="keyword">final</span> <span class="keyword">boolean</span> disallowIntercept = (mGroupFlags &amp; FLAG_DISALLOW_INTERCEPT) != <span class="number">0</span>;</span><br><span class="line">               <span class="keyword">if</span> (!disallowIntercept) &#123;</span><br><span class="line">                   intercepted = onInterceptTouchEvent(ev);</span><br><span class="line">                   ev.setAction(action); <span class="comment">// restore action in case it was changed</span></span><br><span class="line">               &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                   intercepted = <span class="keyword">false</span>;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               <span class="comment">// There are no touch targets and this action is not an initial down</span></span><br><span class="line">               <span class="comment">// so this view group continues to intercept touches.</span></span><br><span class="line">               intercepted = <span class="keyword">true</span>;</span><br><span class="line">           &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/uncategorized/Android%E4%B8%AD%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%B5%81%E7%A8%8B/" data-id="ckpkkdojp002cifusf23rbtam" data-title="Android中的事件分发流程" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-pr主要技术点汇总" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/uncategorized/pr%E4%B8%BB%E8%A6%81%E6%8A%80%E6%9C%AF%E7%82%B9%E6%B1%87%E6%80%BB/" class="article-date">
+  <time class="dt-published" datetime="2019-07-09T07:09:27.000Z" itemprop="datePublished">2019-07-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/uncategorized/pr%E4%B8%BB%E8%A6%81%E6%8A%80%E6%9C%AF%E7%82%B9%E6%B1%87%E6%80%BB/">pr主要技术点汇总</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>绿幕抠图： 超级键 - 主要颜色点击绿布</li>
+<li>图中抠字： 效果控件，亮度建调整 阈值和屏蔽度</li>
+<li></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/uncategorized/pr%E4%B8%BB%E8%A6%81%E6%8A%80%E6%9C%AF%E7%82%B9%E6%B1%87%E6%80%BB/" data-id="ckpkkdokw005rifushyjw747j" data-title="pr主要技术点汇总" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-镂空文字制作" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/uncategorized/%E9%95%82%E7%A9%BA%E6%96%87%E5%AD%97%E5%88%B6%E4%BD%9C/" class="article-date">
+  <time class="dt-published" datetime="2019-07-08T10:41:16.000Z" itemprop="datePublished">2019-07-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/uncategorized/%E9%95%82%E7%A9%BA%E6%96%87%E5%AD%97%E5%88%B6%E4%BD%9C/">镂空文字制作</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>用视频或者图片作为v1 </li>
+<li>新建旧版标题 - 设置为黑色背景</li>
+<li>添加旧版标题到v2</li>
+<li>v2亮度建效果 - 调整阈值、调整屏蔽度</li>
+</ol>
+<p>绿幕抠图： 超级键 - 主要颜色点击绿布</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/uncategorized/%E9%95%82%E7%A9%BA%E6%96%87%E5%AD%97%E5%88%B6%E4%BD%9C/" data-id="ckpkkdolh007xifus8z9q4thd" data-title="镂空文字制作" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-文字写到石头上" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/uncategorized/%E6%96%87%E5%AD%97%E5%86%99%E5%88%B0%E7%9F%B3%E5%A4%B4%E4%B8%8A/" class="article-date">
+  <time class="dt-published" datetime="2019-07-08T09:33:34.000Z" itemprop="datePublished">2019-07-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/uncategorized/%E6%96%87%E5%AD%97%E5%86%99%E5%88%B0%E7%9F%B3%E5%A4%B4%E4%B8%8A/">文字写到石头上</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>石头 v1 ，文字 v2 ，</p>
+<ol>
+<li><p>抠图 - 文字抠图 - 效果控件，亮度建调整 阈值和屏蔽度</p>
+</li>
+<li><p>扭曲 - 边角定位效果可以调整图片的位置 </p>
+</li>
+<li><p>如果文字前面有遮挡，导致效果不好，可以复制v1 到v3 选择轨道遮罩键进行处理</p>
+<p> 1、新建旧版标题 为v4</p>
+<p> 2、钢笔工具抠图</p>
+<p> 3、邮件 选择填充贝塞尔曲线</p>
+</li>
+<li><p>将我们的旧版标题添加到视频轨道，这样就给遮住了</p>
+</li>
+<li><p>轨道遮罩键 选择遮罩为视频4</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/uncategorized/%E6%96%87%E5%AD%97%E5%86%99%E5%88%B0%E7%9F%B3%E5%A4%B4%E4%B8%8A/" data-id="ckpkkdol4006lifus48lgcnrh" data-title="文字写到石头上" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-玻璃划过的效果制作" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/uncategorized/%E7%8E%BB%E7%92%83%E5%88%92%E8%BF%87%E7%9A%84%E6%95%88%E6%9E%9C%E5%88%B6%E4%BD%9C/" class="article-date">
+  <time class="dt-published" datetime="2019-07-08T07:58:00.000Z" itemprop="datePublished">2019-07-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/uncategorized/%E7%8E%BB%E7%92%83%E5%88%92%E8%BF%87%E7%9A%84%E6%95%88%E6%9E%9C%E5%88%B6%E4%BD%9C/">玻璃划过的效果制作</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>使用图片素材 v1，拷贝一下v2，然后在窗口里面 找到基本图形 - 编辑- 矩形</p>
+</li>
+<li><p>这时候会在窗口中出现一个矩形框，调整宽高，设置为水平居中和垂直居中，调整角度</p>
+</li>
+<li><p>现在已经有了一个黑色的长条，我们找到效果，轨道遮罩键，拖到拷贝的v2素材中</p>
+</li>
+<li><p>遮罩效果，选择视频3，然后在调整缩放就可以看到静态效果</p>
+</li>
+<li><p>图形，然后在效果栏找到变换，设置位置和关键帧</p>
+</li>
+</ol>
+<p>图片抠字 ： 效果控件，亮度建调整 阈值和屏蔽度</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/uncategorized/%E7%8E%BB%E7%92%83%E5%88%92%E8%BF%87%E7%9A%84%E6%95%88%E6%9E%9C%E5%88%B6%E4%BD%9C/" data-id="ckpkkdol7006zifus4m5acecz" data-title="玻璃划过的效果制作" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-字幕" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/uncategorized/%E5%AD%97%E5%B9%95/" class="article-date">
+  <time class="dt-published" datetime="2019-07-04T06:20:47.000Z" itemprop="datePublished">2019-07-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/uncategorized/%E5%AD%97%E5%B9%95/">文字操作合集</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="1-开放式字幕"><a href="#1-开放式字幕" class="headerlink" title="1. 开放式字幕"></a>1. 开放式字幕</h2><pre><code>资源栏目里新建字幕 - 选择开放式字幕
+</code></pre>
+<h2 id="2-制作任意轨迹文字效果"><a href="#2-制作任意轨迹文字效果" class="headerlink" title="2. 制作任意轨迹文字效果"></a>2. 制作任意轨迹文字效果</h2><pre><code>1. 旧版标题
+2. 路径文字工具 / 垂直路径文字工具
+</code></pre>
+<h2 id="3-雷特字幕插件"><a href="#3-雷特字幕插件" class="headerlink" title="3. 雷特字幕插件"></a>3. 雷特字幕插件</h2><pre><code>1. 新建字幕 - 注意要和视频的序列保持一致
+2. 弹出的对话框左下角点击 - 选择一个对白模板
+3. 将新建的元素序列拖放到视频轨道的上方，并调整长度
+4. 双击字幕轨道，导入编辑好的文本
+5. 可以编辑，字体字号等样式
+6. 拍字幕 ，点击录制键，然后按空格键
+7. 可以在控制面板进行微调,修改错别字
+</code></pre>
+<h2 id="4-制作滚动和游动字幕"><a href="#4-制作滚动和游动字幕" class="headerlink" title="4. 制作滚动和游动字幕"></a>4. 制作滚动和游动字幕</h2><pre><code>1. 新建标题
+2. 添加文本，并调整位置
+3. 点击左上角第三栏图标 ，选择滚动/游动，配置滚动方式
+4. 添加到轨道
+</code></pre>
+<br>
+练习 
+
+
+
+<h2 id="5-制作猪年对联"><a href="#5-制作猪年对联" class="headerlink" title="5. 制作猪年对联"></a>5. 制作猪年对联</h2><pre><code>1. 在素材上新建旧版标题
+2. 调整样式，并添加竖版文字
+3. 变换 - 裁剪
+</code></pre>
+<h2 id="6-文字镂空效果-文字透过背景"><a href="#6-文字镂空效果-文字透过背景" class="headerlink" title="6. 文字镂空效果 - 文字透过背景"></a>6. 文字镂空效果 - 文字透过背景</h2><pre><code>1. 新建旧版标题，用矩形工具将背景置为黑色
+2. 亮度建 - 调整阈值和屏蔽度即可
+</code></pre>
+<h2 id="7-石头书法"><a href="#7-石头书法" class="headerlink" title="7. 石头书法"></a>7. 石头书法</h2><pre><code>1. 抠图 - 文字抠图 - 效果控件，亮度建调整 阈值和屏蔽度
+</code></pre>
+<ol start="2">
+<li><p>扭曲 - 边角定位效果可以调整图片的位置 </p>
+</li>
+<li><p>如果文字前面有遮挡，导致效果不好，可以复制v1 到v3 选择轨道遮罩键进行处理</p>
+<p> 1、新建旧版标题 为v4</p>
+<p> 2、钢笔工具抠图</p>
+<p> 3、邮件 选择填充贝塞尔曲线</p>
+</li>
+<li><p>将我们的旧版标题添加到视频轨道，这样就给遮住了</p>
+</li>
+<li><p>轨道遮罩键 选择遮罩为视频4</p>
+</li>
+</ol>
+<h2 id="8-逐笔写字效果"><a href="#8-逐笔写字效果" class="headerlink" title="8. 逐笔写字效果"></a>8. 逐笔写字效果</h2><pre><code>1. 新建旧版标题
+2. 不透明度效果，新建一个矩形蒙版
+3. 设置关键帧，让蒙版运动
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/uncategorized/%E5%AD%97%E5%B9%95/" data-id="ckpkkdol00068ifusfx4l3grk" data-title="文字操作合集" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-音频基础" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/uncategorized/%E9%9F%B3%E9%A2%91%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time class="dt-published" datetime="2019-07-04T05:47:05.000Z" itemprop="datePublished">2019-07-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/uncategorized/%E9%9F%B3%E9%A2%91%E5%9F%BA%E7%A1%80/">音频基础</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="1-音频剪辑，效果，轨道"><a href="#1-音频剪辑，效果，轨道" class="headerlink" title="1. 音频剪辑，效果，轨道"></a>1. 音频剪辑，效果，轨道</h2><h2 id="2-声音录制"><a href="#2-声音录制" class="headerlink" title="2. 声音录制"></a>2. 声音录制</h2><h2 id="3-变速，视频录制"><a href="#3-变速，视频录制" class="headerlink" title="3. 变速，视频录制"></a>3. 变速，视频录制</h2><h2 id="4-视频加速"><a href="#4-视频加速" class="headerlink" title="4. 视频加速"></a>4. 视频加速</h2><pre><code>1. 效果控件 - 时间重映射 - 速度 - 添加关键帧
+2. 视频编辑出 - 右键 - 时间重映射 - 速度
+2. 编辑器调整视频时间线(上下拖动)
+3. 音频同步 - 取消链接，然后缩短和视频一样长度
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/uncategorized/%E9%9F%B3%E9%A2%91%E5%9F%BA%E7%A1%80/" data-id="ckpkkdoli0082ifus5wndbmwi" data-title="音频基础" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/7/">&laquo; zurück</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/9/">weiter &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/">dlib</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/DIP/">DIP</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/mvp/">mvp</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIP/">DIP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Flutter/">Flutter</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gradle/">Gradle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/JavaConcurrent/">JavaConcurrent</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/concurrent/">concurrent</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Jvm/">Jvm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kotlin/">Kotlin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nio/">Nio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note2/">Note2</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/OpenGL/">OpenGL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ReactNative/">ReactNative</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/">jdhai</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/">javascript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/%E8%B7%A8%E5%B9%B3%E5%8F%B0/">跨平台</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/pr/">pr</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%91%E6%8C%87%E7%B3%BB%E5%88%97/">剑指系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%85%92/">酒</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-multiDex/">源码分析-multiDex</a>
+          </li>
+        
+          <li>
+            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-leakCanary/">源码分析-leakCanary</a>
+          </li>
+        
+          <li>
+            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-glide/">源码分析-glide</a>
+          </li>
+        
+          <li>
+            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-okHttp/">源码分析-okHttp</a>
+          </li>
+        
+          <li>
+            <a href="/Android/Android-view%E7%BB%98%E5%88%B6/">Android-view绘制</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 师学<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

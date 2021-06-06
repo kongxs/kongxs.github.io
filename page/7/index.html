@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>师学</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="师学">
+<meta property="og:url" content="http://yoursite.com/page/7/index.html">
+<meta property="og:site_name" content="师学">
+<meta property="og:locale">
+<meta property="article:author" content="师学">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="师学" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">师学</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学而不思则罔，思而不学则殆。</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-nio-buffer-学习详解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Nio/nio-buffer-%E5%AD%A6%E4%B9%A0%E8%AF%A6%E8%A7%A3/" class="article-date">
+  <time class="dt-published" datetime="2019-08-13T01:47:02.000Z" itemprop="datePublished">2019-08-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Nio/">Nio</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/Nio/nio-buffer-%E5%AD%A6%E4%B9%A0%E8%AF%A6%E8%A7%A3/">nio buffer 学习详解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="1-Buffer"><a href="#1-Buffer" class="headerlink" title="1. Buffer"></a>1. Buffer</h2><pre><code>nio对于原生数据类型的支持(除去boolean)
+如 IntBuffer、ByteBuffer
+</code></pre>
+<h2 id="2-buffer重要概念"><a href="#2-buffer重要概念" class="headerlink" title="2. buffer重要概念"></a>2. buffer重要概念</h2><pre><code>buffer中有一个概念是关于 position、limit 、capacity 的
+在一个buffer被初始化的时候，比如 intBuffer.allocate(6)，我们给当前buffer分配控件为6
+这个时候，position 指向 0 ，limit = capacity 指向当前容量的下一个地址 即 7 
+如下图： 
+</code></pre>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/nio/buffer_flip.png"></img></p>
+<pre><code>这时候我们向buffer中写入3个控件的数据，position 指向4（下一个将要下入的空间），limit = capacity 指向当前容量的下一个地址 为 7
+</code></pre>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/nio/buffer_write.png"></img></p>
+<pre><code>此时调用buffer.flip 进行翻转 准备输出。 position指向0，
+limit指向4，capacity指向7
+</code></pre>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/nio/buffer_flip_1.png"></img></p>
+<pre><code>buffer.clear 置为初始状态
+</code></pre>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/nio/buffer_flip.png"></img></p>
+<h2 id="3-sliceBuffer"><a href="#3-sliceBuffer" class="headerlink" title="3. sliceBuffer"></a>3. sliceBuffer</h2><pre><code>通过 buffer.slice获取一个新的buffer，新buffer以 buffer的position为开始，以buffer的limit为结束返回。
+新buffer的position，limit，capacity 独立，但是对于新buffer的修改会反映到原有的buffer中
+</code></pre>
+<h2 id="4-只读buffer"><a href="#4-只读buffer" class="headerlink" title="4. 只读buffer"></a>4. 只读buffer</h2><pre><code>通过buffer.asReadOnlyBuffer()获取.
+如果尝试向只读buffer写入数据会抛出异常ReadOnlyException，原有buffer的数据变化对于只读buffer是可见的
+</code></pre>
+<h2 id="5-directBuffer-直接缓冲"><a href="#5-directBuffer-直接缓冲" class="headerlink" title="5. directBuffer 直接缓冲"></a>5. directBuffer 直接缓冲</h2><pre><code>通过byteBuffer.allocateDirect()获取.
+堆外内存，0 拷贝，直接在native创建内存区域同io设备打交道
+</code></pre>
+<h2 id="6-buffer的scattering和gathering"><a href="#6-buffer的scattering和gathering" class="headerlink" title="6. buffer的scattering和gathering"></a>6. buffer的scattering和gathering</h2><pre><code>Scaterring 撒开,分散,将来自于一个Channel的数据分散到多个Buffer当中,一个满了就用下一个,可以实现数据的分门别类.
+
+这样就省去了解析的时间,比如一个消息有三个部分,第一部分是头信息,第二部分是协议信息,第三部分是消息体.
+
+可以吧这三个消息分别放到不同的Ｂuffer当中，
+
+Gatering 把多个汇总成一个,将要写到Channel的数据,
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/Nio/nio-buffer-%E5%AD%A6%E4%B9%A0%E8%AF%A6%E8%A7%A3/" data-id="ckpkkdokv005mifus9y8te3dg" data-title="nio buffer 学习详解" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-nio学习" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/uncategorized/nio%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time class="dt-published" datetime="2019-08-12T06:31:56.000Z" itemprop="datePublished">2019-08-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/uncategorized/nio%E5%AD%A6%E4%B9%A0/">nio学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="1-IO与NIO"><a href="#1-IO与NIO" class="headerlink" title="1. IO与NIO"></a>1. IO与NIO</h2><pre><code>在io中核心概念是流，要么是输入要么是输出，不能同时输入输出
+在NIO中拥有三个核心概念： 
+    1. selector 选择器
+    2. channel 通道
+    3. buffer 缓冲区
+NIO 是面向块(block)或者缓冲区(buffer)编程的,
+buffer 本身是一块内存，底层实现是一块数组，
+底层 读写 是通过buffer实现的
+</code></pre>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/nio_1.png"></img></p>
+<pre><code>java中的原生类型都有对应的buffer 
+    如 intBuffer
+channel是指可以从中读取或者写入数据的对象，所有数据的读写都是通过
+buffer来进行的，
+channel是双向的，拥有读写的双向功能 。
+</code></pre>
+<h2 id="2-nio示例一"><a href="#2-nio示例一" class="headerlink" title="2. nio示例一"></a>2. nio示例一</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">FileInputStream fisl = <span class="keyword">new</span> FileInputStream(<span class="string">&quot;niotest.txt&quot;</span>);</span><br><span class="line"></span><br><span class="line">        FileChannel channel = fisl.getChannel();</span><br><span class="line"></span><br><span class="line">        ByteBuffer buffer = ByteBuffer.allocate(<span class="number">512</span>);</span><br><span class="line"></span><br><span class="line">        channel.read(buffer);</span><br><span class="line"></span><br><span class="line">        buffer.flip();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (buffer.hasRemaining()) &#123;</span><br><span class="line">            System.out.print((<span class="keyword">char</span>) buffer.get());</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-nio-示例二"><a href="#3-nio-示例二" class="headerlink" title="3. nio 示例二"></a>3. nio 示例二</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">        FileOutputStream fos = new FileOutputStream(&quot;niotext.txt&quot;);</span><br><span class="line"></span><br><span class="line">        FileChannel channel = fos.getChannel();</span><br><span class="line"></span><br><span class="line">        ByteBuffer buffer = ByteBuffer.allocate(512);</span><br><span class="line"></span><br><span class="line">        buffer.put(&quot;hello nio test &quot;.getBytes());</span><br><span class="line"></span><br><span class="line">        buffer.flip();</span><br><span class="line"></span><br><span class="line">        channel.write(buffer);</span><br><span class="line"></span><br><span class="line">        fos.close();</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>总结： 
+    以上两个例子，我们对文件的操作都是通过channel和buffer来实现的
+    
+读文件: 
+    首先通过channel把的文件内容写到buffer，然后通过buffer获取
+    
+写文件： 
+    首先把内容写到buffer，然后通过channel写入文件
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/uncategorized/nio%E5%AD%A6%E4%B9%A0/" data-id="ckpkkdokw005pifusf9d5ggu8" data-title="nio学习" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="psot-装饰模式使用" class="h-entry article article-type-psot" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time class="dt-published" datetime="2019-08-12T05:52:30.000Z" itemprop="datePublished">2019-08-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F%E4%BD%BF%E7%94%A8/">装饰模式使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="1-装饰模式的概念"><a href="#1-装饰模式的概念" class="headerlink" title="1. 装饰模式的概念"></a>1. 装饰模式的概念</h2><pre><code>装饰模式：
+在不改变接口的前提下，动态扩展对象的访问。    
+动态继承，让类具有在运行期改变行为的能力。    
+装饰模式，突出的是运行期增加行为，这和继承是不同的，
+继承是在编译期增加行为。
+强调：增强，新增行为
+</code></pre>
+<br>
+
+<pre><code>策略模式有如下的角色: 
+顶层构件接口： 规范了接口的动作行为
+抽象构件类 ： 实现顶层构件并维护一个构件对象，将行为做分发
+核心构件类 ： 脱离于抽象构件的核心独立存在
+</code></pre>
+<h2 id="2-代码实现"><a href="#2-代码实现" class="headerlink" title="2. 代码实现"></a>2. 代码实现</h2><p>顶层构件接口： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Milk</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getPrice</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function">String <span class="title">getName</span><span class="params">()</span></span>; </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>抽象构件类： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 抽象构件角色，继承 milk</span></span><br><span class="line"><span class="comment"> * 并内部维护一个 compoment 对象，负责做接口请求的转发</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">MilkDecorator</span> <span class="keyword">implements</span> <span class="title">Milk</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> Milk compoment;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MilkDecorator</span><span class="params">(Milk compoment)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.compoment = compoment;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPrice</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> compoment.getPrice();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> compoment.getName();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>核心构件： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 核心构件</span><br><span class="line"> */</span><br><span class="line">public class PureMilk implements Milk &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public int getPrice() &#123;</span><br><span class="line">        return 5;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return &quot;纯牛奶&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>构件： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class AppleMilk extends MilkDecorator &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public AppleMilk(Milk compoment) &#123;</span><br><span class="line">        super(compoment);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public int getPrice() &#123;</span><br><span class="line">        return super.getPrice() + 5;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return super.getName() + &quot; 加苹果 &quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class PeachMilk extends MilkDecorator &#123;</span><br><span class="line"></span><br><span class="line">    public PeachMilk(Milk compoment) &#123;</span><br><span class="line">        super(compoment);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public int getPrice() &#123;</span><br><span class="line">        return super.getPrice() + 10;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return super.getName() + &quot; 黄桃 &quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        //核心构件</span><br><span class="line">        Milk milk = new PureMilk();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Milk packageA = new AppleMilk(milk);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Milk iceMilkA = new IceMilk(packageA);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        System.out.println(iceMilkA.getPrice() + &quot; , &quot; + iceMilkA.getName());</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Milk packageB = new PeachMilk(iceMilkA);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        System.out.println(packageB.getPrice() + &quot; , &quot; + packageB.getName());</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行结果：</p>
+<pre><code>10 , 纯牛奶 加苹果  加冰 
+20 , 纯牛奶 加苹果  加冰  黄桃 
+</code></pre>
+<h2 id="3-优缺点分析"><a href="#3-优缺点分析" class="headerlink" title="3. 优缺点分析"></a>3. 优缺点分析</h2><pre><code>优点：
+1. 装饰模式可以提供比继承更多地灵活性。
+2. 可以通过一种动态的方式来扩展一个对象的功能，
+    在运行时选择不同的装饰器，从而实现不同的行为。
+缺点： 
+1. 会产生很多的小对象（具体装饰类），增加了系统的复杂性。
+2. 装饰模式比继承易于出错，排错也很困难，对于多次装饰的对象，
+    调试时寻找错误可能需要逐级排查，较为烦琐。
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F%E4%BD%BF%E7%94%A8/" data-id="ckpkkdold007iifus6rbrgikn" data-title="装饰模式使用" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-策略模式使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time class="dt-published" datetime="2019-08-11T09:20:54.000Z" itemprop="datePublished">2019-08-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E4%BD%BF%E7%94%A8/">策略模式使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="1-是什么"><a href="#1-是什么" class="headerlink" title="1. 是什么"></a>1. 是什么</h2><pre><code>在策略模式（Strategy Pattern）中，一个类的行为或其算法可以在运行时更改。这种类型的设计模式属于行为型模式。
+1. 抽象策略角色 - 接口或者抽象类
+2. 具体策略角色
+3. 环境角色 - 持有策略类的引用，最终给客户端调用
+</code></pre>
+<h2 id="2-代码编写"><a href="#2-代码编写" class="headerlink" title="2. 代码编写"></a>2. 代码编写</h2><p>抽象策略角色</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Cal</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">calate</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>具体策略角色</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AddCal</span> <span class="keyword">implements</span> <span class="title">Cal</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">calate</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SubCal</span> <span class="keyword">implements</span> <span class="title">Cal</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">calate</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a - b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>环境类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Environment</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    Cal cal = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Environment</span><span class="params">(Cal cal)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.cal = cal;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">invokeCal</span><span class="params">(<span class="keyword">int</span> a , <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> cal.calate(a,b);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCal</span><span class="params">(Cal cal)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.cal = cal;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>测试代码： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StrategyTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        AddCal cal = <span class="keyword">new</span> AddCal();</span><br><span class="line"></span><br><span class="line">        Environment environment = <span class="keyword">new</span> Environment(cal);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        environment.setCal(cal);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> i = environment.invokeCal(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(i);</span><br><span class="line"></span><br><span class="line">        environment.setCal(<span class="keyword">new</span> SubCal());</span><br><span class="line"></span><br><span class="line">        System.out.println(environment.invokeCal(<span class="number">1</span>,<span class="number">2</span>));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出： </p>
+<pre><code>3
+-1
+</code></pre>
+<h2 id="3-优缺点"><a href="#3-优缺点" class="headerlink" title="3. 优缺点"></a>3. 优缺点</h2><pre><code>优点： 1、算法可以自由切换。 2、避免使用多重条件判断。 3、扩展性良好。
+缺点： 1、策略类会增多。 2、所有策略类都需要对外暴露。3. 客户端必须要知道所有的实现类
+</code></pre>
+<p>注意事项：<br>    如果一个系统的策略多于四个，就需要考虑使用混合模式，解决策略类膨胀的问题。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E4%BD%BF%E7%94%A8/" data-id="ckpkkdolb007difusc1nq9kiz" data-title="策略模式使用" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-netty学习" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Nio/netty%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time class="dt-published" datetime="2019-08-09T02:06:16.000Z" itemprop="datePublished">2019-08-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Nio/">Nio</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/Nio/netty%E5%AD%A6%E4%B9%A0/">netty学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="1-Netty-能做什么"><a href="#1-Netty-能做什么" class="headerlink" title="1. Netty 能做什么"></a>1. Netty 能做什么</h2><pre><code>1. http服务器 类 Tomcat ，但是没有实现web规范
+2. socket 开发 rpc通信
+3. 长链接的开发
+</code></pre>
+<h2 id="2-netty的http程序示例"><a href="#2-netty的http程序示例" class="headerlink" title="2. netty的http程序示例"></a>2. netty的http程序示例</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">public class TestServer &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws Exception&#123;</span><br><span class="line"></span><br><span class="line">        //工作线程</span><br><span class="line">        EventLoopGroup bossGroup = new NioEventLoopGroup();</span><br><span class="line">        EventLoopGroup workerGroup = new NioEventLoopGroup();</span><br><span class="line"></span><br><span class="line">        try &#123;</span><br><span class="line">            //服务启动器</span><br><span class="line">            ServerBootstrap bootstrap = new ServerBootstrap();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            bootstrap.group(bossGroup,workerGroup)</span><br><span class="line">                    .channel(NioServerSocketChannel.class)</span><br><span class="line">                    .childHandler(new TestServerInitializer());</span><br><span class="line"></span><br><span class="line">            //绑定端口</span><br><span class="line">            ChannelFuture sync = bootstrap.bind(8899).sync();</span><br><span class="line"></span><br><span class="line">            sync.channel().closeFuture().sync();</span><br><span class="line"></span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            bossGroup.shutdownGracefully();</span><br><span class="line">            workerGroup.shutdownGracefully();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public class TestServerInitializer extends ChannelInitializer&lt;SocketChannel&gt; &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void initChannel(SocketChannel ch) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">        //管道可以拥有很多个handler，类似于拦截器</span><br><span class="line">        ChannelPipeline pipeline = ch.pipeline();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        pipeline.addLast(&quot;httpServerCodec&quot;,new HttpServerCodec());</span><br><span class="line"></span><br><span class="line">        //自定义处理器</span><br><span class="line"></span><br><span class="line">        pipeline.addLast(&quot;testHttpServerHandler&quot;,new TestHttpServerHandler());</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">public class TestHttpServerHandler extends SimpleChannelInboundHandler&lt;HttpObject&gt; &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    //类似于 msgReceived 方法 , //接收消息，返回响应</span><br><span class="line">    @Override</span><br><span class="line">    protected void channelRead0(ChannelHandlerContext ctx, HttpObject msg) throws Exception &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        if (msg instanceof HttpRequest) &#123;</span><br><span class="line">            //构造一个响应内容</span><br><span class="line">            ByteBuf content = Unpooled.copiedBuffer(&quot;hello&quot;, CharsetUtil.UTF_8);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            //构造响应体</span><br><span class="line">            FullHttpResponse response = new DefaultFullHttpResponse(</span><br><span class="line">                    HttpVersion.HTTP_1_1, HttpResponseStatus.OK,content</span><br><span class="line">            );</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            response.headers().add(HttpHeaderNames.CONTENT_TYPE,&quot;text/plain&quot;);</span><br><span class="line">            response.headers().add(HttpHeaderNames.CONTENT_LENGTH,content.readableBytes());</span><br><span class="line"></span><br><span class="line">            //回写response</span><br><span class="line">            ctx.writeAndFlush(response);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>使用：</p>
+<pre><code>浏览器 localhost：8899 
+curl  localhost：8899 
+</code></pre>
+<h2 id="3-netty实现socket编程示例"><a href="#3-netty实现socket编程示例" class="headerlink" title="3. netty实现socket编程示例"></a>3. netty实现socket编程示例</h2><h3 id="3-1-SocketServer的实现"><a href="#3-1-SocketServer的实现" class="headerlink" title="3.1 SocketServer的实现"></a>3.1 SocketServer的实现</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">public class TestSocketServer &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws Exception &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        NioEventLoopGroup bossGroup = new NioEventLoopGroup();</span><br><span class="line">        NioEventLoopGroup workerGroup = new NioEventLoopGroup();</span><br><span class="line"></span><br><span class="line">        try &#123;</span><br><span class="line"></span><br><span class="line">            ServerBootstrap bootstrap = new ServerBootstrap();</span><br><span class="line"></span><br><span class="line">            bootstrap.group(bossGroup,workerGroup)</span><br><span class="line">                    .channel(NioServerSocketChannel.class)</span><br><span class="line">                    .childHandler(new TestSocketServerInitializer());</span><br><span class="line"></span><br><span class="line">            ChannelFuture sync = bootstrap.bind(8899).sync();</span><br><span class="line"></span><br><span class="line">            sync.channel().closeFuture().sync();</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            bossGroup.shutdownGracefully();</span><br><span class="line">            workerGroup.shutdownGracefully();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class TestSocketServerInitializer extends ChannelInitializer&lt;SocketChannel&gt; &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void initChannel(SocketChannel ch) throws Exception &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        ChannelPipeline pipeline = ch.pipeline();</span><br><span class="line"></span><br><span class="line">        pipeline.addLast(new LengthFieldBasedFrameDecoder(</span><br><span class="line">                Integer.MAX_VALUE,0,4,0,4));</span><br><span class="line"></span><br><span class="line">        pipeline.addLast(new LengthFieldPrepender(4));</span><br><span class="line"></span><br><span class="line">        pipeline.addLast(new StringEncoder(CharsetUtil.UTF_8));</span><br><span class="line"></span><br><span class="line">        pipeline.addLast(new StringDecoder(CharsetUtil.UTF_8));</span><br><span class="line"></span><br><span class="line">        pipeline.addLast(new TestSocketServerHandler());</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">    protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        SocketAddress socketAddress = ctx.channel().remoteAddress();</span><br><span class="line"></span><br><span class="line">        System.out.println(socketAddress + &quot; : &quot; + msg );</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        ctx.writeAndFlush(&quot;write from server : &quot; + UUID.randomUUID());</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-SocketClient的实现"><a href="#3-2-SocketClient的实现" class="headerlink" title="3.2 SocketClient的实现"></a>3.2 SocketClient的实现</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">public class MySocketClient &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">        NioEventLoopGroup loop = new NioEventLoopGroup();</span><br><span class="line"></span><br><span class="line">        try &#123;</span><br><span class="line">            Bootstrap bootstrap = new Bootstrap();</span><br><span class="line"></span><br><span class="line">            bootstrap.group(loop)</span><br><span class="line">                    .channel(NioSocketChannel.class)</span><br><span class="line">                    .handler(new MySocketClientInitializer());</span><br><span class="line"></span><br><span class="line">            ChannelFuture future = bootstrap.connect(&quot;localhost&quot;, 8899).sync();</span><br><span class="line"></span><br><span class="line">            future.channel().closeFuture().sync();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            loop.shutdownGracefully();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class MySocketClientInitializer extends ChannelInitializer&lt;SocketChannel&gt; &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void initChannel(SocketChannel ch) throws Exception &#123;</span><br><span class="line">        ChannelPipeline pipeline = ch.pipeline();</span><br><span class="line"></span><br><span class="line">        pipeline.addLast(new LengthFieldBasedFrameDecoder(</span><br><span class="line">                Integer.MAX_VALUE,0,4,0,4));</span><br><span class="line"></span><br><span class="line">        pipeline.addLast(new LengthFieldPrepender(4));</span><br><span class="line"></span><br><span class="line">        pipeline.addLast(new StringEncoder(CharsetUtil.UTF_8));</span><br><span class="line"></span><br><span class="line">        pipeline.addLast(new StringDecoder(CharsetUtil.UTF_8));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        pipeline.addLast(new MySocketClientHandler());</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class MySocketClientHandler extends SimpleChannelInboundHandler&lt;String&gt; &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception &#123;</span><br><span class="line">        System.out.println(ctx.channel().remoteAddress() + &quot; : &quot; + msg);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        ctx.writeAndFlush(&quot;from client : &quot; + LocalDateTime.now());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void channelActive(ChannelHandlerContext ctx) throws Exception &#123;</span><br><span class="line">        super.channelActive(ctx);</span><br><span class="line"></span><br><span class="line">        ctx.writeAndFlush(&quot;sss&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception &#123;</span><br><span class="line">//        super.exceptionCaught(ctx, cause);</span><br><span class="line">        cause.printStackTrace();</span><br><span class="line"></span><br><span class="line">        ctx.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<pre><code>分别启动服务端和客户端就可以在命令行看到输出
+</code></pre>
+<h2 id="4-netty编程流程总结"><a href="#4-netty编程流程总结" class="headerlink" title="4. netty编程流程总结"></a>4. netty编程流程总结</h2><pre><code>在Netty中，几乎所有的代码编写流程都遵循以下流程
+
+服务端： 
+1. 构建 ServerBootstrap 
+    创建工作线程 NioEventLoopGroup
+    指定channel NioServerSocketChannel
+    指定handler 
+2. 构建ChannelInitializer 
+    获取ChannelPipeline 添加netty处理器
+    添加自定义处理器
+3. 编写自定义处理器
+    继承SimpleChannelInboundHandler 接收参数
+    然后通过ChannelHandlerContext写会数据
+
+socket客户端： 
+1.  构建 Bootstrap 
+    创建工作线程 NioEventLoopGroup
+    指定channel NioSocketChannel
+    指定handler 
+2. 构建ChannelInitializer
+    获取ChannelPipeline 添加netty处理器
+    添加自定义处理器
+3. 编写自定义处理器
+    继承SimpleChannelInboundHandler 接收参数
+    然后通过ChannelHandlerContext写会数据
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/Nio/netty%E5%AD%A6%E4%B9%A0/" data-id="ckpkkdokv005kifusccjw0jcc" data-title="netty学习" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Java8-lambda表达式" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Java/Java8-lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="article-date">
+  <time class="dt-published" datetime="2019-08-01T08:22:38.000Z" itemprop="datePublished">2019-08-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/Java/Java8-lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/">Java8-lambda表达式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="1-lambda表达式"><a href="#1-lambda表达式" class="headerlink" title="1. lambda表达式"></a>1. lambda表达式</h2><pre><code>1. 如果一个接口只有一个抽象方法，那么它是lambda表达式
+2. 声明了 @FunctionalInterface 注解的接口
+3. 只有一个抽象接口，并没有@FunctionalInterface注解
+</code></pre>
+<h2 id="2-lambda-表达式的基本形式"><a href="#2-lambda-表达式的基本形式" class="headerlink" title="2. lambda 表达式的基本形式"></a>2. lambda 表达式的基本形式</h2><pre><code>(type1:param1,type2:param2) -&gt; &#123;body&#125;
+(param1,param2) -&gt; &#123;body&#125;
+() -&gt; &#123;body&#125;
+ param -&gt; &#123;body&#125;
+ 箭头函数左边为我们的参数，右边为体。如果右边为表达式的话
+ 那么我们可以将&#123;&#125;省略
+</code></pre>
+<h2 id="3-Function-接口"><a href="#3-Function-接口" class="headerlink" title="3. Function 接口"></a>3. Function 接口</h2><pre><code>单个的入参和出参
+方法： 
+    1. R apply(T var1);
+        默认方法，apply会将var作为参数调用我们传递的行为
+    2. default &lt;V&gt; Function&lt;T, V&gt; andThen
+    3. default &lt;V&gt; Function&lt;V, R&gt; compose
+        以上两个方法是可以将任意的2个function接口函数组合
+        到一起使用，理论上可以无限延伸
+        compose是先执行参数function的apply再执行自身
+        andThen相反
+</code></pre>
+<h2 id="4-BiFunction-接口"><a href="#4-BiFunction-接口" class="headerlink" title="4. BiFunction 接口"></a>4. BiFunction 接口</h2><pre><code>接收2个入参有一个出参
+1. R apply(T var1, U var2);
+2. default &lt;V&gt; BiFunction&lt;T, U, V&gt; andThen(Function&lt;? super R, ? extends V&gt; var1)
+BiFunction只有andThen 并接收一个 function作为参数
+</code></pre>
+<h2 id="5-Predicate-接口"><a href="#5-Predicate-接口" class="headerlink" title="5. Predicate 接口"></a>5. Predicate 接口</h2><pre><code>判定类型接口方法
+1. boolean test(T var1); 
+2. default Predicate&lt;T&gt; and(Predicate&lt;? super T&gt; var1) 逻辑与
+3. default Predicate&lt;T&gt; or(Predicate&lt;? super T&gt; var1) 逻辑或
+4. default Predicate&lt;T&gt; negate() 取反
+5. static &lt;T&gt; Predicate&lt;T&gt; isEqual(Object var0)
+</code></pre>
+<h2 id="6-示例代码"><a href="#6-示例代码" class="headerlink" title="6. 示例代码"></a>6. 示例代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        Test1 test1 = <span class="keyword">new</span> Test1();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> computer = test1.computer(<span class="number">10</span>, param -&gt; param * param);</span><br><span class="line">        System.out.println(computer);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> i = test1.computer2(<span class="number">1</span>, <span class="number">2</span>, (a, b) -&gt; a + b);</span><br><span class="line"></span><br><span class="line">        System.out.println(i);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">boolean</span> b = test1.computer3(<span class="number">1</span>, (a) -&gt; a &gt; <span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(b);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">computer</span><span class="params">(<span class="keyword">int</span> a,Function&lt;Integer,Integer&gt; function)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> function.apply(a);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">computer2</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b,BiFunction&lt;Integer,Integer,Integer&gt; function)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> function.apply(a,b);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">computer3</span><span class="params">(<span class="keyword">int</span> a, Predicate&lt;Integer&gt; predicate)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> predicate.test(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="7-Supplier-接口"><a href="#7-Supplier-接口" class="headerlink" title="7. Supplier 接口"></a>7. Supplier 接口</h2><pre><code> 不接收参数同事返回一个结果
+ 1.  T get();
+</code></pre>
+<h2 id="8-Optional-概念"><a href="#8-Optional-概念" class="headerlink" title="8. Optional 概念"></a>8. Optional 概念</h2><pre><code>用来解决NPE问题
+Optional&lt;String&gt; s = Optional.of(&quot;hello &quot;);
+s.ifPresent(item -&gt; System.out.println(item));
+</code></pre>
+<h2 id="9-方法引用"><a href="#9-方法引用" class="headerlink" title="9. 方法引用"></a>9. 方法引用</h2><pre><code>我们可以将方法引用看做一个 函数指针 
+方法引用分为四类 
+1. 连续两个冒号，类名::静态方法名
+2. 对象名::实例方法名
+3. 类名::实例方法名
+
+
+List&lt;Integer&gt; list = Arrays.asList(1,2,3,4,5);
+list.forEach(System.out::println);
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/Java/Java8-lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" data-id="ckpkkdok6003oifusgdoq2kow" data-title="Java8-lambda表达式" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-2019-07-30-java内存模型理解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Jvm/2019-07-30-java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E7%90%86%E8%A7%A3/" class="article-date">
+  <time class="dt-published" datetime="2019-07-30T08:04:43.000Z" itemprop="datePublished">2019-07-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Jvm/">Jvm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/Jvm/2019-07-30-java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E7%90%86%E8%A7%A3/">java内存模型理解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="1-jvm虚拟机运行区域"><a href="#1-jvm虚拟机运行区域" class="headerlink" title="1. jvm虚拟机运行区域"></a>1. jvm虚拟机运行区域</h1><p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/jmm_main.png"></img></p>
+<h2 id="1-堆"><a href="#1-堆" class="headerlink" title="1. 堆"></a>1. 堆</h2><p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/jmm_heap_1.png"></img></p>
+<h2 id="2-栈-线程"><a href="#2-栈-线程" class="headerlink" title="2. 栈(线程)"></a>2. 栈(线程)</h2><pre><code>线程在运行的过程中，
+</code></pre>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/jmm_stack_1.png"></img></p>
+<h2 id="3-本地方法栈"><a href="#3-本地方法栈" class="headerlink" title="3. 本地方法栈"></a>3. 本地方法栈</h2><h2 id="4-方法区-元空间-直接内存"><a href="#4-方法区-元空间-直接内存" class="headerlink" title="4. 方法区(元空间)-直接内存"></a>4. 方法区(元空间)-直接内存</h2><h2 id="5-程序计数器"><a href="#5-程序计数器" class="headerlink" title="5. 程序计数器"></a>5. 程序计数器</h2><pre><code>线程独享的一块内存空间，可以看做当前线程所执行字节码的行号指示器
+如果是java代码，计数器指向的是虚拟机字节码指令地址，如果是native代码，
+，指示器的值为undefined
+此区域是jvm规范中唯一没有规定OOM情况的区域
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/Jvm/2019-07-30-java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E7%90%86%E8%A7%A3/" data-id="ckpkkdojm0021ifusaaa2ax2b" data-title="java内存模型理解" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-jvm-字节码看动态代理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Jvm/jvm-%E5%AD%97%E8%8A%82%E7%A0%81%E7%9C%8B%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" class="article-date">
+  <time class="dt-published" datetime="2019-07-26T01:26:32.000Z" itemprop="datePublished">2019-07-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Jvm/">Jvm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/Jvm/jvm-%E5%AD%97%E8%8A%82%E7%A0%81%E7%9C%8B%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">jvm_字节码看动态代理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="1-jdk-动态代理基本使用"><a href="#1-jdk-动态代理基本使用" class="headerlink" title="1. jdk 动态代理基本使用"></a>1. jdk 动态代理基本使用</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Subscribe &#123;</span><br><span class="line">   	void subscrib();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">	public class SubImpl implements Subscribe &#123;</span><br><span class="line">	    @Override</span><br><span class="line">	    public void subscrib() &#123;</span><br><span class="line">	        System.out.println(&quot;subscribe invoked &quot;);</span><br><span class="line">	    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">	public class SubHandler implements InvocationHandler &#123;</span><br><span class="line"></span><br><span class="line">    private Object realObj;</span><br><span class="line"></span><br><span class="line">    public SubHandler(Object realObj) &#123;</span><br><span class="line">        this.realObj = realObj;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Object invoke(Object o, Method method, Object[] objects) throws Throwable &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        if (method.getDeclaringClass() == Object.class) &#123;</span><br><span class="line">            return method.invoke(o,objects);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        System.out.println(&quot;before invoked &quot;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Object invoke = method.invoke(realObj, objects);</span><br><span class="line"></span><br><span class="line">        System.out.println(&quot;after invoked &quot;);</span><br><span class="line"></span><br><span class="line">        return invoke;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>测试代码
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">	public class MyClass &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line">        System.setProperty(&quot;sun.misc.ProxyGenerator.saveGeneratedFiles&quot;,&quot;true&quot;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Subscribe subscribe = new SubImpl();</span><br><span class="line"></span><br><span class="line">        Subscribe proxy = (Subscribe) Proxy.newProxyInstance(subscribe.getClass().getClassLoader(),</span><br><span class="line">                subscribe.getClass().getInterfaces(), new SubHandler(subscribe));</span><br><span class="line"></span><br><span class="line">        proxy.subscrib();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>以上代码是对于jdk动态代理的基本使用。值得注意的是，jdk的动态代理类， 必须是有接口的。
+执行结果如下： 
+    before invoked 
+    subscribe invoked 
+    after invoked 
+</code></pre>
+<h2 id="2-源码分析"><a href="#2-源码分析" class="headerlink" title="2. 源码分析"></a>2. 源码分析</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Subscribe proxy = (Subscribe) Proxy.newProxyInstance(subscribe.getClass().getClassLoader(),</span><br><span class="line">                subscribe.getClass().getInterfaces(), new SubHandler(subscribe));</span><br></pre></td></tr></table></figure>
+<pre><code>通过对于proxy类进行打印发现，他的父类其实是 java.lang.reflect.Proxy
+下面我们具体分析，我们的 proxy对象是怎么生成的
+
+1. 首先进入Proxy.newProxyInstance静态方法.鉴于代码篇幅较长，做了一部分删减。
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public static Object newProxyInstance(ClassLoader loader,</span><br><span class="line">                                         Class&lt;?&gt;[] interfaces,</span><br><span class="line">                                         InvocationHandler h)</span><br><span class="line">       throws IllegalArgumentException</span><br><span class="line">   &#123;</span><br><span class="line">      ......</span><br><span class="line">      </span><br><span class="line">       /*</span><br><span class="line">        * Look up or generate the designated proxy class.</span><br><span class="line">        */</span><br><span class="line">       Class&lt;?&gt; cl = getProxyClass0(loader, intfs);</span><br><span class="line"></span><br><span class="line">		final Constructor&lt;?&gt; cons = cl.getConstructor(constructorParams);</span><br><span class="line">       .......</span><br><span class="line"></span><br><span class="line">       return cons.newInstance(new Object[]&#123;h&#125;);</span><br><span class="line">       </span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>通过以上代码，我们发现关键点 在这里主要做了三件事
+1. 通过 getProxyClass0 方法获取 Class对象
+2. 调用默认构造方法 conns
+3. 通过构造方法生成我们需要的返回对象 
+
+这里我们再次进入getProxyClass0 看如何生成 class对象的。
+跟进代码进入到 ProxyClassFactory.apply 方法
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">byte[] proxyClassFile = ProxyGenerator.generateProxyClass(</span><br><span class="line">               proxyName, interfaces, accessFlags);</span><br><span class="line">               </span><br><span class="line">           try &#123;</span><br><span class="line">               return defineClass0(loader, proxyName,</span><br><span class="line">                                   proxyClassFile, 0,proxyClassFile.length);</span><br><span class="line">           &#125; catch (ClassFormatError e) &#123;</span><br><span class="line">               </span><br><span class="line">           &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>首先通过 ProxyGenerator.generateProxyClass生成字节码的数组，然后通过
+defineClass0 生成class对象。 defineClass0是native方法。
+到目前为止，我们就完成了整个流程的分析。
+</code></pre>
+<h2 id="3-我们通过Proxy-newProxyInstance类内容"><a href="#3-我们通过Proxy-newProxyInstance类内容" class="headerlink" title="3. 我们通过Proxy.newProxyInstance类内容"></a>3. 我们通过Proxy.newProxyInstance类内容</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">	public final class $Proxy0 extends Proxy implements Subscribe &#123;</span><br><span class="line">    private static Method m1;</span><br><span class="line">    private static Method m2;</span><br><span class="line">    private static Method m3;</span><br><span class="line">    private static Method m0;</span><br><span class="line"></span><br><span class="line">    public $Proxy0(InvocationHandler var1) throws  &#123;</span><br><span class="line">        super(var1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public final boolean equals(Object var1) throws  &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            return (Boolean)super.h.invoke(this, m1, new Object[]&#123;var1&#125;);</span><br><span class="line">        &#125; catch (RuntimeException | Error var3) &#123;</span><br><span class="line">            throw var3;</span><br><span class="line">        &#125; catch (Throwable var4) &#123;</span><br><span class="line">            throw new UndeclaredThrowableException(var4);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public final String toString() throws  &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            return (String)super.h.invoke(this, m2, (Object[])null);</span><br><span class="line">        &#125; catch (RuntimeException | Error var2) &#123;</span><br><span class="line">            throw var2;</span><br><span class="line">        &#125; catch (Throwable var3) &#123;</span><br><span class="line">            throw new UndeclaredThrowableException(var3);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public final void subscrib() throws  &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            super.h.invoke(this, m3, (Object[])null);</span><br><span class="line">        &#125; catch (RuntimeException | Error var2) &#123;</span><br><span class="line">            throw var2;</span><br><span class="line">        &#125; catch (Throwable var3) &#123;</span><br><span class="line">            throw new UndeclaredThrowableException(var3);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public final int hashCode() throws  &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            return (Integer)super.h.invoke(this, m0, (Object[])null);</span><br><span class="line">        &#125; catch (RuntimeException | Error var2) &#123;</span><br><span class="line">            throw var2;</span><br><span class="line">        &#125; catch (Throwable var3) &#123;</span><br><span class="line">            throw new UndeclaredThrowableException(var3);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    static &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            m1 = Class.forName(&quot;java.lang.Object&quot;).getMethod(&quot;equals&quot;, Class.forName(&quot;java.lang.Object&quot;));</span><br><span class="line">            m2 = Class.forName(&quot;java.lang.Object&quot;).getMethod(&quot;toString&quot;);</span><br><span class="line">            m3 = Class.forName(&quot;com.example.lib.Subscribe&quot;).getMethod(&quot;subscrib&quot;);</span><br><span class="line">            m0 = Class.forName(&quot;java.lang.Object&quot;).getMethod(&quot;hashCode&quot;);</span><br><span class="line">        &#125; catch (NoSuchMethodException var2) &#123;</span><br><span class="line">            throw new NoSuchMethodError(var2.getMessage());</span><br><span class="line">        &#125; catch (ClassNotFoundException var3) &#123;</span><br><span class="line">            throw new NoClassDefFoundError(var3.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<pre><code>以上是我们通过动态代理生成的类，继承了 Proxy，实现我们的Subscribe接口
+默认实现了object中的 equals，toString，hashCode方法
+以及Subscribe接口中的方法
+以上方法提的人内容大同小异，通过静态代码块实例化的method，最后调用我们的
+handler的invoke方法
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/Jvm/jvm-%E5%AD%97%E8%8A%82%E7%A0%81%E7%9C%8B%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" data-id="ckpkkdokp005cifus6w3ng6cw" data-title="jvm_字节码看动态代理" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-jvm-字节码的基本信息" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Jvm/jvm-%E5%AD%97%E8%8A%82%E7%A0%81%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF/" class="article-date">
+  <time class="dt-published" datetime="2019-07-25T06:44:19.000Z" itemprop="datePublished">2019-07-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Jvm/">Jvm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/Jvm/jvm-%E5%AD%97%E8%8A%82%E7%A0%81%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF/">jvm_字节码的基本信息</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <pre><code>字节码文件基本组成部分解析 。字节码文件中的十六进制数据中
+每两个文字符号为一个字节。
+</code></pre>
+<h2 id="1-魔数"><a href="#1-魔数" class="headerlink" title="1. 魔数"></a>1. 魔数</h2><pre><code>在字节码文件中，魔数占据了4个字节
+在我们以上的字节码数据中，从0开始数4个字节就是我们的魔数，
+java语言中，魔数固定为 【 CAFEBABE 】
+</code></pre>
+<h2 id="2-版本号"><a href="#2-版本号" class="headerlink" title="2. 版本号"></a>2. 版本号</h2><pre><code>魔数后的4个字节为版本号，主次版本号分别占据2个字节 ，
+十六进制数据 ： 00000033 -&gt; jdk版本为 51
+</code></pre>
+<h2 id="3-常量池"><a href="#3-常量池" class="headerlink" title="3. 常量池"></a>3. 常量池</h2><pre><code>版本号后面 2个字节为常量池大小的定义： 0019 -&gt; 25 
+可以看到常量池的大小为24 (25-1)
+索引0 为保留常量 null，不位于常量表中
+</code></pre>
+<h3 id="3-1-常量池表分析"><a href="#3-1-常量池表分析" class="headerlink" title="3.1 常量池表分析"></a>3.1 常量池表分析</h3><pre><code>根据下面的常量池表进行分析： 
+</code></pre>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/constant_pool.png"></img></p>
+<pre><code>我们得到常量池分析的结束位置： 
+</code></pre>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/cons_pool_anlsys.png"></img></p>
+<h2 id="4-AccessFlag访问标志"><a href="#4-AccessFlag访问标志" class="headerlink" title="4. AccessFlag访问标志"></a>4. AccessFlag访问标志</h2><pre><code>常量池结束 accessflag占据2个字节 ： 0021 
+这个表里面无法直接查询到0021这个值，原因是0021=0020+0001，也就是表示当前class的access_flag是ACC_PUBLIC|ACC_SUPER
+参考下表：
+</code></pre>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/access_flag.png"></img></p>
+<h2 id="5-ClassName-类名"><a href="#5-ClassName-类名" class="headerlink" title="5. ClassName 类名"></a>5. ClassName 类名</h2><pre><code>访问标识后面2个字节： 0003 说明类名在常量池表中的索引为 3 
+</code></pre>
+<h2 id="6-SuperClassName-父类名"><a href="#6-SuperClassName-父类名" class="headerlink" title="6. SuperClassName 父类名"></a>6. SuperClassName 父类名</h2><pre><code>类名后占据2个字节： 0004 ，在常量池的索引为4
+</code></pre>
+<h2 id="7-接口-interface名"><a href="#7-接口-interface名" class="headerlink" title="7. 接口 interface名"></a>7. 接口 interface名</h2><pre><code>父类后占据2个字节： 0000 因为我们的类，没有实现接口所以为0 
+</code></pre>
+<h2 id="8-fields"><a href="#8-fields" class="headerlink" title="8. fields"></a>8. fields</h2><pre><code>占据2个字节： 0001  数量为1 
+</code></pre>
+<h3 id="8-1-字段表结构"><a href="#8-1-字段表结构" class="headerlink" title="8.1 字段表结构"></a>8.1 字段表结构</h3><pre><code>每个成员变量对应一个field_info结构：
+field_info &#123;
+                     u2 access_flags; 0002
+                     u2 name_index; 0005
+                     u2 descriptor_index; 0006
+                     u2 attributes_count; 0000
+                     attribute_info attributes[attributes_count];
+           &#125;
+ access_flags为0002，即是ACC_PRIVATE
+name_index指向常量池的第五个常量，为“test”
+descriptor_index指向常量池的第6个常量为“I”
+三个字段结合起来，说明这个变量是&quot;private int test&quot;。
+接下来的是attribute字段，用来描述该变量的属性，因为这个变量没有附加属性，所以attributes_count为    0，attribute_info为空。
+</code></pre>
+<h2 id="9-methods"><a href="#9-methods" class="headerlink" title="9. methods"></a>9. methods</h2><pre><code>占据2个字节： 0004
+</code></pre>
+<h3 id="9-1-方法表结构"><a href="#9-1-方法表结构" class="headerlink" title="9.1 方法表结构"></a>9.1 方法表结构</h3><pre><code>method_info &#123;
+                     u2 access_flags;
+                     u2 name_index;
+                     u2 descriptor_index;
+                     u2 attributes_count;
+                     attribute_info  attributes[attributes_count];
+                &#125;
+             
+</code></pre>
+<h3 id="9-2-0009-code-结构表"><a href="#9-2-0009-code-结构表" class="headerlink" title="9.2 0009 code 结构表"></a>9.2 0009 code 结构表</h3><pre><code>Code_attribute &#123;
+      u2 attribute_name_index;
+      u4 attribute_length;
+      u2 max_stack;
+      u2 max_locals;
+      u4 code_length;
+      u1 code[code_length];
+      u2 exception_table_length;
+      &#123; 
+           u2 start_pc;
+           u2 end_pc;
+           u2 handler_pc;
+           u2 catch_type;
+      &#125; exception_table[exception_table_length];
+      u2 attributes_count;
+      attribute_info attributes[attributes_count];
+ &#125;
+ 
+attribute_length表示attribute所包含的字节数，这里为0000001d，即是39个字节，不包含    attribute_name_index和attribute_length字段。
+max_stack表示这个方法运行的任何时刻所能达到的操作数栈的最大深度，这里是0001
+max_locals表示方法执行期间创建的局部变量的数目，包含用来表示传入的参数的局部变量，这里是0001.
+接下来的code_length表示该方法的所包含的字节码的字节数以及具体的指令码。
+这里的字节码长度为00000005，即是后面的5个字节 2a b7 00 01 b1为对应的字节码指令的指令码。
+参照下表可以将上面的指令码翻译成对应的助记符：
+</code></pre>
+<h3 id="9-3-属性表结构"><a href="#9-3-属性表结构" class="headerlink" title="9.3 属性表结构"></a>9.3 属性表结构</h3><pre><code>attribute_info &#123;
+                     u2 attribute_name_index;
+                     u4 attribute_length;
+                     u1 info[attribute_length];
+                &#125;
+
+
+
+    
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/Jvm/jvm-%E5%AD%97%E8%8A%82%E7%A0%81%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF/" data-id="ckpkkdokp005aifusglgb5e8k" data-title="jvm_字节码的基本信息" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-jvm-字节码-概述" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Jvm/jvm-%E5%AD%97%E8%8A%82%E7%A0%81-%E6%A6%82%E8%BF%B0/" class="article-date">
+  <time class="dt-published" datetime="2019-07-25T05:43:32.000Z" itemprop="datePublished">2019-07-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Jvm/">Jvm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/Jvm/jvm-%E5%AD%97%E8%8A%82%E7%A0%81-%E6%A6%82%E8%BF%B0/">jvm_字节码_概述</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <pre><code>Java字节码是java源文件编译只有的产物，供jvm加载执行的十六进制数据。
+在字节码文件中，每2个字符作为一个字节。
+jvm字节码描述了java编译以后的产物。主要由以下几部分组成： 
+1.    魔数，作为class文件的标识
+2. 主次版本号
+3. 常量池
+4. accessFlag 访问标志
+5. 类名
+6. 父类名
+7. 接口数量
+8. field数，field表
+9. 方法数，方法表
+10. attribute数 attribute表
+......
+以上各数据组合成一个完整的字节码文件，包括了我们在java类中标书的一切信息，
+只不过是以字节码形式存在的，主要供机器读取，而不是正常人。
+</code></pre>
+<br>
+    
+<pre><code>java 创新性的提出字节码的概念，这是java语言可以跨平台的重要存在。
+</code></pre>
+<h2 id="java-和-jvm虚拟机"><a href="#java-和-jvm虚拟机" class="headerlink" title="java 和 jvm虚拟机"></a>java 和 jvm虚拟机</h2><pre><code>java语言规范和jvm虚拟机规范是分开的。java语言只不过是jvm规范中一个最重要的分支。
+原则上只要是符合规范的字节码文件，jvm都可以执行。jvm并不关心class文件的来源。
+以及class文件是由于哪些语言编译的产物。
+事实上，jython，jruby groovy 等都是运行在jvm之上的语言。
+</code></pre>
+<br>
+
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/constant_pool.png"></img></p>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/vm_code.png"></img></p>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/vm_code2.png"></img></p>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/vm_code3.png"></img></p>
+<pre><code>在以后的文章中会针对一个简单类的字节码进行反编译，来深入进行字节码学习。
+</code></pre>
+<p>示例代码： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">		</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> a = <span class="number">1</span>;</span><br><span class="line">	</span><br><span class="line">	    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getA</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	        <span class="keyword">return</span> <span class="keyword">this</span>.a;</span><br><span class="line">	    &#125;</span><br><span class="line">	</span><br><span class="line">	    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setA</span><span class="params">(<span class="keyword">int</span> a)</span> </span>&#123;</span><br><span class="line">	        <span class="keyword">this</span>.a = a;</span><br><span class="line">	    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">		</span><br></pre></td></tr></table></figure>
+
+<pre><code>对以上源文件生成的字节码进行反编译，得到结果
+</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line">	</span><br><span class="line">	  Last modified Jul <span class="number">25</span>, <span class="number">2019</span>; size <span class="number">524</span> bytes</span><br><span class="line">  MD5 checksum e846819608e7bc904c06a8545263fac1</span><br><span class="line">  Compiled from <span class="string">&quot;MyClass.java&quot;</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">com</span>.<span class="title">example</span>.<span class="title">lib</span>.<span class="title">MyClass</span></span></span><br><span class="line"><span class="class">  <span class="title">minor</span> <span class="title">version</span>: 0</span></span><br><span class="line"><span class="class">  <span class="title">major</span> <span class="title">version</span>: 51</span></span><br><span class="line"><span class="class">  <span class="title">flags</span>: <span class="title">ACC_PUBLIC</span>, <span class="title">ACC_SUPER</span></span></span><br><span class="line"><span class="class"><span class="title">Constant</span> <span class="title">pool</span>:</span></span><br><span class="line"><span class="class">   #1 </span>= Methodref          #<span class="number">4.</span>#<span class="number">21</span>         <span class="comment">// java/lang/Object.&quot;&lt;init&gt;&quot;:()V</span></span><br><span class="line">   #<span class="number">2</span> = Fieldref           #<span class="number">3.</span>#<span class="number">22</span>         <span class="comment">// com/example/lib/MyClass.a:I</span></span><br><span class="line">   #<span class="number">3</span> = Class              #<span class="number">23</span>            <span class="comment">// com/example/lib/MyClass</span></span><br><span class="line">   #<span class="number">4</span> = Class              #<span class="number">24</span>            <span class="comment">// java/lang/Object</span></span><br><span class="line">   #<span class="number">5</span> = Utf8               a</span><br><span class="line">   #<span class="number">6</span> = Utf8               I</span><br><span class="line">   #<span class="number">7</span> = Utf8               &lt;init&gt;</span><br><span class="line">   #<span class="number">8</span> = Utf8               ()V</span><br><span class="line">   #<span class="number">9</span> = Utf8               Code</span><br><span class="line">  #<span class="number">10</span> = Utf8               LineNumberTable</span><br><span class="line">  #<span class="number">11</span> = Utf8               LocalVariableTable</span><br><span class="line">  #<span class="number">12</span> = Utf8               <span class="keyword">this</span></span><br><span class="line">  #<span class="number">13</span> = Utf8               Lcom/example/lib/MyClass;</span><br><span class="line">  #<span class="number">14</span> = Utf8               getA</span><br><span class="line">  #<span class="number">15</span> = Utf8               ()I</span><br><span class="line">  #<span class="number">16</span> = Utf8               setA</span><br><span class="line">  #<span class="number">17</span> = Utf8               (I)V</span><br><span class="line">  #<span class="number">18</span> = Utf8               &lt;clinit&gt;</span><br><span class="line">  #<span class="number">19</span> = Utf8               SourceFile</span><br><span class="line">  #<span class="number">20</span> = Utf8               MyClass.java</span><br><span class="line">  #<span class="number">21</span> = NameAndType        #<span class="number">7</span>:#<span class="number">8</span>          <span class="comment">// &quot;&lt;init&gt;&quot;:()V</span></span><br><span class="line">  #<span class="number">22</span> = NameAndType        #<span class="number">5</span>:#<span class="number">6</span>          <span class="comment">// a:I</span></span><br><span class="line">  #<span class="number">23</span> = Utf8               com/example/lib/MyClass</span><br><span class="line">  #<span class="number">24</span> = Utf8               java/lang/Object</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span> com.example.lib.MyClass();</span><br><span class="line">    descriptor: ()V</span><br><span class="line">    flags: ACC_PUBLIC</span><br><span class="line">    Code:</span><br><span class="line">      stack=<span class="number">1</span>, locals=<span class="number">1</span>, args_size=<span class="number">1</span></span><br><span class="line">         <span class="number">0</span>: aload_0</span><br><span class="line">         <span class="number">1</span>: invokespecial #<span class="number">1</span>                  <span class="comment">// Method java/lang/Object.&quot;&lt;init&gt;&quot;:()V</span></span><br><span class="line">         <span class="number">4</span>: <span class="keyword">return</span></span><br><span class="line">      LineNumberTable:</span><br><span class="line">        line <span class="number">3</span>: <span class="number">0</span></span><br><span class="line">      LocalVariableTable:</span><br><span class="line">        Start  Length  Slot  Name   Signature</span><br><span class="line">            <span class="number">0</span>       <span class="number">5</span>     <span class="number">0</span>  <span class="keyword">this</span>   Lcom/example/lib/MyClass;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getA</span><span class="params">()</span></span>;</span><br><span class="line">    descriptor: ()I</span><br><span class="line">    flags: ACC_PUBLIC</span><br><span class="line">    Code:</span><br><span class="line">      stack=<span class="number">1</span>, locals=<span class="number">1</span>, args_size=<span class="number">1</span></span><br><span class="line">         <span class="number">0</span>: aload_0</span><br><span class="line">         <span class="number">1</span>: pop</span><br><span class="line">         <span class="number">2</span>: getstatic     #<span class="number">2</span>                  <span class="comment">// Field a:I</span></span><br><span class="line">         <span class="number">5</span>: ireturn</span><br><span class="line">      LineNumberTable:</span><br><span class="line">        line <span class="number">8</span>: <span class="number">0</span></span><br><span class="line">      LocalVariableTable:</span><br><span class="line">        Start  Length  Slot  Name   Signature</span><br><span class="line">            <span class="number">0</span>       <span class="number">6</span>     <span class="number">0</span>  <span class="keyword">this</span>   Lcom/example/lib/MyClass;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setA</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line">    descriptor: (I)V</span><br><span class="line">    flags: ACC_PUBLIC</span><br><span class="line">    Code:</span><br><span class="line">      stack=<span class="number">1</span>, locals=<span class="number">2</span>, args_size=<span class="number">2</span></span><br><span class="line">         <span class="number">0</span>: aload_0</span><br><span class="line">         <span class="number">1</span>: pop</span><br><span class="line">         <span class="number">2</span>: iload_1</span><br><span class="line">         <span class="number">3</span>: putstatic     #<span class="number">2</span>                  <span class="comment">// Field a:I</span></span><br><span class="line">         <span class="number">6</span>: <span class="keyword">return</span></span><br><span class="line">      LineNumberTable:</span><br><span class="line">        line <span class="number">12</span>: <span class="number">0</span></span><br><span class="line">        line <span class="number">13</span>: <span class="number">6</span></span><br><span class="line">      LocalVariableTable:</span><br><span class="line">        Start  Length  Slot  Name   Signature</span><br><span class="line">            <span class="number">0</span>       <span class="number">7</span>     <span class="number">0</span>  <span class="keyword">this</span>   Lcom/example/lib/MyClass;</span><br><span class="line">            <span class="number">0</span>       <span class="number">7</span>     <span class="number">1</span>     a   I</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> &#123;&#125;;</span><br><span class="line">    descriptor: ()V</span><br><span class="line">    flags: ACC_STATIC</span><br><span class="line">    Code:</span><br><span class="line">      stack=<span class="number">1</span>, locals=<span class="number">0</span>, args_size=<span class="number">0</span></span><br><span class="line">         <span class="number">0</span>: iconst_1</span><br><span class="line">         <span class="number">1</span>: putstatic     #<span class="number">2</span>                  <span class="comment">// Field a:I</span></span><br><span class="line">         <span class="number">4</span>: <span class="keyword">return</span></span><br><span class="line">      LineNumberTable:</span><br><span class="line">        line <span class="number">5</span>: <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line">SourceFile: <span class="string">&quot;MyClass.java&quot;</span></span><br><span class="line"></span><br><span class="line">	</span><br></pre></td></tr></table></figure>
+
+
+<pre><code>我们用工具打开字节码文件，可以看到以下16进制的数据
+</code></pre>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/class_code_.png"></img></p>
+<pre><code>在后续章节将会对字节码文件进行一个详细的阐述和分析
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/Jvm/jvm-%E5%AD%97%E8%8A%82%E7%A0%81-%E6%A6%82%E8%BF%B0/" data-id="ckpkkdoko0058ifus5l5y9pn4" data-title="jvm_字节码_概述" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/6/">&laquo; zurück</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/8/">weiter &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/">dlib</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/DIP/">DIP</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/mvp/">mvp</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIP/">DIP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Flutter/">Flutter</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gradle/">Gradle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/JavaConcurrent/">JavaConcurrent</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/concurrent/">concurrent</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Jvm/">Jvm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kotlin/">Kotlin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nio/">Nio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note2/">Note2</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/OpenGL/">OpenGL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ReactNative/">ReactNative</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/">jdhai</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/">javascript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/%E8%B7%A8%E5%B9%B3%E5%8F%B0/">跨平台</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/pr/">pr</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%91%E6%8C%87%E7%B3%BB%E5%88%97/">剑指系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%85%92/">酒</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-multiDex/">源码分析-multiDex</a>
+          </li>
+        
+          <li>
+            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-leakCanary/">源码分析-leakCanary</a>
+          </li>
+        
+          <li>
+            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-glide/">源码分析-glide</a>
+          </li>
+        
+          <li>
+            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-okHttp/">源码分析-okHttp</a>
+          </li>
+        
+          <li>
+            <a href="/Android/Android-view%E7%BB%98%E5%88%B6/">Android-view绘制</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 师学<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

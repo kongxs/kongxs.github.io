@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>synchronized 深入理解 | 师学</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="synchronize是jdk提供的进行辅助同步的关键字。它可以修饰一个 方法体，可以同步代码块修饰一个对象。   修饰一个成员函数 会对当前对象实例进行加锁， 每一个对象实例只有一把锁，也就是说在同一时刻只会有一个方法被执行 。  修饰一个静态函数 修饰静态函数时 ，会对当前对象的class对象进行枷锁，不管生成多少个对象实例，它的calss对象是唯一的   当使用synchronize在函数内">
+<meta property="og:type" content="article">
+<meta property="og:title" content="synchronized 深入理解">
+<meta property="og:url" content="http://yoursite.com/Java/JavaConcurrent/synchronized-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/index.html">
+<meta property="og:site_name" content="师学">
+<meta property="og:description" content="synchronize是jdk提供的进行辅助同步的关键字。它可以修饰一个 方法体，可以同步代码块修饰一个对象。   修饰一个成员函数 会对当前对象实例进行加锁， 每一个对象实例只有一把锁，也就是说在同一时刻只会有一个方法被执行 。  修饰一个静态函数 修饰静态函数时 ，会对当前对象的class对象进行枷锁，不管生成多少个对象实例，它的calss对象是唯一的   当使用synchronize在函数内">
+<meta property="og:locale">
+<meta property="article:published_time" content="2019-12-12T03:29:00.000Z">
+<meta property="article:modified_time" content="2021-06-06T01:21:47.475Z">
+<meta property="article:author" content="师学">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="师学" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">师学</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学而不思则罔，思而不学则殆。</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-synchronized-深入理解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Java/JavaConcurrent/synchronized-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/" class="article-date">
+  <time class="dt-published" datetime="2019-12-12T03:29:00.000Z" itemprop="datePublished">2019-12-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>►<a class="article-category-link" href="/categories/Java/JavaConcurrent/">JavaConcurrent</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      synchronized 深入理解
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>synchronize是jdk提供的进行辅助同步的关键字。<br><br>它可以修饰一个 方法体，可以同步代码块修饰一个对象。 </p>
+<ol>
+<li>修饰一个成员函数<br> 会对当前对象实例进行加锁， 每一个对象实例只有一把锁，也就是说在同一时刻只会有一个方法被执行 。 </li>
+<li>修饰一个静态函数<br><br> 修饰静态函数时 ，会对当前对象的class对象进行枷锁，不管生成多少个对象实例，它的calss对象是唯一的 </li>
+</ol>
+<p>当使用synchronize在函数内修饰一个代码块时 ，会在底层字节码生成一个 monitorenter 以及一个或者多个 monitorexit指令与之相对应，保障锁被释放 <br></p>
+<p>当使用synchronize修饰一个函数时候，会在方法添加一个 acc_synchronize 。jvm来使用acc_synchronize来来表示这个同步方法 。 当方法被调用时，jvm会先持有当前对象的monitor方法，然后在去执行方法体，在方法执行期间，其他线程均无法获取次monitor ，当线程执行完该方法，就会释放monitor <br></p>
+<pre><code> flags: ACC_SYNCHRONIZED
+</code></pre>
+<p>jvm中是基于进入和退出监视器对象( Monitor) 来实现的，每个对象实例都会有一个Monitor对象会和java对象一起创建(c++)和销毁 。 <br></p>
+<p>当多个线程同时访问一个同步代码时候，代码会被放到一个EetryList集合中，处于阻塞的线程都会放到该列表当中，接下里，当线程获取到Monitor时候依赖底层操作系统的 mutex lock来实现互斥 ，线程获取mutex成功，会持有它，其他线程就无法获取到该mutex 。<br></p>
+<p>如果该线程中调用了 wait方法，那么就会释放掉它持有的mutex ，并且该线程进入waitset集合当中，等待被其他线程唤醒，如果方法执行完毕也会释放mutex </p>
+<p>同步锁的这种实现方式，因为Monitor依赖底层操作系统的实现 ， 所以存在用户态和内核态之间的切换， 会增加内存开销。</p>
+<p>自旋锁：<br>    因为内核态和用户态之前的切换会增加内存开销，所以jvm引入了自旋的方式。 其原理是当发生对monitor的争夺时，如果owner会很快执行结束，那么就让参与争夺的线程稍微等待一下(所谓的自旋) ，不进入内存态  。 自旋会增加cpu消耗<br><br>    在 owner释放monitor后，争夺的线程可能会立刻获取到锁去执行代码 ，从而避免阻塞。 不过，当owner执行时间超过临界以后， 会停止自旋进入阻塞。 <br></p>
+<p>总体思想是 ： 先自旋(spin)，不成功再阻塞，尽量降低阻塞的可能性 。对于执行时间短的代码有很大的提升，在多处理器的上会有意义。</p>
+<p>互斥锁的属性： </p>
+<ol>
+<li>pthread_mutext_timed_np : 普通锁，当一个线程获取到锁以后，其余线程会进入阻塞队列 ，当锁被释放以后，会按照优先级获取到锁 。 </li>
+<li>pthread_mutext_rersursive_np : 嵌套锁，允许一个线程对通一把锁获取多次，并通过unlock进行解锁， 如果是不同线程请求，那么则在加锁线程执行结束以后再重新进行竞争 。</li>
+<li>pthread_mutext_errorcheck_np : 检错锁， 如果一个线程请求同一把锁，那么返回edeadlk， 否则和 pthread_mutext_timed_np 相同， 保证了不允许多次加锁会后的死锁问题。 </li>
+<li>pthread_mutext_adaptive_np : 适应锁： 仅仅等待解锁后进行竞争。 </li>
+</ol>
+<p>在jdk1.5之前，只能通过synchronize关键字来实现线程同步 。在底层java也是通过synchronize关键字来实现原子操作的。它是一种内置锁， 是jvm进行隐式实现的。</p>
+<p>从jdk1.5开始引入了java并发包 lock相关的锁 。lock本身是基于java来实现的，锁的获取和释放都是通过java来实现的，然而synchronize是通过系统底层的mutex_lock实现的，每次对锁的获取和释放都会带来用户态和内核态的切换，增加系统开销。在并发较高或者锁竞争很激烈的时候，synchronize的性能会很差。 </p>
+<p>从jdk1.6开始，synchronize的实现发生很大的优化。 引入了【偏向锁，轻量级锁，重量级锁】的概念 ， 从而减少在用户态和内核态之间的切换 ，使得尽量发生在用户态。 这种锁的优化，实际上是通过java对象头中的一些标志位来实现的 ，对于锁的访问和改变都与对象头息息相关。 </p>
+<p>从jdk1.6开始，对象实例划分为三部分，对象头，实例数据， 对齐填充 。 <br><br>对象头的组成： </p>
+<ol>
+<li>mark word</li>
+<li>指向类的指针</li>
+<li>数组长度 </li>
+</ol>
+<p>其中mark word 里面记录了对象的锁和垃圾回收相关的信息，在64位jvm中长度是64bit，包括如下信息： </p>
+<ol>
+<li>无锁标记</li>
+<li>偏向锁标记</li>
+<li>轻量锁标记</li>
+<li>重量锁标记</li>
+<li>GC标记 </li>
+</ol>
+<p>对于synchronize来说，锁的升级主要是通过mark word中的锁标志位和是否偏向锁标志位来实现的。 synchronize中的锁都是从偏向锁开始逐步升级，演化成轻量级锁，最后变成了重量级锁。 </p>
+<p>对于锁的演化有如下阶段： <br><br>无锁 -&gt; 偏向锁 -&gt; 轻量级锁 -&gt; 重量级锁<br><br><br>我们也可以通过jvm参数来决定是否要是哪种锁。 </p>
+<h6 id="偏向锁-偏向锁标记，对应的线程id"><a href="#偏向锁-偏向锁标记，对应的线程id" class="headerlink" title="偏向锁 (偏向锁标记，对应的线程id ):"></a>偏向锁 (偏向锁标记，对应的线程id ):</h6><p>针对于一个线程来说的 , 优化同一个线程多次获取一个锁的情况，如果一个synchronize方法被一个线程访问，那么这个方法所在的对象，会在其mark word中将偏向锁进行标记，同时还会存储该线程的id ，当这个线程访问同一个synchronize方法，会检查mark word 的偏向锁标记和线程id ，如果是同一个，那么不会进入管程(monitor)，而直接执行方法体 。<br><br>如果另外一个线程访问了同步方法，如果获取锁失败，偏向锁会被取消，升级成轻量级锁。如果是大量的并发，那偏向锁性能开销反而会更大，可以通过jvm参数关闭偏向锁。 </p>
+<h6 id="轻量级锁"><a href="#轻量级锁" class="headerlink" title="轻量级锁 :"></a>轻量级锁 :</h6><p>如果当前锁已经被第一个线程获取，那么这时候还有其他线程尝试去争夺锁，由于锁已经被第一个线程获取，第二个线程去争夺时候，会发现mark word中已经是偏向锁，里面存储的线程id并不是自己，那么会进入CAS(compare and swap) ,从而获取到锁，这里存在2中情况： </p>
+<ol>
+<li>获取锁成功，将mak word中的线程id修改为自己 ，保持偏向锁状态。</li>
+<li>获取失败，表示有多个线程进行争夺，那么升级成轻量级锁。 <br></li>
+</ol>
+<blockquote>
+<p>比较理想的情况是适合 2个线程互相的轮流进行访问  </p>
+</blockquote>
+<p>自旋锁（轻量的一种实现方式）： 当自旋依然失败， 转为重量级锁，无法获取到锁的线程都会进入到monitor 内核态。</p>
+<p>自旋最大的特点是避免进入内核态，但是会增加cpu开销 。 </p>
+<h6 id="重量级锁"><a href="#重量级锁" class="headerlink" title="重量级锁 :"></a>重量级锁 :</h6><p>线程最终从用户态进入内核态。 </p>
+<h6 id="锁消除"><a href="#锁消除" class="headerlink" title="锁消除 :"></a>锁消除 :</h6><p>使用逃逸分析的技术检测是否锁对象只会被一个线程使用，不会散布到其他线程。 那么不会生成synchronize关键字对应的申请与释放机器码， 从而消除锁的使用流程。 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public void tet() &#123;</span><br><span class="line">        Object object = new Object();</span><br><span class="line">        synchronized (object) &#123;</span><br><span class="line">            throw new RuntimeException();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h6 id="锁粗化"><a href="#锁粗化" class="headerlink" title="锁粗化 :"></a>锁粗化 :</h6><p>jit若发现相邻的同步代码块锁的是同一个对象，就会合并成一个大的同步代码 ， 从而达到无需频繁的申请和释放锁 ，从而提高性能。 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public void tet() &#123;</span><br><span class="line">        synchronized (object) &#123;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        synchronized (object) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        synchronized (object) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="Lock-锁"><a href="#Lock-锁" class="headerlink" title="Lock 锁:"></a>Lock 锁:</h6><p>lock 和 synchronize的区别： </p>
+<ol>
+<li>前者通过开发者调用代码手工获取，后者通过jvm自动获取</li>
+<li>前者务必通过unlock在finally中手工释放，后者jvm自动释放</li>
+<li>前者通过java代码实现，后者jvm底层实现</li>
+<li>前者提供了多种 ，入公平锁，非公平锁。前后两者都提供了可重入锁</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/Java/JavaConcurrent/synchronized-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/" data-id="ckpkkdoky005zifus0q841kzv" data-title="synchronized 深入理解" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Java/%E8%B0%88%E8%B0%88%E5%8D%95%E4%BE%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          谈谈单例 
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Java/%E5%86%99%E4%B8%80%E4%B8%AA%E6%AD%BB%E9%94%81/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">写一个死锁</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/">dlib</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/DIP/">DIP</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/mvp/">mvp</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIP/">DIP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Flutter/">Flutter</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gradle/">Gradle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/JavaConcurrent/">JavaConcurrent</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/concurrent/">concurrent</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Jvm/">Jvm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kotlin/">Kotlin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nio/">Nio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note2/">Note2</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/OpenGL/">OpenGL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ReactNative/">ReactNative</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/">jdhai</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/">javascript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/%E8%B7%A8%E5%B9%B3%E5%8F%B0/">跨平台</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/pr/">pr</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%91%E6%8C%87%E7%B3%BB%E5%88%97/">剑指系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%85%92/">酒</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-multiDex/">源码分析-multiDex</a>
+          </li>
+        
+          <li>
+            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-leakCanary/">源码分析-leakCanary</a>
+          </li>
+        
+          <li>
+            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-glide/">源码分析-glide</a>
+          </li>
+        
+          <li>
+            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-okHttp/">源码分析-okHttp</a>
+          </li>
+        
+          <li>
+            <a href="/Android/Android-view%E7%BB%98%E5%88%B6/">Android-view绘制</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 师学<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

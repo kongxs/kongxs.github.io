@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>源码分析-glide | 师学</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="支持GIF，webP ，video 生命周期集成 高效缓存，根据imageView尺寸进行缓存  默认 RGB_565内存开销比较小   RequestManager获取通过Glide.with() 获取RequestManager对象，为每个activity对应添加一个透明不可见的fragment，并且持有当前fragment的生命周期引用，将图片加载的工作同生命周期进行绑定 。  1234">
+<meta property="og:type" content="article">
+<meta property="og:title" content="源码分析-glide">
+<meta property="og:url" content="http://yoursite.com/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-glide/index.html">
+<meta property="og:site_name" content="师学">
+<meta property="og:description" content="支持GIF，webP ，video 生命周期集成 高效缓存，根据imageView尺寸进行缓存  默认 RGB_565内存开销比较小   RequestManager获取通过Glide.with() 获取RequestManager对象，为每个activity对应添加一个透明不可见的fragment，并且持有当前fragment的生命周期引用，将图片加载的工作同生命周期进行绑定 。  1234">
+<meta property="og:locale">
+<meta property="og:image" content="https://wanke-fun.oss-cn-beijing.aliyuncs.com/2021/glid_seq.png">
+<meta property="og:image" content="https://wanke-fun.oss-cn-beijing.aliyuncs.com/2021/gif_seq.png">
+<meta property="og:image" content="https://wanke-fun.oss-cn-beijing.aliyuncs.com/2021/glide_cache_put.png">
+<meta property="og:image" content="https://wanke-fun.oss-cn-beijing.aliyuncs.com/2021/glide_cache_get.png">
+<meta property="article:published_time" content="2021-05-21T06:59:00.000Z">
+<meta property="article:modified_time" content="2021-06-06T01:21:47.477Z">
+<meta property="article:author" content="师学">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wanke-fun.oss-cn-beijing.aliyuncs.com/2021/glid_seq.png">
+  
+    <link rel="alternate" href="/atom.xml" title="师学" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">师学</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学而不思则罔，思而不学则殆。</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-源码分析-glide" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-glide/" class="article-date">
+  <time class="dt-published" datetime="2021-05-21T06:59:00.000Z" itemprop="datePublished">2021-05-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>►<a class="article-category-link" href="/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      源码分析-glide
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<ul>
+<li>支持GIF，webP ，video</li>
+<li>生命周期集成</li>
+<li>高效缓存，根据imageView尺寸进行缓存 </li>
+<li>默认 RGB_565内存开销比较小</li>
+</ul>
+</blockquote>
+<h3 id="RequestManager获取"><a href="#RequestManager获取" class="headerlink" title="RequestManager获取"></a>RequestManager获取</h3><p>通过Glide.with() 获取RequestManager对象，为每个activity对应添加一个透明不可见的fragment，并且持有当前fragment的生命周期引用，将图片加载的工作同生命周期进行绑定 。 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">RequestManager fragmentGet(Context context, android.app.FragmentManager fm) &#123;</span><br><span class="line">        RequestManagerFragment current = getRequestManagerFragment(fm);</span><br><span class="line">        RequestManager requestManager = current.getRequestManager();</span><br><span class="line">        if (requestManager == null) &#123;</span><br><span class="line">            requestManager = new RequestManager(context, current.getLifecycle(), current.getRequestManagerTreeNode());</span><br><span class="line">            current.setRequestManager(requestManager);</span><br><span class="line">        &#125;</span><br><span class="line">        return requestManager;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">RequestManagerFragment getRequestManagerFragment(final android.app.FragmentManager fm) &#123;</span><br><span class="line">        RequestManagerFragment current = (RequestManagerFragment) fm.findFragmentByTag(FRAGMENT_TAG);</span><br><span class="line">        if (current == null) &#123;</span><br><span class="line">            current = pendingRequestManagerFragments.get(fm);</span><br><span class="line">            if (current == null) &#123;</span><br><span class="line">                current = new RequestManagerFragment();</span><br><span class="line">                pendingRequestManagerFragments.put(fm, current);</span><br><span class="line">                fm.beginTransaction().add(current, FRAGMENT_TAG).commitAllowingStateLoss();</span><br><span class="line">                handler.obtainMessage(ID_REMOVE_FRAGMENT_MANAGER, fm).sendToTarget();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return current;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="DrawableTypeRequest"><a href="#DrawableTypeRequest" class="headerlink" title="DrawableTypeRequest"></a>DrawableTypeRequest</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public DrawableTypeRequest&lt;String&gt; load(String string) &#123;</span><br><span class="line">        return (DrawableTypeRequest&lt;String&gt;) fromString().load(string);</span><br><span class="line">    &#125;</span><br><span class="line">public DrawableTypeRequest&lt;String&gt; fromString() &#123;</span><br><span class="line">        return loadGeneric(String.class);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">private &lt;T&gt; DrawableTypeRequest&lt;T&gt; loadGeneric(Class&lt;T&gt; modelClass) &#123;</span><br><span class="line">        ModelLoader&lt;T, InputStream&gt; streamModelLoader = Glide.buildStreamModelLoader(modelClass, context);</span><br><span class="line">        ModelLoader&lt;T, ParcelFileDescriptor&gt; fileDescriptorModelLoader =</span><br><span class="line">                Glide.buildFileDescriptorModelLoader(modelClass, context);</span><br><span class="line">        if (modelClass != null &amp;&amp; streamModelLoader == null &amp;&amp; fileDescriptorModelLoader == null) &#123;</span><br><span class="line">            throw new IllegalArgumentException(&quot;Unknown type &quot; + modelClass + &quot;. You must provide a Model of a type for&quot;</span><br><span class="line">                    + &quot; which there is a registered ModelLoader, if you are using a custom model, you must first call&quot;</span><br><span class="line">                    + &quot; Glide#register with a ModelLoaderFactory for your custom model class&quot;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return optionsApplier.apply(</span><br><span class="line">                new DrawableTypeRequest&lt;T&gt;(modelClass, streamModelLoader, fileDescriptorModelLoader, context,</span><br><span class="line">                        glide, requestTracker, lifecycle, optionsApplier));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>返回DrawableTypeRequest构造</p>
+<blockquote>
+<ul>
+<li>modelClass : java.lang.String</li>
+<li>streamModelLoader : StreamStringLoader</li>
+<li>fileDescriptorModelLoader : FileDescriptorStringLoader</li>
+</ul>
+</blockquote>
+<h3 id="DrawableTypeRequest-into"><a href="#DrawableTypeRequest-into" class="headerlink" title="DrawableTypeRequest#into"></a>DrawableTypeRequest#into</h3><p>GenericRequestBuilder#into</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public Target&lt;TranscodeType&gt; into(ImageView view) &#123;</span><br><span class="line">        .......</span><br><span class="line">        return into(glide.buildImageViewTarget(view, transcodeClass));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>glide.buildImageViewTarget = DrawableImageViewTarget</p>
+<p>GenericRequestBuilder#into </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//target: ImageView</span><br><span class="line">public &lt;Y extends Target&lt;TranscodeType&gt;&gt; Y into(Y target) &#123;</span><br><span class="line">		Request request = buildRequest(target); // GenericRequest</span><br><span class="line">        target.setRequest(request);</span><br><span class="line">        lifecycle.addListener(target);</span><br><span class="line">        requestTracker.runRequest(request);</span><br><span class="line"></span><br><span class="line">        return target;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>RequestTracker#runRequest</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public void runRequest(Request request) &#123;</span><br><span class="line">        requests.add(request);</span><br><span class="line">        if (!isPaused) &#123;</span><br><span class="line">            request.begin();</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            pendingRequests.add(request);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>GenericRequest#begin</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public void begin() &#123;</span><br><span class="line"></span><br><span class="line">	status = Status.WAITING_FOR_SIZE;</span><br><span class="line">        if (Util.isValidDimensions(overrideWidth, overrideHeight)) &#123;</span><br><span class="line">            onSizeReady(overrideWidth, overrideHeight);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">        	// target: GlideDrawableImageViewTarget extends ViewTarget</span><br><span class="line">            target.getSize(this);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ViewTarget#getSize</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">if (isSizeValid(currentWidth) &amp;&amp; isSizeValid(currentHeight)) &#123;</span><br><span class="line">                cb.onSizeReady(currentWidth, currentHeight);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                // We want to notify callbacks in the order they were added and we only expect one or two callbacks to</span><br><span class="line">                // be added a time, so a List is a reasonable choice.</span><br><span class="line">                if (!cbs.contains(cb)) &#123;</span><br><span class="line">                    cbs.add(cb);</span><br><span class="line">                &#125;</span><br><span class="line">                if (layoutListener == null) &#123;</span><br><span class="line">                    final ViewTreeObserver observer = view.getViewTreeObserver();</span><br><span class="line">                    layoutListener = new SizeDeterminerLayoutListener(this);</span><br><span class="line">                    observer.addOnPreDrawListener(layoutListener);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
+<p>GenericRequest#onSizeReady</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">if (status != Status.WAITING_FOR_SIZE) &#123;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        status = Status.RUNNING;</span><br><span class="line"></span><br><span class="line">        width = Math.round(sizeMultiplier * width);</span><br><span class="line">        height = Math.round(sizeMultiplier * height);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		// 1. ImageVideoModelLoader </span><br><span class="line">        ModelLoader&lt;A, T&gt; modelLoader = loadProvider.getModelLoader();</span><br><span class="line">        </span><br><span class="line">        // 2. ImageVideoModelLoader#ImageVideoFetcher</span><br><span class="line">        final DataFetcher&lt;T&gt; dataFetcher = modelLoader.getResourceFetcher(model, width, height);</span><br><span class="line"></span><br><span class="line">        if (dataFetcher == null) &#123;</span><br><span class="line">            onException(new Exception(&quot;Failed to load model: \&#x27;&quot; + model + &quot;\&#x27;&quot;));</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        ResourceTranscoder&lt;Z, R&gt; transcoder = loadProvider.getTranscoder();</span><br><span class="line">        if (Log.isLoggable(TAG, Log.VERBOSE)) &#123;</span><br><span class="line">            logV(&quot;finished setup for calling load in &quot; + LogTime.getElapsedMillis(startTime));</span><br><span class="line">        &#125;</span><br><span class="line">        loadedFromMemoryCache = true;</span><br><span class="line">        //3. </span><br><span class="line">        loadStatus = engine.load(signature, width, height, dataFetcher, loadProvider, transformation, transcoder,</span><br><span class="line">                priority, isMemoryCacheable, diskCacheStrategy, this);</span><br><span class="line">        loadedFromMemoryCache = resource != null;</span><br><span class="line">        if (Log.isLoggable(TAG, Log.VERBOSE)) &#123;</span><br><span class="line">            logV(&quot;finished onSizeReady in &quot; + LogTime.getElapsedMillis(startTime));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Engine#load </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public &lt;T, Z, R&gt; LoadStatus load()&#123;</span><br><span class="line"></span><br><span class="line">final String id = fetcher.getId();//1. imageUrl </span><br><span class="line">        EngineKey key = keyFactory.buildKey(id, signature, width, height, loadProvider.getCacheDecoder(),</span><br><span class="line">                loadProvider.getSourceDecoder(), transformation, loadProvider.getEncoder(),</span><br><span class="line">                transcoder, loadProvider.getSourceEncoder());</span><br><span class="line"></span><br><span class="line">·····</span><br><span class="line"></span><br><span class="line">EngineJob engineJob = engineJobFactory.build(key, isMemoryCacheable);</span><br><span class="line">        DecodeJob&lt;T, Z, R&gt; decodeJob = new DecodeJob&lt;T, Z, R&gt;(key, width, height, fetcher, loadProvider, transformation,</span><br><span class="line">                transcoder, diskCacheProvider, diskCacheStrategy, priority);</span><br><span class="line">        EngineRunnable runnable = new EngineRunnable(engineJob, decodeJob, priority);</span><br><span class="line">        jobs.put(key, engineJob);</span><br><span class="line">        engineJob.addCallback(cb)// cb: GenericRequest</span><br><span class="line">        engineJob.start(runnable);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>EngineRunnable</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public void run() &#123;</span><br><span class="line">	Resource&lt;?&gt; resource = null;</span><br><span class="line">        try &#123;</span><br><span class="line">            resource = decode();</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            if (Log.isLoggable(TAG, Log.VERBOSE)) &#123;</span><br><span class="line">                Log.v(TAG, &quot;Exception decoding&quot;, e);</span><br><span class="line">            &#125;</span><br><span class="line">            exception = e;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">private Resource&lt;?&gt; decode() throws Exception &#123;</span><br><span class="line">        if (isDecodingFromCache()) &#123;</span><br><span class="line">            return decodeFromCache();</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return decodeFromSource();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">private Resource&lt;?&gt; decodeFromSource() throws Exception &#123;</span><br><span class="line">        return decodeJob.decodeFromSource();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>DecodeJob</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public Resource&lt;Z&gt; decodeFromSource() throws Exception &#123;</span><br><span class="line">        Resource&lt;T&gt; decoded = decodeSource();</span><br><span class="line">        return transformEncodeAndTranscode(decoded);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">private Resource&lt;T&gt; decodeSource() throws Exception &#123;</span><br><span class="line">        Resource&lt;T&gt; decoded = null;</span><br><span class="line">        try &#123;</span><br><span class="line">            long startTime = LogTime.getLogTime();</span><br><span class="line">            </span><br><span class="line">            // 1, fetcher:  ImageVideoModelLoader</span><br><span class="line">            </span><br><span class="line">            final A data = fetcher.loadData(priority);</span><br><span class="line">            if (Log.isLoggable(TAG, Log.VERBOSE)) &#123;</span><br><span class="line">                logWithTimeAndKey(&quot;Fetched data&quot;, startTime);</span><br><span class="line">            &#125;</span><br><span class="line">            if (isCancelled) &#123;</span><br><span class="line">                return null;</span><br><span class="line">            &#125;</span><br><span class="line">           //2, </span><br><span class="line">            decoded = decodeFromSourceData(data);</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            fetcher.cleanup();</span><br><span class="line">        &#125;</span><br><span class="line">        return decoded;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>ImageVideoModelLoader</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public ImageVideoWrapper loadData(Priority priority) throws Exception &#123;</span><br><span class="line">	// 1. streamFetcher: HttpUrlFetcher</span><br><span class="line">	is = streamFetcher.loadData(priority);</span><br><span class="line">   </span><br><span class="line">   return new ImageVideoWrapper(is, fileDescriptor);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>HttpUrlFetcher </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public InputStream loadData(Priority priority) throws Exception &#123;</span><br><span class="line">        return loadDataWithRedirects(glideUrl.toURL(), 0 /*redirects*/, null /*lastUrl*/, glideUrl.getHeaders());</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">private InputStream loadDataWithRedirects(URL url, int redirects, URL lastUrl, Map&lt;String, String&gt; headers)</span><br><span class="line">            throws IOException &#123;</span><br><span class="line">           //http requestt .... </span><br><span class="line">           final int statusCode = urlConnection.getResponseCode();</span><br><span class="line">        if (statusCode / 100 == 2) &#123;</span><br><span class="line">            return getStreamForSuccessfulRequest(urlConnection);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">private InputStream getStreamForSuccessfulRequest(HttpURLConnection urlConnection)</span><br><span class="line">            throws IOException &#123;</span><br><span class="line">        if (TextUtils.isEmpty(urlConnection.getContentEncoding())) &#123;</span><br><span class="line">            int contentLength = urlConnection.getContentLength();</span><br><span class="line">            stream = ContentLengthInputStream.obtain(urlConnection.getInputStream(), contentLength);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            if (Log.isLoggable(TAG, Log.DEBUG)) &#123;</span><br><span class="line">                Log.d(TAG, &quot;Got non empty content encoding: &quot; + urlConnection.getContentEncoding());</span><br><span class="line">            &#125;</span><br><span class="line">            stream = urlConnection.getInputStream();</span><br><span class="line">        &#125;</span><br><span class="line">        return stream;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>获取到结果：ImageVideoWrapper ， 进入 DecodeJob </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">private Resource&lt;T&gt; decodeSource() throws Exception &#123;</span><br><span class="line">        Resource&lt;T&gt; decoded = null;</span><br><span class="line">        try &#123;</span><br><span class="line">            long startTime = LogTime.getLogTime();</span><br><span class="line">            final A data = fetcher.loadData(priority);</span><br><span class="line">            if (Log.isLoggable(TAG, Log.VERBOSE)) &#123;</span><br><span class="line">                logWithTimeAndKey(&quot;Fetched data&quot;, startTime);</span><br><span class="line">            &#125;</span><br><span class="line">            if (isCancelled) &#123;</span><br><span class="line">                return null;</span><br><span class="line">            &#125;</span><br><span class="line">            // 2. </span><br><span class="line">            decoded = decodeFromSourceData(data);</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            fetcher.cleanup();</span><br><span class="line">        &#125;</span><br><span class="line">        return decoded;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">private Resource&lt;T&gt; decodeFromSourceData(A data) throws IOException &#123;</span><br><span class="line">        final Resource&lt;T&gt; decoded;</span><br><span class="line">        </span><br><span class="line">            long startTime = LogTime.getLogTime();</span><br><span class="line">            decoded = loadProvider.getSourceDecoder().decode(data, width, height);</span><br><span class="line">            </span><br><span class="line">        </span><br><span class="line">        return decoded;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>GIfBitmapWrapperResourceDecoder </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public Resource&lt;GifBitmapWrapper&gt; decode(ImageVideoWrapper source, int width, int height) throws IOException &#123;</span><br><span class="line">        ByteArrayPool pool = ByteArrayPool.get();</span><br><span class="line">        byte[] tempBytes = pool.getBytes();</span><br><span class="line"></span><br><span class="line">        GifBitmapWrapper wrapper = null;</span><br><span class="line">        try &#123;</span><br><span class="line">        	// 1. </span><br><span class="line">            wrapper = decode(source, width, height, tempBytes);</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            pool.releaseBytes(tempBytes);</span><br><span class="line">        &#125;</span><br><span class="line">        return wrapper != null ? new GifBitmapWrapperResource(wrapper) : null;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">private GifBitmapWrapper decode(ImageVideoWrapper source, int width, int height, byte[] bytes) throws IOException &#123;</span><br><span class="line">        final GifBitmapWrapper result;</span><br><span class="line">        if (source.getStream() != null) &#123;</span><br><span class="line">            result = decodeStream(source, width, height, bytes);</span><br><span class="line">        &#125; </span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">private GifBitmapWrapper decodeStream(ImageVideoWrapper source, int width, int height, byte[] bytes)&#123;</span><br><span class="line">	</span><br><span class="line">    ImageVideoWrapper forBitmapDecoder = new ImageVideoWrapper(bis, source.getFileDescriptor());</span><br><span class="line">            result = decodeBitmapWrapper(forBitmapDecoder, width, height);</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">private GifBitmapWrapper decodeBitmapWrapper(ImageVideoWrapper toDecode, int width, int height) throws IOException &#123;</span><br><span class="line">        GifBitmapWrapper result = null;</span><br><span class="line"></span><br><span class="line">        Resource&lt;Bitmap&gt; bitmapResource = bitmapDecoder.decode(toDecode, width, height);</span><br><span class="line">        if (bitmapResource != null) &#123;</span><br><span class="line">            result = new GifBitmapWrapper(bitmapResource, null);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>ImageVideoBitmapDecoder</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public Resource&lt;Bitmap&gt; decode(ImageVideoWrapper source, int width, int height)&#123;</span><br><span class="line">	result = streamDecoder.decode(is, width, height);</span><br><span class="line">    </span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>StreamBitmapDecoder</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public Resource&lt;Bitmap&gt; decode(InputStream source, int width, int height) &#123;</span><br><span class="line">        Bitmap bitmap = downsampler.decode(source, bitmapPool, width, height, decodeFormat);</span><br><span class="line">        return BitmapResource.obtain(bitmap, bitmapPool);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>DownSamper</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public Bitmap decode(InputStream is, BitmapPool pool, int outWidth, int outHeight, DecodeFormat decodeFormat) &#123;</span><br><span class="line">	·······</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>流转到 EngineRunnable </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public void run() &#123;</span><br><span class="line">	······</span><br><span class="line">    </span><br><span class="line">    resource = decode();</span><br><span class="line">    </span><br><span class="line">	if (resource == null) &#123;</span><br><span class="line">            onLoadFailed(exception);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            onLoadComplete(resource);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">private void onLoadComplete(Resource resource) &#123;</span><br><span class="line">        manager.onResourceReady(resource);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>EngineJob </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public void onResourceReady(final Resource&lt;?&gt; resource) &#123;</span><br><span class="line">        this.resource = resource;</span><br><span class="line">        MAIN_THREAD_HANDLER.obtainMessage(MSG_COMPLETE, this).sendToTarget();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">handler</span><br><span class="line">public boolean handleMessage(Message message) &#123;</span><br><span class="line">            if (MSG_COMPLETE == message.what || MSG_EXCEPTION == message.what) &#123;</span><br><span class="line">                EngineJob job = (EngineJob) message.obj;</span><br><span class="line">                if (MSG_COMPLETE == message.what) &#123;</span><br><span class="line">                    job.handleResultOnMainThread();</span><br><span class="line">                &#125; </span><br><span class="line">                return true;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">private void handleResultOnMainThread() &#123;</span><br><span class="line">	for (ResourceCallback cb : cbs) &#123;</span><br><span class="line">            if (!isInIgnoredCallbacks(cb)) &#123;</span><br><span class="line">                engineResource.acquire();</span><br><span class="line">                cb.onResourceReady(engineResource);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>GenericRequest</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public void onResourceReady(Resource&lt;?&gt; resource) &#123;</span><br><span class="line">	onResourceReady(resource, (R) received);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">private void onResourceReady(Resource&lt;?&gt; resource, GlideBitmapDrawable result) &#123;</span><br><span class="line">	status = Status.COMPLETE;</span><br><span class="line">     GlideAnimation&lt;R&gt; animation = animationFactory.build(loadedFromMemoryCache, isFirstResource);</span><br><span class="line">            target.onResourceReady(result, animation);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>GlideDrawwableImageViewTarget</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public void onResourceReady(GlideDrawable resource, GlideAnimation&lt;? super GlideDrawable&gt; animation) &#123;</span><br><span class="line">super.onResourceReady(resource, animation);//1. </span><br><span class="line">        this.resource = resource;</span><br><span class="line">        resource.setLoopCount(maxLoopCount);</span><br><span class="line">        resource.start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">protected void setResource(GlideDrawable resource) &#123;</span><br><span class="line">        view.setImageDrawable(resource);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>一阶段：  图片加载成功 。。。。。。。。 </p>
+<p>glide对于图片的加载分为以下几个步骤完成</p>
+<ol>
+<li>构造request</li>
+<li>cache/网络请求进行图片获取</li>
+<li>decode/图片解析</li>
+</ol>
+<p>图片加载时序图<br><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/2021/glid_seq.png"></img></p>
+<p>GIF加载时序图<br><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/2021/gif_seq.png" /></p>
+<h3 id="glide-缓存处理"><a href="#glide-缓存处理" class="headerlink" title="glide 缓存处理"></a>glide 缓存处理</h3><p>Engine</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public &lt;T, Z, R&gt; LoadStatus load(Key signature, int width, int height, DataFetcher&lt;T&gt; fetcher,</span><br><span class="line">            DataLoadProvider&lt;T, Z&gt; loadProvider, Transformation&lt;Z&gt; transformation, ResourceTranscoder&lt;Z, R&gt; transcoder,</span><br><span class="line">            Priority priority, boolean isMemoryCacheable, DiskCacheStrategy diskCacheStrategy, ResourceCallback cb) &#123;</span><br><span class="line">   </span><br><span class="line">   </span><br><span class="line">   final String id = fetcher.getId();// 1. 图片url</span><br><span class="line">        EngineKey key = keyFactory.buildKey(id, signature, width, height, loadProvider.getCacheDecoder(),</span><br><span class="line">                loadProvider.getSourceDecoder(), transformation, loadProvider.getEncoder(),</span><br><span class="line">                transcoder, loadProvider.getSourceEncoder());</span><br><span class="line"></span><br><span class="line">        EngineResource&lt;?&gt; cached = loadFromCache(key, isMemoryCacheable);</span><br><span class="line">        if (cached != null) &#123;</span><br><span class="line">            cb.onResourceReady(cached);//直接回调显示</span><br><span class="line">            if (Log.isLoggable(TAG, Log.VERBOSE)) &#123;</span><br><span class="line">                logWithTimeAndKey(&quot;Loaded resource from cache&quot;, startTime, key);</span><br><span class="line">            &#125;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">            </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">private EngineResource&lt;?&gt; loadFromCache(Key key, boolean isMemoryCacheable) &#123;</span><br><span class="line">       </span><br><span class="line"></span><br><span class="line">        EngineResource&lt;?&gt; cached = getEngineResourceFromCache(key);</span><br><span class="line">        </span><br><span class="line">        return cached;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">private EngineResource&lt;?&gt; getEngineResourceFromCache(Key key) &#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>cache : put : 时序图<br><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/2021/glide_cache_put.png" /></p>
+<p>cache : get : 时序图<br><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/2021/glide_cache_get.png" /></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-glide/" data-id="ckpkkdol5006qifusey7c7ti0" data-title="源码分析-glide" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-leakCanary/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          源码分析-leakCanary
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-okHttp/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">源码分析-okHttp</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/">dlib</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/DIP/">DIP</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/mvp/">mvp</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIP/">DIP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Flutter/">Flutter</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gradle/">Gradle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/JavaConcurrent/">JavaConcurrent</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/concurrent/">concurrent</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Jvm/">Jvm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kotlin/">Kotlin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nio/">Nio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note2/">Note2</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/OpenGL/">OpenGL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ReactNative/">ReactNative</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/">jdhai</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/">javascript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/%E8%B7%A8%E5%B9%B3%E5%8F%B0/">跨平台</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/pr/">pr</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%91%E6%8C%87%E7%B3%BB%E5%88%97/">剑指系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%85%92/">酒</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-multiDex/">源码分析-multiDex</a>
+          </li>
+        
+          <li>
+            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-leakCanary/">源码分析-leakCanary</a>
+          </li>
+        
+          <li>
+            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-glide/">源码分析-glide</a>
+          </li>
+        
+          <li>
+            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-okHttp/">源码分析-okHttp</a>
+          </li>
+        
+          <li>
+            <a href="/Android/Android-view%E7%BB%98%E5%88%B6/">Android-view绘制</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 师学<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
