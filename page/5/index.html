@@ -104,40 +104,11 @@
         <h2 id="1-Buffer"><a href="#1-Buffer" class="headerlink" title="1. Buffer"></a>1. Buffer</h2><pre><code>nio对于原生数据类型的支持(除去boolean)
 如 IntBuffer、ByteBuffer
 </code></pre>
-<h2 id="2-buffer重要概念"><a href="#2-buffer重要概念" class="headerlink" title="2. buffer重要概念"></a>2. buffer重要概念</h2><pre><code>buffer中有一个概念是关于 position、limit 、capacity 的
-在一个buffer被初始化的时候，比如 intBuffer.allocate(6)，我们给当前buffer分配控件为6
-这个时候，position 指向 0 ，limit = capacity 指向当前容量的下一个地址 即 7 
-如下图： 
-</code></pre>
-<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/nio/buffer_flip.png"></img></p>
-<pre><code>这时候我们向buffer中写入3个控件的数据，position 指向4（下一个将要下入的空间），limit = capacity 指向当前容量的下一个地址 为 7
-</code></pre>
-<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/nio/buffer_write.png"></img></p>
-<pre><code>此时调用buffer.flip 进行翻转 准备输出。 position指向0，
-limit指向4，capacity指向7
-</code></pre>
-<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/nio/buffer_flip_1.png"></img></p>
-<pre><code>buffer.clear 置为初始状态
-</code></pre>
-<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/nio/buffer_flip.png"></img></p>
-<h2 id="3-sliceBuffer"><a href="#3-sliceBuffer" class="headerlink" title="3. sliceBuffer"></a>3. sliceBuffer</h2><pre><code>通过 buffer.slice获取一个新的buffer，新buffer以 buffer的position为开始，以buffer的limit为结束返回。
-新buffer的position，limit，capacity 独立，但是对于新buffer的修改会反映到原有的buffer中
-</code></pre>
-<h2 id="4-只读buffer"><a href="#4-只读buffer" class="headerlink" title="4. 只读buffer"></a>4. 只读buffer</h2><pre><code>通过buffer.asReadOnlyBuffer()获取.
-如果尝试向只读buffer写入数据会抛出异常ReadOnlyException，原有buffer的数据变化对于只读buffer是可见的
-</code></pre>
-<h2 id="5-directBuffer-直接缓冲"><a href="#5-directBuffer-直接缓冲" class="headerlink" title="5. directBuffer 直接缓冲"></a>5. directBuffer 直接缓冲</h2><pre><code>通过byteBuffer.allocateDirect()获取.
-堆外内存，0 拷贝，直接在native创建内存区域同io设备打交道
-</code></pre>
-<h2 id="6-buffer的scattering和gathering"><a href="#6-buffer的scattering和gathering" class="headerlink" title="6. buffer的scattering和gathering"></a>6. buffer的scattering和gathering</h2><pre><code>Scaterring 撒开,分散,将来自于一个Channel的数据分散到多个Buffer当中,一个满了就用下一个,可以实现数据的分门别类.
-
-这样就省去了解析的时间,比如一个消息有三个部分,第一部分是头信息,第二部分是协议信息,第三部分是消息体.
-
-可以吧这三个消息分别放到不同的Ｂuffer当中，
-
-Gatering 把多个汇总成一个,将要写到Channel的数据,
-</code></pre>
-
+        
+          <p class="article-more-link">
+            <a href="/Nio/nio-buffer-%E5%AD%A6%E4%B9%A0%E8%AF%A6%E8%A7%A3/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -175,36 +146,12 @@ Gatering 把多个汇总成一个,将要写到Channel的数据,
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="1-IO与NIO"><a href="#1-IO与NIO" class="headerlink" title="1. IO与NIO"></a>1. IO与NIO</h2><pre><code>在io中核心概念是流，要么是输入要么是输出，不能同时输入输出
-在NIO中拥有三个核心概念： 
-    1. selector 选择器
-    2. channel 通道
-    3. buffer 缓冲区
-NIO 是面向块(block)或者缓冲区(buffer)编程的,
-buffer 本身是一块内存，底层实现是一块数组，
-底层 读写 是通过buffer实现的
-</code></pre>
-<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/nio_1.png"></img></p>
-<pre><code>java中的原生类型都有对应的buffer 
-    如 intBuffer
-channel是指可以从中读取或者写入数据的对象，所有数据的读写都是通过
-buffer来进行的，
-channel是双向的，拥有读写的双向功能 。
-</code></pre>
-<h2 id="2-nio示例一"><a href="#2-nio示例一" class="headerlink" title="2. nio示例一"></a>2. nio示例一</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">FileInputStream fisl = <span class="keyword">new</span> FileInputStream(<span class="string">&quot;niotest.txt&quot;</span>);</span><br><span class="line"></span><br><span class="line">        FileChannel channel = fisl.getChannel();</span><br><span class="line"></span><br><span class="line">        ByteBuffer buffer = ByteBuffer.allocate(<span class="number">512</span>);</span><br><span class="line"></span><br><span class="line">        channel.read(buffer);</span><br><span class="line"></span><br><span class="line">        buffer.flip();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (buffer.hasRemaining()) &#123;</span><br><span class="line">            System.out.print((<span class="keyword">char</span>) buffer.get());</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-nio-示例二"><a href="#3-nio-示例二" class="headerlink" title="3. nio 示例二"></a>3. nio 示例二</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">        FileOutputStream fos = new FileOutputStream(&quot;niotext.txt&quot;);</span><br><span class="line"></span><br><span class="line">        FileChannel channel = fos.getChannel();</span><br><span class="line"></span><br><span class="line">        ByteBuffer buffer = ByteBuffer.allocate(512);</span><br><span class="line"></span><br><span class="line">        buffer.put(&quot;hello nio test &quot;.getBytes());</span><br><span class="line"></span><br><span class="line">        buffer.flip();</span><br><span class="line"></span><br><span class="line">        channel.write(buffer);</span><br><span class="line"></span><br><span class="line">        fos.close();</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<pre><code>总结： 
-    以上两个例子，我们对文件的操作都是通过channel和buffer来实现的
-    
-读文件: 
-    首先通过channel把的文件内容写到buffer，然后通过buffer获取
-    
-写文件： 
-    首先把内容写到buffer，然后通过channel写入文件
-</code></pre>
-
+        <h2 id="1-IO与NIO"><a href="#1-IO与NIO" class="headerlink" title="1. IO与NIO"></a>1. IO与NIO</h2>
+        
+          <p class="article-more-link">
+            <a href="/uncategorized/nio%E5%AD%A6%E4%B9%A0/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -246,48 +193,12 @@ channel是双向的，拥有读写的双向功能 。
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="1-装饰模式的概念"><a href="#1-装饰模式的概念" class="headerlink" title="1. 装饰模式的概念"></a>1. 装饰模式的概念</h2><pre><code>装饰模式：
-在不改变接口的前提下，动态扩展对象的访问。    
-动态继承，让类具有在运行期改变行为的能力。    
-装饰模式，突出的是运行期增加行为，这和继承是不同的，
-继承是在编译期增加行为。
-强调：增强，新增行为
-</code></pre>
-<br>
-
-<pre><code>策略模式有如下的角色: 
-顶层构件接口： 规范了接口的动作行为
-抽象构件类 ： 实现顶层构件并维护一个构件对象，将行为做分发
-核心构件类 ： 脱离于抽象构件的核心独立存在
-</code></pre>
-<h2 id="2-代码实现"><a href="#2-代码实现" class="headerlink" title="2. 代码实现"></a>2. 代码实现</h2><p>顶层构件接口： </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Milk</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getPrice</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function">String <span class="title">getName</span><span class="params">()</span></span>; </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>抽象构件类： </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 抽象构件角色，继承 milk</span></span><br><span class="line"><span class="comment"> * 并内部维护一个 compoment 对象，负责做接口请求的转发</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">MilkDecorator</span> <span class="keyword">implements</span> <span class="title">Milk</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> Milk compoment;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MilkDecorator</span><span class="params">(Milk compoment)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.compoment = compoment;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPrice</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> compoment.getPrice();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> compoment.getName();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>核心构件： </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 核心构件</span><br><span class="line"> */</span><br><span class="line">public class PureMilk implements Milk &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public int getPrice() &#123;</span><br><span class="line">        return 5;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return &quot;纯牛奶&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>构件： </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class AppleMilk extends MilkDecorator &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public AppleMilk(Milk compoment) &#123;</span><br><span class="line">        super(compoment);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public int getPrice() &#123;</span><br><span class="line">        return super.getPrice() + 5;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return super.getName() + &quot; 加苹果 &quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class PeachMilk extends MilkDecorator &#123;</span><br><span class="line"></span><br><span class="line">    public PeachMilk(Milk compoment) &#123;</span><br><span class="line">        super(compoment);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public int getPrice() &#123;</span><br><span class="line">        return super.getPrice() + 10;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return super.getName() + &quot; 黄桃 &quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        //核心构件</span><br><span class="line">        Milk milk = new PureMilk();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Milk packageA = new AppleMilk(milk);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Milk iceMilkA = new IceMilk(packageA);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        System.out.println(iceMilkA.getPrice() + &quot; , &quot; + iceMilkA.getName());</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Milk packageB = new PeachMilk(iceMilkA);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        System.out.println(packageB.getPrice() + &quot; , &quot; + packageB.getName());</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>执行结果：</p>
-<pre><code>10 , 纯牛奶 加苹果  加冰 
-20 , 纯牛奶 加苹果  加冰  黄桃 
-</code></pre>
-<h2 id="3-优缺点分析"><a href="#3-优缺点分析" class="headerlink" title="3. 优缺点分析"></a>3. 优缺点分析</h2><pre><code>优点：
-1. 装饰模式可以提供比继承更多地灵活性。
-2. 可以通过一种动态的方式来扩展一个对象的功能，
-    在运行时选择不同的装饰器，从而实现不同的行为。
-缺点： 
-1. 会产生很多的小对象（具体装饰类），增加了系统的复杂性。
-2. 装饰模式比继承易于出错，排错也很困难，对于多次装饰的对象，
-    调试时寻找错误可能需要逐级排查，较为烦琐。
-</code></pre>
-
+        <h2 id="1-装饰模式的概念"><a href="#1-装饰模式的概念" class="headerlink" title="1. 装饰模式的概念"></a>1. 装饰模式的概念</h2>
+        
+          <p class="article-more-link">
+            <a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F%E4%BD%BF%E7%94%A8/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">

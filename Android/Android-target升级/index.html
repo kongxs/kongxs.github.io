@@ -6,16 +6,16 @@
   
   <title>Android target升级 | 师学</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="targetSdkVersion 从23(6.0) 升级到 26(8.0) 适配记录 1. Android 7.0 适配主要适配内容  1. FileProvider 在官方7.0的以上的系统中，尝试传递 file:&#x2F;&#x2F;URI可能会触发FileUriExposedException 可能的应用场景： 例如 拍照获取图片，图片裁剪等 ，官方也给出了适配方案，那么就是 使用fileProvider">
+  <meta name="description" content="targetSdkVersion 从23(6.0) 升级到 26(8.0) 适配记录">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android target升级">
 <meta property="og:url" content="http://yoursite.com/Android/Android-target%E5%8D%87%E7%BA%A7/index.html">
 <meta property="og:site_name" content="师学">
-<meta property="og:description" content="targetSdkVersion 从23(6.0) 升级到 26(8.0) 适配记录 1. Android 7.0 适配主要适配内容  1. FileProvider 在官方7.0的以上的系统中，尝试传递 file:&#x2F;&#x2F;URI可能会触发FileUriExposedException 可能的应用场景： 例如 拍照获取图片，图片裁剪等 ，官方也给出了适配方案，那么就是 使用fileProvider">
+<meta property="og:description" content="targetSdkVersion 从23(6.0) 升级到 26(8.0) 适配记录">
 <meta property="og:locale">
 <meta property="og:image" content="https://wanke-fun.oss-cn-beijing.aliyuncs.com/android_0_activity_crash.png">
 <meta property="article:published_time" content="2019-09-16T02:18:00.000Z">
-<meta property="article:modified_time" content="2021-06-06T01:21:47.458Z">
+<meta property="article:modified_time" content="2021-06-06T04:51:44.582Z">
 <meta property="article:author" content="师学">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://wanke-fun.oss-cn-beijing.aliyuncs.com/android_0_activity_crash.png">
@@ -106,6 +106,7 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
         <p>targetSdkVersion 从23(6.0) 升级到 26(8.0) 适配记录</p>
+<span id="more"></span>
 <h2 id="1-Android-7-0-适配"><a href="#1-Android-7-0-适配" class="headerlink" title="1. Android 7.0 适配"></a>1. Android 7.0 适配</h2><pre><code>主要适配内容 
 1. FileProvider
 在官方7.0的以上的系统中，尝试传递 file://URI可能会触发FileUriExposedException

@@ -6,15 +6,15 @@
   
   <title>Flutter 和原生APP进行交互 | 师学</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="在混合开发中，flutter避免不掉的需要和我们原生的Android代码进行交互，例如获取设备电量，或者使用APP已有的功能代码。    本文记录 flutter 和 Android 进行交互的过程！  创建工程 pluginmy      flutter create -t plugin -a java --org com.example pluginmy  1. Flutter调用Java代码">
+  <meta name="description" content="在混合开发中，flutter避免不掉的需要和我们原生的Android代码进行交互，例如获取设备电量，或者使用APP已有的功能代码。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Flutter 和原生APP进行交互">
 <meta property="og:url" content="http://yoursite.com/Flutter/Flutter-%E5%92%8C%E5%8E%9F%E7%94%9FAPP%E8%BF%9B%E8%A1%8C%E4%BA%A4%E4%BA%92/index.html">
 <meta property="og:site_name" content="师学">
-<meta property="og:description" content="在混合开发中，flutter避免不掉的需要和我们原生的Android代码进行交互，例如获取设备电量，或者使用APP已有的功能代码。    本文记录 flutter 和 Android 进行交互的过程！  创建工程 pluginmy      flutter create -t plugin -a java --org com.example pluginmy  1. Flutter调用Java代码">
+<meta property="og:description" content="在混合开发中，flutter避免不掉的需要和我们原生的Android代码进行交互，例如获取设备电量，或者使用APP已有的功能代码。">
 <meta property="og:locale">
 <meta property="article:published_time" content="2019-10-09T02:19:00.000Z">
-<meta property="article:modified_time" content="2021-06-06T01:21:47.462Z">
+<meta property="article:modified_time" content="2021-06-06T04:49:59.694Z">
 <meta property="article:author" content="师学">
 <meta name="twitter:card" content="summary">
   
@@ -103,8 +103,13 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>在混合开发中，flutter避免不掉的需要和我们原生的Android代码进行交互，例如获取设备电量，或者使用APP已有的功能代码。<br>    本文记录 flutter 和 Android 进行交互的过程！ </p>
-<pre><code>创建工程 pluginmy 
+        <p>在混合开发中，flutter避免不掉的需要和我们原生的Android代码进行交互，例如获取设备电量，或者使用APP已有的功能代码。</p>
+<span id="more"></span>
+
+<pre><code>本文记录 flutter 和 Android 进行交互的过程！ 
+
+
+创建工程 pluginmy 
     flutter create -t plugin -a java --org com.example pluginmy
 </code></pre>
 <h2 id="1-Flutter调用Java代码-MethodChannel"><a href="#1-Flutter调用Java代码-MethodChannel" class="headerlink" title="1. Flutter调用Java代码( MethodChannel)"></a>1. Flutter调用Java代码( MethodChannel)</h2><h3 id="1-1-java部分代码编写"><a href="#1-1-java部分代码编写" class="headerlink" title="1.1 java部分代码编写"></a>1.1 java部分代码编写</h3><pre><code>在Java端，首先通过studio 单独打开Android项目 ，然后在 MainActivity中注入MethodChannel

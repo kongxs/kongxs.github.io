@@ -6,17 +6,17 @@
   
   <title>Flutter 状态管理provider | 师学</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="前端开发者或者reactNative开发者 对于状态管理应该不会陌生，例如前端大名鼎鼎的redux框架 。  在flutter中，对于状态的同步管理是一项很繁琐的申请，比如我们需要将一个值传入后续的N个widget中，需要一层层的传递，并且对于值同步也很麻烦。  在这样的背景下，各种状态管理框架应运而生了，它可以让我们更方便的管理state，同步数据，等操作  在2019年google io大会，">
+  <meta name="description" content="前端开发者或者reactNative开发者 对于状态管理应该不会陌生，例如前端大名鼎鼎的redux框架 。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Flutter 状态管理provider">
 <meta property="og:url" content="http://yoursite.com/Flutter/Flutter-%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86provider/index.html">
 <meta property="og:site_name" content="师学">
-<meta property="og:description" content="前端开发者或者reactNative开发者 对于状态管理应该不会陌生，例如前端大名鼎鼎的redux框架 。  在flutter中，对于状态的同步管理是一项很繁琐的申请，比如我们需要将一个值传入后续的N个widget中，需要一层层的传递，并且对于值同步也很麻烦。  在这样的背景下，各种状态管理框架应运而生了，它可以让我们更方便的管理state，同步数据，等操作  在2019年google io大会，">
+<meta property="og:description" content="前端开发者或者reactNative开发者 对于状态管理应该不会陌生，例如前端大名鼎鼎的redux框架 。">
 <meta property="og:locale">
 <meta property="og:image" content="https://wanke-fun.oss-cn-beijing.aliyuncs.com/flutter/provider_1.png">
 <meta property="og:image" content="https://wanke-fun.oss-cn-beijing.aliyuncs.com/flutter/flutter_state_provider.png">
 <meta property="article:published_time" content="2019-09-26T07:09:00.000Z">
-<meta property="article:modified_time" content="2021-06-06T01:21:47.463Z">
+<meta property="article:modified_time" content="2021-06-06T04:50:31.072Z">
 <meta property="article:author" content="师学">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://wanke-fun.oss-cn-beijing.aliyuncs.com/flutter/provider_1.png">
@@ -107,6 +107,7 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
         <p>前端开发者或者reactNative开发者 对于状态管理应该不会陌生，例如前端大名鼎鼎的redux框架 。 </p>
+<span id="more"></span>
 <pre><code>在flutter中，对于状态的同步管理是一项很繁琐的申请，比如我们需要将一个值传入后续的N个widget中，需要一层层的传递，并且对于值同步也很麻烦。
 
 在这样的背景下，各种状态管理框架应运而生了，它可以让我们更方便的管理state，同步数据，等操作

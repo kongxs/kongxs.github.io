@@ -6,15 +6,15 @@
   
   <title>gradle 自定义plugin基本方式 | 师学</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="1. 实现的几种方式1. 直接在 app 的gradle文件中编写     只有当前module可用，可用于本地调试 2. buildSrc工程     只有当前工程可用，重复使用，不可上传 3. 独立module     要配合上传到本地或者远端仓库使用  2. 如何实现2.1 直接使用好处： 使用简单，配置简单 缺点： 只能在当前module使用，局限性大 实现方式：  1. 在APP的bui">
+  <meta name="description" content="1. 实现的几种方式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="gradle 自定义plugin基本方式">
 <meta property="og:url" content="http://yoursite.com/Gradle/gradle-%E8%87%AA%E5%AE%9A%E4%B9%89plugin%E5%9F%BA%E6%9C%AC%E6%96%B9%E5%BC%8F/index.html">
 <meta property="og:site_name" content="师学">
-<meta property="og:description" content="1. 实现的几种方式1. 直接在 app 的gradle文件中编写     只有当前module可用，可用于本地调试 2. buildSrc工程     只有当前工程可用，重复使用，不可上传 3. 独立module     要配合上传到本地或者远端仓库使用  2. 如何实现2.1 直接使用好处： 使用简单，配置简单 缺点： 只能在当前module使用，局限性大 实现方式：  1. 在APP的bui">
+<meta property="og:description" content="1. 实现的几种方式">
 <meta property="og:locale">
 <meta property="article:published_time" content="2019-08-26T09:40:50.000Z">
-<meta property="article:modified_time" content="2021-06-06T01:21:47.470Z">
+<meta property="article:modified_time" content="2021-06-06T04:52:17.516Z">
 <meta property="article:author" content="师学">
 <meta name="twitter:card" content="summary">
   
@@ -103,7 +103,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="1-实现的几种方式"><a href="#1-实现的几种方式" class="headerlink" title="1. 实现的几种方式"></a>1. 实现的几种方式</h2><pre><code>1. 直接在 app 的gradle文件中编写
+        <h2 id="1-实现的几种方式"><a href="#1-实现的几种方式" class="headerlink" title="1. 实现的几种方式"></a>1. 实现的几种方式</h2><span id="more"></span>
+
+<pre><code>1. 直接在 app 的gradle文件中编写
     只有当前module可用，可用于本地调试
 2. buildSrc工程
     只有当前工程可用，重复使用，不可上传
@@ -168,7 +170,7 @@
 4. clean and make project
 </code></pre>
 <br>
-代码已托管至 <a href = "https://github.com/kongxs/PluginProject">Github ，点击获取</a> 
+代码已托管至 <a href = "https://github.com/kongxs/PluginProject">Github ，点击获取</a>
       
     </div>
     <footer class="article-footer">

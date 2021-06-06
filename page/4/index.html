@@ -101,223 +101,12 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="1-相关-api"><a href="#1-相关-api" class="headerlink" title="1. 相关 api"></a>1. 相关 api</h2><pre><code>1. void av_register_all(void);
-    注册所有的muxers ， demuxers 和 protocoal ，也可以选择具体的某一个来单独注册 。 
-    固定写法
-</code></pre>
-<br>
-    2. void avcodec_register_all(void);
-        注册所有的编解码器，固定写法即可。 
-<br>
-    
-<pre><code>3. AVFormatContext *avformat_alloc_context(void);
-    初始化一个 AVFormatContext 分配内存存并初始化默认值。 
-    AVFormatContext 结构体封装了av的一些基本信息，不可以外部初始化
-</code></pre>
-<br>
-
-<pre><code>4. int avformat_open_input(AVFormatContext **ps, const char *url,
-                        AVInputFormat *fmt, AVDictionary **options);
-   打开一个流并读取它的头信息 ， 这时候并没有打开 codecs 。
-   
-   url： 硬盘文件或者网络路径
-   fmt： NULL
-   options ： NULL
-   
-</code></pre>
-<br> 
-    
-<pre><code>5. int avformat_find_stream_info(AVFormatContext *ic,
-                                    AVDictionary **options);                                 
-</code></pre>
-<br> 
-
-<pre><code>6. int av_find_best_stream(AVFormatContext *ic,
-                    enum AVMediaType type,
-                    int wanted_stream_nb,
-                    int related_stream,
-                    AVCodec **decoder_ret,
-                    int flags);
-在文件中找到最好的那路 音频或者视频 流 
-type ： 枚举类型，常用的有 音频 ， 视频
-wanted_stream_nb ： -1
-related_stream： -1 
-decoder_ret ： 不知道可以写 NULL
-flags ： 0
-</code></pre>
-<br>
-
-<pre><code>7. AVOutputFormat *av_guess_format(const char *short_name,
-                            const char *filename,
-                            const char *mime_type);
-从已经注册过的格式里面选择一个最匹配的
-short_name : NULL
-filename : 输出文件的全路径
-mime_type ：NULL
-</code></pre>
-<br>
-
-<pre><code>8. AVStream *avformat_new_stream(AVFormatContext *s, 
-                                const AVCodec *c);
-    添加一个新的流到媒体文件中，                                
-                                
-</code></pre>
- <br>
- 
-<pre><code>9. int avcodec_parameters_copy(AVCodecParameters *dst, const     
-                                AVCodecParameters *src);
-    从原始的media里面拷贝codec到目标文件里
-</code></pre>
-<br>
-                                   
-<pre><code>10. int avformat_write_header(AVFormatContext *s, AVDictionary 
-                            **options);
-    创建一个新的流，并且将header信息说不出到给定的文件
-</code></pre>
-<br>
-
-<pre><code>11. void av_init_packet(AVPacket *pkt);
-    初始化一个 给定的packet ,为可选的参数赋默认值。 ，这里并不涉及到数据大小内存变化。 
-</code></pre>
-<br>
-
-<pre><code>12. int avio_open(AVIOContext **s, const char *url, int flags);
-    使用给定的 url 和 flag 打开一个输出环境 。 
-    flags： AVIO_FLAG_WRITE ， AVIO_FLAG_READ
-</code></pre>
-<br>
-
-<pre><code>13. int av_read_frame(AVFormatContext *s, AVPacket *pkt);
-    给流中不断的获取frame ， 
-    note： 此 frame是未解码的原始数据
-    
-</code></pre>
-<br>
-
-<pre><code>14. int64_t av_rescale_q_rnd(int64_t a, AVRational b, AVRational cq,
-                     enum AVRounding c) av_const;
-    时间刻度转换 。 将以 &quot;时钟基c&quot; 表示的 数值a 转换成以 &quot;时钟基b&quot; 来表示。
-</code></pre>
-<br>
-
-<pre><code>15. int64_t av_rescale_q(int64_t a, AVRational b, AVRational c) av_const;
-    具体来说是将以 &quot;时钟基c&quot; 表示的 数值a 转换成以 &quot;时钟基b&quot; 来表示。
-</code></pre>
-<br>
-
-<pre><code>16. int av_interleaved_write_frame(AVFormatContext *s, AVPacket *pkt);
-    （Write a packet to an output media file ensuring correct interleaving.）
-</code></pre>
-<br>
-
-<pre><code>17. int av_write_trailer(AVFormatContext *s);
-</code></pre>
-<br>
-
-<pre><code>18. int avcodec_send_packet(AVCodecContext *avctx, 
-                    const AVPacket *avpkt);
-
-    解码 并将解码后的数据放到 avpkt 中。 
-</code></pre>
-<br>
-
-<pre><code>19.  int avcodec_receive_frame(AVCodecContext *avctx, 
-                    AVFrame *frame);
-    从decoder中获取已经解码后的数据帧
-    
-</code></pre>
-<br>   
-
-<pre><code>20. int avformat_alloc_output_context2(AVFormatContext **ctx,                         AVOutputFormat *oformat,
-                const char *format_name, 
-                const char *filename);
-    给 输出 文件初始化  ， 创建上下文并且根据输出文件格式生成容器
-     本质上调用了avformat_alloc_context、av_guess_format 这两个函数
-</code></pre>
-<br>
-
-<pre><code>21. AVCodec *avcodec_find_encoder(enum AVCodecID id);
-    获取一个已经注册过的encoder ， 
-    ig： AVCodec *codec = avcodec_find_encoder(AV_CODEC_ID_MJPEG);
-</code></pre>
-<br>
-
-<pre><code>22. int avcodec_open2(AVCodecContext *avctx, 
-                const AVCodec *codec, 
-                AVDictionary **options);
-    使用给定的codec 来初始化一个 avctx ，以便于后续使用
-</code></pre>
-<br>
-
-<pre><code>23. int avcodec_send_frame(AVCodecContext *avctx, 
-                const AVFrame *frame);
-    将 frame 使用给定的 encoder 进行编码 
-</code></pre>
-<br>
-
-<pre><code>24. int avcodec_receive_packet(AVCodecContext *avctx, 
-                AVPacket *avpkt);
-    从encoder中读取已经编码后的数据包，放到avpkt中。
-    
-</code></pre>
-<br>
-
-<pre><code>25. int av_image_alloc(uint8_t *pointers[4], 
-                int linesizes[4],  
-                int w, int h, 
-                enum AVPixelFormat pix_fmt, 
-                int align);
-参数说明： 
-    pointers[4]：保存图像通道的地址。如果是RGB，则前三个指针分别指向R,G,B的内存地址。第四个指针保留不用
-    linesizes[4]：保存图像每个通道的内存对齐的步长，即一行的对齐内存的宽度，此值大小等于图像宽度。
-     w:      要申请内存的图像宽度。
-     h:      要申请内存的图像高度。
-    pix_fmt:  要申请内存的图像的像素格式。
-    align:   用于内存对齐的值。
-
-  返回值：所申请的内存空间的总大小。如果是负值，表示申请失败。
-</code></pre>
-<br>
-    
-<pre><code>26. int av_image_get_buffer_size(enum AVPixelFormat pix_fmt, 
-                        int width, int height, int align)
-    
-    通过指定像素格式、图像宽、图像高来计算所需的内存大小
-
-    重点说明一个参数align:此参数是设定内存对齐的对齐数，也就是按多大的字节进行内存对齐。比如设置为1，表示按1字节对齐，那么得到的结果就是与实际的内存大小一样。再比如设置为4，表示按4字节对齐。也就是内存的起始地址必须是4的整倍数。
-    
-</code></pre>
-<br>
-
-<pre><code>27. int av_image_fill_arrays(uint8_t *dst_data[4], 
-                int dst_linesize[4],                         
-                const uint8_t *src,  
-                enum AVPixelFormat pix_fmt, 
-                int width, int height, int align);
-    
-    av_image_fill_arrays()函数自身不具备内存申请的功能，此函数类似于格式化已经申请的内存，即通过av_malloc()函数申请的内存空间。
-
-参数具体说明：
-  dst_data[4]：  对申请的内存格式化为三个通道后，分别保存其地址
-  dst_linesize[4]:  格式化的内存的步长（即内存对齐后的宽度)
-  *src:        av_alloc()函数申请的内存地址。
- pix_fmt:    申请 src内存时的像素格式
-width:        申请src内存时指定的宽度
-height:      申请scr内存时指定的高度
-
-align:   申请src内存时指定的对齐字节数。
-
-通过以上实例可以看到，
-（a)计算所需内存大小av_image_get_bufferz_size() --&gt; 
-(b) 按计算的内存大小申请所需内存 av_malloc()  --&gt; 
-(c) 对申请的内存进行格式化 av_image_fill_arrays();
-    
-    
-    
-    
-    
-</code></pre>
-
+        <h2 id="1-相关-api"><a href="#1-相关-api" class="headerlink" title="1. 相关 api"></a>1. 相关 api</h2>
+        
+          <p class="article-more-link">
+            <a href="/FFmpeg/FFmpeg-api%E8%AE%B2%E8%A7%A3/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -359,51 +148,12 @@ align:   申请src内存时指定的对齐字节数。
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <pre><code>介于mac上强大的home brew功能，在macOS 开发ffmpeg还是很简单的。 下面记录下，在macOS上面配置 开发环境的要点
-
-
-1. 安装homebrew 
-    执行 brew install ffmpeg 命令，会自动下载安装 。
-    但是，考虑到网络的情况，如有失败多试几次就好了，此过程全自动完成，不需要进行多余配置。 
-    
-    安装以后，使用 brew info ffmpeg 查看是否安装完成
-    也可以使用 ffmpeg 命令查看安装信息 。 
-    默认安装路径在 /usr/local/Cellar/ffmpeg 文件夹中(此文件夹默认不可见，在 finder中 可通过 shift + command + g 进行跳转)，推荐使用命令行操作
-    
-</code></pre>
-<br>  
-    
-<pre><code> 2. 配置 xcode 开发环境
-     xcode新建 command line tools 工程，选择c语言
-</code></pre>
-<br>
-     
-<pre><code> 3. 引入 library 和 header文件所在的目录
-     library 目录： /usr/local/Cellar/ffmpeg/4.2.1_2/lib
-    header   目录： /usr/local/Cellar/ffmpeg/4.2.1_2/include
-    
-</code></pre>
-<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/ffmpeg/ffmpeg_xcode_1.png"></src></p>
-<pre><code> 4. 添加动态链接库
- 动态链接库位于： /usr/local/Cellar/ffmpeg/4.2.1_2/lib 中 
- 将.a 结尾的文件 添加进来即可
- 
-</code></pre>
-<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/ffmpeg/ffmpeg_xcode_2.png"></src></p>
-<pre><code>如此，我们完成了环境配置，就可以开始进入了代码的世界 。
-
-
-
-
-
-
-
-
-
-
- 
-</code></pre>
-
+        <p>介于mac上强大的home brew功能，在macOS 开发ffmpeg还是很简单的。 下面记录下，在macOS上面配置 开发环境的要点</p>
+        
+          <p class="article-more-link">
+            <a href="/FFmpeg/FFmpeg-%E7%BC%96%E8%AF%91-for-Mac-os/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -445,60 +195,14 @@ align:   申请src内存时指定的对齐字节数。
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <pre><code>环境 ： 
-    macOS Mojave
-    ndk - android-ndk-r14b
-    ffmpeg -  V3.3.9 
-    
-在实操的过程中发现，别的版本编译不成功，没有过多做深入的研究，找到了这个可以编译的版本使用。 
+        <p>环境 ：<br>        macOS Mojave<br>        ndk - android-ndk-r14b<br>        ffmpeg -  V3.3.9 </p>
+<pre><code>在实操的过程中发现，别的版本编译不成功，没有过多做深入的研究，找到了这个可以编译的版本使用。 
 </code></pre>
-<p>编译产物和demo已经放到github ：<br>    <a target="_blank" rel="noopener" href="https://github.com/kongxs/ffmpegDemo">https://github.com/kongxs/ffmpegDemo</a></p>
-<h2 id="1-编译"><a href="#1-编译" class="headerlink" title="1. 编译"></a>1. 编译</h2><pre><code>1. 替换configure 中的内容
-    主要是为了修改编译完的产物和命名，以便于Android平台使用
- 
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">	SLIBNAME_WITH_MAJOR=&#x27;$(SLIBNAME).$(LIBMAJOR)&#x27;</span><br><span class="line">	LIB_INSTALL_EXTRA_CMD=&#x27;$$(RANLIB)&quot;$(LIBDIR)/$(LIBNAME)&quot;&#x27;</span><br><span class="line">	SLIB_INSTALL_NAME=&#x27;$(SLIBNAME_WITH_VERSION)&#x27;</span><br><span class="line">	SLIB_INSTALL_LINKS=&#x27;$(SLIBNAME_WITH_MAJOR)$(SLIBNAME)&#x27;</span><br><span class="line">替换为 </span><br><span class="line">	SLIBNAME_WITH_MAJOR=&#x27;$(SLIBPREF)$(FULLNAME)-$(LIBMAJOR)$(SLIBSUF)&#x27;</span><br><span class="line">	LIB_INSTALL_EXTRA_CMD=&#x27;$$(RANLIB)&quot;$(LIBDIR)/$(LIBNAME)&quot;&#x27;</span><br><span class="line">	SLIB_INSTALL_NAME=&#x27;$(SLIBNAME_WITH_MAJOR)&#x27;</span><br><span class="line">	SLIB_INSTALL_LINKS=&#x27;$(SLIBNAME)&#x27;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<pre><code>2. 编写脚本文件
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">	#!/bin/bash</span><br><span class="line"></span><br><span class="line">make clean</span><br><span class="line"># NDK的路径，根据自己的安装位置进行设置</span><br><span class="line">export TMPDIR=替换为自己的一个路径</span><br><span class="line">export NDK=替换为自己的ndk路径</span><br><span class="line">export SYSROOT=$NDK/platforms/android-21/arch-arm/</span><br><span class="line">export TOOLCHAIN=$NDK/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64</span><br><span class="line">export CPU=arm</span><br><span class="line">export PREFIX=$(pwd)/android/$CPU</span><br><span class="line">export ADDI_CFLAGS=&quot;-marm&quot;</span><br><span class="line">function build_one</span><br><span class="line">&#123;</span><br><span class="line">./configure \</span><br><span class="line">    --prefix=$PREFIX \</span><br><span class="line">    --target-os=linux \</span><br><span class="line">    --cross-prefix=$TOOLCHAIN/bin/arm-linux-androideabi- \</span><br><span class="line">    --arch=arm \</span><br><span class="line">    --sysroot=$SYSROOT \</span><br><span class="line">    --extra-cflags=&quot;-Os -fpic $ADDI_CFLAGS&quot; \</span><br><span class="line">    --extra-ldflags=&quot;$ADDI_LDFLAGS&quot; \</span><br><span class="line">    --cc=$TOOLCHAIN/bin/arm-linux-androideabi-gcc \</span><br><span class="line">    --nm=$TOOLCHAIN/bin/arm-linux-androideabi-nm \</span><br><span class="line">    --enable-shared \</span><br><span class="line">    --enable-runtime-cpudetect \</span><br><span class="line">    --enable-gpl \</span><br><span class="line">    --enable-small \</span><br><span class="line">    --enable-cross-compile \</span><br><span class="line">    --disable-debug \</span><br><span class="line">    --disable-static \</span><br><span class="line">    --disable-doc \</span><br><span class="line">    --disable-asm \</span><br><span class="line">    --disable-ffmpeg \</span><br><span class="line">    --disable-ffplay \</span><br><span class="line">    --disable-ffprobe \</span><br><span class="line">    --disable-ffserver \</span><br><span class="line">    --enable-postproc \</span><br><span class="line">    --enable-avdevice \</span><br><span class="line">    --disable-symver \</span><br><span class="line">    --disable-stripping \</span><br><span class="line">$ADDITIONAL_CONFIGURE_FLAG</span><br><span class="line">sed -i &#x27;&#x27; &#x27;s/HAVE_LRINT 0/HAVE_LRINT 1/g&#x27; config.h</span><br><span class="line">sed -i &#x27;&#x27; &#x27;s/HAVE_LRINTF 0/HAVE_LRINTF 1/g&#x27; config.h</span><br><span class="line">sed -i &#x27;&#x27; &#x27;s/HAVE_ROUND 0/HAVE_ROUND 1/g&#x27; config.h</span><br><span class="line">sed -i &#x27;&#x27; &#x27;s/HAVE_ROUNDF 0/HAVE_ROUNDF 1/g&#x27; config.h</span><br><span class="line">sed -i &#x27;&#x27; &#x27;s/HAVE_TRUNC 0/HAVE_TRUNC 1/g&#x27; config.h</span><br><span class="line">sed -i &#x27;&#x27; &#x27;s/HAVE_TRUNCF 0/HAVE_TRUNCF 1/g&#x27; config.h</span><br><span class="line">sed -i &#x27;&#x27; &#x27;s/HAVE_CBRT 0/HAVE_CBRT 1/g&#x27; config.h</span><br><span class="line">sed -i &#x27;&#x27; &#x27;s/HAVE_RINT 0/HAVE_RINT 1/g&#x27; config.h</span><br><span class="line">make clean</span><br><span class="line"># 这里是定义用几个CPU编译，我用4个，一般在5分钟之内编译完成</span><br><span class="line">make -j4</span><br><span class="line">make install</span><br><span class="line">&#125;</span><br><span class="line">build_one</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<pre><code>其中： 
-TMPDIR为编译生成的临时文件存放的目录
-SYSROOT为so文件支持的最低Android版本的平台目录
-CPU为指定so文件支持的平台
-PREFIX为生成的so文件存放目录
-TOOLCHAIN为编译所使用的工具链目录
-cross-prefix为编译所使用的工具链文件
-enable和disable指定了需要编译的项
-target-os为目标操作系统；
-</code></pre>
-<br>
-    3. 执行脚本
-    
-<pre><code>./build_android.sh 
-
-等待执行结束会在  目录下生成编译产物 。  位于 android/arm 文件夹下
-    include //  c语言头文件
-    lib //    android可用的so
-</code></pre>
-<h2 id="2-引入Androidstudio开发环境"><a href="#2-引入Androidstudio开发环境" class="headerlink" title="2. 引入Androidstudio开发环境"></a>2. 引入Androidstudio开发环境</h2><pre><code>1. build.gradle 脚本配置 
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">externalNativeBuild &#123;</span><br><span class="line">           cmake &#123;</span><br><span class="line">               cppFlags &quot;&quot;</span><br><span class="line">           &#125;</span><br><span class="line">           ndk &#123;</span><br><span class="line">               abiFilters &quot;armeabi-v7a&quot;//添加平台过滤</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       //指定libs文件夹</span><br><span class="line">   sourceSets.main &#123;</span><br><span class="line">       jniLibs.srcDirs = [&#x27;libs&#x27;]</span><br><span class="line">       jni.srcDirs = []</span><br><span class="line">   &#125;</span><br><span class="line">       </span><br></pre></td></tr></table></figure>
-
-
-<pre><code>1. 添加依赖文件 
-我们将第一步编译好的so放入libs文件夹，将 include文件中的头文件放到cpp文件夹 . 如下所示
-</code></pre>
-<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/ffmpeg/ffmpeg_project_structure.png"></img></p>
-<pre><code>2. CMakeLists.txt 文件编写 
-    按照如下进行编写，将我们所有的so都在cmakelist文件中进行注册，联合编译
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br></pre></td><td class="code"><pre><span class="line">	# For more information about using CMake with Android Studio, read the</span><br><span class="line"># documentation: https://d.android.com/studio/projects/add-native-code.html</span><br><span class="line"></span><br><span class="line"># Sets the minimum version of CMake required to build the native library.</span><br><span class="line"></span><br><span class="line">cmake_minimum_required(VERSION 3.4.1)</span><br><span class="line"></span><br><span class="line"># Creates and names a library, sets it as either STATIC</span><br><span class="line"># or SHARED, and provides the relative paths to its source code.</span><br><span class="line"># You can define multiple libraries, and CMake builds them for you.</span><br><span class="line"># Gradle automatically packages shared libraries with your APK.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">add_library( # Sets the name of the library.</span><br><span class="line">             native-lib</span><br><span class="line"></span><br><span class="line">             # Sets the library as a shared library.</span><br><span class="line">             SHARED</span><br><span class="line"></span><br><span class="line">             # Provides a relative path to your source file(s).</span><br><span class="line">        src/main/cpp/native-lib.cpp</span><br><span class="line">        src/main/cpp/Utils.c</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">include_directories($&#123;CMAKE_SOURCE_DIR&#125;/src/main/cpp)</span><br><span class="line"></span><br><span class="line">add_library(avcodec-57  # 库名字</span><br><span class="line">            SHARED</span><br><span class="line">            IMPORTED)</span><br><span class="line">set_target_properties( avcodec-57</span><br><span class="line">        PROPERTIES IMPORTED_LOCATION</span><br><span class="line">        $&#123;CMAKE_SOURCE_DIR&#125;/libs/armeabi-v7a/libavcodec-57.so)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">add_library(libavdevice-57  # 库名字</span><br><span class="line">        SHARED</span><br><span class="line">        IMPORTED)</span><br><span class="line">set_target_properties( libavdevice-57</span><br><span class="line">        PROPERTIES IMPORTED_LOCATION</span><br><span class="line">        $&#123;CMAKE_SOURCE_DIR&#125;/libs/armeabi-v7a/libavdevice-57.so)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">add_library(libavfilter-6  # 库名字</span><br><span class="line">        SHARED</span><br><span class="line">        IMPORTED)</span><br><span class="line">set_target_properties( libavfilter-6</span><br><span class="line">        PROPERTIES IMPORTED_LOCATION</span><br><span class="line">        $&#123;CMAKE_SOURCE_DIR&#125;/libs/armeabi-v7a/libavfilter-6.so)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">add_library(libavformat-57  # 库名字</span><br><span class="line">        SHARED</span><br><span class="line">        IMPORTED)</span><br><span class="line">set_target_properties( libavformat-57</span><br><span class="line">        PROPERTIES IMPORTED_LOCATION</span><br><span class="line">        $&#123;CMAKE_SOURCE_DIR&#125;/libs/armeabi-v7a/libavformat-57.so)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">add_library(libavutil-55  # 库名字</span><br><span class="line">        SHARED</span><br><span class="line">        IMPORTED)</span><br><span class="line">set_target_properties( libavutil-55</span><br><span class="line">        PROPERTIES IMPORTED_LOCATION</span><br><span class="line">        $&#123;CMAKE_SOURCE_DIR&#125;/libs/armeabi-v7a/libavutil-55.so)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">add_library(libpostproc-54  # 库名字</span><br><span class="line">        SHARED</span><br><span class="line">        IMPORTED)</span><br><span class="line">set_target_properties( libpostproc-54</span><br><span class="line">        PROPERTIES IMPORTED_LOCATION</span><br><span class="line">        $&#123;CMAKE_SOURCE_DIR&#125;/libs/armeabi-v7a/libpostproc-54.so)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">add_library(libswresample-2  # 库名字</span><br><span class="line">        SHARED</span><br><span class="line">        IMPORTED)</span><br><span class="line">set_target_properties( libswresample-2</span><br><span class="line">        PROPERTIES IMPORTED_LOCATION</span><br><span class="line">        $&#123;CMAKE_SOURCE_DIR&#125;/libs/armeabi-v7a/libswresample-2.so)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">add_library(libswscale-4  # 库名字</span><br><span class="line">        SHARED</span><br><span class="line">        IMPORTED)</span><br><span class="line">set_target_properties( libswscale-4</span><br><span class="line">        PROPERTIES IMPORTED_LOCATION</span><br><span class="line">        $&#123;CMAKE_SOURCE_DIR&#125;/libs/armeabi-v7a/libswscale-4.so)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Searches for a specified prebuilt library and stores the path as a</span><br><span class="line"># variable. Because CMake includes system libraries in the search path by</span><br><span class="line"># default, you only need to specify the name of the public NDK library</span><br><span class="line"># you want to add. CMake verifies that the library exists before</span><br><span class="line"># completing its build.</span><br><span class="line"></span><br><span class="line">find_library( # Sets the name of the path variable.</span><br><span class="line">              log-lib</span><br><span class="line"></span><br><span class="line">              # Specifies the name of the NDK library that</span><br><span class="line">              # you want CMake to locate.</span><br><span class="line">              log )</span><br><span class="line"></span><br><span class="line"># Specifies libraries CMake should link to your target library. You</span><br><span class="line"># can link multiple libraries, such as libraries you define in this</span><br><span class="line"># build script, prebuilt third-party libraries, or system libraries.</span><br><span class="line"></span><br><span class="line">target_link_libraries( # Specifies the target library.</span><br><span class="line">                       native-lib</span><br><span class="line">                        avcodec-57</span><br><span class="line">        libavdevice-57</span><br><span class="line">        libavfilter-6</span><br><span class="line">        libavformat-57</span><br><span class="line">        libavutil-55</span><br><span class="line">        libpostproc-54</span><br><span class="line">        libswresample-2</span><br><span class="line">        libswscale-4</span><br><span class="line"></span><br><span class="line">                       # Links the target library to the log library</span><br><span class="line">                       # included in the NDK.</span><br><span class="line">                       $&#123;log-lib&#125; )</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="3-一些问题"><a href="#3-一些问题" class="headerlink" title="3. 一些问题"></a>3. 一些问题</h2><pre><code>1. 比如include 
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">extern &quot;C&quot;</span><br><span class="line">&#123;</span><br><span class="line">    #include &quot;libavformat/avformat.h&quot;</span><br><span class="line">    #include &quot;libavutil/log.h&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/FFmpeg/FFmpeg-%E7%BC%96%E8%AF%91-for-Android/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -540,48 +244,12 @@ target-os为目标操作系统；
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>在混合开发中，flutter避免不掉的需要和我们原生的Android代码进行交互，例如获取设备电量，或者使用APP已有的功能代码。<br>    本文记录 flutter 和 Android 进行交互的过程！ </p>
-<pre><code>创建工程 pluginmy 
-    flutter create -t plugin -a java --org com.example pluginmy
-</code></pre>
-<h2 id="1-Flutter调用Java代码-MethodChannel"><a href="#1-Flutter调用Java代码-MethodChannel" class="headerlink" title="1. Flutter调用Java代码( MethodChannel)"></a>1. Flutter调用Java代码( MethodChannel)</h2><h3 id="1-1-java部分代码编写"><a href="#1-1-java部分代码编写" class="headerlink" title="1.1 java部分代码编写"></a>1.1 java部分代码编写</h3><pre><code>在Java端，首先通过studio 单独打开Android项目 ，然后在 MainActivity中注入MethodChannel
-这里的 CHANNEL 需要和我们dart使用的协议保持一致 
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">MethodChannel methodChannel = new MethodChannel(getFlutterView(), CHANNEL);</span><br><span class="line"></span><br><span class="line">    methodChannel.setMethodCallHandler(</span><br><span class="line">          (call, result) -&gt; &#123;</span><br><span class="line">            // 在这个回调里处理从Flutter来的调用</span><br><span class="line">            if (call.method.equals(&quot;getResult&quot;)) &#123;</span><br><span class="line"></span><br><span class="line">              String batteryLevel = &quot; 这是从Android端返回的结果~  &quot;;</span><br><span class="line"></span><br><span class="line">              result.success(batteryLevel);</span><br><span class="line"></span><br><span class="line">                new Handler().postDelayed(new Runnable() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void run() &#123;</span><br><span class="line">                        methodChannel.invokeMethod(&quot;a&quot; , &quot;times = &quot; + times);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;,1000);</span><br><span class="line"></span><br><span class="line">            &#125; else &#123;</span><br><span class="line">              result.notImplemented();</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;);</span><br></pre></td></tr></table></figure>
-<h3 id="1-2-dart部分进行调用"><a href="#1-2-dart部分进行调用" class="headerlink" title="1.2 dart部分进行调用"></a>1.2 dart部分进行调用</h3><pre><code>如下代码，我们完成了 通过 协议名为 【pluginmy】 调用方法名为 【getPlatformVersion】的功能
-只需要在需要的时机，调用 platformVersion方法即可！！！
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Pluginmy &#123;</span><br><span class="line">  static const MethodChannel _channel =</span><br><span class="line">      const MethodChannel(&#x27;pluginmy&#x27;);</span><br><span class="line"></span><br><span class="line">  static Future&lt;String&gt; get platformVersion async &#123;</span><br><span class="line">    final String version = await _channel.invokeMethod(&#x27;getPlatformVersion&#x27;);</span><br><span class="line">    return version;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<pre><code>在dart中对methodChannel也可以进行被动接收 . 通过这种方式，可以接收对应的MethodChannel 在 native端进行的方法调用 
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">	@override</span><br><span class="line">  void initState() &#123;</span><br><span class="line"></span><br><span class="line">    super.initState();</span><br><span class="line">    platform.setMethodCallHandler((handler) &#123;</span><br><span class="line">      setState(() &#123;</span><br><span class="line">//        _callback = handler.arguments;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="1-3-java调用dart代码"><a href="#1-3-java调用dart代码" class="headerlink" title="1.3 java调用dart代码"></a>1.3 java调用dart代码</h3><pre><code>参考上一步，第15行代码
-</code></pre>
-<h2 id="2-Flutter-接收Java代码回调-EventChannel"><a href="#2-Flutter-接收Java代码回调-EventChannel" class="headerlink" title="2. Flutter 接收Java代码回调(EventChannel)"></a>2. Flutter 接收Java代码回调(EventChannel)</h2><h3 id="2-1-dart部分进行注册监听"><a href="#2-1-dart部分进行注册监听" class="headerlink" title="2.1 dart部分进行注册监听"></a>2.1 dart部分进行注册监听</h3><pre><code>1. 首先创建 EventChannel 
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">static const EventChannel eventChannel = EventChannel(&quot;Event_Channel&quot;);</span><br></pre></td></tr></table></figure>
-
-<pre><code>2. state init 时机注册接收流
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">eventChannel.receiveBroadcastStream().listen(_onEnvent,onError: _onError)</span><br><span class="line"></span><br><span class="line">//接收activity传递来的参数obj</span><br><span class="line">  void _onEnvent(Object obj)&#123;</span><br><span class="line">//    Fluttertoast.showToast(msg: &quot;from android&quot;);</span><br><span class="line">    setState(() &#123;</span><br><span class="line">      _callback = obj;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  void _onError(Object obj)&#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-<h3 id="2-2-Java部分事件派发给dart"><a href="#2-2-Java部分事件派发给dart" class="headerlink" title="2.2 Java部分事件派发给dart"></a>2.2 Java部分事件派发给dart</h3><pre><code>在mainActivity中创建 EventChannel
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">EventChannel eventChannel = new EventChannel(getFlutterView(), &quot;Event_Channel&quot;);</span><br><span class="line">      eventChannel.setStreamHandler(new EventChannel.StreamHandler() &#123;</span><br><span class="line">          @Override</span><br><span class="line">          public void onListen(Object o, EventChannel.EventSink eventSink) &#123;</span><br><span class="line">              sink = eventSink;</span><br><span class="line">              eventSink.success(&quot;times = sss &quot;);</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          @Override</span><br><span class="line">          public void onCancel(Object o) &#123;</span><br><span class="line"></span><br><span class="line">          &#125;</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
-
-<pre><code>Flutter中和原生的交互有主动调用和被动接收2种，分别应用于不同的场景中。
-MethodChannel提供给dart端进行主动调用，并且可以异步等待此methodChannel返回值。
-EventChannel类似于注册一个回调给原生代码，当原生有变动就可以主动广播到我们的dart端。
-</code></pre>
-<p>参考文档： <br><br>    <a target="_blank" rel="noopener" href="https://www.yuque.com/xytech/flutter/fu7h25">https://www.yuque.com/xytech/flutter/fu7h25</a></p>
-
+        <p>在混合开发中，flutter避免不掉的需要和我们原生的Android代码进行交互，例如获取设备电量，或者使用APP已有的功能代码。</p>
+        
+          <p class="article-more-link">
+            <a href="/Flutter/Flutter-%E5%92%8C%E5%8E%9F%E7%94%9FAPP%E8%BF%9B%E8%A1%8C%E4%BA%A4%E4%BA%92/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -624,60 +292,11 @@ EventChannel类似于注册一个回调给原生代码，当原生有变动就�
     <div class="e-content article-entry" itemprop="articleBody">
       
         <p>马上国庆节了！！！！！！！ </p>
-<pre><code>虽然flutter提供给我们一套十分完善的开发环境，但事实上，在真实的开发中，我们更需要的是如何将flutter集成到我们已有的Android项目。  
-可喜可贺，在 最近的 flutter版本中，给我们提供了一套更加方便的工具，让我们在已有项目中集成flutter 。 
-
-flutter version ： 1.9.1 
-dart version ： 2.5 
-
-根据flutter文档，集成进现有项目，并记录在集成过程中遇到的一些问题
-</code></pre>
-<h2 id="1-集成步骤"><a href="#1-集成步骤" class="headerlink" title="1. 集成步骤"></a>1. 集成步骤</h2><h4 id="1-1-创建flutter-module"><a href="#1-1-创建flutter-module" class="headerlink" title="1.1 创建flutter module"></a>1.1 创建flutter module</h4><pre><code>flutter create -t module --org com.example my_flutter
-  通过以上命令，创建了一个名字为 my_flutter 的 module 
-或者在 Androidstudio 中创建 flutter module 一样 
-</code></pre>
-<h3 id="1-2-创建或者使用原有Android工程"><a href="#1-2-创建或者使用原有Android工程" class="headerlink" title="1.2 创建或者使用原有Android工程"></a>1.2 创建或者使用原有Android工程</h3><pre><code>就是一个普通Android工程，但是要保证 
-1. minSdkVersion &gt; 16 
-2. java 版本 1.8 
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">	defaultConfig &#123;</span><br><span class="line">		minSdkVersion 16</span><br><span class="line">    &#125;</span><br><span class="line">  //...</span><br><span class="line">  compileOptions &#123;</span><br><span class="line">    sourceCompatibility 1.8</span><br><span class="line">    targetCompatibility 1.8</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="1-3-使用aar的方式集成flutter"><a href="#1-3-使用aar的方式集成flutter" class="headerlink" title="1.3 使用aar的方式集成flutter"></a>1.3 使用aar的方式集成flutter</h3><pre><code>进入我们的 my_flutter module目录 执行 
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flutter build aar </span><br></pre></td></tr></table></figure>
-<pre><code>正常情况，会在 my_flutter/build/host/outputs/repo... 得到aar文件，正常添加进Android工程即可
-</code></pre>
-<h3 id="1-4-Android工程中使用-flutter"><a href="#1-4-Android工程中使用-flutter" class="headerlink" title="1.4 Android工程中使用 flutter"></a>1.4 Android工程中使用 flutter</h3><pre><code>1. activity方式使用
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">View flutterView = Flutter.createView(</span><br><span class="line">     MainActivity.this,</span><br><span class="line">     getLifecycle(),</span><br><span class="line">     &quot;route1&quot;</span><br><span class="line">   );</span><br><span class="line">   FrameLayout.LayoutParams layout = new FrameLayout.LayoutParams(600, 800);</span><br><span class="line">   layout.leftMargin = 100;</span><br><span class="line">   layout.topMargin = 200;</span><br><span class="line">   addContentView(flutterView, layout);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<pre><code>2. fragment 方式使用
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FragmentTransaction tx = getSupportFragmentManager().beginTransaction();</span><br><span class="line">   tx.replace(R.id.someContainer, Flutter.createFragment(&quot;route1&quot;));</span><br><span class="line">   tx.commit();</span><br></pre></td></tr></table></figure>
-
-
-<pre><code>至此，经过以上几个步骤，完成了Android工程通过aar方式集成flutter的全部流程。正常我们可以运行Android 项目看到以下界面
-</code></pre>
-<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/flutter/flutter_nativee.png" ></img></p>
-<p><br><br><br></p>
-<h2 id="2-集成遇到的问题"><a href="#2-集成遇到的问题" class="headerlink" title="2. 集成遇到的问题"></a>2. 集成遇到的问题</h2><h3 id="2-1-设置镜像"><a href="#2-1-设置镜像" class="headerlink" title="2.1 设置镜像"></a>2.1 设置镜像</h3><pre><code>在 执行 flutter build aar 的过程中，发现以下错误信息 。 
-我在解决此问题过程中发现，虽然使用了 vpn代理工具，还是不可以执行，所以要设置阿里镜像
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">	* What went wrong:</span><br><span class="line">A problem occurred evaluating project &#x27;:app&#x27;.</span><br><span class="line">&gt; Could not resolve all files for configuration &#x27;classpath&#x27;.</span><br><span class="line">   &gt; Could not find lint-gradle-api.jar (com.android.tools.lint:lint-gradle-api:26.1.2).</span><br><span class="line">     Searched in the following locations:</span><br><span class="line">         https://jcenter.bintray.com/com/android/tools/lint/lint-gradle-api/26.1.2/lint-gradle-api-26.1.2.jar</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>解决方案：</p>
-<pre><code>1. 修改 my_flutter/.android/build.gradle .将 google 和 jcenter两个仓库设置为阿里镜像地址
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">	buildscript &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        //google()</span><br><span class="line">        //jcenter()</span><br><span class="line">        maven &#123; url &#x27;https://maven.aliyun.com/repository/google&#x27; &#125;</span><br><span class="line">        maven &#123; url &#x27;https://maven.aliyun.com/repository/jcenter&#x27; &#125;</span><br><span class="line">        maven &#123; url &#x27;http://maven.aliyun.com/nexus/content/groups/public&#x27; &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    dependencies &#123;</span><br><span class="line">        classpath &#x27;com.android.tools.build:gradle:3.1.2&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">allprojects &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        //google()</span><br><span class="line">        //jcenter()</span><br><span class="line">        maven &#123; url &#x27;https://maven.aliyun.com/repository/google&#x27; &#125;</span><br><span class="line">        maven &#123; url &#x27;https://maven.aliyun.com/repository/jcenter&#x27; &#125;</span><br><span class="line">        maven &#123; url &#x27;http://maven.aliyun.com/nexus/content/groups/public&#x27; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<pre><code>2. flutter sdk 目录下 packages⁩/flutter_tools⁩/⁨gradle⁩找到下 flutter.gradle文件 替换 jcenter 和 maven 仓库 
-【也有说，这一步其实不用做修改，我自己再做的过程中也没改，多试试吧】
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">buildscript &#123;</span><br><span class="line">   repositories &#123;</span><br><span class="line">       //jcenter()</span><br><span class="line">       //maven &#123;</span><br><span class="line">       //    url &#x27;https://dl.google.com/dl/android/maven2&#x27;</span><br><span class="line">       //&#125;</span><br><span class="line">       maven&#123;</span><br><span class="line">           url &#x27;https://maven.aliyun.com/repository/jcenter&#x27;</span><br><span class="line">       &#125;</span><br><span class="line">       maven&#123;</span><br><span class="line">           url &#x27;http://maven.aliyun.com/nexus/content/groups/public&#x27;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   dependencies &#123;</span><br><span class="line">       classpath &#x27;com.android.tools.build:gradle:3.1.2&#x27;</span><br><span class="line">   &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<pre><code>至此经过大半天的折腾，总算完成了aar的集成 。 大功告成，来之不易 ~~
-</code></pre>
-<p>参考： <br><br><a target="_blank" rel="noopener" href="https://github.com/flutter/flutter/wiki/Add-Flutter-to-existing-apps">Add Flutter to existing apps</a> <br></p>
-
+        
+          <p class="article-more-link">
+            <a href="/Flutter/Flutter-Android%E6%B7%B7%E5%90%88%E5%BC%80%E5%8F%91/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -720,49 +339,11 @@ dart version ： 2.5
     <div class="e-content article-entry" itemprop="articleBody">
       
         <p>前端开发者或者reactNative开发者 对于状态管理应该不会陌生，例如前端大名鼎鼎的redux框架 。 </p>
-<pre><code>在flutter中，对于状态的同步管理是一项很繁琐的申请，比如我们需要将一个值传入后续的N个widget中，需要一层层的传递，并且对于值同步也很麻烦。
-
-在这样的背景下，各种状态管理框架应运而生了，它可以让我们更方便的管理state，同步数据，等操作
-
-在2019年google io大会，用 provider 取代了之前 的provide 框架 ，provider框架很健壮也有灵活，配置简单，本文主要介绍 provider框架的用法 
-</code></pre>
-<h2 id="1-添加依赖"><a href="#1-添加依赖" class="headerlink" title="1. 添加依赖"></a>1. 添加依赖</h2><pre><code>在pubspec.yaml文件中添加以下依赖 ,然后执行 flutter pub get 进行下载安装
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">provider: ^3.1.0</span><br></pre></td></tr></table></figure>
-<h2 id="2-1-简单使用"><a href="#2-1-简单使用" class="headerlink" title="2.1 简单使用"></a>2.1 简单使用</h2><pre><code>相比较于之前的写法，这里我们用Provider.value()的方式进行构件一个APP
-flutter APP 入口处添加一下代码
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">void main() =&gt; runApp(new ZhiHu());</span><br><span class="line">class ZhiHu extends StatelessWidget &#123;</span><br><span class="line">  @override</span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    return Provider&lt;String&gt;.value(</span><br><span class="line">      value: &quot;hello from provider&quot;,</span><br><span class="line">      child:  MaterialApp(</span><br><span class="line">        title: &quot;知乎-高仿版&quot;,</span><br><span class="line">        home:  Index(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在这里，我们将一个 值为 ‘hello from provider’ 的字符串设置为共享，并返回一个materialApp</p>
-<h2 id="2-2-获取值"><a href="#2-2-获取值" class="headerlink" title="2.2 获取值"></a>2.2 获取值</h2><pre><code>1. 使用consumer的方式获取并返回一个widget
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Consumer(</span><br><span class="line">               builder: (BuildContext c,String value,Widget child)&#123;</span><br><span class="line">                return Text(&quot;text : $value&quot;);</span><br><span class="line">               &#125;</span><br><span class="line">             ),</span><br></pre></td></tr></table></figure>
-<pre><code>2. 直接获取 
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Provider.of&lt;String&gt;(context)</span><br></pre></td></tr></table></figure>
-<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/flutter/provider_1.png"></img></p>
-<h2 id="3-结合ChangeNotifier-接收监听变化"><a href="#3-结合ChangeNotifier-接收监听变化" class="headerlink" title="3. 结合ChangeNotifier 接收监听变化"></a>3. 结合ChangeNotifier 接收监听变化</h2><pre><code>使用场景如下： 我们在首页有一个按钮显示初始值1，点击跳转到第二个页面，然后改变这个值，返回到首页，看到值同步。 
-
-1. 首先定义我们的 Count类金西行数据监听
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Count with ChangeNotifier &#123;//1</span><br><span class="line">  int _count;</span><br><span class="line">  Count(this._count);</span><br><span class="line"></span><br><span class="line">  void add() &#123;</span><br><span class="line">    _count++;</span><br><span class="line">    notifyListeners();//2</span><br><span class="line">  &#125;</span><br><span class="line">  get count =&gt; _count;//3</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<pre><code>2. 注册provider. 将我们的count注册进去
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">return MultiProvider(</span><br><span class="line">     providers: [</span><br><span class="line">       ChangeNotifierProvider(builder: (_) =&gt; Count(1)),</span><br><span class="line">     ],</span><br><span class="line">     child: MaterialApp()</span><br></pre></td></tr></table></figure>
-<pre><code>3. 设置 FloatActionButton
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">	floatingActionButton: Consumer&lt;Count&gt;(</span><br><span class="line">         builder: (BuildContext context, Count snapshot, Widget child) &#123;</span><br><span class="line">            return FloatingActionButton(</span><br><span class="line">              onPressed: ()  &#123;</span><br><span class="line">//                snapshot.add()</span><br><span class="line">                Navigator.pushNamed(context, &quot;/home&quot;);</span><br><span class="line">              &#125;,</span><br><span class="line"></span><br><span class="line">              child: Text(</span><br><span class="line">//                  &#x27;$&#123;Store.value&lt;Count&gt;(context).count&#125;&#x27;</span><br><span class="line">                  &#x27;$&#123;snapshot.count&#125;&#x27;</span><br><span class="line">              ),</span><br><span class="line">            );</span><br></pre></td></tr></table></figure>
-<pre><code>到此为止，完成了首页的开发工作。下面进行第二页的开发，我们显示 count中的数字，使用按钮进行 1 的递加 ，当我们点击按钮，回到首页会发现，按钮上的文字已经改变为我们修改后的值
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Builder(</span><br><span class="line">             builder: (context) &#123;</span><br><span class="line">               return Text(</span><br><span class="line">                   &#x27;second page: $&#123;Store.value&lt;Count&gt;(context).count&#125;&#x27;</span><br><span class="line">               );</span><br><span class="line">             &#125;,</span><br><span class="line">           ),</span><br><span class="line"></span><br><span class="line">           RaisedButton(</span><br><span class="line">             child: Text(&quot;button&quot;),</span><br><span class="line">             onPressed: () =&gt; &#123;</span><br><span class="line">               Store.value&lt;Count&gt;(context).add()</span><br><span class="line">             &#125;,</span><br><span class="line">           ),</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/flutter/flutter_state_provider.png"></img></p>
-<h2 id="4-provider的简单封装"><a href="#4-provider的简单封装" class="headerlink" title="4. provider的简单封装"></a>4. provider的简单封装</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class Store &#123;</span><br><span class="line">  static BuildContext context;</span><br><span class="line">  static BuildContext widgetCtx;</span><br><span class="line"></span><br><span class="line">  static init(&#123;context, child&#125;) &#123;</span><br><span class="line">    return MultiProvider(</span><br><span class="line">      providers: [</span><br><span class="line">//        Provider&lt;Count&gt;.value(value: Count(1)),</span><br><span class="line">        ChangeNotifierProvider(builder: (_) =&gt; Count(1)),</span><br><span class="line">      ],</span><br><span class="line">      child: child,</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  static T value&lt;T&gt;(context) &#123;</span><br><span class="line">    return Provider.of(context);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  static Consumer connect&lt;T&gt;(&#123;builder, child&#125;) &#123;</span><br><span class="line">    return Consumer&lt;T&gt;(builder: builder, child: child);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>参考：<br><a href="pub.dev/packages/provider">pub.dev/packages/provider</a></p>
-
+        
+          <p class="article-more-link">
+            <a href="/Flutter/Flutter-%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86provider/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -805,63 +386,11 @@ flutter APP 入口处添加一下代码
     <div class="e-content article-entry" itemprop="articleBody">
       
         <p>路由跳转在flutter中是一个非常重要的概念 。我们在开发中不可避免的需要涉及到页面之间的交互，传参，出参等操作 。<br>    这就引出了我们的路由，在flutter中，有两种实现路由的方式，分别是 基本路由和router命名路由。<br>    本节针对路由做一次系统的梳理和记录</p>
-<h2 id="1-navigator-基本路由"><a href="#1-navigator-基本路由" class="headerlink" title="1. navigator 基本路由"></a>1. navigator 基本路由</h2><pre><code>使用很简单的，
-首先新建一个页面 widget 例如 
-    class TextDemo extends StatefulWidget &#123;
-        ······
-        ······
-    &#125;
-假如说我们的页面中有一个按钮被触发的时候，我们通过如下代码即可 跳转至 TextDemo页面
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Navigator.push(</span><br><span class="line">        context, new MaterialPageRoute(builder: (context) =&gt; TextDemo()));</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-route-命名路由"><a href="#2-route-命名路由" class="headerlink" title="2. route 命名路由"></a>2. route 命名路由</h2><pre><code>1. 首先新建routes列表，我们已经创建了 HomeTabs,和SearchTabs两个页面
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var routes = &#123;</span><br><span class="line">	 &#x27;/home&#x27;:(context,&#123;arguments&#125;) =&gt; HomeTabs(arguments:arguments),=</span><br><span class="line"> 	&#x27;/search&#x27;:(context) =&gt; SearchTabs(),=</span><br><span class="line"> &#125;;</span><br></pre></td></tr></table></figure>
-<pre><code>2. MaterialApp 通过重写 routes属性，进行route注册
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MaterialApp(</span><br><span class="line">     	title: &#x27;Flutter Demo&#x27;,</span><br><span class="line">     	home: MyHomePage(title: &#x27;Flutter Demo Home Page&#x27;),</span><br><span class="line">     	routes: routes,</span><br><span class="line">     ）</span><br></pre></td></tr></table></figure>
-<pre><code>3. 最后就是在触发的时候进行跳转.一行代码搞定
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Navigator.pushNamed(context, &quot;/home&quot;);</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-替换路由"><a href="#3-替换路由" class="headerlink" title="3. 替换路由"></a>3. 替换路由</h2><pre><code>在当前页面加载目标页面，用目标页面替换当前
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Navigator.pushReplacementNamed(context, &quot;/home&quot;</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-返回根路由"><a href="#4-返回根路由" class="headerlink" title="4. 返回根路由"></a>4. 返回根路由</h2><pre><code>在 A widget打开多个页面以后，返回 A
-1. 参考替换路由
-2. 
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Navigator.pop(context,&quot;result from route&quot;),</span><br><span class="line">             Navigator.of(context).pushAndRemoveUntil(</span><br><span class="line">                 MaterialPageRoute(</span><br><span class="line">                   builder: (context) =&gt; MyApp(),</span><br><span class="line">             ), (routes) =&gt; routes == null)</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="5-router-传参"><a href="#5-router-传参" class="headerlink" title="5. router 传参"></a>5. router 传参</h2><pre><code>route传参的做法和上一步基本类似 
-1. 首先定义route列表，参考上一步做法
-2. MaterialApp 通过重写 onGenerateRoute，进行route接管。 基本是固定写法
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">MaterialApp(</span><br><span class="line">   	onGenerateRoute: (RouteSettings settings) &#123;</span><br><span class="line">       final String name = settings.name;</span><br><span class="line">       final Function pageBuilder = this.routes[name];</span><br><span class="line">       if (pageBuilder != null) &#123;</span><br><span class="line">         if (settings.arguments != null) &#123;</span><br><span class="line">           final Route route = MaterialPageRoute(</span><br><span class="line">             builder: (context) =&gt; pageBuilder(context,arguments: settings.arguments),</span><br><span class="line">           );</span><br><span class="line">           return route;</span><br><span class="line">         &#125; else &#123;</span><br><span class="line">           final Route route = MaterialPageRoute(</span><br><span class="line">             builder: (context) =&gt; pageBuilder(context),</span><br><span class="line">           );</span><br><span class="line">           return route;</span><br><span class="line">         &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return null;</span><br><span class="line">     &#125;,</span><br></pre></td></tr></table></figure>
-<pre><code>3. 最后就是在触发的时候进行跳转 
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Navigator.pushNamed(context, &quot;/home&quot;,arguments: &#123;</span><br><span class="line">            &quot;id&quot; : &quot;11sasdfasdfasdfadfafdafasdfadfafdasdfafa&quot;,</span><br><span class="line">          &#125;)</span><br></pre></td></tr></table></figure>
-<pre><code>4. 在目标页面接收传入的参数
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">	class HomeTabs extends StatefulWidget &#123;</span><br><span class="line"></span><br><span class="line">  final arguments;</span><br><span class="line"></span><br><span class="line">  HomeTabs(&#123;this.arguments&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  @override</span><br><span class="line">  State&lt;StatefulWidget&gt; createState() &#123;</span><br><span class="line">    // TODO: implement createState</span><br><span class="line">    return HomTabsState();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class HomTabsState extends State&lt;HomeTabs&gt; &#123;</span><br><span class="line"></span><br><span class="line">  @override</span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line"></span><br><span class="line">    var argu = widget.arguments;</span><br><span class="line"></span><br><span class="line">    var va = &quot;&quot;;</span><br><span class="line"></span><br><span class="line">    if (argu != null) &#123;</span><br><span class="line">      va = argu[&quot;id&quot;];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return Text(&quot;home  = $va &quot;  );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="6-接收返回值"><a href="#6-接收返回值" class="headerlink" title="6. 接收返回值"></a>6. 接收返回值</h2><pre><code>1. 开启一个新的页面(widget)，当目标页面被关闭，我们需要接收返回值的时候，
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">void toRouteDemo(BuildContext context) async &#123;</span><br><span class="line">   final result = await Navigator.push(context,MaterialPageRoute(builder:(context) =&gt; RouteDemo() ));</span><br><span class="line"></span><br><span class="line">   Fluttertoast.showToast(msg: result);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
-<pre><code>2. 目标页面关闭，并返回值
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Navigator.pop(context,&quot;result from route&quot;),</span><br></pre></td></tr></table></figure>
-
-
-
-
-<p>代码<br><a target="_blank" rel="noopener" href="https://github.com/kongxs/flutter_demp">https://github.com/kongxs/flutter_demp</a></p>
-<p>参考：<br><a target="_blank" rel="noopener" href="https://api.flutter.dev/flutter/widgets/Navigator-class.html">https://api.flutter.dev/flutter/widgets/Navigator-class.html</a></p>
-
+        
+          <p class="article-more-link">
+            <a href="/Flutter/Flutter-%E9%A1%B5%E9%9D%A2%E8%B7%AF%E7%94%B1/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -903,39 +432,15 @@ flutter APP 入口处添加一下代码
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <pre><code>作为一个Android开发者，学习flutter的过程中，看看这篇文章，会有不小的收获 
-</code></pre>
-<p><a target="_blank" rel="noopener" href="https://flutterchina.club/flutter-for-android/#%E5%A6%82%E4%BD%95%E5%9C%A8flutter%E4%B8%AD%E6%98%BE%E7%A4%BA%E8%BF%9B%E5%BA%A6%E6%8C%87%E7%A4%BA%E5%99%A8">flutter for android developer</a></p>
+        <p>作为一个Android开发者，学习flutter的过程中，看看这篇文章，会有不小的收获<br><a target="_blank" rel="noopener" href="https://flutterchina.club/flutter-for-android/#%E5%A6%82%E4%BD%95%E5%9C%A8flutter%E4%B8%AD%E6%98%BE%E7%A4%BA%E8%BF%9B%E5%BA%A6%E6%8C%87%E7%A4%BA%E5%99%A8">flutter for android developer</a></p>
 <pre><code>国际惯例，先来一个helloWorld
 Androidstudio创建一个Flutter project
 </code></pre>
-<h2 id="1-flutter项目结构认识"><a href="#1-flutter项目结构认识" class="headerlink" title="1. flutter项目结构认识"></a>1. flutter项目结构认识</h2><pre><code>一个flutter项目以下目录结构(如图)
-1. lib 文件夹存放我们的dart源文件
-2. pubspec.yaml文件 
-</code></pre>
-<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/flutter/flutter_project_1.png"></img></p>
-<h2 id="2-pubspec-yaml-文件"><a href="#2-pubspec-yaml-文件" class="headerlink" title="2. pubspec.yaml 文件"></a>2. pubspec.yaml 文件</h2><pre><code>配置文件，声明了我们项目的依赖，第三方库，assets资源 图片等
-点击packages get 下载依赖，然后使用
-</code></pre>
-<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/flutter/flutter_yaml.png"></img></p>
-<h2 id="3-第一个flutter项目"><a href="#3-第一个flutter项目" class="headerlink" title="3. 第一个flutter项目"></a>3. 第一个flutter项目</h2><pre><code>构件一个material风格的app -&gt; MaterialApp
-home: 即显示的主内容，MyHomePage
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">	void main() =&gt; runApp(MyApp());</span><br><span class="line"></span><br><span class="line">class MyApp extends StatelessWidget &#123;</span><br><span class="line">  @override</span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    return MaterialApp(</span><br><span class="line">      title: &#x27;Flutter Demo&#x27;,</span><br><span class="line">      theme: ThemeData(</span><br><span class="line"></span><br><span class="line">        primarySwatch: Colors.blue,</span><br><span class="line">      ),</span><br><span class="line">      home: MyHomePage(title: &#x27;Flutter Demo Home Page&#x27;),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<pre><code>主界面展示： 
-1. Scaffold 是flutter提供给我们的一个widget，它包含了appbar，floatActionButton，drawer，等一些列功能
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">	</span><br><span class="line">class MyHomePage extends StatelessWidget &#123;</span><br><span class="line">  MyHomePage(&#123;Key key, this.title&#125;) : super(key: key);</span><br><span class="line"></span><br><span class="line">  final String title;</span><br><span class="line"></span><br><span class="line">  @override</span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    // TODO: implement build</span><br><span class="line">     return Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        // Here we take the value from the MyHomePage object that was created by</span><br><span class="line">        // the App.build method, and use it to set our appbar title.</span><br><span class="line">        title: Text(&quot;title&quot;),</span><br><span class="line">      ),</span><br><span class="line">      body: Center(</span><br><span class="line">        // Center is a layout widget. It takes a single child and positions it</span><br><span class="line">        // in the middle of the parent.</span><br><span class="line">        child: Column(</span><br><span class="line"></span><br><span class="line">          mainAxisAlignment: MainAxisAlignment.center,</span><br><span class="line">          children: &lt;Widget&gt;[</span><br><span class="line">            Text(</span><br><span class="line">              &#x27;You have pushed the button this many times:&#x27;,</span><br><span class="line">            ),</span><br><span class="line">            Text(</span><br><span class="line">              &#x27;times&#x27;,</span><br><span class="line">              style: Theme.of(context).textTheme.display1,</span><br><span class="line">            ),</span><br><span class="line">          ],</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">      floatingActionButton: FloatingActionButton(</span><br><span class="line">        onPressed: _incrementCounter,</span><br><span class="line">        tooltip: &#x27;Increment&#x27;,</span><br><span class="line">        child: Icon(Icons.add),</span><br><span class="line">      ), // This trailing comma makes auto-formatting nicer for build methods.</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  void _incrementCounter() &#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>运行效果：<br><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/flutter/flutter_hello.png"></img></p>
-<h2 id="4-项目剖析"><a href="#4-项目剖析" class="headerlink" title="4. 项目剖析"></a>4. 项目剖析</h2><pre><code>在flutter中，入口函数为main ，我们通过runapp构件一个material风格的app，并通过scaffold设置了 appBar等
-flutter中万物皆widget，我们常用的widget分为有状态和无状态两种，
-StatelessWidget，StateFulWidget 
-其中，stateFulWidget可以让我们更新widget显示，比如图片，文字，等
-</code></pre>
-<p>项目源码已上传至<br>   <a target="_blank" rel="noopener" href="https://github.com/kongxs/flutter_demp">   github  </a>      lib/helloWorld.dart</p>
-
+        
+          <p class="article-more-link">
+            <a href="/Flutter/Flutter-helloWorld/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -977,25 +482,12 @@ StatelessWidget，StateFulWidget
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <pre><code>flutter 是一个优秀的跨平台UI组件库，Google 强大的支持，横跨 Android ，iOS，web 等平台。 
-基于dart开发语言，skia 引擎 直接通过 GPU渲染，极低的性能损耗
-material 设计风格 （ios 为 Cupertino） 视觉统一更优美 
-
-flutter 有着良好的架构设计，framework使用dark开发语言
-底层的 dart、skia引擎 和 Text(纹理) 使用 c++实现，有着良好的性能
-
- flutter 概述，整体架构等，
-
-flutter示例，包括widget控件等常用功能实现
-</code></pre>
-<p>开始flutter学习，所有代码存放至github<br><a target="_blank" rel="noopener" href="https://github.com/kongxs/flutter_demp">https://github.com/kongxs/flutter_demp</a></p>
-<h2 id="1-flutter-架构分层"><a href="#1-flutter-架构分层" class="headerlink" title="1. flutter 架构分层"></a>1. flutter 架构分层</h2><p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/flutter/fluttter_all.png"></img></p>
-<h2 id="2-flutter-GPU渲染"><a href="#2-flutter-GPU渲染" class="headerlink" title="2. flutter GPU渲染"></a>2. flutter GPU渲染</h2><pre><code>下图可以看出flutter的渲染是直接调用GPU完成的，由此达到高性能。媲美原生体验，在某些方面做了优化，甚至可以做到更好。 
-</code></pre>
-<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/flutter/flutter_gpu.png"></img></p>
-<h2 id="3-flutter-状态管理"><a href="#3-flutter-状态管理" class="headerlink" title="3. flutter 状态管理"></a>3. flutter 状态管理</h2><p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/flutter/flutter_state.png"></img></p>
-<p>参考：<br><br>    <a target="_blank" rel="noopener" href="https://flutterchina.club/">https://flutterchina.club</a><br><br>    <a target="_blank" rel="noopener" href="https://flutter.io/">https://flutter.io</a></p>
-
+        <p>flutter 是一个优秀的跨平台UI组件库，Google 强大的支持，横跨 Android ，iOS，web 等平台。<br>    基于dart开发语言，skia 引擎 直接通过 GPU渲染，极低的性能损耗<br>    material 设计风格 （ios 为 Cupertino） 视觉统一更优美 </p>
+        
+          <p class="article-more-link">
+            <a href="/Flutter/Flutter-%E6%9E%B6%E6%9E%84%E7%9A%84%E8%AE%A4%E8%AF%86/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -1038,52 +530,11 @@ flutter示例，包括widget控件等常用功能实现
     <div class="e-content article-entry" itemprop="articleBody">
       
         <p>targetSdkVersion 从23(6.0) 升级到 26(8.0) 适配记录</p>
-<h2 id="1-Android-7-0-适配"><a href="#1-Android-7-0-适配" class="headerlink" title="1. Android 7.0 适配"></a>1. Android 7.0 适配</h2><pre><code>主要适配内容 
-1. FileProvider
-在官方7.0的以上的系统中，尝试传递 file://URI可能会触发FileUriExposedException
-可能的应用场景： 例如 拍照获取图片，图片裁剪等 ，官方也给出了适配方案，那么就是
-使用fileProvider
-</code></pre>
-<h3 id="1-1-FileProvider声明"><a href="#1-1-FileProvider声明" class="headerlink" title="1.1 FileProvider声明"></a>1.1 FileProvider声明</h3><pre><code> 1. 首先在清单文件中注册 provider
-</code></pre>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;provider</span><br><span class="line">         android:name=&quot;android.support.v4.content.FileProvider&quot;</span><br><span class="line">         android:authorities=&quot;$&#123;packageName&#125;.fileProvider&quot;</span><br><span class="line">         android:exported=&quot;false&quot;</span><br><span class="line">         android:grantUriPermissions=&quot;true&quot;&gt;</span><br><span class="line">         &lt;meta-data</span><br><span class="line">             android:name=&quot;android.support.FILE_PROVIDER_PATHS&quot;</span><br><span class="line">             android:resource=&quot;@xml/nt_file_paths&quot; /&gt;</span><br><span class="line">     &lt;/provider&gt;</span><br></pre></td></tr></table></figure>
-<pre><code> 2. 在res/xml 新建 nt_file_paths.xml 文件
-</code></pre>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;paths&gt;</span><br><span class="line">    &lt;external-path</span><br><span class="line">        name=&quot;external_storage_root&quot;</span><br><span class="line">        path=&quot;.&quot; /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;cache-path</span><br><span class="line">        name=&quot;cache&quot;</span><br><span class="line">        path=&quot;.&quot; /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;external-cache-path</span><br><span class="line">        name=&quot;name&quot;</span><br><span class="line">        path=&quot;path&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;/paths&gt;</span><br></pre></td></tr></table></figure>
-<pre><code>以上是FileProvider的声明，以上声明了我们要使用 sdcard下所有目录，cache所有目录 ，具体请查阅 官网文档
-</code></pre>
-<h3 id="1-2-FileProvider的使用"><a href="#1-2-FileProvider的使用" class="headerlink" title="1.2 FileProvider的使用"></a>1.2 FileProvider的使用</h3><pre><code>1. 创建了工具类方便uri的转换
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">	/**</span><br><span class="line"> *</span><br><span class="line"> * 适配android 7.0 N</span><br><span class="line"> *</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class AndroidNCompat &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	public static Uri transform(Context context,Uri origin)&#123;</span><br><span class="line"></span><br><span class="line">		return isAndroidN() ?</span><br><span class="line">			FileProvider.getUriForFile(context, context.getPackageName() + &quot;.fileProvider&quot;,</span><br><span class="line">					new File(origin.getPath())) : origin;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	public static Uri transform(Context context,File file) &#123;</span><br><span class="line"></span><br><span class="line">		return isAndroidN() ?</span><br><span class="line">				FileProvider.getUriForFile(context, context.getPackageName()</span><br><span class="line">				+ &quot;.fileProvider&quot;, file) : Uri.fromFile(file);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	public static Uri transform(Context context,String path) &#123;</span><br><span class="line">		return transform(context,new File(path));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	public static boolean isAndroidN() &#123;</span><br><span class="line">		return Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.N;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<pre><code>2. 就以调用系统相册进行图片裁剪为例
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">	public static void cropImageFile(Activity activity, Uri inputUri, Uri outputUri, int length, int requestCode) &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        inputUri = AndroidNCompat.transform(activity, inputUri);</span><br><span class="line"></span><br><span class="line">//        outputUri = AndroidNCompat.transform(activity, outputUri);</span><br><span class="line"></span><br><span class="line">        activity.grantUriPermission(activity.getPackageName(),inputUri,Intent.FLAG_GRANT_READ_URI_PERMISSION | FLAG_GRANT_WRITE_URI_PERMISSION);</span><br><span class="line">        activity.grantUriPermission(activity.getPackageName(),outputUri,Intent.FLAG_GRANT_READ_URI_PERMISSION | FLAG_GRANT_WRITE_URI_PERMISSION);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        Intent intent = new Intent(&quot;com.android.camera.action.CROP&quot;);</span><br><span class="line"></span><br><span class="line">        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);</span><br><span class="line">//        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | FLAG_GRANT_WRITE_URI_PERMISSION);</span><br><span class="line"></span><br><span class="line">        intent.setDataAndType(inputUri, &quot;image/*&quot;);</span><br><span class="line">        intent.putExtra(&quot;crop&quot;, &quot;true&quot;);</span><br><span class="line">        intent.putExtra(&quot;aspectX&quot;, 1);</span><br><span class="line">        intent.putExtra(&quot;aspectY&quot;, 1);</span><br><span class="line">        intent.putExtra(&quot;outputX&quot;, length);</span><br><span class="line">        intent.putExtra(&quot;outputY&quot;, length);</span><br><span class="line">        intent.putExtra(&quot;scale&quot;, true);</span><br><span class="line">        intent.putExtra(MediaStore.EXTRA_OUTPUT, outputUri);</span><br><span class="line">        intent.putExtra(&quot;return-data&quot;, false);</span><br><span class="line">        intent.putExtra(&quot;outputFormat&quot;, Bitmap.CompressFormat.JPEG.toString());</span><br><span class="line">        intent.putExtra(&quot;noFaceDetection&quot;, true);</span><br><span class="line">        activity.startActivityForResult(intent, requestCode);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-<h2 id="2-Android-8-0-适配"><a href="#2-Android-8-0-适配" class="headerlink" title="2. Android 8.0 适配"></a>2. Android 8.0 适配</h2><pre><code>1.  本文主要说 通知栏，为了更好的管理通知，google推出了channel的概念，更方便用于进行更精细化的通知管理。
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public static void sendSimpleNotification2(Context context) &#123;</span><br><span class="line"></span><br><span class="line">		String id = &quot;channel_001&quot;;</span><br><span class="line">		String name = &quot;name&quot;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		NotificationManager notificationManager = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		Notification.Builder notificationBuilder = new Notification.Builder(context);</span><br><span class="line"></span><br><span class="line">		//重点</span><br><span class="line">		if (AndroidOCompat.isAndroidO()) &#123;</span><br><span class="line"></span><br><span class="line">			NotificationChannel mChannel = new NotificationChannel(id, name, NotificationManager.IMPORTANCE_HIGH);</span><br><span class="line"></span><br><span class="line">			notificationManager.createNotificationChannel(mChannel);</span><br><span class="line"></span><br><span class="line">			notificationBuilder.setChannelId(id);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		notificationBuilder</span><br><span class="line">					.setContentTitle(&quot;活动11&quot;)</span><br><span class="line">					.setContentText(&quot;您有一项新活动&quot;)</span><br><span class="line">					.setSmallIcon(R.drawable.ic_launcher);</span><br><span class="line"></span><br><span class="line">		notificationManager.notify(1, notificationBuilder.build());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<pre><code>通知的适配比较简单，重点关注 isAndroidO 方法即可，主要在我们对于项目中已有的通知进行排查
-</code></pre>
-<br>
-
-<pre><code>2. 主题的 Activity 设置屏幕方向
-针对 8.0 的应用，设置了透明主题的Activity，再设置屏幕方向， 会抛出一下异常信息， 
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">java.lang.IllegalStateException: Only fullscreen opaque</span><br><span class="line">   			activities can request orientation</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<pre><code>例如 activity 做了如下配置： 
-</code></pre>
-<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/android_0_activity_crash.png"></img></p>
-<pre><code>解决方案： 去掉其中一个
-</code></pre>
-<br>
-
-<p>参考文档列表 ： <br><a target="_blank" rel="noopener" href="https://developer.android.com/about/versions/nougat/android-7.0">https://developer.android.com/about/versions/nougat/android-7.0</a><br><a target="_blank" rel="noopener" href="https://developer.android.com/about/versions/nougat/android-8.0">https://developer.android.com/about/versions/nougat/android-8.0</a></p>
-
+        
+          <p class="article-more-link">
+            <a href="/Android/Android-target%E5%8D%87%E7%BA%A7/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -1126,19 +577,11 @@ flutter示例，包括widget控件等常用功能实现
     <div class="e-content article-entry" itemprop="articleBody">
       
         <p>第三方recovery刷入手机  以小米note为例</p>
-<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h2><pre><code>1. 解锁手机 Bootloader（BL）
-2. recovery 这里选择了twrp 下载完的文件名修改为 trwp.img
-3. adb 工具
-</code></pre>
-<h2 id="2-准备安装"><a href="#2-准备安装" class="headerlink" title="2. 准备安装"></a>2. 准备安装</h2><pre><code>1. adb工具 重启到 fastboot模式
-    adb reboot bootloader
-2. 刷入我们下载的 img
-    fastboot flash recovery twrp.img
-3. 重启到我们刷入的recovery
-    fastboot boot twrp.img
-</code></pre>
-<h2 id="一些资料下载"><a href="#一些资料下载" class="headerlink" title="一些资料下载"></a>一些资料下载</h2><p><a target="_blank" rel="noopener" href="https://twrp.me/Devices/">https://twrp.me/Devices/</a><br><a target="_blank" rel="noopener" href="https://download.lineageos.org/scorpio">https://download.lineageos.org/scorpio</a></p>
-
+        
+          <p class="article-more-link">
+            <a href="/Note2/%E6%89%8B%E6%9C%BA%E5%88%B7%E5%85%A5%E7%AC%AC%E4%B8%89%E6%96%B9recovery/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -1180,45 +623,12 @@ flutter示例，包括widget控件等常用功能实现
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="1-工程配置"><a href="#1-工程配置" class="headerlink" title="1. 工程配置"></a>1. 工程配置</h2><pre><code>1. 添加 gradle api依赖
-</code></pre>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">compile <span class="string">&#x27;com.android.tools.build:gradle:3.0.1&#x27;</span></span><br><span class="line">   compile group: <span class="string">&#x27;org.javassist&#x27;</span>, name: <span class="string">&#x27;javassist&#x27;</span>, version: <span class="string">&#x27;3.22.0-GA&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="2-自定义transform注入"><a href="#2-自定义transform注入" class="headerlink" title="2. 自定义transform注入"></a>2. 自定义transform注入</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">	class MyPlugin implements Plugin&lt;Project&gt; &#123;</span><br><span class="line">    void apply(Project project) &#123;</span><br><span class="line">        def android = project.extensions.getByType(AppExtension)</span><br><span class="line">        android.registerTransform(new CodeTrans(project))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="3-transform自定义"><a href="#3-transform自定义" class="headerlink" title="3. transform自定义"></a>3. transform自定义</h2><pre><code>自定义 transform 扩展自 Transform ，实现 transform 方法即可
-</code></pre>
-<h3 id="3-1-transform的概念"><a href="#3-1-transform的概念" class="headerlink" title="3.1 transform的概念"></a>3.1 transform的概念</h3><pre><code>google 的android编译流程，以transform的形式提供给我们可干涉的时机
-我们可以在编译成class文件并且生成dex之前拿到这些编译完成的class文件，做一些我们想要的修改。
-我们自定义的transform会被包装秤一个 transform task，在 java compile task 之后执行。
-</code></pre>
-<h3 id="3-2-transform的执行流程"><a href="#3-2-transform的执行流程" class="headerlink" title="3.2 transform的执行流程"></a>3.2 transform的执行流程</h3><pre><code>transform 执行流程如下
-</code></pre>
-<p><img src = "https://wanke-fun.oss-cn-beijing.aliyuncs.com/gradle/task_process.png"></img></p>
-<h3 id="3-3-transform-api"><a href="#3-3-transform-api" class="headerlink" title="3.3 transform api"></a>3.3 transform api</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public abstract class Transform &#123;</span><br><span class="line">    1. public abstract String getName();</span><br><span class="line"></span><br><span class="line">    2. public abstract Set&lt;ContentType&gt; getInputTypes();</span><br><span class="line"></span><br><span class="line">    3. public abstract Set&lt;? super Scope&gt; getScopes();</span><br><span class="line"></span><br><span class="line">    3. public abstract boolean isIncremental(); // 是否支持增量编译</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<pre><code>1. name : 此 transform的名字，也是这个transform代表的task的名字
-
-2. getInputTypes ： 输入类型，作为输入过滤，transformManager中定义了有如下类型。
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public static final Set&lt;ContentType&gt; CONTENT_CLASS;</span><br><span class="line">   public static final Set&lt;ContentType&gt; CONTENT_JARS;</span><br><span class="line">   public static final Set&lt;ContentType&gt; CONTENT_RESOURCES;</span><br><span class="line">   public static final Set&lt;ContentType&gt; CONTENT_NATIVE_LIBS;</span><br><span class="line">   public static final Set&lt;ContentType&gt; CONTENT_DEX;</span><br><span class="line">   </span><br></pre></td></tr></table></figure>
-
-<pre><code>3. getScopes ： 作用域 transformManager中定义了如下类型
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public static final Set&lt;ScopeType&gt; PROJECT_ONLY;</span><br><span class="line">   public static final Set&lt;Scope&gt; SCOPE_FULL_PROJECT;</span><br><span class="line">   public static final Set&lt;ScopeType&gt; SCOPE_FULL_WITH_IR_FOR_DEXING;</span><br><span class="line">   public static final Set&lt;ScopeType&gt; SCOPE_FULL_LIBRARY_WITH_LOCAL_JARS;</span><br><span class="line">   </span><br></pre></td></tr></table></figure>
-
-<h4 id="3-4-代码实例"><a href="#3-4-代码实例" class="headerlink" title="3.4 代码实例"></a>3.4 代码实例</h4><pre><code>在以下的例子中，我们继承transform方法，修改我们关心的类，在静态函数中插入一行打印语句
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">void transform(Context context, Collection&lt;TransformInput&gt; inputs, Collection&lt;TransformInput&gt; referencedInputs, TransformOutputProvider outputProvider, boolean isIncremental) throws IOException, TransformException, InterruptedException &#123;</span><br><span class="line"></span><br><span class="line">//        super.transform(context, inputs, referencedInputs, outputProvider, isIncremental)</span><br><span class="line"></span><br><span class="line">        ExtParams params = project.extParams</span><br><span class="line"></span><br><span class="line">        println &quot; params.logEnable is $&#123; params.logEnable &#125;&quot;</span><br><span class="line"></span><br><span class="line">        println &quot;transform method is invoked  ====== --------------- &quot;</span><br><span class="line">//        System.out.println(&quot;=======================================doPathTransform&#123; context=$&#123;context&#125;, inputs=$&#123;inputs&#125;, referencedInputs=$&#123;referencedInputs&#125;, outputProvider=$&#123;outputProvider&#125;, isIncremental=$&#123;isIncremental&#125;&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        inputs.each &#123; TransformInput input -&gt;</span><br><span class="line"></span><br><span class="line">            input.directoryInputs.each &#123; DirectoryInput directoryInput -&gt;</span><br><span class="line"></span><br><span class="line">				//修改我们关注的类</span><br><span class="line">                InjectU.inject(directoryInput.file.absolutePath)</span><br><span class="line"></span><br><span class="line">                //获取输出目录</span><br><span class="line">               def dest = outputProvider.getContentLocation(</span><br><span class="line">                       directoryInput.name,directoryInput.contentTypes,directoryInput.scopes,</span><br><span class="line">                       Format.DIRECTORY)</span><br><span class="line"></span><br><span class="line">//                println &quot;directory name location is $&#123;directoryInput.name&#125;&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                com.android.utils.FileUtils.copyDirectory(</span><br><span class="line">                        directoryInput.file,dest)</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            input.jarInputs.each &#123; JarInput jarInput -&gt;</span><br><span class="line"></span><br><span class="line">                //jar文件一般是第三方依赖库jar文件</span><br><span class="line">                // 重命名输出文件（同目录copyFile会冲突）</span><br><span class="line"></span><br><span class="line">                def jarName = jarInput.name</span><br><span class="line">                def md5 = DigestUtils.md5Hex(jarInput.file.getAbsolutePath())</span><br><span class="line">                if (jarName.endsWith(&quot;.jar&quot;)) &#123;</span><br><span class="line">                    jarName = jarName.substring(0,jarName.length() - 4 )</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                //输出</span><br><span class="line">                def dest = outputProvider.getContentLocation(jarName,</span><br><span class="line">                    jarInput.contentTypes,jarInput.scopes,Format.JAR)</span><br><span class="line"></span><br><span class="line">//                println &quot; jar name location is $&#123;jarInput.name&#125;&quot;</span><br><span class="line"></span><br><span class="line">                FileUtils.copyFile(jarInput.file,dest)</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<pre><code>以下代码用javassist实现了再构造函数中插入语句的代码
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">class InjectU &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    static ClassPool pool = ClassPool.getDefault()</span><br><span class="line"></span><br><span class="line">    static String injectStr = &quot;System.out.println(\&quot;I Love android-----\&quot; ); &quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     *</span><br><span class="line">     * @param path file path</span><br><span class="line">     */</span><br><span class="line">    static void inject(String path) &#123;</span><br><span class="line"></span><br><span class="line">        pool.appendClassPath(path)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        def dir = new File(path);</span><br><span class="line"></span><br><span class="line">        if (dir.isDirectory()) &#123;</span><br><span class="line"></span><br><span class="line">            dir.eachFileRecurse &#123; File file -&gt;</span><br><span class="line"></span><br><span class="line">                def filePath = file.absolutePath</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                //确保当前文件是class文件，并且不是系统自动生成的class文件</span><br><span class="line">                if (filePath.endsWith(&quot;.class&quot;)</span><br><span class="line">                        &amp;&amp; !filePath.contains(&#x27;R$&#x27;)</span><br><span class="line">                        &amp;&amp; !filePath.contains(&#x27;R.class&#x27;)</span><br><span class="line">                        &amp;&amp; !filePath.contains(&quot;BuildConfig.class&quot;)) &#123;</span><br><span class="line"></span><br><span class="line">                    println &quot;file path is $&#123;filePath&#125;&quot;</span><br><span class="line"></span><br><span class="line">                    int index = filePath.indexOf(&quot;com/example/pluginproject&quot;);</span><br><span class="line"></span><br><span class="line">                    if (index != -1) &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                        int end = filePath.length() - 6 // .class = 6</span><br><span class="line"></span><br><span class="line">                        String className = filePath.substring(index, end)</span><br><span class="line">                                .replace(&#x27;\\&#x27;, &#x27;.&#x27;).replace(&#x27;/&#x27;, &#x27;.&#x27;)</span><br><span class="line"></span><br><span class="line">                        println &quot;not -1 class name is $&#123;className&#125;&quot;</span><br><span class="line"></span><br><span class="line">                        def c = pool.getCtClass(className)</span><br><span class="line"></span><br><span class="line">                        if (c.isFrozen()) &#123;</span><br><span class="line">                            c.defrost()</span><br><span class="line">                        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                        CtConstructor[] declaredConstructors = c.getDeclaredConstructors();</span><br><span class="line">                        if (declaredConstructors == null || declaredConstructors.length == 0) &#123;</span><br><span class="line">                            CtConstructor constructor = new CtConstructor(new CtClass[0], c);</span><br><span class="line">                            c.addConstructor(constructor);</span><br><span class="line">                            constructor.insertBeforeBody(injectStr);</span><br><span class="line">                        &#125; else &#123;</span><br><span class="line">                            declaredConstructors[0].insertBeforeBody(injectStr);</span><br><span class="line">                        &#125;</span><br><span class="line"></span><br><span class="line">                        c.writeFile(path)</span><br><span class="line">                        c.detach()</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>代码已托管至 <a href = "https://github.com/kongxs/PluginProject">Github ，点击获取</a> </p>
-
+        <h2 id="1-工程配置"><a href="#1-工程配置" class="headerlink" title="1. 工程配置"></a>1. 工程配置</h2>
+        
+          <p class="article-more-link">
+            <a href="/Gradle/gradle-%E8%87%AA%E5%AE%9A%E4%B9%89transform%E5%AE%9E%E8%B7%B5/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -1260,72 +670,12 @@ flutter示例，包括widget控件等常用功能实现
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="1-实现的几种方式"><a href="#1-实现的几种方式" class="headerlink" title="1. 实现的几种方式"></a>1. 实现的几种方式</h2><pre><code>1. 直接在 app 的gradle文件中编写
-    只有当前module可用，可用于本地调试
-2. buildSrc工程
-    只有当前工程可用，重复使用，不可上传
-3. 独立module
-    要配合上传到本地或者远端仓库使用
-</code></pre>
-<h2 id="2-如何实现"><a href="#2-如何实现" class="headerlink" title="2. 如何实现"></a>2. 如何实现</h2><h3 id="2-1-直接使用"><a href="#2-1-直接使用" class="headerlink" title="2.1 直接使用"></a>2.1 直接使用</h3><pre><code>好处： 使用简单，配置简单
-缺点： 只能在当前module使用，局限性大
-实现方式： 
-1. 在APP的build.gradle文件中定义plugin
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: MyPlugin</span><br><span class="line"></span><br><span class="line">class MyPlugin implements Plugin&lt;Project&gt; &#123;</span><br><span class="line">    void apply(Project project) &#123;</span><br><span class="line">        println &quot;hello this my plugin in module &quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<pre><code>build当前工程，执行 ./gradlew build 即可看到输入 
-</code></pre>
-<h3 id="2-2-buildSrc方式"><a href="#2-2-buildSrc方式" class="headerlink" title="2.2 buildSrc方式"></a>2.2 buildSrc方式</h3><pre><code>1. 新建 java module 名字 为 buildSrc
-2. 配置gradle文件
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: &#x27;java-library&#x27;</span><br><span class="line">apply plugin: &#x27;groovy&#x27;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">    compile gradleApi()</span><br><span class="line">    compile localGroovy()</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<pre><code>3. 编写plugin实现
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">package fun.wanke.plugin</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">import org.gradle.api.Plugin</span><br><span class="line">import org.gradle.api.Project</span><br><span class="line"></span><br><span class="line">class MyPlugin implements Plugin&lt;Project&gt; &#123;</span><br><span class="line">    void apply(Project project) &#123;</span><br><span class="line">        println &quot;hello this my plugin in src module &quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<pre><code>4. 在APP中引用完整的类名
-    apply plugin: fun.wanke.plugin.MyPlugin
-5. 执行./gradlew build 验证即可看到输出
-    
-</code></pre>
-<h3 id="2-3-独立module"><a href="#2-3-独立module" class="headerlink" title="2.3 独立module"></a>2.3 独立module</h3><h4 id="2-3-1-建立插件工程"><a href="#2-3-1-建立插件工程" class="headerlink" title="2.3.1 建立插件工程"></a>2.3.1 建立插件工程</h4><pre><code>独立的module是配置最为复杂，使用灵活的一种实现方式
-
-1. 创建java工程
-2. gradle 配置
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: &#x27;java-library&#x27;</span><br><span class="line">apply plugin: &#x27;groovy&#x27;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line"></span><br><span class="line">    compile gradleApi()</span><br><span class="line">    compile localGroovy()</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<pre><code>3. 创建插件类
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">package fun.wanke.plugin</span><br><span class="line"></span><br><span class="line">import org.gradle.api.Plugin</span><br><span class="line">import org.gradle.api.Project</span><br><span class="line"></span><br><span class="line">class MyPlugin implements Plugin&lt;Project&gt; &#123;</span><br><span class="line">    void apply(Project project) &#123;</span><br><span class="line">        println &quot;hello this my plugin in standalone &quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<pre><code>4. 创建资源文件，按照以下目录进行
-    - module
-        - src
-            - main
-                - resources
-                    - META-INF
-                        - gradle-plugin
-    在main下创建目录，最后我们在 gradle-plugin 文件夹下创建属性文件
-    fun.wanke.plugin.properties 文件名规则要按照我们plugin所在的包名命名 
-    implementation-class=fun.wanke.plugin.MyPlugin 文件中写入以上信息。value 为 我们的自定义插件完整命名
-</code></pre>
-<h4 id="2-3-2-上传插件到本地仓库"><a href="#2-3-2-上传插件到本地仓库" class="headerlink" title="2.3.2 上传插件到本地仓库"></a>2.3.2 上传插件到本地仓库</h4><pre><code>在我们的工程的gradle文件中追加一下信息
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: &#x27;maven&#x27;</span><br><span class="line"></span><br><span class="line">repositories &#123;</span><br><span class="line">    jcenter()</span><br><span class="line">    mavenCentral()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">group = &#x27;fun.wanke.plugin&#x27;</span><br><span class="line">version = &#x27;0.7&#x27;</span><br><span class="line"></span><br><span class="line">uploadArchives &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        mavenDeployer &#123;</span><br><span class="line">            repository(url: uri(&quot;../repository&quot;))</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<pre><code>我们配置了maven仓库，并且新建了一个uploadtask，把maven仓库配置为工程所在的根目录
-我们同步gradle会在gradle看板中找到一个 uploadArchive的task
-执行此task，会在工程根目录生成一个respository文件夹
-</code></pre>
-<h4 id="2-3-3-使用本地仓库的插件"><a href="#2-3-3-使用本地仓库的插件" class="headerlink" title="2.3.3 使用本地仓库的插件"></a>2.3.3 使用本地仓库的插件</h4><pre><code>工程根目录配置gradle文件，添加classpath如下
-
-1. classpath &#39;fun.wanke.plugin:myPlugin:0.7&#39; 组织结构为 [packagename：moduleName：version]
-2. respositories 添加maven仓库地址
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">maven &#123;// 添加Maven的本地依赖</span><br><span class="line">           url uri(&#x27;./repository&#x27;)</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
-<pre><code>3. app 的gradle 文件中应用
-    apply plugin: &#39;fun.wanke.plugin&#39;
-4. clean and make project
-</code></pre>
-<br>
-代码已托管至 <a href = "https://github.com/kongxs/PluginProject">Github ，点击获取</a> 
+        <h2 id="1-实现的几种方式"><a href="#1-实现的几种方式" class="headerlink" title="1. 实现的几种方式"></a>1. 实现的几种方式</h2>
+        
+          <p class="article-more-link">
+            <a href="/Gradle/gradle-%E8%87%AA%E5%AE%9A%E4%B9%89plugin%E5%9F%BA%E6%9C%AC%E6%96%B9%E5%BC%8F/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -1367,102 +717,12 @@ flutter示例，包括widget控件等常用功能实现
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/gradle/gradle_1.png" height="200"></img></p>
-<h2 id="1-project"><a href="#1-project" class="headerlink" title="1. project"></a>1. project</h2><pre><code>工程中每个module 都是一个project 。在此工程中，一共有三个project 分别是 myAppliance，app 和 lib
-
-方法介绍： 
-    1. this.beforeEvaluate 
-    2. this.afterEvaluate 
-    3. this.gradle.buildFinished
-    4. getSubprojects 
-    5. getAllProjects
-    6. getRootProject
-    7. project 方法
-        project(&quot;lib&quot;) &#123;
-            //可以对lib 这个module进行配置
-            Project project -&gt;
-            println (&quot;lib project -- $&#123;project.name&#125;&quot;)
-        &#125;
-</code></pre>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">project(&quot;lib&quot;) &#123;</span><br><span class="line">			//可以对lib 这个module进行配置</span><br><span class="line">   			Project project -&gt;</span><br><span class="line">       			apply plugin &#x27;xxx&#x27;</span><br><span class="line">       			group &#x27;xxxx&#x27;</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="2-对所有project进行配置"><a href="#2-对所有project进行配置" class="headerlink" title="2. 对所有project进行配置"></a>2. 对所有project进行配置</h2><pre><code>allprojects 闭包
-</code></pre>
-<h2 id="3-subProject"><a href="#3-subProject" class="headerlink" title="3. subProject"></a>3. subProject</h2><pre><code>subprojects &#123;
-Project p -&gt;
-   if(p.plugins.contains(&quot;library&quot;))
-        apply from &#39;../xxx.gradle&#39; 
-&#125;
-</code></pre>
-<h2 id="4-Project-属性扩展-1"><a href="#4-Project-属性扩展-1" class="headerlink" title="4. Project 属性扩展 1"></a>4. Project 属性扩展 1</h2><pre><code>根project定义 ext 然后进行字段的扩展
-ext &#123;
-    jdk_version = 8l
-&#125;
-gradle文件扩展，可以将gradle文件独立出来，然后在module 的gradlee文件使用
-apply from : this.file(&quot;path&quot;)
-</code></pre>
-<h2 id="5-Project-属性扩展-2"><a href="#5-Project-属性扩展-2" class="headerlink" title="5. Project 属性扩展 2"></a>5. Project 属性扩展 2</h2><pre><code>gradle.properties 中定义
-ig: 
-    isModule = true
-使用： 
-    if(hasProperty(&#39;isModule&#39;)) &#123;
-        include &#39;lib&#39;
-    &#125;
-</code></pre>
-<h2 id="6-文件属性操作"><a href="#6-文件属性操作" class="headerlink" title="6. 文件属性操作"></a>6. 文件属性操作</h2><pre><code>文件路径获取 ： 
-    println getRootDir()
-    println getBuildDir()
-    println getProjectDir()
-</code></pre>
-<h2 id="7-task执行顺序"><a href="#7-task执行顺序" class="headerlink" title="7. task执行顺序"></a>7. task执行顺序</h2><pre><code>1. dependsOn 属性指定
-    task(&quot;taskX&quot;) &#123;
-        doLast &#123;
-            println &quot;taskX&quot;
-        &#125;
-    &#125;
-
-task (&quot;taskY&quot;,dependsOn: taskX) &#123;
-    doLast &#123;
-        println &quot;taskY&quot;
-    &#125;
-&#125;
-
-2. mustRunAfter 维护
-    
-    task (&quot;taskY&quot;) &#123;
-        mustRunAfter taskX
-        doLast &#123;
-            println &quot;taskY&quot;
-        &#125;
-    &#125;
-</code></pre>
-<h2 id="8-将自定义task挂载到构件过程"><a href="#8-将自定义task挂载到构件过程" class="headerlink" title="8. 将自定义task挂载到构件过程"></a>8. 将自定义task挂载到构件过程</h2><pre><code>this.project.afterEvaluate&#123;
-    def build = project.tasks.getByName(&quot;build&quot;);
-    build.doLast &#123;
-        cusTask.execute();
-    &#125;
-&#125;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-</code></pre>
-
+        <p>gradle 核心概念详解</p>
+        
+          <p class="article-more-link">
+            <a href="/Gradle/gradle-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E8%AF%A6%E8%A7%A3/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -1504,37 +764,12 @@ task (&quot;taskY&quot;,dependsOn: taskX) &#123;
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="1-标记-清除算法"><a href="#1-标记-清除算法" class="headerlink" title="1. 标记-清除算法"></a>1. 标记-清除算法</h2><pre><code>标记清除 是最基础的垃圾收集算法，因为后续的所有gc算法都是基于此进行的改进。
-特点： 
-    分为标记和收集2个阶段，首先标记处需要回收的对象，然后统一回收
-不足： 
-    效率问题，空间碎片，当分配大对象时会因为没有足够的连续内存空间二导致提前出发gc
-</code></pre>
-<h2 id="2-复制收集算法"><a href="#2-复制收集算法" class="headerlink" title="2. 复制收集算法"></a>2. 复制收集算法</h2><pre><code>将可用内存分为大小相等的2份，每次只是用其中的一块，当这块内存用完，就将活着的对象赋值到另一块空间，
-然后将是用过的内存空间清理掉。
-特点： 
-    简单，运行高晓晓
-不足： 将内存空间缩小为原来的一半，代价有些高。
-</code></pre>
-<h2 id="3-标记-整理算法"><a href="#3-标记-整理算法" class="headerlink" title="3. 标记-整理算法"></a>3. 标记-整理算法</h2><pre><code>复制收集算法在对象存活率较高时候就要进行多次复制，效率低。
-老年代采用了标记清除算法，把存活的对象都向一端移动，然后清理掉其他内存
-</code></pre>
-<h2 id="4-分代收集算法"><a href="#4-分代收集算法" class="headerlink" title="4. 分代收集算法"></a>4. 分代收集算法</h2><pre><code>当前商用虚拟机大多采用分代收集的算法。
-根据对象存活的手气不同，将内存划分为新生代和老年代，然后根据不同区域采用不同收集算法。
-新生代： 
-    每次收集都会有大批对象死去，采用复制算法，只需要少量对象复制的成本就可以完成收集。
-老年代： 
-    对象存活率高，采用标记-清理或者标记-整理算法
-</code></pre>
-<h2 id="5-minor-和-major-gc"><a href="#5-minor-和-major-gc" class="headerlink" title="5. minor 和 major gc"></a>5. minor 和 major gc</h2><pre><code>新生代gc (minor gc) ： 
-    java对象大多朝生夕死，所以minor gc会很频繁，回收速度也快
-老年代gc (major gc) ：
-    一次 major gc 通常伴随着至少一次的minor gc
-
-大对象和长期存活的对象直接进入老年代
-每次gc都会讲对象头中的age + 1，一般最大为15就会进入老年代
-</code></pre>
-
+        <h2 id="1-标记-清除算法"><a href="#1-标记-清除算法" class="headerlink" title="1. 标记-清除算法"></a>1. 标记-清除算法</h2>
+        
+          <p class="article-more-link">
+            <a href="/Jvm/jvm-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E7%AE%97%E6%B3%95/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">

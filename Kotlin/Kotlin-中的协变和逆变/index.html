@@ -6,15 +6,15 @@
   
   <title>Kotlin 中的协变和逆变 | 师学</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="泛型的概念对于java 并不陌生 。  所谓的协变和逆变其实有点类似于类型转换的  ， 虽然不准确，姑且这么理解，毕竟是概念上的东西。   我们知道java中的root class 为 java.lang.object， 所有的java类默认的父类 实现。 在java的泛型中，比如 List《object》 , List《string》  虽然 string 是 object的子类，但是 list">
+  <meta name="description" content="泛型的概念对于java 并不陌生 。  所谓的协变和逆变其实有点类似于类型转换的  ， 虽然不准确，姑且这么理解，毕竟是概念上的东西。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kotlin 中的协变和逆变">
 <meta property="og:url" content="http://yoursite.com/Kotlin/Kotlin-%E4%B8%AD%E7%9A%84%E5%8D%8F%E5%8F%98%E5%92%8C%E9%80%86%E5%8F%98/index.html">
 <meta property="og:site_name" content="师学">
-<meta property="og:description" content="泛型的概念对于java 并不陌生 。  所谓的协变和逆变其实有点类似于类型转换的  ， 虽然不准确，姑且这么理解，毕竟是概念上的东西。   我们知道java中的root class 为 java.lang.object， 所有的java类默认的父类 实现。 在java的泛型中，比如 List《object》 , List《string》  虽然 string 是 object的子类，但是 list">
+<meta property="og:description" content="泛型的概念对于java 并不陌生 。  所谓的协变和逆变其实有点类似于类型转换的  ， 虽然不准确，姑且这么理解，毕竟是概念上的东西。">
 <meta property="og:locale">
 <meta property="article:published_time" content="2019-11-18T12:44:00.000Z">
-<meta property="article:modified_time" content="2021-06-06T01:21:47.469Z">
+<meta property="article:modified_time" content="2021-06-06T04:47:52.567Z">
 <meta property="article:author" content="师学">
 <meta name="twitter:card" content="summary">
   
@@ -104,6 +104,8 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
         <p>泛型的概念对于java 并不陌生 。  所谓的协变和逆变其实有点类似于类型转换的  ， 虽然不准确，姑且这么理解，毕竟是概念上的东西。  </p>
+<span id="more"></span>
+
 <p>我们知道java中的root class 为 java.lang.object， 所有的java类默认的父类 实现。</p>
 <p>在java的泛型中，比如 List《object》 , List《string》  虽然 string 是 object的子类，但是 list《object》 却并不是 list《string》 的子类<br>在java中我们可以使用 通配符类做类型转换  ? 和 super</p>
 <p>例如 </p>
