@@ -6,15 +6,15 @@
   
   <title>FFmpeg 从视频中提取图片 | 师学</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="从视频中提取图片，涉及到以下流程的处理 。  打开输出文件，解封装，找到视频流索引 通过视频context初始化decoder 对视频帧进行解码 初始化输出环境，新建输出流 获取图片编码器 对帧进行编码 并写到图片文件中  了解以上处理流程以后，对于代码的编写就会了然于胸。  https:&#x2F;&#x2F;github.com&#x2F;kongxs&#x2F;ffmpeg_demos&#x2F;tree&#x2F;master&#x2F;toPics 1.">
+  <meta name="description" content="从视频中提取图片，涉及到以下流程的处理 。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="FFmpeg 从视频中提取图片">
 <meta property="og:url" content="http://yoursite.com/FFmpeg/FFmpeg-%E4%BB%8E%E8%A7%86%E9%A2%91%E4%B8%AD%E6%8F%90%E5%8F%96%E5%9B%BE%E7%89%87/index.html">
 <meta property="og:site_name" content="师学">
-<meta property="og:description" content="从视频中提取图片，涉及到以下流程的处理 。  打开输出文件，解封装，找到视频流索引 通过视频context初始化decoder 对视频帧进行解码 初始化输出环境，新建输出流 获取图片编码器 对帧进行编码 并写到图片文件中  了解以上处理流程以后，对于代码的编写就会了然于胸。  https:&#x2F;&#x2F;github.com&#x2F;kongxs&#x2F;ffmpeg_demos&#x2F;tree&#x2F;master&#x2F;toPics 1.">
+<meta property="og:description" content="从视频中提取图片，涉及到以下流程的处理 。">
 <meta property="og:locale">
 <meta property="article:published_time" content="2019-11-09T01:59:00.000Z">
-<meta property="article:modified_time" content="2021-06-06T01:21:47.460Z">
+<meta property="article:modified_time" content="2021-06-06T04:58:20.323Z">
 <meta property="article:author" content="师学">
 <meta name="twitter:card" content="summary">
   
@@ -104,6 +104,8 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
         <p>从视频中提取图片，涉及到以下流程的处理 。<br></p>
+<span id="more"></span>
+
 <ul>
 <li>打开输出文件，解封装，找到视频流索引</li>
 <li>通过视频context初始化decoder</li>

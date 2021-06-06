@@ -6,15 +6,15 @@
   
   <title>策略模式使用 | 师学</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="1. 是什么在策略模式（Strategy Pattern）中，一个类的行为或其算法可以在运行时更改。这种类型的设计模式属于行为型模式。 1. 抽象策略角色 - 接口或者抽象类 2. 具体策略角色 3. 环境角色 - 持有策略类的引用，最终给客户端调用  2. 代码编写抽象策略角色 123public interface Cal &amp;#123;    int calate(int a,int b);&amp;">
+  <meta name="description" content="1. 是什么在策略模式（Strategy Pattern）中，一个类的行为或其算法可以在运行时更改。这种类型的设计模式属于行为型模式。 1. 抽象策略角色 - 接口或者抽象类 2. 具体策略角色 3. 环境角色 - 持有策略类的引用，最终给客户端调用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="策略模式使用">
 <meta property="og:url" content="http://yoursite.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="师学">
-<meta property="og:description" content="1. 是什么在策略模式（Strategy Pattern）中，一个类的行为或其算法可以在运行时更改。这种类型的设计模式属于行为型模式。 1. 抽象策略角色 - 接口或者抽象类 2. 具体策略角色 3. 环境角色 - 持有策略类的引用，最终给客户端调用  2. 代码编写抽象策略角色 123public interface Cal &amp;#123;    int calate(int a,int b);&amp;">
+<meta property="og:description" content="1. 是什么在策略模式（Strategy Pattern）中，一个类的行为或其算法可以在运行时更改。这种类型的设计模式属于行为型模式。 1. 抽象策略角色 - 接口或者抽象类 2. 具体策略角色 3. 环境角色 - 持有策略类的引用，最终给客户端调用">
 <meta property="og:locale">
 <meta property="article:published_time" content="2019-08-11T09:20:54.000Z">
-<meta property="article:modified_time" content="2021-06-06T01:21:47.479Z">
+<meta property="article:modified_time" content="2021-06-06T04:58:47.217Z">
 <meta property="article:author" content="师学">
 <meta name="twitter:card" content="summary">
   
@@ -108,6 +108,7 @@
 2. 具体策略角色
 3. 环境角色 - 持有策略类的引用，最终给客户端调用
 </code></pre>
+<span id="more"></span>
 <h2 id="2-代码编写"><a href="#2-代码编写" class="headerlink" title="2. 代码编写"></a>2. 代码编写</h2><p>抽象策略角色</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Cal</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">calate</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 

@@ -6,18 +6,18 @@
   
   <title>java内存模型理解 | 师学</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="1. jvm虚拟机运行区域 1. 堆 2. 栈(线程)线程在运行的过程中，   3. 本地方法栈4. 方法区(元空间)-直接内存5. 程序计数器线程独享的一块内存空间，可以看做当前线程所执行字节码的行号指示器 如果是java代码，计数器指向的是虚拟机字节码指令地址，如果是native代码， ，指示器的值为undefined 此区域是jvm规范中唯一没有规定OOM情况的区域">
+  <meta name="description" content="1. jvm虚拟机运行区域">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java内存模型理解">
 <meta property="og:url" content="http://yoursite.com/Jvm/2019-07-30-java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E7%90%86%E8%A7%A3/index.html">
 <meta property="og:site_name" content="师学">
-<meta property="og:description" content="1. jvm虚拟机运行区域 1. 堆 2. 栈(线程)线程在运行的过程中，   3. 本地方法栈4. 方法区(元空间)-直接内存5. 程序计数器线程独享的一块内存空间，可以看做当前线程所执行字节码的行号指示器 如果是java代码，计数器指向的是虚拟机字节码指令地址，如果是native代码， ，指示器的值为undefined 此区域是jvm规范中唯一没有规定OOM情况的区域">
+<meta property="og:description" content="1. jvm虚拟机运行区域">
 <meta property="og:locale">
 <meta property="og:image" content="https://wanke-fun.oss-cn-beijing.aliyuncs.com/jmm_main.png">
 <meta property="og:image" content="https://wanke-fun.oss-cn-beijing.aliyuncs.com/jmm_heap_1.png">
 <meta property="og:image" content="https://wanke-fun.oss-cn-beijing.aliyuncs.com/jmm_stack_1.png">
 <meta property="article:published_time" content="2019-07-30T08:04:43.000Z">
-<meta property="article:modified_time" content="2021-06-06T01:21:47.457Z">
+<meta property="article:modified_time" content="2021-06-06T04:59:23.325Z">
 <meta property="article:author" content="师学">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://wanke-fun.oss-cn-beijing.aliyuncs.com/jmm_main.png">
@@ -107,7 +107,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="1-jvm虚拟机运行区域"><a href="#1-jvm虚拟机运行区域" class="headerlink" title="1. jvm虚拟机运行区域"></a>1. jvm虚拟机运行区域</h1><p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/jmm_main.png"></img></p>
+        <h1 id="1-jvm虚拟机运行区域"><a href="#1-jvm虚拟机运行区域" class="headerlink" title="1. jvm虚拟机运行区域"></a>1. jvm虚拟机运行区域</h1><span id="more"></span>
+
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/jmm_main.png"></img></p>
 <h2 id="1-堆"><a href="#1-堆" class="headerlink" title="1. 堆"></a>1. 堆</h2><p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/jmm_heap_1.png"></img></p>
 <h2 id="2-栈-线程"><a href="#2-栈-线程" class="headerlink" title="2. 栈(线程)"></a>2. 栈(线程)</h2><pre><code>线程在运行的过程中，
 </code></pre>

@@ -104,87 +104,11 @@
         <blockquote>
 <p>在实际项目中找到两款可以在android平台使用的javascript引擎，<a target="_blank" rel="noopener" href="https://github.com/gubaojian/DuktapeJava">duktapeJava</a> 和 <a target="_blank" rel="noopener" href="https://github.com/LiquidPlayer/LiquidCore">LiquidCore</a> 本文重点关注 duktapeJava的使用</p>
 </blockquote>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>duktapeJava</th>
-<th>liquidCore</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>支持平台</td>
-<td>java/android</td>
-<td>java/android</td>
-</tr>
-<tr>
-<td>es6支持</td>
-<td>否</td>
-<td>是</td>
-</tr>
-<tr>
-<td>使用便捷</td>
-<td>是</td>
-<td>一般</td>
-</tr>
-<tr>
-<td>性能</td>
-<td>一般</td>
-<td>良</td>
-</tr>
-<tr>
-<td>体积</td>
-<td>小</td>
-<td>大</td>
-</tr>
-</tbody></table>
-<pre><code>相对于liquidCore duktapeJava对于java对象的支持更加便捷 , 但是需要用duktapeJava提供的转义工具，对javascript进行转义，否则无法引用java对象。
-</code></pre>
-<h1 id="1-duktapeJava的基本使用"><a href="#1-duktapeJava的基本使用" class="headerlink" title="1. duktapeJava的基本使用"></a>1. duktapeJava的基本使用</h1><h2 id="1-1-gradle-依赖引入"><a href="#1-1-gradle-依赖引入" class="headerlink" title="1.1 gradle 依赖引入"></a>1.1 gradle 依赖引入</h2><pre><code>compile &#39;com.furture.react:DuktapeJava:1.2.0&#39;
-or
-compile &#39;com.furture.react:DuktapeJava:1.2.0@aar&#39;
-</code></pre>
-<h2 id="1-2-加载javascript"><a href="#1-2-加载javascript" class="headerlink" title="1.2 加载javascript"></a>1.2 加载javascript</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">	</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">	duktapeEngine = <span class="keyword">new</span> DuktapeEngine();</span><br><span class="line">	duktapeEngine.execute(AssetScript.toScript(getBaseContext(), <span class="string">&quot;duk.js&quot;</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onDestroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (duktapeEngine != <span class="keyword">null</span>) &#123;</span><br><span class="line">		 duktapeEngine.destory();</span><br><span class="line">		 duktapeEngine = <span class="keyword">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">super</span>.onDestroy();</span><br><span class="line">&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
-<ol>
-<li>首先新建一个duktape引擎对象</li>
-<li>AssetScript.toScript主要是为了转义，好让我们内置的java对象能够在javascript文件里面使用</li>
-<li>duktape.execute 执行语句<br>
-<br>
-以上四步就是实例化引擎并执行javascript的完整流程</li>
-</ol>
-<h1 id="2-javascript-调用java代码"><a href="#2-javascript-调用java代码" class="headerlink" title="2.javascript 调用java代码"></a>2.javascript 调用java代码</h1><ol>
-<li>首先要新建一个sprite 对象</li>
-</ol>
-<p> sprite = new Sprite();</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> 	public class Sprite &#123;</span><br><span class="line"></span><br><span class="line">    	private double x = -1;</span><br><span class="line"></span><br><span class="line">    	public double getX() &#123;</span><br><span class="line">        	return x;</span><br><span class="line">    	&#125;</span><br><span class="line"></span><br><span class="line">    	public void setX(double x) &#123;</span><br><span class="line">       	 this.x = x;</span><br><span class="line">    	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>将sprite加载进javascript引擎</li>
-</ol>
-<p>   duktape.put(sprite,”sp”)</p>
-<p>   那么我们就可以在 javascript里面通过 sp.getX()调起 sprite里面的方法</p>
-<h1 id="2-java调用javascript函数和对象"><a href="#2-java调用javascript函数和对象" class="headerlink" title="2. java调用javascript函数和对象"></a>2. java调用javascript函数和对象</h1><p>javascript 语句如下</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">	<span class="attr">test</span> : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		....</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p> java代码： </p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">JsRef ref = duktape.get(<span class="string">&quot;obj&quot;</span>);</span><br><span class="line">JsRef func = ref.get(<span class="string">&quot;test&quot;</span>);</span><br><span class="line">func.getEngine().call(func,<span class="string">&quot;&quot;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
+          <p class="article-more-link">
+            <a href="/jdhai/javascript/%E8%B7%A8%E5%B9%B3%E5%8F%B0/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%8E%A2%E7%B4%A2-javascript%E5%BC%95%E6%93%8E%E7%9A%84%E4%BD%BF%E7%94%A8/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -232,60 +156,11 @@ compile &#39;com.furture.react:DuktapeJava:1.2.0@aar&#39;
 <p>随着移动技术的发展，跨平台技术日趋火热。颇有一股推到原生开发的气势，本系列介绍之前公司内部跨平台技术开发，以及用到的相关技术点和实现细节</p>
 </blockquote>
 <br>
-
-<h1 id="1-jdhai项目介绍"><a href="#1-jdhai项目介绍" class="headerlink" title="1.jdhai项目介绍"></a>1.jdhai项目介绍</h1><p>在7fresh项目的开发和维护过程中，由于需要经常性的进行各种活动的支持，介于HTML的糟糕体验，我们在内部探索实现了一套轻量级的跨平台的技术实现，并在7fresh项目中进行了大量的实践，同一套代码运行在Android和ios两端，并实现了动态加载和更新！</p>
-<h2 id="1-1-优势"><a href="#1-1-优势" class="headerlink" title="1.1 优势"></a>1.1 优势</h2><p>jdhai 使用 javascript作为开发语言，基于mvc思想，实现了ui，样式和代码逻辑的分离。底层由Android和ios原生控件实现，布局基于 flexbox思想。<br>一次开发，就可以运行在iOS、Android 平台上，具备iOS和Android原生的性能和用户体验上的优势，并且可以无需客户端更新版本做到动态更新页面功能。<br><br></p>
-<h1 id="2-jdhai-技术架构"><a href="#2-jdhai-技术架构" class="headerlink" title="2.jdhai 技术架构"></a>2.jdhai 技术架构</h1><p>jdhai 使用 xml 作为 布局文件的描述语言，使用json进行样式文件描述，使用javascript作为开发语言。iOS和Android 两端 各自实现 上述文件的解析并通过javascript建立和native代码的通信。javascript使用同一的api接口，调用各端原生代码的native实现，从而达到使用javascript开发的统一。</p>
-<img src="http://gudao-blog.oss.cn-north-1.jcloudcs.com/jdhai_jiagoutu.png" width="500" hegiht="313" align=center />
-<br>
-# 3. jdhai 使用到的技术总览<br>
-## 3.1 利用 javascript 进行前端页面开发
-使用javascript同原生代码进行交互，为此我们借助 javascript 引擎解决通信问题。通过调研 duktape，javascCore 等引擎，我们最终选用了 duktape-Java 这个基于duktape 的引擎实现。
-
-<p>duktape 部分可以参考： <a target="_blank" rel="noopener" href="http://wanke.fun/jdhai/javascript/%E8%B7%A8%E5%B9%B3%E5%8F%B0/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%8E%A2%E7%B4%A2-javascript%E5%BC%95%E6%93%8E%E7%9A%84%E4%BD%BF%E7%94%A8/#more">Android上使用的javascript引擎 - duktapeJava篇</a></p>
-<h2 id="3-2-利用yoga和flexbox布局思想进行样式文件编写"><a href="#3-2-利用yoga和flexbox布局思想进行样式文件编写" class="headerlink" title="3.2 利用yoga和flexbox布局思想进行样式文件编写"></a>3.2 利用yoga和flexbox布局思想进行样式文件编写</h2><blockquote>
-<p>flexBox布局是 W3C 在2009年 提出了一种新的布局方案，可以简便、完整、响应式地实现各种页面布局。目前，它已经得到了所有浏览器的支持！</p>
-</blockquote>
-<h3 id="3-2-1-yoga-Facebook-跨平台布局项目"><a href="#3-2-1-yoga-Facebook-跨平台布局项目" class="headerlink" title="3.2.1  yoga - Facebook 跨平台布局项目"></a>3.2.1  yoga - Facebook 跨平台布局项目</h3><p><a target="_blank" rel="noopener" href="https://github.com/facebook/yoga" title="FaceBook/Yoga">FaceBook/Yoga</a> 是一个基于Flexbox思想的布局项目，他提供了 java，android，ios 等多个平台的实现。这使得我们可以借助yoga 利用同一套样式文件运行到不同平台上。也为我们跨平台项目的布局提供了一种解决方案！</p>
-<h3 id="3-2-2-yoga的Android实现-yogaLayout"><a href="#3-2-2-yoga的Android实现-yogaLayout" class="headerlink" title="3.2.2 yoga的Android实现 yogaLayout"></a>3.2.2 yoga的Android实现 yogaLayout</h3><p>yogalayout 是 yoga 项目中的Android 实现，他封装了一个 使得可以方便的以flexbox的规范来进行放置子控件的ViewGroup,而不用关心如何把flexBox转化成ViewGroup布局。<br><br></p>
-<h3 id="3-2-3-yogaLayout使用"><a href="#3-2-3-yogaLayout使用" class="headerlink" title="3.2.3 yogaLayout使用"></a>3.2.3 yogaLayout使用</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">View child = <span class="keyword">new</span> View(context);</span><br><span class="line">       YogaNode yogaNode = <span class="keyword">new</span> YogaNode();</span><br><span class="line">       yogaNode.setHeight(<span class="number">10</span>);</span><br><span class="line">       yogaNode.setWidth(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">       YogaLayout layout = <span class="keyword">new</span> YogaLayout(context);</span><br><span class="line">       layout.addView(child,yogaNode);</span><br><span class="line">       </span><br></pre></td></tr></table></figure>
-
-
-<p>yogalayout addview接收2个参数，一个是我们要添加的view，另外一个 yoganode 就是约束子view是如何进行布局的。假如我们有如下的 json文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&quot;flexDirection&quot;: &quot;row&quot;,</span><br><span class="line">&quot;justifyContent&quot;: &quot;flexStart&quot;,</span><br><span class="line">&quot;alignItems&quot;: &quot;center&quot;,</span><br><span class="line">&quot;width&quot;: &quot;100%&quot;,</span><br><span class="line">&quot;height&quot;: &quot;57&quot;,</span><br><span class="line">&quot;backgroundColor&quot;: &quot;FFFFFF&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>那么我们可以将上述json描述转化为 yogaNode属性</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yogaNode.setFlexDirection(YogaFlexDirection.ROW);</span><br><span class="line">      yogaNode.setJustifyContent(YogaJustify.FLEX_START);</span><br><span class="line">      yogaNode.setAlignItems(YogaAlign.CENTER);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>如此我们使得我们动态下发样式成为一种可能，这样也就可以动态改变页面布局的展现外观了。</p>
-<br>
-
-<p>FlexBox部分的学习可以参考 <a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html">阮一峰的FlexBox教程</a> </p>
-<h2 id="3-3-基于xml的布局文件描述"><a href="#3-3-基于xml的布局文件描述" class="headerlink" title="3.3 基于xml的布局文件描述"></a>3.3 基于xml的布局文件描述</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;view classX=&quot;floor-10&quot;&gt;</span><br><span class="line">	&lt;view classX=&quot;11-left&quot;&gt;</span><br><span class="line">		&lt;listFlexImage ID=&quot;11-image1&quot; classX=&quot;coupon_image_11&quot;/&gt;</span><br><span class="line">		&lt;image ID=&quot;11-markImage1&quot; classX=&quot;10-markImage&quot;/&gt;</span><br><span class="line">	&lt;/view&gt;</span><br><span class="line">	&lt;view classX=&quot;11-middle&quot;&gt;</span><br><span class="line">	&lt;listFlexImage ID=&quot;11-image2&quot; classX=&quot;coupon_image_11&quot;/&gt;</span><br><span class="line">	&lt;image ID=&quot;11-markImage2&quot; classX=&quot;10-markImage&quot;/&gt;</span><br><span class="line">&lt;/view&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
+          <p class="article-more-link">
+            <a href="/jdhai/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%8E%A2%E7%B4%A2-%E6%80%BB%E8%A7%88/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -330,16 +205,11 @@ compile &#39;com.furture.react:DuktapeJava:1.2.0@aar&#39;
         <br>
 
 <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>在一个二维数组中（每个一维数组的长度相同），每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
-<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>利用二维数组由上到下，由左到右递增的规律，<br>那么选取右上角或者左下角的元素a[row][col]与target进行比较，<br>当target小于元素a[row][col]时，那么target必定在元素a所在行的左边,<br>即col–；<br>当target大于元素a[row][col]时，那么target必定在元素a所在列的下边,<br>即row++；</p>
-<h1 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> [][] array,<span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> row=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> col=array[<span class="number">0</span>].length-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(row&lt;=array.length-<span class="number">1</span>&amp;&amp;col&gt;=<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(target==array[row][col])</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(target&gt;array[row][col])</span><br><span class="line">                row++;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                col--;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
+        
+          <p class="article-more-link">
+            <a href="/%E5%89%91%E6%8C%87%E7%B3%BB%E5%88%97/%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9F%A5%E6%89%BE/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -384,8 +254,11 @@ compile &#39;com.furture.react:DuktapeJava:1.2.0@aar&#39;
         <br>
 
 <p>回想过去，立足当下，展望未来！</p>
-<p>心怀敬畏，查漏补缺，重温java和android知识体系，探索新的技术热点 。<br>特建此站点博客，以作记录。<br><br><br><br><br><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/pandeng.jpg"></p>
-
+        
+          <p class="article-more-link">
+            <a href="/%E6%9D%82%E8%B0%88/%E5%BC%80%E7%AF%87/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">

@@ -6,16 +6,16 @@
   
   <title>移动端跨平台探索 - 总览 | 师学</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="随着移动技术的发展，跨平台技术日趋火热。颇有一股推到原生开发的气势，本系列介绍之前公司内部跨平台技术开发，以及用到的相关技术点和实现细节    1.jdhai项目介绍在7fresh项目的开发和维护过程中，由于需要经常性的进行各种活动的支持，介于HTML的糟糕体验，我们在内部探索实现了一套轻量级的跨平台的技术实现，并在7fresh项目中进行了大量的实践，同一套代码运行在Android和ios两">
+  <meta name="description" content="随着移动技术的发展，跨平台技术日趋火热。颇有一股推到原生开发的气势，本系列介绍之前公司内部跨平台技术开发，以及用到的相关技术点和实现细节">
 <meta property="og:type" content="article">
 <meta property="og:title" content="移动端跨平台探索 - 总览">
 <meta property="og:url" content="http://yoursite.com/jdhai/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%8E%A2%E7%B4%A2-%E6%80%BB%E8%A7%88/index.html">
 <meta property="og:site_name" content="师学">
-<meta property="og:description" content="随着移动技术的发展，跨平台技术日趋火热。颇有一股推到原生开发的气势，本系列介绍之前公司内部跨平台技术开发，以及用到的相关技术点和实现细节    1.jdhai项目介绍在7fresh项目的开发和维护过程中，由于需要经常性的进行各种活动的支持，介于HTML的糟糕体验，我们在内部探索实现了一套轻量级的跨平台的技术实现，并在7fresh项目中进行了大量的实践，同一套代码运行在Android和ios两">
+<meta property="og:description" content="随着移动技术的发展，跨平台技术日趋火热。颇有一股推到原生开发的气势，本系列介绍之前公司内部跨平台技术开发，以及用到的相关技术点和实现细节">
 <meta property="og:locale">
 <meta property="og:image" content="http://gudao-blog.oss.cn-north-1.jcloudcs.com/jdhai_jiagoutu.png">
 <meta property="article:published_time" content="2018-12-12T08:30:13.000Z">
-<meta property="article:modified_time" content="2021-06-06T01:21:47.479Z">
+<meta property="article:modified_time" content="2021-06-06T05:15:46.227Z">
 <meta property="article:author" content="师学">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://gudao-blog.oss.cn-north-1.jcloudcs.com/jdhai_jiagoutu.png">
@@ -112,6 +112,8 @@
 </blockquote>
 <br>
 
+<span id="more"></span>
+
 <h1 id="1-jdhai项目介绍"><a href="#1-jdhai项目介绍" class="headerlink" title="1.jdhai项目介绍"></a>1.jdhai项目介绍</h1><p>在7fresh项目的开发和维护过程中，由于需要经常性的进行各种活动的支持，介于HTML的糟糕体验，我们在内部探索实现了一套轻量级的跨平台的技术实现，并在7fresh项目中进行了大量的实践，同一套代码运行在Android和ios两端，并实现了动态加载和更新！</p>
 <h2 id="1-1-优势"><a href="#1-1-优势" class="headerlink" title="1.1 优势"></a>1.1 优势</h2><p>jdhai 使用 javascript作为开发语言，基于mvc思想，实现了ui，样式和代码逻辑的分离。底层由Android和ios原生控件实现，布局基于 flexbox思想。<br>一次开发，就可以运行在iOS、Android 平台上，具备iOS和Android原生的性能和用户体验上的优势，并且可以无需客户端更新版本做到动态更新页面功能。<br><br></p>
 <h1 id="2-jdhai-技术架构"><a href="#2-jdhai-技术架构" class="headerlink" title="2.jdhai 技术架构"></a>2.jdhai 技术架构</h1><p>jdhai 使用 xml 作为 布局文件的描述语言，使用json进行样式文件描述，使用javascript作为开发语言。iOS和Android 两端 各自实现 上述文件的解析并通过javascript建立和native代码的通信。javascript使用同一的api接口，调用各端原生代码的native实现，从而达到使用javascript开发的统一。</p>
@@ -140,31 +142,6 @@
 
 <p>FlexBox部分的学习可以参考 <a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html">阮一峰的FlexBox教程</a> </p>
 <h2 id="3-3-基于xml的布局文件描述"><a href="#3-3-基于xml的布局文件描述" class="headerlink" title="3.3 基于xml的布局文件描述"></a>3.3 基于xml的布局文件描述</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;view classX=&quot;floor-10&quot;&gt;</span><br><span class="line">	&lt;view classX=&quot;11-left&quot;&gt;</span><br><span class="line">		&lt;listFlexImage ID=&quot;11-image1&quot; classX=&quot;coupon_image_11&quot;/&gt;</span><br><span class="line">		&lt;image ID=&quot;11-markImage1&quot; classX=&quot;10-markImage&quot;/&gt;</span><br><span class="line">	&lt;/view&gt;</span><br><span class="line">	&lt;view classX=&quot;11-middle&quot;&gt;</span><br><span class="line">	&lt;listFlexImage ID=&quot;11-image2&quot; classX=&quot;coupon_image_11&quot;/&gt;</span><br><span class="line">	&lt;image ID=&quot;11-markImage2&quot; classX=&quot;10-markImage&quot;/&gt;</span><br><span class="line">&lt;/view&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       
     </div>
     <footer class="article-footer">
