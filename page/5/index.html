@@ -1,895 +1,587 @@
 <!DOCTYPE html>
-<html>
+<html lang=zh>
 <head>
-  <meta charset="utf-8">
-  
-  
-  <title>师学</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta property="og:type" content="website">
 <meta property="og:title" content="师学">
 <meta property="og:url" content="http://yoursite.com/page/5/index.html">
 <meta property="og:site_name" content="师学">
 <meta property="og:locale">
 <meta property="article:author" content="师学">
 <meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="师学" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
     
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
-
-  
-  
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>师学</title>
+    <!-- styles -->
+    
 <link rel="stylesheet" href="/css/style.css">
 
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="师学" type="application/atom+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+    <div class="content index py4">
+        
+          <header id="header">
+  <a href="/">
   
     
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-
+      <div id="logo" style="background-image: url(/images/logo.png);"></div>
+    
   
-<meta name="generator" content="Hexo 5.4.0"></head>
-
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">师学</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">学而不思则罔，思而不学则殆。</a>
-        </h2>
-      
+    <div id="title">
+      <h1>师学</h1>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#" aria-label="Menu"><i class="fas fa-bars fa-2x"></i></a>
+      </li>
+       
+        <li><a href="/">Home</a></li>
+       
+        <li><a href="/about/">About</a></li>
+       
+        <li><a href="/categories">categories</a></li>
+      
+    </ul>
   </div>
 </header>
 
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-nio-buffer-学习详解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/Nio/nio-buffer-%E5%AD%A6%E4%B9%A0%E8%AF%A6%E8%A7%A3/" class="article-date">
-  <time class="dt-published" datetime="2019-08-13T01:47:02.000Z" itemprop="datePublished">2019-08-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Nio/">Nio</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
         
+        <section id="about">
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/Nio/nio-buffer-%E5%AD%A6%E4%B9%A0%E8%AF%A6%E8%A7%A3/">nio buffer 学习详解</a>
-    </h1>
   
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
+    <p>
+      Find me on
       
-        <h2 id="1-Buffer"><a href="#1-Buffer" class="headerlink" title="1. Buffer"></a>1. Buffer</h2><pre><code>nio对于原生数据类型的支持(除去boolean)
-如 IntBuffer、ByteBuffer
-</code></pre>
+      
+      
         
-          <p class="article-more-link">
-            <a href="/Nio/nio-buffer-%E5%AD%A6%E4%B9%A0%E8%AF%A6%E8%A7%A3/#more">Read More</a>
-          </p>
+          <a class="icon" target="_blank" rel="noopener" href="http://github.com/kongxs" aria-label="github">
+            <i class="fab fa-github"></i><!--
+      ---></a><!--
+    ---><!--
+    ---> and 
         
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/Nio/nio-buffer-%E5%AD%A6%E4%B9%A0%E8%AF%A6%E8%A7%A3/" data-id="ckpkyv61i005mzeus7wbo9k83" data-title="nio buffer 学习详解" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-nio学习" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/uncategorized/nio%E5%AD%A6%E4%B9%A0/" class="article-date">
-  <time class="dt-published" datetime="2019-08-12T06:31:56.000Z" itemprop="datePublished">2019-08-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/uncategorized/nio%E5%AD%A6%E4%B9%A0/">nio学习</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="1-IO与NIO"><a href="#1-IO与NIO" class="headerlink" title="1. IO与NIO"></a>1. IO与NIO</h2>
-        
-          <p class="article-more-link">
-            <a href="/uncategorized/nio%E5%AD%A6%E4%B9%A0/#more">Read More</a>
-          </p>
+          <a class="icon" target="_blank" rel="noopener" href="mailto:18810504552@163.com" aria-label="mail">
+            <i class="fas fa-envelope"></i><!--
+      ---></a>
+        <!--
+    --->.
         
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/uncategorized/nio%E5%AD%A6%E4%B9%A0/" data-id="ckpkyv61j005pzeus4hmqflf5" data-title="nio学习" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
+    </p>
   
-</article>
-
-
-
-  
-    <article id="psot-装饰模式使用" class="h-entry article article-type-psot" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F%E4%BD%BF%E7%94%A8/" class="article-date">
-  <time class="dt-published" datetime="2019-08-12T05:52:30.000Z" itemprop="datePublished">2019-08-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F%E4%BD%BF%E7%94%A8/">装饰模式使用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="1-装饰模式的概念"><a href="#1-装饰模式的概念" class="headerlink" title="1. 装饰模式的概念"></a>1. 装饰模式的概念</h2>
-        
-          <p class="article-more-link">
-            <a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F%E4%BD%BF%E7%94%A8/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A3%85%E9%A5%B0%E6%A8%A1%E5%BC%8F%E4%BD%BF%E7%94%A8/" data-id="ckpkyv622007izeus8683feqa" data-title="装饰模式使用" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-策略模式使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E4%BD%BF%E7%94%A8/" class="article-date">
-  <time class="dt-published" datetime="2019-08-11T09:20:54.000Z" itemprop="datePublished">2019-08-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E4%BD%BF%E7%94%A8/">策略模式使用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="1-是什么"><a href="#1-是什么" class="headerlink" title="1. 是什么"></a>1. 是什么</h2><pre><code>在策略模式（Strategy Pattern）中，一个类的行为或其算法可以在运行时更改。这种类型的设计模式属于行为型模式。
-1. 抽象策略角色 - 接口或者抽象类
-2. 具体策略角色
-3. 环境角色 - 持有策略类的引用，最终给客户端调用
-</code></pre>
-        
-          <p class="article-more-link">
-            <a href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E4%BD%BF%E7%94%A8/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E4%BD%BF%E7%94%A8/" data-id="ckpkyv620007dzeusacd86vx6" data-title="策略模式使用" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-netty学习" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/Nio/netty%E5%AD%A6%E4%B9%A0/" class="article-date">
-  <time class="dt-published" datetime="2019-08-09T02:06:16.000Z" itemprop="datePublished">2019-08-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Nio/">Nio</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/Nio/netty%E5%AD%A6%E4%B9%A0/">netty学习</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="1-Netty-能做什么"><a href="#1-Netty-能做什么" class="headerlink" title="1. Netty 能做什么"></a>1. Netty 能做什么</h2><pre><code>1. http服务器 类 Tomcat ，但是没有实现web规范
-2. socket 开发 rpc通信
-3. 长链接的开发
-</code></pre>
-        
-          <p class="article-more-link">
-            <a href="/Nio/netty%E5%AD%A6%E4%B9%A0/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/Nio/netty%E5%AD%A6%E4%B9%A0/" data-id="ckpkyv61i005kzeusg9wzh5li" data-title="netty学习" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Java8-lambda表达式" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/Java/Java8-lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="article-date">
-  <time class="dt-published" datetime="2019-08-01T08:22:38.000Z" itemprop="datePublished">2019-08-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java/">Java</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/Java/Java8-lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/">Java8-lambda表达式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="1-lambda表达式"><a href="#1-lambda表达式" class="headerlink" title="1. lambda表达式"></a>1. lambda表达式</h2>
-        
-          <p class="article-more-link">
-            <a href="/Java/Java8-lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/Java/Java8-lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" data-id="ckpkyv60y003ozeusdq5n3wb4" data-title="Java8-lambda表达式" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-2019-07-30-java内存模型理解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/Jvm/2019-07-30-java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E7%90%86%E8%A7%A3/" class="article-date">
-  <time class="dt-published" datetime="2019-07-30T08:04:43.000Z" itemprop="datePublished">2019-07-30</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Jvm/">Jvm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/Jvm/2019-07-30-java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E7%90%86%E8%A7%A3/">java内存模型理解</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="1-jvm虚拟机运行区域"><a href="#1-jvm虚拟机运行区域" class="headerlink" title="1. jvm虚拟机运行区域"></a>1. jvm虚拟机运行区域</h1>
-        
-          <p class="article-more-link">
-            <a href="/Jvm/2019-07-30-java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E7%90%86%E8%A7%A3/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/Jvm/2019-07-30-java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E7%90%86%E8%A7%A3/" data-id="ckpkyv60i0021zeus1c4varvd" data-title="java内存模型理解" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-jvm-字节码看动态代理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/Jvm/jvm-%E5%AD%97%E8%8A%82%E7%A0%81%E7%9C%8B%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" class="article-date">
-  <time class="dt-published" datetime="2019-07-26T01:26:32.000Z" itemprop="datePublished">2019-07-26</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Jvm/">Jvm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/Jvm/jvm-%E5%AD%97%E8%8A%82%E7%A0%81%E7%9C%8B%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">jvm_字节码看动态代理</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="1-jdk-动态代理基本使用"><a href="#1-jdk-动态代理基本使用" class="headerlink" title="1. jdk 动态代理基本使用"></a>1. jdk 动态代理基本使用</h2>
-        
-          <p class="article-more-link">
-            <a href="/Jvm/jvm-%E5%AD%97%E8%8A%82%E7%A0%81%E7%9C%8B%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/Jvm/jvm-%E5%AD%97%E8%8A%82%E7%A0%81%E7%9C%8B%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" data-id="ckpkyv61f005czeus6llqckyv" data-title="jvm_字节码看动态代理" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-jvm-字节码的基本信息" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/Jvm/jvm-%E5%AD%97%E8%8A%82%E7%A0%81%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF/" class="article-date">
-  <time class="dt-published" datetime="2019-07-25T06:44:19.000Z" itemprop="datePublished">2019-07-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Jvm/">Jvm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/Jvm/jvm-%E5%AD%97%E8%8A%82%E7%A0%81%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF/">jvm_字节码的基本信息</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>字节码文件基本组成部分解析 。字节码文件中的十六进制数据中<br>    每两个文字符号为一个字节。</p>
-        
-          <p class="article-more-link">
-            <a href="/Jvm/jvm-%E5%AD%97%E8%8A%82%E7%A0%81%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/Jvm/jvm-%E5%AD%97%E8%8A%82%E7%A0%81%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF/" data-id="ckpkyv61f005azeus5990gtce" data-title="jvm_字节码的基本信息" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-jvm-字节码-概述" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/Jvm/jvm-%E5%AD%97%E8%8A%82%E7%A0%81-%E6%A6%82%E8%BF%B0/" class="article-date">
-  <time class="dt-published" datetime="2019-07-25T05:43:32.000Z" itemprop="datePublished">2019-07-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Jvm/">Jvm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/Jvm/jvm-%E5%AD%97%E8%8A%82%E7%A0%81-%E6%A6%82%E8%BF%B0/">jvm_字节码_概述</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Java字节码是java源文件编译只有的产物，供jvm加载执行的十六进制数据。</p>
-        
-          <p class="article-more-link">
-            <a href="/Jvm/jvm-%E5%AD%97%E8%8A%82%E7%A0%81-%E6%A6%82%E8%BF%B0/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/Jvm/jvm-%E5%AD%97%E8%8A%82%E7%A0%81-%E6%A6%82%E8%BF%B0/" data-id="ckpkyv61e0058zeusdkwha18x" data-title="jvm_字节码_概述" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-jvm01-类文件结构" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/Jvm/jvm01-%E7%B1%BB%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" class="article-date">
-  <time class="dt-published" datetime="2019-07-23T06:25:21.000Z" itemprop="datePublished">2019-07-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Jvm/">Jvm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/Jvm/jvm01-%E7%B1%BB%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/">jvm_类文件结构</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>计算机是只能识别0和1的，Java的设计者创新性的提出了跨平台的概念，<br>    把Java编译成字节码文件，运行在 jvm虚拟机中，从而可以达到跨平台的概念。<br>    Java只不过是jvm支持的众多语言中的最广泛的一种 ，Java和jvm虚拟机并不是绑定在一起的。<br>    实际上，不论哪种语言，只要他的最终产物编译成字节码，都是可以运行在jvm之上的，例如 groovy，scala，jython 等</p>
-        
-          <p class="article-more-link">
-            <a href="/Jvm/jvm01-%E7%B1%BB%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/Jvm/jvm01-%E7%B1%BB%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" data-id="ckpkyv61h005gzeus4yqyhbws" data-title="jvm_类文件结构" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-jvm-系列笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/Jvm/jvm-%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0/" class="article-date">
-  <time class="dt-published" datetime="2019-07-19T06:33:44.000Z" itemprop="datePublished">2019-07-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Jvm/">Jvm</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/Jvm/jvm-%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0/">jvm 系列笔记 - 类加载器</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="1-Java进程监控工具"><a href="#1-Java进程监控工具" class="headerlink" title="1. Java进程监控工具"></a>1. Java进程监控工具</h2><pre><code>jconsole ，jvisualvm 
-利用以上2个工具可以进行堆栈，线程等信息的查看
-</code></pre>
-        
-          <p class="article-more-link">
-            <a href="/Jvm/jvm-%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/Jvm/jvm-%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0/" data-id="ckpkyv61g005ezeusbiyq6o69" data-title="jvm 系列笔记 - 类加载器" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Flutter-mac环境配置Android-studio篇" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/Flutter/Flutter-mac%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AEAndroid-studio%E7%AF%87/" class="article-date">
-  <time class="dt-published" datetime="2019-07-19T01:35:00.000Z" itemprop="datePublished">2019-07-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Flutter/">Flutter</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/Flutter/Flutter-mac%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AEAndroid-studio%E7%AF%87/">Flutter_mac环境配置Android studio篇</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>flutter 环境配置相对比较简单，不做陈述 。<br>    注意开通vpn网络环境即可</p>
-        
-          <p class="article-more-link">
-            <a href="/Flutter/Flutter-mac%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AEAndroid-studio%E7%AF%87/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/Flutter/Flutter-mac%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AEAndroid-studio%E7%AF%87/" data-id="ckpkyv60u003czeus86ut2xgo" data-title="Flutter_mac环境配置Android studio篇" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Android中的事件分发流程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/uncategorized/Android%E4%B8%AD%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%B5%81%E7%A8%8B/" class="article-date">
-  <time class="dt-published" datetime="2019-07-17T06:38:23.000Z" itemprop="datePublished">2019-07-17</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/uncategorized/Android%E4%B8%AD%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%B5%81%E7%A8%8B/">Android中的事件分发流程</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="1-View中的事件分发流程"><a href="#1-View中的事件分发流程" class="headerlink" title="1. View中的事件分发流程"></a>1. View中的事件分发流程</h2><p>dispatchTouchEvent 核心代码</p>
-        
-          <p class="article-more-link">
-            <a href="/uncategorized/Android%E4%B8%AD%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%B5%81%E7%A8%8B/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/uncategorized/Android%E4%B8%AD%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%B5%81%E7%A8%8B/" data-id="ckpkyv60k002azeus8qa1ft2c" data-title="Android中的事件分发流程" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-pr主要技术点汇总" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/uncategorized/pr%E4%B8%BB%E8%A6%81%E6%8A%80%E6%9C%AF%E7%82%B9%E6%B1%87%E6%80%BB/" class="article-date">
-  <time class="dt-published" datetime="2019-07-09T07:09:27.000Z" itemprop="datePublished">2019-07-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/uncategorized/pr%E4%B8%BB%E8%A6%81%E6%8A%80%E6%9C%AF%E7%82%B9%E6%B1%87%E6%80%BB/">pr主要技术点汇总</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <ol>
-<li>绿幕抠图： 超级键 - 主要颜色点击绿布</li>
-<li>图中抠字： 效果控件，亮度建调整 阈值和屏蔽度</li>
-<li>
-        
-          <p class="article-more-link">
-            <a href="/uncategorized/pr%E4%B8%BB%E8%A6%81%E6%8A%80%E6%9C%AF%E7%82%B9%E6%B1%87%E6%80%BB/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/uncategorized/pr%E4%B8%BB%E8%A6%81%E6%8A%80%E6%9C%AF%E7%82%B9%E6%B1%87%E6%80%BB/" data-id="ckpkyv61k005rzeus8gb39xs6" data-title="pr主要技术点汇总" class="article-share-link">Teilen</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <a class="extend prev" rel="prev" href="/page/4/">&laquo; zurück</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/6/">weiter &raquo;</a>
-  </nav>
-
 </section>
-        
-          <aside id="sidebar">
+
+<section id="writing">
+  <span class="h1"><a href="/">Writing</a></span>
   
+  <ul class="post-list">
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Kategorien</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/">dlib</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/DIP/">DIP</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/mvp/">mvp</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIP/">DIP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Flutter/">Flutter</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gradle/">Gradle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/JavaConcurrent/">JavaConcurrent</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/concurrent/">concurrent</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Jvm/">Jvm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kotlin/">Kotlin</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nio/">Nio</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note2/">Note2</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/OpenGL/">OpenGL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ReactNative/">ReactNative</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/">jdhai</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/">javascript</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/%E8%B7%A8%E5%B9%B3%E5%8F%B0/">跨平台</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/pr/">pr</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%91%E6%8C%87%E7%B3%BB%E5%88%97/">剑指系列</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%85%92/">酒</a></li></ul>
-    </div>
-  </div>
-
-
-  
     
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archiv</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">letzter Beitrag</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-multiDex/">源码分析-multiDex</a>
-          </li>
-        
-          <li>
-            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-leakCanary/">源码分析-leakCanary</a>
-          </li>
-        
-          <li>
-            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-glide/">源码分析-glide</a>
-          </li>
-        
-          <li>
-            <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-okHttp/">源码分析-okHttp</a>
-          </li>
-        
-          <li>
-            <a href="/Android/Android-view%E7%BB%98%E5%88%B6/">Android-view绘制</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
       
-      &copy; 2021 师学<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2019-07-04T01:29:49.000Z" itemprop="datePublished">2019-07-04</time>
+        
+      
     </div>
+
+
+        <span>
+    
+        <a class="" href="/pr/%E8%A7%86%E9%A2%91%E5%9F%BA%E7%A1%80/">视频基础</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2019-06-06T03:11:17.000Z" itemprop="datePublished">2019-06-06</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/Java/https-%E4%BB%A5%E5%8F%8ASSL%E9%80%9A%E4%BF%A1%E8%AE%A4%E8%AF%81/">https 以及SSL通信认证</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2019-05-28T06:38:29.000Z" itemprop="datePublished">2019-05-28</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/Java/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3BlockQueue/">深入理解BlockQueue</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2019-05-28T03:25:00.000Z" itemprop="datePublished">2019-05-28</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/Java/%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%B8%89%E7%A7%8D%E5%AE%9E%E7%8E%B0/">生产者消费者模式的三种实现</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2019-05-27T03:09:12.000Z" itemprop="datePublished">2019-05-27</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/Java/java%E4%B8%AD%E7%9A%84Volatile/">java中的Volatile</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2019-01-11T09:18:45.000Z" itemprop="datePublished">2019-01-11</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/uncategorized/java%E6%8A%80%E8%83%BD%E5%BF%85%E4%BF%AE%E6%8A%80%E8%83%BD%E5%92%8C%E4%B9%A6%E5%8D%95%E6%8E%A8%E8%8D%90/">java技能必修技能和书单推荐</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2019-01-09T05:13:00.000Z" itemprop="datePublished">2019-01-09</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/Android/adb-command-not-found/">adb command not found </a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2019-01-04T09:08:42.000Z" itemprop="datePublished">2019-01-04</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/ReactNative/ReactNative-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/">ReactNative 常见问题汇总</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2019-01-02T08:00:41.000Z" itemprop="datePublished">2019-01-02</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/ReactNative/reactnative-%E4%BD%BF%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8E%9F%E7%94%9F%E6%8E%A7%E4%BB%B6/">reactnative 使用自定义原生控件</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2018-12-13T07:24:06.000Z" itemprop="datePublished">2018-12-13</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/Android/Android-%E4%B8%ADso%E7%9A%84%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E5%AE%9E%E7%8E%B0/">Android 中so的动态加载实现</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2018-12-13T02:49:13.000Z" itemprop="datePublished">2018-12-13</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/jdhai/javascript/%E8%B7%A8%E5%B9%B3%E5%8F%B0/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%8E%A2%E7%B4%A2-javascript%E5%BC%95%E6%93%8E%E7%9A%84%E4%BD%BF%E7%94%A8/">Android上使用的javascript引擎 - duktapeJava篇</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2018-12-12T08:30:13.000Z" itemprop="datePublished">2018-12-12</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/jdhai/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%8E%A2%E7%B4%A2-%E6%80%BB%E8%A7%88/">移动端跨平台探索 - 总览</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2018-12-12T07:03:50.000Z" itemprop="datePublished">2018-12-12</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/%E5%89%91%E6%8C%87%E7%B3%BB%E5%88%97/%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9F%A5%E6%89%BE/">二维数组中的查找</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2018-12-11T08:30:13.000Z" itemprop="datePublished">2018-12-11</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/%E6%9D%82%E8%B0%88/%E5%BC%80%E7%AF%87/">开篇</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2018-04-22T07:20:00.000Z" itemprop="datePublished">2018-04-22</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/uncategorized/027-%E6%A8%A1%E5%BC%8F%E5%AF%B9%E6%AF%94/">027.模式对比</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2018-04-22T07:19:00.000Z" itemprop="datePublished">2018-04-22</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/025-%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F/">025.行为型模式_备忘录模式</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2018-04-22T07:19:00.000Z" itemprop="datePublished">2018-04-22</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/026-%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E8%A7%A3%E9%87%8A%E5%99%A8%E6%A8%A1%E5%BC%8F/">026.行为型模式_解释器模式</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2018-04-22T07:18:00.000Z" itemprop="datePublished">2018-04-22</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/uncategorized/021-%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/">021.行为型模式_观察者模式</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2018-04-22T07:18:00.000Z" itemprop="datePublished">2018-04-22</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/022-%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F/">022.行为型模式_中介者模式</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2018-04-22T07:18:00.000Z" itemprop="datePublished">2018-04-22</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/023-%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F-%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/">023.行为型模式_迭代器模式</a>
+    
+
+
+</span>
+      </li>
+    
+  </ul>
+  
+    
+    <div class="pagination">
+        
+            <a href="/page/4/"><i class="fas fa-angle-left"></i></a>
+        
+        <span class="page-number">Page 5 of 7</span>
+        
+            <a href="/page/6/"><i class="fas fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+
+  
+</section>
+
+
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2017-2021
+    师学
+  </div>
+  <div class="footer-right">
+    
   </div>
 </footer>
 
     </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/js/jquery-3.4.1.min.js"></script>
+    <!-- styles -->
 
 
 
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
 
 
 
 
-<script src="/js/script.js"></script>
+<!-- clipboard -->
 
 
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
 
 
-
-  </div>
 </body>
 </html>
