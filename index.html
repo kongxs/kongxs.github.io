@@ -91,7 +91,7 @@
       </button>
     </div>
     <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
-      <ul class="nav navbar-nav main-nav ">
+      <ul class="nav navbar-nav main-nav menu-highlight">
         
         
         <li class="menu-item menu-item-home">
@@ -211,9 +211,19 @@
   <div class="widget">
     <h3 class="widget-title">最新文章</h3>
     <div class="widget-body">
-      <ul class="recent-post-list list-unstyled no-thumbnail">
+      <ul class="recent-post-list list-unstyled ">
         
           <li>
+            
+            <div class="item-thumb">
+              <a href="/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-multiDex/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
             
             <div class="item-inner">
               <p class="item-category">
@@ -230,6 +240,16 @@
           
           <li>
             
+            <div class="item-thumb">
+              <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-leakCanary/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
             <div class="item-inner">
               <p class="item-category">
                 <a class="category-link" href="/categories/Android/">Android</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a>
@@ -244,6 +264,16 @@
           </li>
           
           <li>
+            
+            <div class="item-thumb">
+              <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-glide/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
             
             <div class="item-inner">
               <p class="item-category">
@@ -260,6 +290,16 @@
           
           <li>
             
+            <div class="item-thumb">
+              <a href="/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-okHttp/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
             <div class="item-inner">
               <p class="item-category">
                 <a class="category-link" href="/categories/Android/">Android</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a>
@@ -274,6 +314,16 @@
           </li>
           
           <li>
+            
+            <div class="item-thumb">
+              <a href="/Android/Android-view%E7%BB%98%E5%88%B6/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
             
             <div class="item-inner">
               <p class="item-category">
@@ -313,10 +363,6 @@
 
   </div>
   
-  <div class="article-entry text-muted" itemprop="description">
-    <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>MultiDex适用于API版本在4-20的Android系统 , 即Android 2.1 - 4.4 . 而在这些版本之间 , MultiDex会通过Application.getClassLoader进行加载. 而如果Dex比较多比较大的话 , 主线程加载Dex时间会很长 , 导致主线程ANR.<br><br>由于Android 5.0之后使用ART虚拟机进行dex2oat , 将多dex在安装的时候将APK中多个Dex进行优化 , 优化过后生成一个ELF文件 , 名为.oat文件. 在加载后 , 会将oat文件直接映射到ART虚拟机中使用 , 这样就减少Dex加载的耗时..</p>
-  </div>
-  
   <p class="article-meta">
     <span class="article-date">
     <i class="icon icon-calendar-check"></i>
@@ -347,12 +393,6 @@
     </h1>
   
 
-  </div>
-  
-  <div class="article-entry text-muted" itemprop="description">
-    <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ol>
-<li><p>Reference 把内存分为 4 种状态，Active 、 Pending 、 Enqueued 、 Inactive</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;+ Active 一般说来内存一开始被分配的状态都是 Active</span><br><span class="line">&gt;+ Pending 快要放入队列（ReferenceQueue）的对象，也就是马上要回收的对象</span><br><span class="line">&gt;+ Enqueued 对象已经进入队列，已经被回收的对象。方便我们查询某个对象是否被回收</span><br><span class="line">&gt;+ Inactive 最终的状态，无法变成其他的状态</span><br></pre></td></tr></table></figure>
   </div>
   
   <p class="article-meta">
@@ -387,17 +427,6 @@
 
   </div>
   
-  <div class="article-entry text-muted" itemprop="description">
-    <blockquote>
-<ul>
-<li>支持GIF，webP ，video</li>
-<li>生命周期集成</li>
-<li>高效缓存，根据imageView尺寸进行缓存 </li>
-<li>默认 RGB_565内存开销比较小</li>
-</ul>
-</blockquote>
-  </div>
-  
   <p class="article-meta">
     <span class="article-date">
     <i class="icon icon-calendar-check"></i>
@@ -428,10 +457,6 @@
     </h1>
   
 
-  </div>
-  
-  <div class="article-entry text-muted" itemprop="description">
-    <p>addInterceptor与addNetworkInterceptor有什么区别 ？<br><br>网络缓存如何实现的？<br><br>网络连接怎么实现复用？<br><br>OkHttp如何做网络监控？<br></p>
   </div>
   
   <p class="article-meta">
@@ -466,10 +491,6 @@
 
   </div>
   
-  <div class="article-entry text-muted" itemprop="description">
-    <p>view 绘制流程</p>
-  </div>
-  
   <p class="article-meta">
     <span class="article-date">
     <i class="icon icon-calendar-check"></i>
@@ -500,10 +521,6 @@
     </h1>
   
 
-  </div>
-  
-  <div class="article-entry text-muted" itemprop="description">
-    <h3 id="事件的产生-InputManagerService"><a href="#事件的产生-InputManagerService" class="headerlink" title="事件的产生-InputManagerService"></a>事件的产生-InputManagerService</h3>
   </div>
   
   <p class="article-meta">
@@ -538,10 +555,6 @@
 
   </div>
   
-  <div class="article-entry text-muted" itemprop="description">
-    <h3 id="几种ipc方式"><a href="#几种ipc方式" class="headerlink" title="几种ipc方式"></a>几种ipc方式</h3>
-  </div>
-  
   <p class="article-meta">
     <span class="article-date">
     <i class="icon icon-calendar-check"></i>
@@ -572,10 +585,6 @@
     </h1>
   
 
-  </div>
-  
-  <div class="article-entry text-muted" itemprop="description">
-    <h3 id="Android5-0"><a href="#Android5-0" class="headerlink" title="Android5.0"></a>Android5.0</h3>
   </div>
   
   <p class="article-meta">
@@ -610,16 +619,6 @@
 
   </div>
   
-  <div class="article-entry text-muted" itemprop="description">
-    <ol>
-<li>任务队列</li>
-<li>拒绝策略(抛异常，丢弃，阻塞 ， 临时队列 等 )</li>
-<li>init</li>
-<li>active</li>
-<li>max</li>
-</ol>
-  </div>
-  
   <p class="article-meta">
     <span class="article-date">
     <i class="icon icon-calendar-check"></i>
@@ -650,10 +649,6 @@
     </h1>
   
 
-  </div>
-  
-  <div class="article-entry text-muted" itemprop="description">
-    <p><a href="http://wanke.fun/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/001-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%83%E5%A4%A7%E5%8E%9F%E5%88%99/">设计模式七大原则</a><br><br><a href="http://wanke.fun/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/002-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AE%80%E4%BB%8B/">设计模式简介</a><br><br><a href="http://wanke.fun/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/03-UML/">UML</a><br><br><a href="http://wanke.fun/kongxs/027-%E6%A8%A1%E5%BC%8F%E5%AF%B9%E6%AF%94/">模式对比</a><br></p>
   </div>
   
   <p class="article-meta">
@@ -688,10 +683,6 @@
 
   </div>
   
-  <div class="article-entry text-muted" itemprop="description">
-    <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1 简介"></a>1 简介</h2><p>LinkedHashMap 继承 HashMap，内部有一个双向链表维护键值对的顺序，在 LinkedHashMap 中可以保持两种顺序，分别是<strong>插入顺序和访问顺序</strong>。</p>
-  </div>
-  
   <p class="article-meta">
     <span class="article-date">
     <i class="icon icon-calendar-check"></i>
@@ -722,12 +713,6 @@
     </h1>
   
 
-  </div>
-  
-  <div class="article-entry text-muted" itemprop="description">
-    <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1 简介"></a>1 简介</h2><p>HashMap 主要用来存放键值对，它的实现是基于哈希表的 Map 接口。</p>
-<p>JDK1.7 的 HashMap 由 <strong>数组+链表</strong> 组成的，数组是 HashMap 的主体，链表采用拉链法解决哈希冲突。</p>
-<p>JDK1.8 的 HashMap 由 <strong>数组+链表 + 红黑树</strong>，当链表长度大于阈值（默认为 8）（判断数组长度是否超过 64，超过了，就会进行扩容）会将链表转化为红黑树。</p>
   </div>
   
   <p class="article-meta">
