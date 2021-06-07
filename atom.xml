@@ -3,11 +3,11 @@
   <title>师学</title>
   
   <subtitle>学而不思则罔，思而不学则殆。</subtitle>
-  <link href="http://yoursite.com/atom.xml" rel="self"/>
+  <link href="http://wanke.fun/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="http://wanke.fun/"/>
   <updated>2021-06-06T11:07:33.561Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://wanke.fun/</id>
   
   <author>
     <name>师学</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>源码分析-multiDex</title>
-    <link href="http://yoursite.com/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-multiDex/"/>
-    <id>http://yoursite.com/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-multiDex/</id>
+    <link href="http://wanke.fun/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-multiDex/"/>
+    <id>http://wanke.fun/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-multiDex/</id>
     <published>2021-05-26T09:43:00.000Z</published>
     <updated>2021-06-06T11:07:33.561Z</updated>
     
@@ -30,17 +30,17 @@
     
     
     
-    <category term="源码分析" scheme="http://yoursite.com/categories/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
+    <category term="源码分析" scheme="http://wanke.fun/categories/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
     
-    <category term="Android" scheme="http://yoursite.com/categories/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/Android/"/>
+    <category term="Android" scheme="http://wanke.fun/categories/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/Android/"/>
     
     
   </entry>
   
   <entry>
     <title>源码分析-leakCanary</title>
-    <link href="http://yoursite.com/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-leakCanary/"/>
-    <id>http://yoursite.com/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-leakCanary/</id>
+    <link href="http://wanke.fun/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-leakCanary/"/>
+    <id>http://wanke.fun/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-leakCanary/</id>
     <published>2021-05-24T02:34:00.000Z</published>
     <updated>2021-06-06T04:35:42.125Z</updated>
     
@@ -53,17 +53,17 @@
     
     
     
-    <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    <category term="Android" scheme="http://wanke.fun/categories/Android/"/>
     
-    <category term="源码分析" scheme="http://yoursite.com/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
+    <category term="源码分析" scheme="http://wanke.fun/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
     
     
   </entry>
   
   <entry>
     <title>源码分析-glide</title>
-    <link href="http://yoursite.com/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-glide/"/>
-    <id>http://yoursite.com/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-glide/</id>
+    <link href="http://wanke.fun/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-glide/"/>
+    <id>http://wanke.fun/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-glide/</id>
     <published>2021-05-21T06:59:00.000Z</published>
     <updated>2021-06-06T04:36:00.898Z</updated>
     
@@ -81,17 +81,17 @@
     
     
     
-    <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    <category term="Android" scheme="http://wanke.fun/categories/Android/"/>
     
-    <category term="源码分析" scheme="http://yoursite.com/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
+    <category term="源码分析" scheme="http://wanke.fun/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
     
     
   </entry>
   
   <entry>
     <title>源码分析-okHttp</title>
-    <link href="http://yoursite.com/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-okHttp/"/>
-    <id>http://yoursite.com/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-okHttp/</id>
+    <link href="http://wanke.fun/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-okHttp/"/>
+    <id>http://wanke.fun/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-okHttp/</id>
     <published>2021-05-19T09:39:00.000Z</published>
     <updated>2021-06-06T04:36:05.546Z</updated>
     
@@ -102,17 +102,17 @@
     
     
     
-    <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    <category term="Android" scheme="http://wanke.fun/categories/Android/"/>
     
-    <category term="源码分析" scheme="http://yoursite.com/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
+    <category term="源码分析" scheme="http://wanke.fun/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
     
     
   </entry>
   
   <entry>
     <title>Android-view绘制</title>
-    <link href="http://yoursite.com/Android/Android-view%E7%BB%98%E5%88%B6/"/>
-    <id>http://yoursite.com/Android/Android-view%E7%BB%98%E5%88%B6/</id>
+    <link href="http://wanke.fun/Android/Android-view%E7%BB%98%E5%88%B6/"/>
+    <id>http://wanke.fun/Android/Android-view%E7%BB%98%E5%88%B6/</id>
     <published>2021-05-11T07:49:00.000Z</published>
     <updated>2021-06-06T04:36:44.918Z</updated>
     
@@ -123,15 +123,15 @@
     
     
     
-    <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    <category term="Android" scheme="http://wanke.fun/categories/Android/"/>
     
     
   </entry>
   
   <entry>
     <title>Android触摸事件传递机制</title>
-    <link href="http://yoursite.com/Android/Android%E8%A7%A6%E6%91%B8%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/"/>
-    <id>http://yoursite.com/Android/Android%E8%A7%A6%E6%91%B8%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/</id>
+    <link href="http://wanke.fun/Android/Android%E8%A7%A6%E6%91%B8%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/"/>
+    <id>http://wanke.fun/Android/Android%E8%A7%A6%E6%91%B8%E4%BA%8B%E4%BB%B6%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/</id>
     <published>2021-04-28T10:13:00.000Z</published>
     <updated>2021-06-06T02:35:46.660Z</updated>
     
@@ -142,15 +142,15 @@
     
     
     
-    <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    <category term="Android" scheme="http://wanke.fun/categories/Android/"/>
     
     
   </entry>
   
   <entry>
     <title>进程间通信</title>
-    <link href="http://yoursite.com/Android/%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/"/>
-    <id>http://yoursite.com/Android/%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/</id>
+    <link href="http://wanke.fun/Android/%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/"/>
+    <id>http://wanke.fun/Android/%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/</id>
     <published>2021-04-26T08:00:00.000Z</published>
     <updated>2021-06-06T04:37:19.177Z</updated>
     
@@ -161,15 +161,15 @@
     
     
     
-    <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    <category term="Android" scheme="http://wanke.fun/categories/Android/"/>
     
     
   </entry>
   
   <entry>
     <title>Android版本适配指北</title>
-    <link href="http://yoursite.com/Android/Android%E7%89%88%E6%9C%AC%E9%80%82%E9%85%8D%E6%8C%87%E5%8C%97/"/>
-    <id>http://yoursite.com/Android/Android%E7%89%88%E6%9C%AC%E9%80%82%E9%85%8D%E6%8C%87%E5%8C%97/</id>
+    <link href="http://wanke.fun/Android/Android%E7%89%88%E6%9C%AC%E9%80%82%E9%85%8D%E6%8C%87%E5%8C%97/"/>
+    <id>http://wanke.fun/Android/Android%E7%89%88%E6%9C%AC%E9%80%82%E9%85%8D%E6%8C%87%E5%8C%97/</id>
     <published>2021-04-24T02:13:00.000Z</published>
     <updated>2021-06-06T04:37:28.237Z</updated>
     
@@ -180,15 +180,15 @@
     
     
     
-    <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    <category term="Android" scheme="http://wanke.fun/categories/Android/"/>
     
     
   </entry>
   
   <entry>
     <title>自定义线程池实现</title>
-    <link href="http://yoursite.com/Java/concurrent/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%AE%9E%E7%8E%B0/"/>
-    <id>http://yoursite.com/Java/concurrent/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%AE%9E%E7%8E%B0/</id>
+    <link href="http://wanke.fun/Java/concurrent/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%AE%9E%E7%8E%B0/"/>
+    <id>http://wanke.fun/Java/concurrent/%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%AE%9E%E7%8E%B0/</id>
     <published>2021-04-23T02:53:00.000Z</published>
     <updated>2021-06-06T04:37:34.202Z</updated>
     
@@ -205,17 +205,17 @@
     
     
     
-    <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
+    <category term="Java" scheme="http://wanke.fun/categories/Java/"/>
     
-    <category term="concurrent" scheme="http://yoursite.com/categories/Java/concurrent/"/>
+    <category term="concurrent" scheme="http://wanke.fun/categories/Java/concurrent/"/>
     
     
   </entry>
   
   <entry>
     <title>设计模式总览</title>
-    <link href="http://yoursite.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E8%A7%88/"/>
-    <id>http://yoursite.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E8%A7%88/</id>
+    <link href="http://wanke.fun/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E8%A7%88/"/>
+    <id>http://wanke.fun/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%80%BB%E8%A7%88/</id>
     <published>2021-04-22T07:22:00.000Z</published>
     <updated>2021-06-06T04:37:42.306Z</updated>
     
@@ -226,15 +226,15 @@
     
     
     
-    <category term="设计模式" scheme="http://yoursite.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    <category term="设计模式" scheme="http://wanke.fun/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
     
   </entry>
   
   <entry>
     <title>LinkedHashMap分析</title>
-    <link href="http://yoursite.com/Java/LinkedHashMap%E5%88%86%E6%9E%90/"/>
-    <id>http://yoursite.com/Java/LinkedHashMap%E5%88%86%E6%9E%90/</id>
+    <link href="http://wanke.fun/Java/LinkedHashMap%E5%88%86%E6%9E%90/"/>
+    <id>http://wanke.fun/Java/LinkedHashMap%E5%88%86%E6%9E%90/</id>
     <published>2021-04-22T06:34:00.000Z</published>
     <updated>2021-06-06T04:37:54.411Z</updated>
     
@@ -245,15 +245,15 @@
     
     
     
-    <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
+    <category term="Java" scheme="http://wanke.fun/categories/Java/"/>
     
     
   </entry>
   
   <entry>
     <title>HashMap-2</title>
-    <link href="http://yoursite.com/Java/HashMap-2/"/>
-    <id>http://yoursite.com/Java/HashMap-2/</id>
+    <link href="http://wanke.fun/Java/HashMap-2/"/>
+    <id>http://wanke.fun/Java/HashMap-2/</id>
     <published>2021-04-22T06:33:00.000Z</published>
     <updated>2021-06-06T10:54:45.200Z</updated>
     
@@ -266,15 +266,15 @@
     
     
     
-    <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
+    <category term="Java" scheme="http://wanke.fun/categories/Java/"/>
     
     
   </entry>
   
   <entry>
     <title>Java虚拟机-2</title>
-    <link href="http://yoursite.com/Jvm/Java/Java%E8%99%9A%E6%8B%9F%E6%9C%BA-2/"/>
-    <id>http://yoursite.com/Jvm/Java/Java%E8%99%9A%E6%8B%9F%E6%9C%BA-2/</id>
+    <link href="http://wanke.fun/Jvm/Java/Java%E8%99%9A%E6%8B%9F%E6%9C%BA-2/"/>
+    <id>http://wanke.fun/Jvm/Java/Java%E8%99%9A%E6%8B%9F%E6%9C%BA-2/</id>
     <published>2021-04-22T06:32:00.000Z</published>
     <updated>2021-06-06T11:27:22.637Z</updated>
     
@@ -285,17 +285,17 @@
     
     
     
-    <category term="Jvm" scheme="http://yoursite.com/categories/Jvm/"/>
+    <category term="Jvm" scheme="http://wanke.fun/categories/Jvm/"/>
     
-    <category term="Java" scheme="http://yoursite.com/categories/Jvm/Java/"/>
+    <category term="Java" scheme="http://wanke.fun/categories/Jvm/Java/"/>
     
     
   </entry>
   
   <entry>
     <title>Java线程池</title>
-    <link href="http://yoursite.com/Java/Java%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
-    <id>http://yoursite.com/Java/Java%E7%BA%BF%E7%A8%8B%E6%B1%A0/</id>
+    <link href="http://wanke.fun/Java/Java%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
+    <id>http://wanke.fun/Java/Java%E7%BA%BF%E7%A8%8B%E6%B1%A0/</id>
     <published>2021-04-22T06:30:00.000Z</published>
     <updated>2021-06-06T04:38:48.666Z</updated>
     
@@ -311,15 +311,15 @@
     
     
     
-    <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
+    <category term="Java" scheme="http://wanke.fun/categories/Java/"/>
     
     
   </entry>
   
   <entry>
     <title>Java并发-2</title>
-    <link href="http://yoursite.com/Java/concurrent/Java%E5%B9%B6%E5%8F%91-2/"/>
-    <id>http://yoursite.com/Java/concurrent/Java%E5%B9%B6%E5%8F%91-2/</id>
+    <link href="http://wanke.fun/Java/concurrent/Java%E5%B9%B6%E5%8F%91-2/"/>
+    <id>http://wanke.fun/Java/concurrent/Java%E5%B9%B6%E5%8F%91-2/</id>
     <published>2021-04-22T06:26:00.000Z</published>
     <updated>2021-06-06T04:39:06.808Z</updated>
     
@@ -331,17 +331,17 @@
     
     
     
-    <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
+    <category term="Java" scheme="http://wanke.fun/categories/Java/"/>
     
-    <category term="concurrent" scheme="http://yoursite.com/categories/Java/concurrent/"/>
+    <category term="concurrent" scheme="http://wanke.fun/categories/Java/concurrent/"/>
     
     
   </entry>
   
   <entry>
     <title>理解HashMap</title>
-    <link href="http://yoursite.com/Java/%E7%90%86%E8%A7%A3HashMap/"/>
-    <id>http://yoursite.com/Java/%E7%90%86%E8%A7%A3HashMap/</id>
+    <link href="http://wanke.fun/Java/%E7%90%86%E8%A7%A3HashMap/"/>
+    <id>http://wanke.fun/Java/%E7%90%86%E8%A7%A3HashMap/</id>
     <published>2021-04-10T06:23:00.000Z</published>
     <updated>2021-06-06T04:39:26.650Z</updated>
     
@@ -358,15 +358,15 @@
     
     
     
-    <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
+    <category term="Java" scheme="http://wanke.fun/categories/Java/"/>
     
     
   </entry>
   
   <entry>
     <title>Java虚拟机</title>
-    <link href="http://yoursite.com/Java/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
-    <id>http://yoursite.com/Java/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/</id>
+    <link href="http://wanke.fun/Java/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
+    <id>http://wanke.fun/Java/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/</id>
     <published>2021-04-08T02:58:00.000Z</published>
     <updated>2021-06-06T04:39:44.894Z</updated>
     
@@ -386,15 +386,15 @@
     
     
     
-    <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
+    <category term="Java" scheme="http://wanke.fun/categories/Java/"/>
     
     
   </entry>
   
   <entry>
     <title>Java并发</title>
-    <link href="http://yoursite.com/uncategorized/Java%E5%B9%B6%E5%8F%91/"/>
-    <id>http://yoursite.com/uncategorized/Java%E5%B9%B6%E5%8F%91/</id>
+    <link href="http://wanke.fun/uncategorized/Java%E5%B9%B6%E5%8F%91/"/>
+    <id>http://wanke.fun/uncategorized/Java%E5%B9%B6%E5%8F%91/</id>
     <published>2021-04-04T07:58:00.000Z</published>
     <updated>2021-06-06T04:39:57.360Z</updated>
     
@@ -411,8 +411,8 @@
   
   <entry>
     <title>Java基础</title>
-    <link href="http://yoursite.com/Java/Java%E5%9F%BA%E7%A1%80/"/>
-    <id>http://yoursite.com/Java/Java%E5%9F%BA%E7%A1%80/</id>
+    <link href="http://wanke.fun/Java/Java%E5%9F%BA%E7%A1%80/"/>
+    <id>http://wanke.fun/Java/Java%E5%9F%BA%E7%A1%80/</id>
     <published>2021-04-02T08:30:00.000Z</published>
     <updated>2021-06-06T04:40:23.417Z</updated>
     
@@ -439,15 +439,15 @@
     
     
     
-    <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
+    <category term="Java" scheme="http://wanke.fun/categories/Java/"/>
     
     
   </entry>
   
   <entry>
     <title>Android知识体系图</title>
-    <link href="http://yoursite.com/Android/Java/Android%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E5%9B%BE/"/>
-    <id>http://yoursite.com/Android/Java/Android%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E5%9B%BE/</id>
+    <link href="http://wanke.fun/Android/Java/Android%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E5%9B%BE/"/>
+    <id>http://wanke.fun/Android/Java/Android%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E5%9B%BE/</id>
     <published>2021-04-01T08:30:00.000Z</published>
     <updated>2021-06-06T04:40:30.332Z</updated>
     
@@ -458,9 +458,9 @@
     
     
     
-    <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    <category term="Android" scheme="http://wanke.fun/categories/Android/"/>
     
-    <category term="Java" scheme="http://yoursite.com/categories/Android/Java/"/>
+    <category term="Java" scheme="http://wanke.fun/categories/Android/Java/"/>
     
     
   </entry>
