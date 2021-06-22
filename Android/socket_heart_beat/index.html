@@ -18,17 +18,17 @@
   
   
   <title>长链接心跳机制实现 | 师学</title>
-  <meta name="description" content="对于心跳包很多人误以为只是用来定期告诉服务端我们的状态，实际并非如此。 上面我们提到了 NAT 超时，即如果 App 一段时间内不活跃，会导致运营商那里删除我们的公网 IP 映射关系，这会导致我们的 TCP 长连接断开。因此，我们需要通过心跳机制来保证 App 的活跃度，防止发生 NAT 超时。 在线上运行时，长连接很有可能会由于网络切换之类的原因断开。这时，我们需要 尽快发现长连接断开，并 立即">
+  <meta name="description" content="对于心跳包很多人误以为只是用来定期告诉服务端我们的状态，实际并非如此。 应用层维护心跳好处应用层维护心跳的好处自然是能够及时发现链路故障问题，尽早地建立新的连接进行故障转移。 比如客户端每隔3s通过长连接通道发送一个心跳请求到服务端，连续失败5次就断开连接。这样算下来最长15s就能发现连接已经不可用，一旦连接不可用，可以重连，也可以做其他的failover处理，比如请求其他服务器。 比如某台服务器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="长链接心跳机制实现">
 <meta property="og:url" content="http://wanke.fun/Android/socket_heart_beat/index.html">
 <meta property="og:site_name" content="师学">
-<meta property="og:description" content="对于心跳包很多人误以为只是用来定期告诉服务端我们的状态，实际并非如此。 上面我们提到了 NAT 超时，即如果 App 一段时间内不活跃，会导致运营商那里删除我们的公网 IP 映射关系，这会导致我们的 TCP 长连接断开。因此，我们需要通过心跳机制来保证 App 的活跃度，防止发生 NAT 超时。 在线上运行时，长连接很有可能会由于网络切换之类的原因断开。这时，我们需要 尽快发现长连接断开，并 立即">
+<meta property="og:description" content="对于心跳包很多人误以为只是用来定期告诉服务端我们的状态，实际并非如此。 应用层维护心跳好处应用层维护心跳的好处自然是能够及时发现链路故障问题，尽早地建立新的连接进行故障转移。 比如客户端每隔3s通过长连接通道发送一个心跳请求到服务端，连续失败5次就断开连接。这样算下来最长15s就能发现连接已经不可用，一旦连接不可用，可以重连，也可以做其他的failover处理，比如请求其他服务器。 比如某台服务器">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://wanke-fun.oss-cn-beijing.aliyuncs.com/2021/nat.webp">
 <meta property="og:image" content="http://wanke-fun.oss-cn-beijing.aliyuncs.com/2021/android-weak-network.png">
 <meta property="article:published_time" content="2021-06-11T09:46:00.000Z">
-<meta property="article:modified_time" content="2021-06-11T09:56:39.427Z">
+<meta property="article:modified_time" content="2021-06-22T04:02:49.304Z">
 <meta property="article:author" content="师学">
 <meta property="article:tag" content="网络">
 <meta name="twitter:card" content="summary">
@@ -414,6 +414,9 @@
     <div class="article-entry marked-body" itemprop="articleBody">
       
         <p>对于心跳包很多人误以为只是用来定期告诉服务端我们的状态，实际并非如此。</p>
+<h3 id="应用层维护心跳好处"><a href="#应用层维护心跳好处" class="headerlink" title="应用层维护心跳好处"></a>应用层维护心跳好处</h3><p>应用层维护心跳的好处自然是能够及时发现链路故障问题，尽早地建立新的连接进行故障转移。</p>
+<p>比如客户端每隔3s通过长连接通道发送一个心跳请求到服务端，连续失败5次就断开连接。这样算下来最长15s就能发现连接已经不可用，一旦连接不可用，可以重连，也可以做其他的failover处理，比如请求其他服务器。</p>
+<p>比如某台服务器因为某些原因导致负载超高，CPU飙高，或者线程池打满等等，无法响应任何业务请求，如果使用TCP自身的机制无法发现任何问题，然而对客户端而言，这时的最好选择就是断连后重新连接其他服务器，而不是一直认为当前服务器是可用状态，向当前服务器发送一些必然会失败的请求。</p>
 <p>上面我们提到了 NAT 超时，即如果 App 一段时间内不活跃，会导致运营商那里删除我们的公网 IP 映射关系，这会导致我们的 TCP 长连接断开。因此，我们需要通过心跳机制来保证 App 的活跃度，防止发生 NAT 超时。</p>
 <p>在线上运行时，长连接很有可能会由于网络切换之类的原因断开。这时，我们需要 尽快发现长连接断开，并 立即重连。一般有下面几种做法：</p>
 <blockquote>
