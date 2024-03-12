@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>FFmpeg 编译 for Android  | 师学</title>
+  <meta name="description" content="环境 ：        macOS Mojave        ndk - android-ndk-r14b        ffmpeg -  V3.3.9  在实操的过程中发现，别的版本编译不成功，没有过多做深入的研究，找到了这个可以编译的版本使用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FFmpeg 编译 for Android ">
+<meta property="og:url" content="http://wanke.fun/FFmpeg/FFmpeg-%E7%BC%96%E8%AF%91-for-Android/index.html">
+<meta property="og:site_name" content="师学">
+<meta property="og:description" content="环境 ：        macOS Mojave        ndk - android-ndk-r14b        ffmpeg -  V3.3.9  在实操的过程中发现，别的版本编译不成功，没有过多做深入的研究，找到了这个可以编译的版本使用。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://wanke-fun.oss-cn-beijing.aliyuncs.com/ffmpeg/ffmpeg_project_structure.png">
+<meta property="article:published_time" content="2019-10-29T02:09:00.000Z">
+<meta property="article:modified_time" content="2024-03-12T01:06:15.824Z">
+<meta property="article:author" content="师学">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wanke-fun.oss-cn-beijing.aliyuncs.com/ffmpeg/ffmpeg_project_structure.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://wanke.fun/FFmpeg/FFmpeg-%E7%BC%96%E8%AF%91-for-Android/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="师学" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://wanke.fun" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">师学</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Android Developer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> BeiJing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/kongxs" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">18</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/">dlib</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/DIP/">DIP</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/mvp/">mvp</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIP/">DIP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Flutter/">Flutter</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gradle/">Gradle</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">18</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/JavaConcurrent/">JavaConcurrent</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/concurrent/">concurrent</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Jvm/">Jvm</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Jvm/Java/">Java</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kotlin/">Kotlin</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nio/">Nio</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note2/">Note2</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OpenGL/">OpenGL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ReactNative/">ReactNative</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/bizhe/">bizhe</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/">jdhai</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/">javascript</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/%E8%B7%A8%E5%B9%B3%E5%8F%B0/">跨平台</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/pr/">pr</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%91%E6%8C%87%E7%B3%BB%E5%88%97/">剑指系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%89%8B%E6%B8%B8SDK/">手游SDK</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/Android/">Android</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><span class="category-list-count">28</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%85%92/">酒</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kotlin/" rel="tag">kotlin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Kotlin/" style="font-size: 13px;">Kotlin</a> <a href="/tags/kotlin/" style="font-size: 13px;">kotlin</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 13px;">网络</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">十一月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">九月 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">27</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/%E6%89%8B%E6%B8%B8SDK/%E6%89%8B%E6%B8%B8SDK%E6%89%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%89%8B%E6%B8%B8SDK/">手游SDK</a>
+              </p>
+              <p class="item-title">
+                <a href="/%E6%89%8B%E6%B8%B8SDK/%E6%89%8B%E6%B8%B8SDK%E6%89%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" class="title">手游SDK打包问题记录</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-01-18T01:56:00.000Z" itemprop="datePublished">2024-01-18</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/uncategorized/%E6%89%8B%E6%B8%B8SDK%E6%89%93%E5%8C%85%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/uncategorized/%E6%89%8B%E6%B8%B8SDK%E6%89%93%E5%8C%85%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B/" class="title">手游SDK打包核心流程</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-01-16T03:57:00.000Z" itemprop="datePublished">2024-01-16</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/%E6%89%8B%E6%B8%B8SDK/%E6%89%8B%E6%B8%B8SDK-%E8%AE%BE%E8%AE%A1%E5%AE%9E%E7%8E%B0/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%89%8B%E6%B8%B8SDK/">手游SDK</a>
+              </p>
+              <p class="item-title">
+                <a href="/%E6%89%8B%E6%B8%B8SDK/%E6%89%8B%E6%B8%B8SDK-%E8%AE%BE%E8%AE%A1%E5%AE%9E%E7%8E%B0/" class="title">手游SDK插件加载流程设计</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-01-13T09:57:00.000Z" itemprop="datePublished">2024-01-13</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/%E6%89%8B%E6%B8%B8SDK/%E6%89%8B%E6%B8%B8SDK-%E5%BC%80%E7%AF%87/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%89%8B%E6%B8%B8SDK/">手游SDK</a>
+              </p>
+              <p class="item-title">
+                <a href="/%E6%89%8B%E6%B8%B8SDK/%E6%89%8B%E6%B8%B8SDK-%E5%BC%80%E7%AF%87/" class="title">手游SDK-开篇</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-01-09T06:33:00.000Z" itemprop="datePublished">2024-01-09</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/%E7%88%AC%E8%99%AB/%E7%88%AC%E8%99%AB-%E9%98%BF%E9%87%8C%E7%B3%BBtoken-acw-sc-v2/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a>
+              </p>
+              <p class="item-title">
+                <a href="/%E7%88%AC%E8%99%AB/%E7%88%AC%E8%99%AB-%E9%98%BF%E9%87%8C%E7%B3%BBtoken-acw-sc-v2/" class="title">爬虫:阿里系token-acw_sc__v2</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2023-12-29T13:41:00.000Z" itemprop="datePublished">2023-12-29</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-FFmpeg-编译-for-Android" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      FFmpeg 编译 for Android 
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/FFmpeg/FFmpeg-%E7%BC%96%E8%AF%91-for-Android/" class="article-date">
+	  <time datetime="2019-10-29T02:09:00.000Z" itemprop="datePublished">2019-10-29</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/FFmpeg/">FFmpeg</a>
+  </span>
+
+        
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/FFmpeg/FFmpeg-%E7%BC%96%E8%AF%91-for-Android/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>环境 ：<br>        macOS Mojave<br>        ndk - android-ndk-r14b<br>        ffmpeg -  V3.3.9 </p>
+<pre><code>在实操的过程中发现，别的版本编译不成功，没有过多做深入的研究，找到了这个可以编译的版本使用。 
+</code></pre>
+<span id="more"></span>
+<p>编译产物和demo已经放到github ：<br>    <a target="_blank" rel="noopener" href="https://github.com/kongxs/ffmpegDemo">https://github.com/kongxs/ffmpegDemo</a></p>
+<h2 id="1-编译"><a href="#1-编译" class="headerlink" title="1. 编译"></a>1. 编译</h2><pre><code>1. 替换configure 中的内容
+    主要是为了修改编译完的产物和命名，以便于Android平台使用
+ 
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">	SLIBNAME_WITH_MAJOR=&#x27;$(SLIBNAME).$(LIBMAJOR)&#x27;</span><br><span class="line">	LIB_INSTALL_EXTRA_CMD=&#x27;$$(RANLIB)&quot;$(LIBDIR)/$(LIBNAME)&quot;&#x27;</span><br><span class="line">	SLIB_INSTALL_NAME=&#x27;$(SLIBNAME_WITH_VERSION)&#x27;</span><br><span class="line">	SLIB_INSTALL_LINKS=&#x27;$(SLIBNAME_WITH_MAJOR)$(SLIBNAME)&#x27;</span><br><span class="line">替换为 </span><br><span class="line">	SLIBNAME_WITH_MAJOR=&#x27;$(SLIBPREF)$(FULLNAME)-$(LIBMAJOR)$(SLIBSUF)&#x27;</span><br><span class="line">	LIB_INSTALL_EXTRA_CMD=&#x27;$$(RANLIB)&quot;$(LIBDIR)/$(LIBNAME)&quot;&#x27;</span><br><span class="line">	SLIB_INSTALL_NAME=&#x27;$(SLIBNAME_WITH_MAJOR)&#x27;</span><br><span class="line">	SLIB_INSTALL_LINKS=&#x27;$(SLIBNAME)&#x27;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>2. 编写脚本文件
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">	#!/bin/bash</span><br><span class="line"></span><br><span class="line">make clean</span><br><span class="line"># NDK的路径，根据自己的安装位置进行设置</span><br><span class="line">export TMPDIR=替换为自己的一个路径</span><br><span class="line">export NDK=替换为自己的ndk路径</span><br><span class="line">export SYSROOT=$NDK/platforms/android-21/arch-arm/</span><br><span class="line">export TOOLCHAIN=$NDK/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64</span><br><span class="line">export CPU=arm</span><br><span class="line">export PREFIX=$(pwd)/android/$CPU</span><br><span class="line">export ADDI_CFLAGS=&quot;-marm&quot;</span><br><span class="line">function build_one</span><br><span class="line">&#123;</span><br><span class="line">./configure \</span><br><span class="line">    --prefix=$PREFIX \</span><br><span class="line">    --target-os=linux \</span><br><span class="line">    --cross-prefix=$TOOLCHAIN/bin/arm-linux-androideabi- \</span><br><span class="line">    --arch=arm \</span><br><span class="line">    --sysroot=$SYSROOT \</span><br><span class="line">    --extra-cflags=&quot;-Os -fpic $ADDI_CFLAGS&quot; \</span><br><span class="line">    --extra-ldflags=&quot;$ADDI_LDFLAGS&quot; \</span><br><span class="line">    --cc=$TOOLCHAIN/bin/arm-linux-androideabi-gcc \</span><br><span class="line">    --nm=$TOOLCHAIN/bin/arm-linux-androideabi-nm \</span><br><span class="line">    --enable-shared \</span><br><span class="line">    --enable-runtime-cpudetect \</span><br><span class="line">    --enable-gpl \</span><br><span class="line">    --enable-small \</span><br><span class="line">    --enable-cross-compile \</span><br><span class="line">    --disable-debug \</span><br><span class="line">    --disable-static \</span><br><span class="line">    --disable-doc \</span><br><span class="line">    --disable-asm \</span><br><span class="line">    --disable-ffmpeg \</span><br><span class="line">    --disable-ffplay \</span><br><span class="line">    --disable-ffprobe \</span><br><span class="line">    --disable-ffserver \</span><br><span class="line">    --enable-postproc \</span><br><span class="line">    --enable-avdevice \</span><br><span class="line">    --disable-symver \</span><br><span class="line">    --disable-stripping \</span><br><span class="line">$ADDITIONAL_CONFIGURE_FLAG</span><br><span class="line">sed -i &#x27;&#x27; &#x27;s/HAVE_LRINT 0/HAVE_LRINT 1/g&#x27; config.h</span><br><span class="line">sed -i &#x27;&#x27; &#x27;s/HAVE_LRINTF 0/HAVE_LRINTF 1/g&#x27; config.h</span><br><span class="line">sed -i &#x27;&#x27; &#x27;s/HAVE_ROUND 0/HAVE_ROUND 1/g&#x27; config.h</span><br><span class="line">sed -i &#x27;&#x27; &#x27;s/HAVE_ROUNDF 0/HAVE_ROUNDF 1/g&#x27; config.h</span><br><span class="line">sed -i &#x27;&#x27; &#x27;s/HAVE_TRUNC 0/HAVE_TRUNC 1/g&#x27; config.h</span><br><span class="line">sed -i &#x27;&#x27; &#x27;s/HAVE_TRUNCF 0/HAVE_TRUNCF 1/g&#x27; config.h</span><br><span class="line">sed -i &#x27;&#x27; &#x27;s/HAVE_CBRT 0/HAVE_CBRT 1/g&#x27; config.h</span><br><span class="line">sed -i &#x27;&#x27; &#x27;s/HAVE_RINT 0/HAVE_RINT 1/g&#x27; config.h</span><br><span class="line">make clean</span><br><span class="line"># 这里是定义用几个CPU编译，我用4个，一般在5分钟之内编译完成</span><br><span class="line">make -j4</span><br><span class="line">make install</span><br><span class="line">&#125;</span><br><span class="line">build_one</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<pre><code>其中： 
+TMPDIR为编译生成的临时文件存放的目录
+SYSROOT为so文件支持的最低Android版本的平台目录
+CPU为指定so文件支持的平台
+PREFIX为生成的so文件存放目录
+TOOLCHAIN为编译所使用的工具链目录
+cross-prefix为编译所使用的工具链文件
+enable和disable指定了需要编译的项
+target-os为目标操作系统；
+</code></pre>
+<br>
+    3. 执行脚本
+    
+<pre><code>./build_android.sh 
+
+等待执行结束会在  目录下生成编译产物 。  位于 android/arm 文件夹下
+    include //  c语言头文件
+    lib //	android可用的so
+</code></pre>
+<h2 id="2-引入Androidstudio开发环境"><a href="#2-引入Androidstudio开发环境" class="headerlink" title="2. 引入Androidstudio开发环境"></a>2. 引入Androidstudio开发环境</h2><pre><code>1. build.gradle 脚本配置 
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">externalNativeBuild &#123;</span><br><span class="line">           cmake &#123;</span><br><span class="line">               cppFlags &quot;&quot;</span><br><span class="line">           &#125;</span><br><span class="line">           ndk &#123;</span><br><span class="line">               abiFilters &quot;armeabi-v7a&quot;//添加平台过滤</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       //指定libs文件夹</span><br><span class="line">   sourceSets.main &#123;</span><br><span class="line">       jniLibs.srcDirs = [&#x27;libs&#x27;]</span><br><span class="line">       jni.srcDirs = []</span><br><span class="line">   &#125;</span><br><span class="line">       </span><br></pre></td></tr></table></figure>
+
+
+<pre><code>1. 添加依赖文件 
+我们将第一步编译好的so放入libs文件夹，将 include文件中的头文件放到cpp文件夹 . 如下所示
+</code></pre>
+<p><img src="https://wanke-fun.oss-cn-beijing.aliyuncs.com/ffmpeg/ffmpeg_project_structure.png"></img></p>
+<pre><code>2. CMakeLists.txt 文件编写 
+    按照如下进行编写，将我们所有的so都在cmakelist文件中进行注册，联合编译
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br></pre></td><td class="code"><pre><span class="line">	# For more information about using CMake with Android Studio, read the</span><br><span class="line"># documentation: https://d.android.com/studio/projects/add-native-code.html</span><br><span class="line"></span><br><span class="line"># Sets the minimum version of CMake required to build the native library.</span><br><span class="line"></span><br><span class="line">cmake_minimum_required(VERSION 3.4.1)</span><br><span class="line"></span><br><span class="line"># Creates and names a library, sets it as either STATIC</span><br><span class="line"># or SHARED, and provides the relative paths to its source code.</span><br><span class="line"># You can define multiple libraries, and CMake builds them for you.</span><br><span class="line"># Gradle automatically packages shared libraries with your APK.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">add_library( # Sets the name of the library.</span><br><span class="line">             native-lib</span><br><span class="line"></span><br><span class="line">             # Sets the library as a shared library.</span><br><span class="line">             SHARED</span><br><span class="line"></span><br><span class="line">             # Provides a relative path to your source file(s).</span><br><span class="line">        src/main/cpp/native-lib.cpp</span><br><span class="line">        src/main/cpp/Utils.c</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">include_directories($&#123;CMAKE_SOURCE_DIR&#125;/src/main/cpp)</span><br><span class="line"></span><br><span class="line">add_library(avcodec-57  # 库名字</span><br><span class="line">            SHARED</span><br><span class="line">            IMPORTED)</span><br><span class="line">set_target_properties( avcodec-57</span><br><span class="line">        PROPERTIES IMPORTED_LOCATION</span><br><span class="line">        $&#123;CMAKE_SOURCE_DIR&#125;/libs/armeabi-v7a/libavcodec-57.so)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">add_library(libavdevice-57  # 库名字</span><br><span class="line">        SHARED</span><br><span class="line">        IMPORTED)</span><br><span class="line">set_target_properties( libavdevice-57</span><br><span class="line">        PROPERTIES IMPORTED_LOCATION</span><br><span class="line">        $&#123;CMAKE_SOURCE_DIR&#125;/libs/armeabi-v7a/libavdevice-57.so)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">add_library(libavfilter-6  # 库名字</span><br><span class="line">        SHARED</span><br><span class="line">        IMPORTED)</span><br><span class="line">set_target_properties( libavfilter-6</span><br><span class="line">        PROPERTIES IMPORTED_LOCATION</span><br><span class="line">        $&#123;CMAKE_SOURCE_DIR&#125;/libs/armeabi-v7a/libavfilter-6.so)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">add_library(libavformat-57  # 库名字</span><br><span class="line">        SHARED</span><br><span class="line">        IMPORTED)</span><br><span class="line">set_target_properties( libavformat-57</span><br><span class="line">        PROPERTIES IMPORTED_LOCATION</span><br><span class="line">        $&#123;CMAKE_SOURCE_DIR&#125;/libs/armeabi-v7a/libavformat-57.so)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">add_library(libavutil-55  # 库名字</span><br><span class="line">        SHARED</span><br><span class="line">        IMPORTED)</span><br><span class="line">set_target_properties( libavutil-55</span><br><span class="line">        PROPERTIES IMPORTED_LOCATION</span><br><span class="line">        $&#123;CMAKE_SOURCE_DIR&#125;/libs/armeabi-v7a/libavutil-55.so)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">add_library(libpostproc-54  # 库名字</span><br><span class="line">        SHARED</span><br><span class="line">        IMPORTED)</span><br><span class="line">set_target_properties( libpostproc-54</span><br><span class="line">        PROPERTIES IMPORTED_LOCATION</span><br><span class="line">        $&#123;CMAKE_SOURCE_DIR&#125;/libs/armeabi-v7a/libpostproc-54.so)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">add_library(libswresample-2  # 库名字</span><br><span class="line">        SHARED</span><br><span class="line">        IMPORTED)</span><br><span class="line">set_target_properties( libswresample-2</span><br><span class="line">        PROPERTIES IMPORTED_LOCATION</span><br><span class="line">        $&#123;CMAKE_SOURCE_DIR&#125;/libs/armeabi-v7a/libswresample-2.so)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">add_library(libswscale-4  # 库名字</span><br><span class="line">        SHARED</span><br><span class="line">        IMPORTED)</span><br><span class="line">set_target_properties( libswscale-4</span><br><span class="line">        PROPERTIES IMPORTED_LOCATION</span><br><span class="line">        $&#123;CMAKE_SOURCE_DIR&#125;/libs/armeabi-v7a/libswscale-4.so)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Searches for a specified prebuilt library and stores the path as a</span><br><span class="line"># variable. Because CMake includes system libraries in the search path by</span><br><span class="line"># default, you only need to specify the name of the public NDK library</span><br><span class="line"># you want to add. CMake verifies that the library exists before</span><br><span class="line"># completing its build.</span><br><span class="line"></span><br><span class="line">find_library( # Sets the name of the path variable.</span><br><span class="line">              log-lib</span><br><span class="line"></span><br><span class="line">              # Specifies the name of the NDK library that</span><br><span class="line">              # you want CMake to locate.</span><br><span class="line">              log )</span><br><span class="line"></span><br><span class="line"># Specifies libraries CMake should link to your target library. You</span><br><span class="line"># can link multiple libraries, such as libraries you define in this</span><br><span class="line"># build script, prebuilt third-party libraries, or system libraries.</span><br><span class="line"></span><br><span class="line">target_link_libraries( # Specifies the target library.</span><br><span class="line">                       native-lib</span><br><span class="line">                        avcodec-57</span><br><span class="line">        libavdevice-57</span><br><span class="line">        libavfilter-6</span><br><span class="line">        libavformat-57</span><br><span class="line">        libavutil-55</span><br><span class="line">        libpostproc-54</span><br><span class="line">        libswresample-2</span><br><span class="line">        libswscale-4</span><br><span class="line"></span><br><span class="line">                       # Links the target library to the log library</span><br><span class="line">                       # included in the NDK.</span><br><span class="line">                       $&#123;log-lib&#125; )</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="3-一些问题"><a href="#3-一些问题" class="headerlink" title="3. 一些问题"></a>3. 一些问题</h2><pre><code>1. 比如include 
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">extern &quot;C&quot;</span><br><span class="line">&#123;</span><br><span class="line">    #include &quot;libavformat/avformat.h&quot;</span><br><span class="line">    #include &quot;libavutil/log.h&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://wanke.fun/FFmpeg/FFmpeg-%E7%BC%96%E8%AF%91-for-Android/" title="FFmpeg 编译 for Android " target="_blank" rel="external">http://wanke.fun/FFmpeg/FFmpeg-编译-for-Android/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://wanke.fun" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://wanke.fun" target="_blank"><span class="text-dark">师学</span><small class="ml-1x">Android Developer</small></a></h3>
+        <div>学而不思则罔，思而不学则殆。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/FFmpeg/FFmpeg-%E7%BC%96%E8%AF%91-for-Mac-os/" title="FFmpeg 编译 for Mac os"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/Flutter/Flutter-%E5%92%8C%E5%8E%9F%E7%94%9FAPP%E8%BF%9B%E8%A1%8C%E4%BA%A4%E4%BA%92/" title="Flutter 和原生APP进行交互"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/../images/pay_ali.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/../images/pay_wx.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/kongxs" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        &copy; 2024 师学
+        
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+
+
+
+
+
+
+</body>
+</html>

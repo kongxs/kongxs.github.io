@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>音视频开发2 | 师学</title>
+  <meta name="description" content="作者：灰色飘零 链接： https:&#x2F;&#x2F;www.cnblogs.com&#x2F;renhui&#x2F;p&#x2F;7452572.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="音视频开发2">
+<meta property="og:url" content="http://wanke.fun/FFmpeg/%E9%9F%B3%E8%A7%86%E9%A2%91%E5%BC%80%E5%8F%912/index.html">
+<meta property="og:site_name" content="师学">
+<meta property="og:description" content="作者：灰色飘零 链接： https:&#x2F;&#x2F;www.cnblogs.com&#x2F;renhui&#x2F;p&#x2F;7452572.html">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-11-21T08:26:00.000Z">
+<meta property="article:modified_time" content="2024-03-12T01:06:15.829Z">
+<meta property="article:author" content="师学">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://wanke.fun/FFmpeg/%E9%9F%B3%E8%A7%86%E9%A2%91%E5%BC%80%E5%8F%912/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="师学" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://wanke.fun" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">师学</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Android Developer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> BeiJing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/kongxs" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">18</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/">dlib</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/DIP/">DIP</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/mvp/">mvp</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIP/">DIP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Flutter/">Flutter</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gradle/">Gradle</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">18</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/JavaConcurrent/">JavaConcurrent</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/concurrent/">concurrent</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Jvm/">Jvm</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Jvm/Java/">Java</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kotlin/">Kotlin</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nio/">Nio</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note2/">Note2</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OpenGL/">OpenGL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ReactNative/">ReactNative</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/bizhe/">bizhe</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/">jdhai</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/">javascript</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/%E8%B7%A8%E5%B9%B3%E5%8F%B0/">跨平台</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/pr/">pr</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%91%E6%8C%87%E7%B3%BB%E5%88%97/">剑指系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%89%8B%E6%B8%B8SDK/">手游SDK</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/Android/">Android</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><span class="category-list-count">28</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%85%92/">酒</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kotlin/" rel="tag">kotlin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Kotlin/" style="font-size: 13px;">Kotlin</a> <a href="/tags/kotlin/" style="font-size: 13px;">kotlin</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 13px;">网络</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">十一月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">九月 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">27</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/%E6%89%8B%E6%B8%B8SDK/%E6%89%8B%E6%B8%B8SDK%E6%89%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%89%8B%E6%B8%B8SDK/">手游SDK</a>
+              </p>
+              <p class="item-title">
+                <a href="/%E6%89%8B%E6%B8%B8SDK/%E6%89%8B%E6%B8%B8SDK%E6%89%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" class="title">手游SDK打包问题记录</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-01-18T01:56:00.000Z" itemprop="datePublished">2024-01-18</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/uncategorized/%E6%89%8B%E6%B8%B8SDK%E6%89%93%E5%8C%85%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/uncategorized/%E6%89%8B%E6%B8%B8SDK%E6%89%93%E5%8C%85%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B/" class="title">手游SDK打包核心流程</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-01-16T03:57:00.000Z" itemprop="datePublished">2024-01-16</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/%E6%89%8B%E6%B8%B8SDK/%E6%89%8B%E6%B8%B8SDK-%E8%AE%BE%E8%AE%A1%E5%AE%9E%E7%8E%B0/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%89%8B%E6%B8%B8SDK/">手游SDK</a>
+              </p>
+              <p class="item-title">
+                <a href="/%E6%89%8B%E6%B8%B8SDK/%E6%89%8B%E6%B8%B8SDK-%E8%AE%BE%E8%AE%A1%E5%AE%9E%E7%8E%B0/" class="title">手游SDK插件加载流程设计</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-01-13T09:57:00.000Z" itemprop="datePublished">2024-01-13</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/%E6%89%8B%E6%B8%B8SDK/%E6%89%8B%E6%B8%B8SDK-%E5%BC%80%E7%AF%87/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%89%8B%E6%B8%B8SDK/">手游SDK</a>
+              </p>
+              <p class="item-title">
+                <a href="/%E6%89%8B%E6%B8%B8SDK/%E6%89%8B%E6%B8%B8SDK-%E5%BC%80%E7%AF%87/" class="title">手游SDK-开篇</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-01-09T06:33:00.000Z" itemprop="datePublished">2024-01-09</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/%E7%88%AC%E8%99%AB/%E7%88%AC%E8%99%AB-%E9%98%BF%E9%87%8C%E7%B3%BBtoken-acw-sc-v2/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a>
+              </p>
+              <p class="item-title">
+                <a href="/%E7%88%AC%E8%99%AB/%E7%88%AC%E8%99%AB-%E9%98%BF%E9%87%8C%E7%B3%BBtoken-acw-sc-v2/" class="title">爬虫:阿里系token-acw_sc__v2</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2023-12-29T13:41:00.000Z" itemprop="datePublished">2023-12-29</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-音视频开发2" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      音视频开发2
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/FFmpeg/%E9%9F%B3%E8%A7%86%E9%A2%91%E5%BC%80%E5%8F%912/" class="article-date">
+	  <time datetime="2019-11-21T08:26:00.000Z" itemprop="datePublished">2019-11-21</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/FFmpeg/">FFmpeg</a>
+  </span>
+
+        
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/FFmpeg/%E9%9F%B3%E8%A7%86%E9%A2%91%E5%BC%80%E5%8F%912/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>作者：灰色飘零</p>
+<p>链接：</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/renhui/p/7452572.html">https://www.cnblogs.com/renhui/p/7452572.html</a></p>
+<span id="more"></span>
+
+
+<p>一直欠大家一篇音视频入门之路的文章，这篇文章是我见过写的最详细的一篇了，今天算还了哈。作者从入门、进阶、探究分别编写了一系列文章。</p>
+<p>Android 音视频开发这块目前的确没有比较系统的教程或者书籍，网上的博客文章也都是比较零散的。只能通过一点点的学习和积累把这块的知识串联积累起来。</p>
+<p>1 初级入门篇</p>
+<p>Android 音视频开发(一) : 通过三种方式绘制图片</p>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/renhui/p/7456956.html">http://www.cnblogs.com/renhui/p/7456956.html</a></p>
+<p>Android 音视频开发(二)：使用 AudioRecord 采集音频PCM并保存到文件</p>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/renhui/p/7457321.html">http://www.cnblogs.com/renhui/p/7457321.html</a></p>
+<p>Android 音视频开发(三)：使用 AudioTrack 播放PCM音频</p>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/renhui/p/7463287.html">http://www.cnblogs.com/renhui/p/7463287.html</a></p>
+<p>Android 音视频开发(四)：使用 Camera API 采集视频数据</p>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/renhui/p/7472778.html">http://www.cnblogs.com/renhui/p/7472778.html</a></p>
+<p>Android 音视频开发(五)：使用 MediaExtractor 和 MediaMuxer API 解析和封装 mp4 文件</p>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/renhui/p/7474096.html">http://www.cnblogs.com/renhui/p/7474096.html</a></p>
+<p>Android 音视频开发(六)： MediaCodec API 详解</p>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/renhui/p/7478527.html">http://www.cnblogs.com/renhui/p/7478527.html</a></p>
+<p>Android 音视频开发(七)： 音视频录制流程总结</p>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/renhui/p/7520690.html">http://www.cnblogs.com/renhui/p/7520690.html</a></p>
+<p>初级入门篇主要是接触Android多媒体展示相关的API，通过单独的列举和使用这些API，对Android音视频处理有一个基本的轮廓，虽然知识点相对来说是比较散的，但是点成线,线称面，基本的基础掌握了，通过学习Android音视频核心的API将音视频的流程串联起来，这样对于音视频的了解和控制就不仅仅局限于最外层的API了，而是能够通过相对底层的方式来加深对Android 音视频开发的认知。 </p>
+<p>2 中级进阶篇</p>
+<p>OpenGL ES 学习记录</p>
+<p>学习 Android 平台 OpenGL ES API，了解 OpenGL 开发的基本流程，使用 OpenGL 绘制基本图形，并了解相关的API的简单使用</p>
+<p>Android OpenGL ES 开发（一）: OpenGL ES 介绍</p>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/renhui/p/7994261.html">http://www.cnblogs.com/renhui/p/7994261.html</a></p>
+<p>Android OpenGL ES 开发（二）: OpenGL ES 环境搭建</p>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/renhui/p/7997557.html">http://www.cnblogs.com/renhui/p/7997557.html</a></p>
+<p>Android OpenGL ES 开发（三）: OpenGL ES 定义形状</p>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/renhui/p/8000345.html">http://www.cnblogs.com/renhui/p/8000345.html</a></p>
+<p>Android OpenGL ES 开发（四）: OpenGL ES 绘制形状</p>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/renhui/p/8004987.html">http://www.cnblogs.com/renhui/p/8004987.html</a></p>
+<p>Android OpenGL ES 开发（五）: OpenGL ES 使用投影和相机视图</p>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/renhui/p/8005512.html">http://www.cnblogs.com/renhui/p/8005512.html</a></p>
+<p>Android OpenGL ES 开发（六）: OpenGL ES 添加运动效果</p>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/renhui/p/8005518.html">http://www.cnblogs.com/renhui/p/8005518.html</a></p>
+<p>Android OpenGL ES 开发（七）: OpenGL ES 响应触摸事件</p>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/renhui/p/8005528.html">http://www.cnblogs.com/renhui/p/8005528.html</a></p>
+<p>Android OpenGL ES 开发（八）: OpenGL ES 着色器语言GLSL</p>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/renhui/p/8126121.html">http://www.cnblogs.com/renhui/p/8126121.html</a></p>
+<p>Android OpenGL ES 开发（九）: OpenGL ES 纹理贴图</p>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/renhui/p/8145734.html">http://www.cnblogs.com/renhui/p/8145734.html</a></p>
+<p>Android OpenGL ES 开发（十）: 通过GLES20与着色器交互</p>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/renhui/p/8302434.html">http://www.cnblogs.com/renhui/p/8302434.html</a></p>
+<p>动手实践，积累实战经验：</p>
+<p>使用 OpenGL 显示一张图片</p>
+<p>GLSurfaceviw 绘制 Camera 预览画面及实现拍照<a target="_blank" rel="noopener" href="https://github.com/renhui/OpenGLES20Study">https://github.com/renhui/OpenGLES20Study</a></p>
+<p>使用OpenGL ES 完成视频的录制，并实现视频水印效果<a target="_blank" rel="noopener" href="https://github.com/renhui/OpenGLVideoRecord/tree/master">https://github.com/renhui/OpenGLVideoRecord/tree/master</a></p>
+<p>个人学习成果展示：</p>
+<p>音视频录制流程总结： </p>
+<p><a target="_blank" rel="noopener" href="https://github.com/renhui/AndroidRecorder">https://github.com/renhui/AndroidRecorder</a></p>
+<p>OpenGL ES 学习笔记：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/renhui/OpenGLES20Study">https://github.com/renhui/OpenGLES20Study</a></p>
+<p>OpenGL音视频录制项目：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/renhui/OpenGLVideoRecord">https://github.com/renhui/OpenGLVideoRecord</a> </p>
+<p>OpenSL ES 学习记录</p>
+<p>学习 Android 平台 OpenSL ES API，了解 OpenSL 开发的基本流程，使用OpenSL播放PCM数据，并了解相关API的简单使用。</p>
+<p>Android OpenSL ES 开发：Android OpenSL 介绍和开发流程说明</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/renhui/p/9567332.html">https://www.cnblogs.com/renhui/p/9567332.html</a></p>
+<p>Android OpenSL ES 开发：使用 OpenSL 播放 PCM 数据</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/renhui/p/9565464.html">https://www.cnblogs.com/renhui/p/9565464.html</a></p>
+<p>Android OpenSL ES 开发：Android OpenSL 录制 PCM 音频数据</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/renhui/p/9604550.html">https://www.cnblogs.com/renhui/p/9604550.html</a></p>
+<p>Android OpenSL ES 开发：OpenSL ES利用SoundTouch实现PCM音频的变速和变调</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/renhui/p/9620400.html">https://www.cnblogs.com/renhui/p/9620400.html</a></p>
+<p>3 高级探究篇</p>
+<p>深入研究音视频相关的网络协议，如 rtmp，hls，以及封包格式，如：flv，mp4</p>
+<p>深入学习一些音视频领域的开源项目，如 webrtc，ffmpeg，ijkplayer，librtmp 等等</p>
+<p>将 ffmpeg 库移植到 Android 平台，结合上面积累的经验，编写一款简易的音视频播放器</p>
+<p>将 x264 库移植到 Android 平台，结合上面积累的经验，完成视频数据 H264 软编功能</p>
+<p>将 librtmp 库移植到 Android 平台，结合上面积累的经验，完成 Android RTMP 推流功能 </p>
+<p>FFmpeg 学习记录</p>
+<p>FFmpeg命令行工具学习(一)：查看媒体文件头信息工具ffprobe</p>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/renhui/p/9209664.html">http://www.cnblogs.com/renhui/p/9209664.html</a></p>
+<p>FFmpeg命令行工具学习(二)：播放媒体文件的工具ffplay</p>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/renhui/p/8458802.html">http://www.cnblogs.com/renhui/p/8458802.html</a></p>
+<p>FFmpeg命令行工具学习(三)：媒体文件转换工具ffmpeg</p>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/renhui/p/9223969.html">http://www.cnblogs.com/renhui/p/9223969.html</a></p>
+<p>FFmpeg 学习(一)：FFmpeg 简介</p>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/renhui/p/6922971.html">http://www.cnblogs.com/renhui/p/6922971.html</a></p>
+<p>FFmpeg 学习(二)：Mac下安装FFmpeg</p>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/renhui/p/8458150.html">http://www.cnblogs.com/renhui/p/8458150.html</a></p>
+<p>FFmpeg 学习(三)：将 FFmpeg 移植到 Android平台</p>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/renhui/p/6934397.html">http://www.cnblogs.com/renhui/p/6934397.html</a></p>
+<p>FFmpeg 学习(四)：FFmpeg API 介绍与通用 API 分析</p>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/renhui/p/9293057.html">http://www.cnblogs.com/renhui/p/9293057.html</a></p>
+<p>FFmpeg 学习(五)：FFmpeg 编解码 API 分析</p>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/renhui/p/9328893.html">http://www.cnblogs.com/renhui/p/9328893.html</a></p>
+<p>FFmpeg 学习(六)：FFmpeg 核心模块 libavformat 与 libavcodec 分析</p>
+<p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/renhui/p/9343098.html">http://www.cnblogs.com/renhui/p/9343098.html</a></p>
+<p>FFmpeg 结构体学习</p>
+<p>FFmpeg 结构体学习(一)： AVFormatContext 分析</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/renhui/p/9361276.html">https://www.cnblogs.com/renhui/p/9361276.html</a></p>
+<p>FFmpeg 结构体学习(二)： AVStream 分析</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/renhui/p/9469856.html">https://www.cnblogs.com/renhui/p/9469856.html</a></p>
+<p>FFmpeg 结构体学习(三)： AVPacket 分析</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/renhui/p/9488751.html">https://www.cnblogs.com/renhui/p/9488751.html</a></p>
+<p>FFmpeg 结构体学习(四)： AVFrame 分析</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/renhui/p/9493393.html">https://www.cnblogs.com/renhui/p/9493393.html</a></p>
+<p>FFmpeg 结构体学习(五)： AVCodec 分析</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/renhui/p/9493690.html">https://www.cnblogs.com/renhui/p/9493690.html</a></p>
+<p>FFmpeg 结构体学习(六)： AVCodecContext 分析</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/renhui/p/9494286.html">https://www.cnblogs.com/renhui/p/9494286.html</a></p>
+<p>FFmpeg 结构体学习(七)： AVIOContext 分析</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/renhui/p/9494887.html">https://www.cnblogs.com/renhui/p/9494887.html</a></p>
+<p>FFmpeg 结构体学习(八)：FFMPEG中重要结构体之间的关系</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/renhui/p/9494890.html">https://www.cnblogs.com/renhui/p/9494890.html</a></p>
+<p>4 高级探究篇</p>
+<p>GPUImage</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/CyberAgent/android-gpuimage">https://github.com/CyberAgent/android-gpuimage</a></p>
+<p>IjkPlayer</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Bilibili/ijkplayer">https://github.com/Bilibili/ijkplayer</a></p>
+<p>librestreaming</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/lakeinchina/librestreaming">https://github.com/lakeinchina/librestreaming</a></p>
+<p>RTMPDump</p>
+<p><a target="_blank" rel="noopener" href="http://rtmpdump.mplayerhq.hu/">http://rtmpdump.mplayerhq.hu/</a></p>
+<p>SoundTouch</p>
+<p><a target="_blank" rel="noopener" href="http://www.surina.net/soundtouch/sourcecode.html">http://www.surina.net/soundtouch/sourcecode.html</a></p>
+<p>5 学习展望</p>
+<p>完成上面的学习后，可以尝试做一款音视频相关的APP，这个APP尽可能多的用上你学习的知识，看看能做到什么程度。如果你能很好的做出来，并认真的把上面列举的所有的点都完成和整理了，相信你在Android音视频领域会越走越好。</p>
+<p>推荐的学习资料：</p>
+<p>《雷霄骅的专栏》：</p>
+<p><a target="_blank" rel="noopener" href="http://blog.csdn.net/leixiaohua1020">http://blog.csdn.net/leixiaohua1020</a></p>
+<p>《Android音频开发》：</p>
+<p><a target="_blank" rel="noopener" href="http://ticktick.blog.51cto.com/823160/d-15">http://ticktick.blog.51cto.com/823160/d-15</a></p>
+<p>《FFMPEG Tips》</p>
+<p><a target="_blank" rel="noopener" href="http://ticktick.blog.51cto.com/823160/d-17">http://ticktick.blog.51cto.com/823160/d-17</a></p>
+<p>《Learn OpenGL 中文》</p>
+<p><a target="_blank" rel="noopener" href="https://learnopengl-cn.github.io/">https://learnopengl-cn.github.io/</a></p>
+<p>《Android Graphic 架构》</p>
+<p><a target="_blank" rel="noopener" href="https://source.android.com/devices/graphics/">https://source.android.com/devices/graphics/</a></p>
+<p>《Jhuster的专栏》：</p>
+<p><a target="_blank" rel="noopener" href="http://blog.51cto.com/ticktick">http://blog.51cto.com/ticktick</a></p>
+<p>《ywl5320的专栏》：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ywl5320">https://blog.csdn.net/ywl5320</a></p>
+<p>有句古话，师傅领进门，修行靠个人。</p>
+<p>音视频有着一定的门槛，一个看似简单的例子实现起来可能因为一两个参数的问题都会浪费非常久的时间，不过这些经历都是比较宝贵的，可以让你更好的去理解各个 API。</p>
+<p>光靠看绝对是不可能精通音视频的，技术都是一步步积累的，有个正确的方向，坚持去做才可能做好。</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://wanke.fun/FFmpeg/%E9%9F%B3%E8%A7%86%E9%A2%91%E5%BC%80%E5%8F%912/" title="音视频开发2" target="_blank" rel="external">http://wanke.fun/FFmpeg/音视频开发2/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://wanke.fun" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://wanke.fun" target="_blank"><span class="text-dark">师学</span><small class="ml-1x">Android Developer</small></a></h3>
+        <div>学而不思则罔，思而不学则殆。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/Jvm/jvm-%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E5%AD%A6%E4%B9%A0/" title="jvm 内存区域学习"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/FFmpeg/FFmpeg-%E7%9B%B8%E5%85%B3%E5%8D%9A%E5%AE%A2/" title="FFmpeg 相关博客"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/../images/pay_ali.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/../images/pay_wx.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/kongxs" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        &copy; 2024 师学
+        
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+
+
+
+
+
+
+</body>
+</html>
