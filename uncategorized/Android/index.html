@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Android | 师学</title>
+  <meta name="description" content="知识体系介绍：https:&#x2F;&#x2F;blog.csdn.net&#x2F;liuwg1226&#x2F;article&#x2F;details&#x2F;114777562 Android基础HandlerThread ，  recycleview https:&#x2F;&#x2F;juejin.cn&#x2F;post&#x2F;7270167187658358795 ConstraintLayout 约束布局 屏幕适配  recycleView四级缓存机制   层级 变量">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android">
+<meta property="og:url" content="http://wanke.fun/uncategorized/Android/index.html">
+<meta property="og:site_name" content="师学">
+<meta property="og:description" content="知识体系介绍：https:&#x2F;&#x2F;blog.csdn.net&#x2F;liuwg1226&#x2F;article&#x2F;details&#x2F;114777562 Android基础HandlerThread ，  recycleview https:&#x2F;&#x2F;juejin.cn&#x2F;post&#x2F;7270167187658358795 ConstraintLayout 约束布局 屏幕适配  recycleView四级缓存机制   层级 变量">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://wanke.fun/images/ims_liucheng.png">
+<meta property="og:image" content="http://wanke.fun/images/input%E4%BC%A0%E9%80%92%E6%B5%81%E7%A8%8B.png">
+<meta property="og:image" content="http://wanke.fun/images/view_liucheng.png">
+<meta property="og:image" content="http://wanke.fun/images/view%E7%BB%98%E5%88%B6%E6%97%B6%E5%BA%8F%E5%9B%BE.png">
+<meta property="og:image" content="http://wanke.fun/images/bind_service.png">
+<meta property="article:published_time" content="2024-03-12T11:55:36.000Z">
+<meta property="article:modified_time" content="2024-03-18T13:01:28.785Z">
+<meta property="article:author" content="师学">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://wanke.fun/images/ims_liucheng.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://wanke.fun/uncategorized/Android/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="师学" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://wanke.fun" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">师学</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Android Developer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> BeiJing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/kongxs" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">18</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/">dlib</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/dlib/DIP/">DIP</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/mvp/">mvp</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/DIP/">DIP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Flutter/">Flutter</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Gradle/">Gradle</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">18</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/JavaConcurrent/">JavaConcurrent</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/concurrent/">concurrent</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Jvm/">Jvm</a><span class="category-list-count">11</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Jvm/Java/">Java</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Kotlin/">Kotlin</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Nio/">Nio</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note2/">Note2</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OpenGL/">OpenGL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ReactNative/">ReactNative</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/bizhe/">bizhe</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/">jdhai</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/">javascript</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/jdhai/javascript/%E8%B7%A8%E5%B9%B3%E5%8F%B0/">跨平台</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/pr/">pr</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%91%E6%8C%87%E7%B3%BB%E5%88%97/">剑指系列</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%89%8B%E6%B8%B8SDK/">手游SDK</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/Android/">Android</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><span class="category-list-count">28</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%85%92/">酒</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kotlin/" rel="tag">kotlin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Kotlin/" style="font-size: 13px;">Kotlin</a> <a href="/tags/kotlin/" style="font-size: 13px;">kotlin</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 13px;">网络</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">十一月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/10/">十月 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">九月 2023</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">六月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">六月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">27</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/uncategorized/Android/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/uncategorized/Android/" class="title">Android</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-03-12T11:55:36.000Z" itemprop="datePublished">2024-03-12</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/%E6%89%8B%E6%B8%B8SDK/%E6%89%8B%E6%B8%B8SDK%E6%89%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%89%8B%E6%B8%B8SDK/">手游SDK</a>
+              </p>
+              <p class="item-title">
+                <a href="/%E6%89%8B%E6%B8%B8SDK/%E6%89%8B%E6%B8%B8SDK%E6%89%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" class="title">手游SDK打包问题记录</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-01-18T01:56:00.000Z" itemprop="datePublished">2024-01-18</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/uncategorized/%E6%89%8B%E6%B8%B8SDK%E6%89%93%E5%8C%85%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/uncategorized/%E6%89%8B%E6%B8%B8SDK%E6%89%93%E5%8C%85%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B/" class="title">手游SDK打包核心流程</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-01-16T03:57:00.000Z" itemprop="datePublished">2024-01-16</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/%E6%89%8B%E6%B8%B8SDK/%E6%89%8B%E6%B8%B8SDK-%E8%AE%BE%E8%AE%A1%E5%AE%9E%E7%8E%B0/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%89%8B%E6%B8%B8SDK/">手游SDK</a>
+              </p>
+              <p class="item-title">
+                <a href="/%E6%89%8B%E6%B8%B8SDK/%E6%89%8B%E6%B8%B8SDK-%E8%AE%BE%E8%AE%A1%E5%AE%9E%E7%8E%B0/" class="title">手游SDK插件加载流程设计</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-01-13T09:57:00.000Z" itemprop="datePublished">2024-01-13</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/%E6%89%8B%E6%B8%B8SDK/%E6%89%8B%E6%B8%B8SDK-%E5%BC%80%E7%AF%87/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%89%8B%E6%B8%B8SDK/">手游SDK</a>
+              </p>
+              <p class="item-title">
+                <a href="/%E6%89%8B%E6%B8%B8SDK/%E6%89%8B%E6%B8%B8SDK-%E5%BC%80%E7%AF%87/" class="title">手游SDK-开篇</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-01-09T06:33:00.000Z" itemprop="datePublished">2024-01-09</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Android" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/uncategorized/Android/" class="article-date">
+	  <time datetime="2024-03-12T11:55:36.000Z" itemprop="datePublished">2024-03-12</time>
+	</a>
+</span>
+        
+        
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/uncategorized/Android/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>知识体系介绍：<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/liuwg1226/article/details/114777562">https://blog.csdn.net/liuwg1226/article/details/114777562</a></p>
+<h2 id="Android基础"><a href="#Android基础" class="headerlink" title="Android基础"></a>Android基础</h2><p>HandlerThread ， </p>
+<p>recycleview <a target="_blank" rel="noopener" href="https://juejin.cn/post/7270167187658358795">https://juejin.cn/post/7270167187658358795</a></p>
+<p>ConstraintLayout 约束布局</p>
+<p>屏幕适配 </p>
+<h3 id="recycleView"><a href="#recycleView" class="headerlink" title="recycleView"></a>recycleView</h3><h5 id="四级缓存机制"><a href="#四级缓存机制" class="headerlink" title="四级缓存机制"></a>四级缓存机制</h5><table>
+<thead>
+<tr>
+<th align="center">层级</th>
+<th align="center">变量</th>
+<th align="center">名字</th>
+<th align="center">容量</th>
+<th align="center">结构</th>
+<th align="center">用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">attachScrap</td>
+<td align="center">可见缓存</td>
+<td align="center">x</td>
+<td align="center">ArrayList</td>
+<td align="center">布局过程中的回收复用</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">cacheViews</td>
+<td align="center">缓存列表</td>
+<td align="center">2</td>
+<td align="center">ArrayList</td>
+<td align="center">移除屏幕的回收复用，不会回收</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">viewCacheExtension</td>
+<td align="center">自定义缓存</td>
+<td align="center">x</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">recycleViewPool</td>
+<td align="center">缓存池</td>
+<td align="center">5</td>
+<td align="center">sparseArray</td>
+<td align="center">移除屏幕的回收复用，会重置viewHolder数量</td>
+</tr>
+</tbody></table>
+<h5 id="recycleview-第一屏加载速速优化"><a href="#recycleview-第一屏加载速速优化" class="headerlink" title="recycleview 第一屏加载速速优化"></a>recycleview 第一屏加载速速优化</h5><h3 id="android-vsync机制-VerticalSynchronization"><a href="#android-vsync机制-VerticalSynchronization" class="headerlink" title="android vsync机制(VerticalSynchronization)"></a>android vsync机制(VerticalSynchronization)</h3><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6863756420380196877">https://juejin.cn/post/6863756420380196877</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903585424097293">https://juejin.cn/post/6844903585424097293</a></p>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1685247">https://cloud.tencent.com/developer/article/1685247</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.51cto.com/article/694573.html">https://www.51cto.com/article/694573.html</a></p>
+<p>在Android绘制的过程中，掉帧是如何处理的<br>Android绘制原理，同步屏障，然后发送VSync脉冲信号</p>
+<h3 id="sp-原理-mmkv"><a href="#sp-原理-mmkv" class="headerlink" title="sp 原理 mmkv"></a>sp 原理 mmkv</h3><pre><code>commit同步，apply异步
+</code></pre>
+<p>    线程安全进程不安全<br>    因为是全量写入，不要频繁的commit or apply<br>    大文件会导致内存抖动，<br>    可以考虑sp拆分<br>    如果文件太大，加载时间会边长，影响启动速度，处理数据不能太大，onPause的是会检查是否存储完毕</p>
+<h6 id="替代方案："><a href="#替代方案：" class="headerlink" title="替代方案："></a>替代方案：</h6><ol>
+<li>google dataStore  </li>
+<li>mmkv</li>
+</ol>
+<h6 id="SharedPreferences-是如何保证线程安全的，其内部的实现用到了哪些锁"><a href="#SharedPreferences-是如何保证线程安全的，其内部的实现用到了哪些锁" class="headerlink" title="SharedPreferences 是如何保证线程安全的，其内部的实现用到了哪些锁"></a>SharedPreferences 是如何保证线程安全的，其内部的实现用到了哪些锁</h6><p>1.对于读操作，加一把锁</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public String getString(String key, @Nullable String defValue) &#123;</span><br><span class="line">    synchronized (mLock) &#123;</span><br><span class="line">        String v = (String)mMap.get(key);</span><br><span class="line">        return v != null ? v : defValue;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.写操作，两把锁。一个是mEditorLock，一个是mWritingToDiskLock的文件锁</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//第一把锁，操作Editor类的map对象</span><br><span class="line">public final class EditorImpl implements Editor &#123;</span><br><span class="line">  @Override</span><br><span class="line">  public Editor putString(String key, String value) &#123;</span><br><span class="line">      synchronized (mEditorLock) &#123;</span><br><span class="line">          mEditorMap.put(key, value);</span><br><span class="line">          return this;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//第二把锁，操作文件的写入</span><br><span class="line">synchronized (mWritingToDiskLock) &#123;</span><br><span class="line">    writeToFile(mcr, isFromSyncCommit);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h6 id="sp是进程不安全的"><a href="#sp是进程不安全的" class="headerlink" title="sp是进程不安全的"></a>sp是进程不安全的</h6><p>如何保证进程安全</p>
+<ol>
+<li>加文件锁</li>
+<li>通过contentProvider访问</li>
+</ol>
+<h6 id="sp备份"><a href="#sp备份" class="headerlink" title="sp备份"></a>sp备份</h6><ol>
+<li>首先创建.bak文件，备份源文件</li>
+<li>写入磁盘成功后将 bak文件删除</li>
+<li>使用sp之前检查如果有bak文件，将原有文件删除并将重命名bak文件后直接使用</li>
+</ol>
+<h6 id="sp导致anr"><a href="#sp导致anr" class="headerlink" title="sp导致anr"></a>sp导致anr</h6><ol>
+<li>构造 SharedPreferences 实例时会解析 XML 文件，在解析操作完成前主线程调用 get 方法会阻塞，从而阻塞主线程</li>
+<li>主线程执行 commit 发生文件 IO or 阻塞，从而导致主线程阻塞</li>
+</ol>
+<h3 id="ANR"><a href="#ANR" class="headerlink" title="ANR"></a>ANR</h3><p>service: 前台服务20s<br><br>broadcast，contentProvider ： 10s<br><br>InputDispatching ：5s<br></p>
+<h5 id="anr的触发过程"><a href="#anr的触发过程" class="headerlink" title="anr的触发过程"></a>anr的触发过程</h5><p>以service为例：</p>
+<ol>
+<li>bumpServiceExecutingLocked，通过handler发送延迟消息anr任务</li>
+<li>serviceCreated的时候remove此消息</li>
+<li>msg没有被remove掉，就会触发</li>
+</ol>
+<h5 id="anr信息的搜集"><a href="#anr信息的搜集" class="headerlink" title="anr信息的搜集"></a>anr信息的搜集</h5><p>anr被触发以后最终回调到 ams.appNotResponding</p>
+<h3 id="事件分发"><a href="#事件分发" class="headerlink" title="事件分发"></a>事件分发</h3><pre><code>点击屏幕
+InputManagerService的Read线程捕获事件，预处理后发送给Dispatcher线程
+Dispatcher找到目标窗口
+通过Socket将事件发送到目标窗口
+APP端被唤醒
+找到目标窗口处理事件
+</code></pre>
+<p><img src="/images/ims_liucheng.png" alt="upload successful"></p>
+<p><img src="/images/input%E4%BC%A0%E9%80%92%E6%B5%81%E7%A8%8B.png" alt="upload successful"></p>
+<h3 id="view绘制流程"><a href="#view绘制流程" class="headerlink" title="view绘制流程"></a>view绘制流程</h3><p>高频试题：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/afe3dca68aca">https://www.jianshu.com/p/afe3dca68aca</a></p>
+<p>子线程更新UI <a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904131136618510">https://juejin.cn/post/6844904131136618510</a> </p>
+<p>Activity ，view ，window之间的关系？</p>
+<p>view 怎么显示到窗口的？ </p>
+<p>view.post</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">ams:</span><br><span class="line">ActivityThread.handleResumeActivity</span><br><span class="line">	wmimpl -&gt;addview</span><br><span class="line">    	global-addview</span><br><span class="line"></span><br><span class="line">wms:</span><br><span class="line">windowManagerGlobal.updateviewlayout</span><br><span class="line">viewRootImpl.setLayoutParams</span><br><span class="line">viewRootImpl.requestLayout  -&gt; checkThread 检查ui线程</span><br><span class="line">viewRootImpl.scheduleTraversals -&gt; 开始渲染UI </span><br><span class="line">	mChoreographer.post runnable</span><br><span class="line">    	doTraversal -&gt; </span><br><span class="line">        	performTraversal -&gt;</span><br><span class="line">            	performMeasure -&gt;onMeasure</span><br><span class="line">                performLayout  -&gt;onLayout</span><br><span class="line">                performDraw    -&gt;onDraw</span><br><span class="line">        </span><br><span class="line">	</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/view_liucheng.png" alt="upload successful"></p>
+<p><img src="/images/view%E7%BB%98%E5%88%B6%E6%97%B6%E5%BA%8F%E5%9B%BE.png" alt="upload successful"></p>
+<h3 id="IPC"><a href="#IPC" class="headerlink" title="IPC"></a>IPC</h3><pre><code>ipc方式有哪些
+</code></pre>
+<p>    binder原理<br>    binder限制传输的最大值以及大图片传输<br>    aidl<br>    匿名内存文件<br>    parcel和serial区别，binder为什么需要序列化<br>    binder 异步调用  oneway</p>
+<p><a target="_blank" rel="noopener" href="https://weishu.me/2016/01/12/binder-index-for-newer/">https://weishu.me/2016/01/12/binder-index-for-newer/</a></p>
+<h5 id="ipc方式"><a href="#ipc方式" class="headerlink" title="ipc方式"></a>ipc方式</h5><ol>
+<li>socket<br> 依赖协议，接入开放，效率低，两次拷贝
+ </li>
+<li>共享内存<br> 拷贝，不易控制，</li>
+<li>binder<br> 分配进程uid，一次拷贝，安全易用</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">binder</th>
+<th align="center">共享内存</th>
+<th align="center">socket</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">性能</td>
+<td align="center">一次拷贝</td>
+<td align="center">0拷贝</td>
+<td align="center">2次拷贝</td>
+</tr>
+<tr>
+<td align="center">特点</td>
+<td align="center">C&#x2F;S架构，易用性高</td>
+<td align="center">控制复杂，易用性低</td>
+<td align="center">效率低，开销大</td>
+</tr>
+<tr>
+<td align="center">安全性</td>
+<td align="center">为每个APP分配UID，同时支持实名和匿名</td>
+<td align="center">依赖上层协议，访问接入点是开放的不安全</td>
+<td align="center">依赖上层协议，访问接入点是开放的不安全</td>
+</tr>
+</tbody></table>
+<h6 id="mmp"><a href="#mmp" class="headerlink" title="mmp"></a>mmp</h6><pre><code>    Linux通过一个虚拟内存空间区域与一个磁盘上的对象关联起来，以初始化这个虚拟内存区域的内容，这个过程称为内存映射（memory  mapping）
+    对文件进行mmap，会在进程的虚拟内存分配地址空间，创建映射关系。
+    实现映射关系后，就可以采用指针的方式读写操作这一段内存，而系统会自动会写到对应文件磁盘上
+    所有的系统资源管理都是在内核空间完成的，比如读写磁盘文件，网络接口读写。
+用户空间通过系统调用让内核空间完成这些功能。
+</code></pre>
+<h6 id="binder"><a href="#binder" class="headerlink" title="binder"></a>binder</h6><pre><code>通过mmap，在内核空间和用户空间使用物理地址开辟了一个映射关系。
+内核空间调用copy_from_user会将数据直接拷贝到内核空间并反馈映射到物理地址上
+由于用户空间和物理地址有一个映射关系，用户空间可以直接通过映射的虚拟地址指针访问当写入物理地址的数据。
+</code></pre>
+<h6 id="Intent传递数据限制"><a href="#Intent传递数据限制" class="headerlink" title="Intent传递数据限制"></a>Intent传递数据限制</h6><pre><code>Intent携带信息的大小受Binder限制，数据以Parcel对象的形式存放在Binder传递缓存中，而binder传递数据最大为1M-8K(减去8k)，如果过大则传递失败并抛出TransactionTooLargeException异常。
+</code></pre>
+<h5 id="通知zygote通信为什么不是binder"><a href="#通知zygote通信为什么不是binder" class="headerlink" title="通知zygote通信为什么不是binder"></a>通知zygote通信为什么不是binder</h5><pre><code>死锁
+</code></pre>
+<h3 id="handler"><a href="#handler" class="headerlink" title="handler"></a>handler</h3><pre><code>消息同步屏障
+</code></pre>
+<p>    同步消息<br>    异步消息</p>
+<p>handler 实现卡顿监控<br><br>不会crash的handler</p>
+<h5 id="loop死循环为啥不卡死"><a href="#loop死循环为啥不卡死" class="headerlink" title="loop死循环为啥不卡死"></a>loop死循环为啥不卡死</h5><pre><code>Linux pipe/epoll机制 , linux io复用
+</code></pre>
+<p>    主线程的死循环一直运行是不是特别消耗CPU资源呢？ 其实不然，这里就涉及到Linux pipe&#x2F;epoll机制，简单说就是在主线程的MessageQueue没有消息时，便阻塞在loop的queue.next()中的nativePollOnce()方法里，此时主线程会释放CPU资源进入休眠状态，直到下个消息到达或者有事务发生，通过往pipe管道写端写入数据来唤醒主线程工作。这里采用的epoll机制，是一种IO多路复用机制，可以同时监控多个描述符，当某个描述符就绪(读或写就绪)，则立刻通知相应程序进行读或写操作，本质同步I&#x2F;O，即读写是阻塞的。 所以说，主线程大多数时候都是处于休眠状态，并不会消耗大量CPU资源。 Gityuan–Handler(Native层)</p>
+<h3 id="choreograhper"><a href="#choreograhper" class="headerlink" title="choreograhper"></a>choreograhper</h3><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/86d00bbdaf60">https://www.jianshu.com/p/86d00bbdaf60</a></p>
+<pre><code>traersal 
+</code></pre>
+<p>    input<br>    animation</p>
+<h3 id="断点续传"><a href="#断点续传" class="headerlink" title="断点续传"></a>断点续传</h3><h5 id="1-Http-协议支持"><a href="#1-Http-协议支持" class="headerlink" title="1. Http 协议支持"></a>1. Http 协议支持</h5><pre><code>Http 1.1 协议中默认支持获取文件的部分内容，这其中主要是通过头部的两个参数：Range 和 Content Range 来实现的。客户端发请求时对应的是 Range ，服务器端响应时对应的是 Content-Range。
+</code></pre>
+<p>Range</p>
+<pre><code>客户端想要获取文件的部分内容，那么它就需要请求头部中的 Range 参数中指定获取内容的起始字节的位置和终止字节的位置，它的格式一般为：
+Range:(unit=first byte pos)-[last byte pos]
+</code></pre>
+<p>Content Range</p>
+<pre><code>在收到客户端中携带 Range 的请求后，服务器会在响应的头部中添加 Content Range 参数，返回可接受的文件字节范围及其文件的总大小。它的格式如下：
+Content-Range: bytes (unit first byte pos) - [last byte pos]/[entity legth]
+</code></pre>
+<p>不使用断点续传： HTTP&#x2F;1.1 200 Ok<br>使用断点续传：HTTP&#x2F;1.1 206 Partial Content</p>
+<h5 id="2-防修改"><a href="#2-防修改" class="headerlink" title="2. 防修改"></a>2. 防修改</h5><p>在现实的场景中，服务器中的文件是会有发生变化的情况的，那么我们发起续传的请求肯定是失败的，那么为了处理这种服务器文件资源发生改变的问题，在 RFC2616 中定义了 Last-Modified 和 Etag 来判断续传文件资源是否发生改变。</p>
+<h6 id="Last-Modified-If-Modified-Since"><a href="#Last-Modified-If-Modified-Since" class="headerlink" title="Last-Modified &amp; If-Modified-Since"></a>Last-Modified &amp; If-Modified-Since</h6><ol>
+<li><p>Last-Modified：记录 Http 页面最后修改时间的 Http 头部参数，Last-Modified 是由服务端发送给客户端的</p>
+</li>
+<li><p>If-Modified-Since：记录 Http 页面最后修改时间的 Http 头部参数，If-Modified-Since 是有客户端发送给服务端的</p>
+</li>
+<li><p>验证过程</p>
+</li>
+</ol>
+<p>step 1：客户端缓存从服务端获取的页面<br><br>step 1：客户端访问相同页面时，客户端将服务器发送过来的  Last-Modified 通过 If-Modified-Since 发送给服务器<br><br>step 2：服务器通过客户端发送过来的 If-Modified-Since 进行判断客户端当前的缓存的页面是否为最新的</p>
+<p>如果不是最新的，那么就发送最新的页面给客户端<br><br>如果是最新的，那么就发送 304 告诉客户端它本地缓存的页面是最新的</p>
+<h6 id="Etag-if-Range（文件唯一标志）"><a href="#Etag-if-Range（文件唯一标志）" class="headerlink" title="Etag &amp; if-Range（文件唯一标志）"></a>Etag &amp; if-Range（文件唯一标志）</h6><ol>
+<li>Etag：作为文件的唯一标志，这个标志可以是文件的 hash 值或者是一个版本</li>
+<li>if-Range：用于判断实体是否发生改变，如果实体未改变，服务器发送客户端丢失的部分，否则发送整个实体。</li>
+<li>验证过程</li>
+</ol>
+<p>step 1：客户端发起续传请求，头部包含 Range 和 if-Range 参数<br><br>step 2：服务器中收到客户端的请求之后，将客户端和服务器的 Etag 进行比对<br></p>
+<p>相等：请求文件资源没有发生变化，应答报文为 206<br><br>不相等：请求文件资源发生变化，应答报文为 200</p>
+<h5 id="okhttp-断点续传"><a href="#okhttp-断点续传" class="headerlink" title="okhttp 断点续传"></a>okhttp 断点续传</h5><ol>
+<li><p>思路</p>
+<pre><code> step 1：判断检查本地是否有下载文件，若存在，则获取已下载的文件大小 downloadLength，若不存在，那么本地已下载文件的长度为 0
+ step 2：获取将要下载的文件总大小（HTTP 响应头部的 content-Length)
+ step 3：比对已下载文件大小和将要下载的文件总大小（contentLength），判断要下载的长度
+ step 4：再即将发起下载请求的 HTTP 头部中添加即将下载的文件大小范围（Range: bytes = downloadLength - contentLength)
+</code></pre>
+</li>
+</ol>
+<h3 id="Android架构"><a href="#Android架构" class="headerlink" title="Android架构"></a>Android架构</h3><pre><code>mvc
+mvp
+mvvm
+</code></pre>
+<h3 id="jetpack"><a href="#jetpack" class="headerlink" title="jetpack"></a>jetpack</h3><p>LiveData</p>
+<p>Databinding</p>
+<h3 id="gradle-AGP"><a href="#gradle-AGP" class="headerlink" title="gradle AGP"></a>gradle AGP</h3><h3 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h3><p>thread.currentThread.getStackTrace</p>
+<pre><code>blockCanary
+argusApm
+</code></pre>
+<p>    matrix - loopermonitor<br>    <br>网络、内存、启动、电量、io 、流量监控、存储、UI、包体积、webview</p>
+<p><a target="_blank" rel="noopener" href="https://blog.yorek.xyz/android/paid/master/#1-okhttpclientrequest">https://blog.yorek.xyz/android/paid/master/#1-okhttpclientrequest</a></p>
+<p>类重排，资源重排，懒加载 ，首屏繁重的预加载</p>
+<p>类重排： <br><br>使用Facebook的ReDex的Interdex调整类在Dex中的排列顺序。</p>
+<h3 id="framework"><a href="#framework" class="headerlink" title="framework"></a>framework</h3><p>系统启动流程、zygote进程启动、serverManager、 ams 、pms 、wms 、ims、四大组件启动流程</p>
+<p><a target="_blank" rel="noopener" href="https://blog.yorek.xyz/android/framework/Android%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6%281%29/">https://blog.yorek.xyz/android/framework/Android%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6%281%29/</a></p>
+<p>zygote启动流程 <a target="_blank" rel="noopener" href="https://juejin.cn/post/7277797981917888523">https://juejin.cn/post/7277797981917888523</a></p>
+<h4 id="activity"><a href="#activity" class="headerlink" title="activity"></a>activity</h4><h4 id="broadcast"><a href="#broadcast" class="headerlink" title="broadcast"></a>broadcast</h4><p>动态注册、静态注册</p>
+<ol>
+<li><p>普通广播：通过Context.sendBroadcast()发送，可并行处理</p>
+<pre><code> 普通广播：这种广播可以依次传递给各个处理器去处理
+</code></pre>
+</li>
+<li><p>有序广播：通过Context.sendOrderedBroadcast()发送，串行处理</p>
+<pre><code> 这种广播在处理器端的处理顺序是按照处理器的不同优先级来区分的，高优先级的处理器会优先截获这个消息，并且可以将这个消息删除。后面的广播可以获取和使用前一个广播的结果
+</code></pre>
+</li>
+<li><p>Sticky广播：通过Context.sendStickyBroadcast()发送</p>
+<pre><code> 粘性消息在发送后就一直存在于系统的消息容器里面，等待对应的处理器去处理，如果暂时没有处理器处理这个消息则一直在消息容器里面处于等待状态，粘性广播的Receiver如果被销毁，那么下次重建时会自动接收到消息数据。
+</code></pre>
+</li>
+</ol>
+<h5 id="localBroadcastReceiver"><a href="#localBroadcastReceiver" class="headerlink" title="localBroadcastReceiver"></a>localBroadcastReceiver</h5><p>handler实现</p>
+<h4 id="contentProvider"><a href="#contentProvider" class="headerlink" title="contentProvider"></a>contentProvider</h4><h6 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h6><h4 id="service"><a href="#service" class="headerlink" title="service"></a>service</h4><h5 id="bindService流程"><a href="#bindService流程" class="headerlink" title="bindService流程"></a>bindService流程</h5><p>图片来源 <a href="http://gityuan.com/2016/05/01/bind-service/" target="_black">gityuan</a><br><img src="/images/bind_service.png" alt="upload successful"></p>
+<h3 id="框架源码"><a href="#框架源码" class="headerlink" title="框架源码"></a>框架源码</h3><p><a target="_blank" rel="noopener" href="https://blog.yorek.xyz/android/3rd-library/3rd-library-source-code/">https://blog.yorek.xyz/android/3rd-library/3rd-library-source-code/</a></p>
+<h4 id="okhttp"><a href="#okhttp" class="headerlink" title="okhttp"></a>okhttp</h4><p>优点： <br></p>
+<ol>
+<li>请求复用</li>
+<li>网络延迟低，请求效率高</li>
+<li>http2支持</li>
+<li>扩展性</li>
+<li>资源回收管理</li>
+</ol>
+<p>ok的设计模式： </p>
+<p>ok有两个队列，请求队列和等待队列<br>ok的请求结果是子线程回调，配合retrofit<br>OK同时支持最多 5 个主机，每个主机 64 个请求</p>
+<pre><code>请求复用与缓存
+</code></pre>
+<p>    网络连接池管理<br>    责任链模式使用<br>    dispatcher分发流程<br>    拦截器的工作流程<br>    资源清理过程<br>    缓存策略<br>    生产者、责任链<br>    okhttp配置dns，https</p>
+<p>自己设计网络： </p>
+<ol>
+<li>高并发问题</li>
+<li>网络快速访问</li>
+<li>自定义扩展</li>
+<li>资源占用</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://blog.yorek.xyz/android/3rd-library/okhttp/#1-okhttpclientrequest">https://blog.yorek.xyz/android/3rd-library/okhttp/#1-okhttpclientrequest</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/user/3690408471177224/posts">https://juejin.cn/user/3690408471177224/posts</a></p>
+<h4 id="retrofit"><a href="#retrofit" class="headerlink" title="retrofit"></a>retrofit</h4><p><a target="_blank" rel="noopener" href="https://blog.yorek.xyz/android/3rd-library/retrofit/">https://blog.yorek.xyz/android/3rd-library/retrofit/</a></p>
+<h4 id="glide"><a href="#glide" class="headerlink" title="glide"></a>glide</h4><h4 id="rxjava"><a href="#rxjava" class="headerlink" title="rxjava"></a>rxjava</h4><h4 id="butterknife"><a href="#butterknife" class="headerlink" title="butterknife"></a>butterknife</h4><h4 id="mmkv"><a href="#mmkv" class="headerlink" title="mmkv"></a>mmkv</h4><p>MMKV的核心基于 mmap，之所以他比sp要快很多，也是mmap的特性使然</p>
+<pre><code>mmap是一种内存映射文件的方法，即将一个文件或者其它对象映射到进程的地址空间，实现文件磁盘地址和进程虚拟地址空间中一段虚拟地址的一一对映关系。实现这样的映射关系后，进程就可以采用指针的方式读写操作这一段内存，而系统会自动回写脏页面到对应的文件磁盘上，即完成了对文件的操作而不必再调用read，write等系统调用函数。相反，内核空间对这段区域的修改也直接反映用户空间，从而可以实现不同进程间的文件共享。
+</code></pre>
+<p>缺点： 会丢数据</p>
+<h3 id="埋点"><a href="#埋点" class="headerlink" title="埋点"></a>埋点</h3><pre><code>全埋点
+</code></pre>
+<p>    可视化埋点<br>    代码埋点</p>
+<h3 id="组件化"><a href="#组件化" class="headerlink" title="组件化"></a>组件化</h3><h3 id="插件化"><a href="#插件化" class="headerlink" title="插件化"></a>插件化</h3><p>shadow</p>
+<h3 id="热修复"><a href="#热修复" class="headerlink" title="热修复"></a>热修复</h3><p>tinker</p>
+<h3 id="jni"><a href="#jni" class="headerlink" title="jni"></a>jni</h3><p>JavaVM 是虚拟机在 JNI 层的代表。</p>
+<pre><code>一个进程只有一个 JavaVM。所有的线程共用一个 JavaVM。
+JNIEnv 只在创建它的线程生效，不能跨线程传递，不同线程的 JNIEnv 彼此独立。
+</code></pre>
+<p>动态注册和静态注册<br><br>JVM查找Native方法有两种方式：<br></p>
+<ol>
+<li><p>按照JNI规范的命名规则进行查找，这种方式叫静态注册。</p>
+<pre><code> 静态注册的方式是系统的默认方式，使用简单，但是灵活性比较差，如果修改了Java中的Native函数所在类的包名或类名，则需要同时修改C/C++函数名称（头文件、源文件等）。
+</code></pre>
+</li>
+<li><p>调用JNI提供的RegisterNatives函数，将本地函数注册到JVM中，这种方式叫动态注册。</p>
+</li>
+</ol>
+<p>在库加载时会自动调用JNI_OnLoad()函数，开发者经常会JNI_OnLoad()函数做一些初始化操作，动态注册就是在这里进行的。调用API是env-&gt;RegisterNatives(clazz, gMethods, numMethods)。</p>
+<pre><code>动态注册不必在每次运行调用Native方法都去进行方法查找，所以相对来说动态注册的性能更高一些。
+</code></pre>
+<h6 id="so-的加载流程"><a href="#so-的加载流程" class="headerlink" title="so 的加载流程"></a>so 的加载流程</h6><p>是从 ClassLoader 的 PathList 中去找到目标路径加载的，同时 so 是通过 mmap 加载映射到虚拟空间的。生命周期加载库和卸载库时分别调用 JNI_OnLoad 和 JNI_OnUnload() 方法。</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://wanke.fun/uncategorized/Android/" title="Android" target="_blank" rel="external">http://wanke.fun/uncategorized/Android/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://wanke.fun" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://wanke.fun" target="_blank"><span class="text-dark">师学</span><small class="ml-1x">Android Developer</small></a></h3>
+        <div>学而不思则罔，思而不学则殆。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/%E6%89%8B%E6%B8%B8SDK/%E6%89%8B%E6%B8%B8SDK%E6%89%93%E5%8C%85%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" title="手游SDK打包问题记录"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/../images/pay_ali.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/../images/pay_wx.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/kongxs" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        &copy; 2024 师学
+        
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+
+
+
+
+
+
+</body>
+</html>
